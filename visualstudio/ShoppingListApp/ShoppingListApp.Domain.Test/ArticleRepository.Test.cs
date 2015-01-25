@@ -59,7 +59,7 @@ namespace ShoppingListApp.Domain.Test
             File.Delete(@"./ArticleRepository.example.orig.xml");
 
             //Assert
-            FileAssert.AreEqual(@"./ArticleRepository.Add.Expected.xml", @"./ArticleRepository.Add.Actual.xml");
+            FileAssert.AreEqual(@"./ArticleRepository.Add.Expected.xml", @"./ArticleRepository.Add.Actual.xml", File.ReadAllText(@"./ArticleRepository.Add.Expected.xml") + "  STOP  " + File.ReadAllText(@"./ArticleRepository.Add.Actual.xml"));
         }
 
         [Test]
