@@ -1,0 +1,50 @@
+﻿@using ShoppingListApp.Domain.Entities
+@model IEnumerable<ShoppingList>
+
+@{
+    ViewBag.Title = "ShoppingLists";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <span class="btn btn-primary navbar-btn btn-lg text-uppercase">ShoppingLists</span>
+    </div>
+
+    <div class="row">
+        <table class="table">
+            <tbody>
+                @foreach (ShoppingList shoppinglist in @Model)
+                {
+                    <tr class="">
+                        <td class="">
+                            @Html.ActionLink(@shoppinglist.ShoppingListName.ToString(), "ShowShoppingList", "ShoppingList", new { shoppingListID = shoppinglist.ShoppingListID }, new { @class = "btn btn-primary" })
+                        </td>
+                        <td class="">
+                            @Html.ActionLink("Edit", "ModifyShoppingList", "ShoppingList", new { shoppinglistID = shoppinglist.ShoppingListID }, new { @class = "btn btn-danger" })
+                        </td>
+                        <td class="">
+                            @using (@Html.BeginForm("RemoveShoppingList", "ShoppingList"))
+                            {
+                                @Html.Hidden("shoppinglistToRemoveID", shoppinglist.ShoppingListID)
+                                <button typeof="submit" class="btn btn-danger">Delete</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="row">
+        @using (@Html.BeginForm("AddShoppingList", "ShoppingList"))
+        {
+            @Html.TextBox("shoppinglistToAddName", "Your ShoppingList Name", new { @autofocus = "autofocus" })
+            <button typeof="submit" class="btn btn-success">Add New ShoppingList</button>
+        }
+    </div>
+
+    <div class="row">
+        @Html.ActionLink("Back To Main Menu", "Index", "Home", null, new { @class = "btn btn-success navbar-btn btn-lg" })
+    </div>
+</div>
+

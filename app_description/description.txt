@@ -1,0 +1,17 @@
+ShoppingList App!
+- create a list of articles to buy
+- create a list of shoppinglists
+- display shoppinglists
+- display the shoppinglist with the latest due date
+
+Bootstrap use:
+http://getbootstrap.com for some examples and ideas of how to customize.
+
+AppHarbor Deployment:
+
+AppHarbor: jorditz - free (yahoo!)
+GitHub: outlook - free - repo foufure/ShoppingListApp
+https://help.github.com/articles/importing-from-subversion/
+
+Migrated to GitHub for automatic deployment on AppHarbor
+ 

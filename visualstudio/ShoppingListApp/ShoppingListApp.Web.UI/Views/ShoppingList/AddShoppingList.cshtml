@@ -1,0 +1,60 @@
+﻿@using ShoppingListApp.Domain.Entities
+@model ShoppingList
+
+@{
+    ViewBag.Title = "AddShoppingList";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <span class="btn btn-primary navbar-btn btn-lg text-uppercase">Edit ShoppingList</span>
+    </div>
+    <div class="row">
+        @using (@Html.BeginForm("SaveShoppingList", "ShoppingList"))
+        {
+            <div class="form-group">
+                @Html.ValidationSummary("", new { @class="text-danger" })
+                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListID, new { @class="form-control" })
+                @Html.Label("Name")
+                @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListName, new { @class = "form-control" })
+                @Html.Label("Due Date")
+                @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListDueDate, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < @Model.ShoppingListContent.Count(); i++)
+                        {
+                            <tr> 
+                                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ArticleToBuy.ArticleID)
+                                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ArticleToBuy.ArticleName)
+                                <td>
+                                    @Html.Label(Model.ShoppingListContent[i].ArticleToBuy.ArticleName)
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListContent[i].QuantityToBuy)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <input type="submit" value="Save" class="btn btn-success navbar-btn btn-lg" />
+            </div>
+
+        }
+    </div>
+    <div class="row">
+        @Html.ActionLink("Back To ShoppingLists", "ShoppingLists", "ShoppingList", null, new { @class = "btn btn-success navbar-btn btn-lg" })
+    </div>
+</div>
+

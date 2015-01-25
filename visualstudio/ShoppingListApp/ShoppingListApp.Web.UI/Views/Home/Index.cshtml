@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "ShoppingList App!";
+}
+
+
+
+<div class="text-center container-fluid table" style="vertical-align:central">
+    <div class="row">
+        <div class=""><span class="btn btn-primary text-justify navbar-btn btn-lg btn-block text-uppercase">ShoppingList App!</span></div>
+    </div>
+    <div class="row">
+        <span class="">@Html.ActionLink("Articles", "Articles", "Article", null, new { @class = "btn btn-success btn-lg btn-block" })</span>
+    </div>
+    <div class="row">
+        <span class="">@Html.ActionLink("ShoppingsLists", "ShoppingLists", "ShoppingList", null, new { @class = "btn btn-success btn-lg btn-block" })</span>
+    </div>
+    <div class="row">
+        <span class="">@Html.ActionLink("Due ShoppingList", "ShowShoppingList", "ShoppingList", null, new { @class = "btn btn-success btn-lg btn-block" })</span>
+    </div>
+</div>

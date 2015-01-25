@@ -1,0 +1,48 @@
+﻿@using ShoppingListApp.Domain.Entities
+@model IEnumerable<Article>
+
+@{
+    ViewBag.Title = "Articles";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <span class="btn btn-primary navbar-btn btn-lg text-uppercase">Articles</span>
+    </div>
+
+    <div class="row">
+        <table class="table">
+            <tbody>
+                @foreach (Article article in @Model)
+                {
+                    <tr>
+                        <td class="">
+                            @Html.ActionLink(@article.ArticleName.ToString(), "ModifyArticle", "Article", new { articleToModifyID = article.ArticleID }, new { @class = "btn btn-primary" })
+                        </td>
+                        <td class="">
+                            @using (@Html.BeginForm("RemoveArticle", "Article"))
+                            {
+                                @Html.Hidden("articleToRemoveID", article.ArticleID)
+                                <button typeof="submit" class="btn btn-danger">Delete</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+        
+    <div class="row">
+        @using (@Html.BeginForm("AddNewArticle", "Article"))
+        { 
+            @Html.TextBox("newArticleName", "Your Article Name", new { @autofocus = "autofocus" })
+            <button typeof="submit" class="btn btn-success">Add New Article</button>
+        }
+    </div>
+
+    <div class="row">
+        @Html.ActionLink("Back To Main Menu", "Index", "Home", null, new { @class = "btn btn-success navbar-btn btn-lg" })
+    </div>
+</div>
+
+

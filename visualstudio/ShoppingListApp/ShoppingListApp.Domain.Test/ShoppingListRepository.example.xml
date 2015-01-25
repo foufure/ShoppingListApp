@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ShoppingLists>
+  <ShoppingList>
+    <ShoppingListID>1</ShoppingListID>
+    <ShoppingListName>ShoppingList1</ShoppingListName>
+    <ShoppingListDueDate>4/13/1981</ShoppingListDueDate>
+    <ShoppingListLine>
+      <ArticleID>1</ArticleID>
+      <ArticleName>Article1</ArticleName>
+      <ArticleQuantity>1</ArticleQuantity>
+    </ShoppingListLine>
+    <ShoppingListLine>
+      <ArticleID>2</ArticleID>
+      <ArticleName>Article2</ArticleName>
+      <ArticleQuantity>1</ArticleQuantity>
+    </ShoppingListLine>
+    <ShoppingListLine>
+      <ArticleID>3</ArticleID>
+      <ArticleName>Article3</ArticleName>
+      <ArticleQuantity>2</ArticleQuantity>
+    </ShoppingListLine>
+  </ShoppingList>
+  <ShoppingList>
+    <ShoppingListID>2</ShoppingListID>
+    <ShoppingListName>ShoppingList2</ShoppingListName>
+    <ShoppingListDueDate>4/13/1981</ShoppingListDueDate>
+    <ShoppingListLine>
+      <ArticleID>1</ArticleID>
+      <ArticleName>Article1</ArticleName>
+      <ArticleQuantity>1</ArticleQuantity>
+    </ShoppingListLine>
+    <ShoppingListLine>
+      <ArticleID>2</ArticleID>
+      <ArticleName>Article2</ArticleName>
+      <ArticleQuantity>5</ArticleQuantity>
+    </ShoppingListLine>
+    <ShoppingListLine>
+      <ArticleID>5</ArticleID>
+      <ArticleName>Article5</ArticleName>
+      <ArticleQuantity>3</ArticleQuantity>
+    </ShoppingListLine>
+  </ShoppingList>
+</ShoppingLists>
