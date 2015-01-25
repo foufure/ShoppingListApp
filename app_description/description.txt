@@ -15,4 +15,3 @@ https://help.github.com/articles/importing-from-subversion/
 
 Migrated to GitHub for automatic deployment on AppHarbor
 Use of TortoiseGit
- 
