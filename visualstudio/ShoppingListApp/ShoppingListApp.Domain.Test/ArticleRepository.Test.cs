@@ -59,8 +59,7 @@ namespace ShoppingListApp.Domain.Test
             File.Delete(@"./ArticleRepository.example.orig.xml");
 
             //Assert
-            Assert.AreEqual(File.ReadAllText(@"./ArticleRepository.Add.Expected.xml"), File.ReadAllText(@"./ArticleRepository.Add.Actual.xml"), "Strings are not equal");
-            //FileAssert.AreEqual(@"./ArticleRepository.Add.Expected.xml", @"./ArticleRepository.Add.Actual.xml", File.ReadAllText(@"./ArticleRepository.Add.Expected.xml") + "  STOP  " + File.ReadAllText(@"./ArticleRepository.Add.Actual.xml"));
+            Assert.AreEqual(File.ReadAllText(@"./ArticleRepository.Add.Expected.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ArticleRepository.Add.Actual.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
