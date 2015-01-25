@@ -84,7 +84,7 @@ namespace ShoppingListApp.Domain.Test
             File.Delete(@"./ShoppingListRepository.example.orig.xml");
 
             //Assert
-            FileAssert.AreEqual(@"./ShoppingListRepository.Add.Expected.xml", @"./ShoppingListRepository.Add.Actual.xml");
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.Add.Expected.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.Add.Actual.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
@@ -107,7 +107,7 @@ namespace ShoppingListApp.Domain.Test
             File.Delete(@"./ShoppingListRepository.example.orig.xml");
 
             //Assert
-            FileAssert.AreEqual(@"./ShoppingListRepository.Remove.Expected.xml", @"./ShoppingListRepository.Remove.Actual.xml");
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.Remove.Expected.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.Remove.Actual.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
@@ -145,7 +145,7 @@ namespace ShoppingListApp.Domain.Test
             File.Delete(@"./ShoppingListRepository.example.orig.xml");
 
             //Assert
-            FileAssert.AreEqual(@"./ShoppingListRepository.Modified.Expected.xml", @"./ShoppingListRepository.Modified.Actual.xml");
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.Modified.Expected.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.Modified.Actual.xml").Replace("\r\n", "\n"));
         }
     }
 }

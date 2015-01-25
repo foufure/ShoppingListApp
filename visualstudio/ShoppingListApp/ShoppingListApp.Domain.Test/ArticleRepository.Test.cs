@@ -82,7 +82,7 @@ namespace ShoppingListApp.Domain.Test
             File.Delete(@"./ArticleRepository.example.orig.xml");
 
             //Assert
-            FileAssert.AreEqual(@"./ArticleRepository.Remove.Expected.xml", @"./ArticleRepository.Remove.Actual.xml");
+            Assert.AreEqual(File.ReadAllText(@"./ArticleRepository.Remove.Expected.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ArticleRepository.Remove.Actual.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
@@ -105,7 +105,7 @@ namespace ShoppingListApp.Domain.Test
             File.Delete(@"./ArticleRepository.example.orig.xml");
 
             //Assert
-            FileAssert.AreEqual(@"./ArticleRepository.Modified.Expected.xml", @"./ArticleRepository.Modified.Actual.xml");
+            Assert.AreEqual(File.ReadAllText(@"./ArticleRepository.Modified.Expected.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ArticleRepository.Modified.Actual.xml").Replace("\r\n", "\n"));
         }
     }
 }
