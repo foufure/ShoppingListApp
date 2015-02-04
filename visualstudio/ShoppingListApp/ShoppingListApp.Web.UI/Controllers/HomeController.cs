@@ -10,9 +10,24 @@ namespace ShoppingListApp.Web.UI.Controllers
 {
     public class HomeController : Controller
     {
+        private IBackupProcessor backupProcessor;
+
+        public HomeController(IBackupProcessor backupProcessorParam)
+        {
+            backupProcessor = backupProcessorParam;
+        }
+
         public ActionResult Index()
         {
             return View();
+        }
+
+        public RedirectToRouteResult Backup()
+        {
+            backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ArticleRepository.xml");
+            backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository.xml");
+            TempData["backup"] = "Backup Done on "+ DateTime.Now;
+            return RedirectToAction("Index");
         }
     }
 }

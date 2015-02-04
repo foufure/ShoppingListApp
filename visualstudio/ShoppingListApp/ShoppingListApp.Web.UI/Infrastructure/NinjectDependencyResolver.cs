@@ -36,6 +36,7 @@ namespace ShoppingListApp.Web.UI.Infrastructure
             kernel.Bind<IShoppingListRepository>().To<ShoppingListRepository>();
             kernel.Bind<IRepositoryNameProvider>().To<ArticleXMLRepositoryName>().WhenInjectedInto<IArticleRepository>();
             kernel.Bind<IRepositoryNameProvider>().To<ShoppingListXMLRepositoryName>().WhenInjectedInto<IShoppingListRepository>();
+            kernel.Bind<IBackupProcessor>().To<EmailBackupProcessor>().WithConstructorArgument("settings", new EmailSettings());
         }
     }
 }

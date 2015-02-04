@@ -18,4 +18,11 @@
     <div class="row">
         <span class="">@Html.ActionLink("Due ShoppingList", "ShowShoppingList", "ShoppingList", null, new { @class = "btn btn-success btn-lg btn-block" })</span>
     </div>
+    <div class="row">
+        <span class="">@Html.ActionLink("Backup per e-mail", "Backup", "Home", null, new { @class = "btn btn-success btn-lg btn-block" })</span>
+        @if (TempData["backup"] != null)
+        {
+            <span class="alert-success">@TempData["backup"]</span>
+        }
+    </div>
 </div>

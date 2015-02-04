@@ -14,4 +14,12 @@ GitHub: outlook - free - repo foufure/ShoppingListApp
 https://help.github.com/articles/importing-from-subversion/
 
 Migrated to GitHub for automatic deployment on AppHarbor
-Use of TortoiseGit
+Use of TortoiseGit (http://www.munsplace.com/blog/2012/07/27/saving-username-and-password-with-tortoisegit/)
+
+Google Backup Account + Authentication:
+Login: shoppinglistappharbor@gmail.com
+Pass: villenord198x198xvilleest
+
+i18n resources
+http://en.wikipedia.org/wiki/Internationalization_and_localization
+https://ajdotnet.wordpress.com/2013/11/08/asp-net-mvc-internationalization/

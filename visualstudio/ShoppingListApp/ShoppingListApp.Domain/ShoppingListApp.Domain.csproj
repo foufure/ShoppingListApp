@@ -42,9 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IArticleRepository.cs" />
+    <Compile Include="Abstract\IBackupProcessor.cs" />
     <Compile Include="Abstract\IRepositoryNameProvider.cs" />
     <Compile Include="Abstract\IShoppingListRepository.cs" />
     <Compile Include="Concrete\ArticleRepository.cs" />
+    <Compile Include="Concrete\EmailBackupProcessor.cs" />
     <Compile Include="Concrete\ShoppingListXMLTestRepositoryName.cs" />
     <Compile Include="Concrete\ShoppingListRepository.cs" />
     <Compile Include="Concrete\ShoppingListXMLRepositoryName.cs" />
