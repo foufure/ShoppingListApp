@@ -2,7 +2,7 @@ ShoppingList App!
 - create a list of articles to buy
 - create a list of shoppinglists
 - display shoppinglists
-- display the shoppinglist with the latest due date
+- display the shoppinglist with the latest due date with datetimepicker
 
 Bootstrap use:
 http://getbootstrap.com for some examples and ideas of how to customize.
@@ -23,3 +23,9 @@ Pass: villenord198x198xvilleest
 i18n resources
 http://en.wikipedia.org/wiki/Internationalization_and_localization
 https://ajdotnet.wordpress.com/2013/11/08/asp-net-mvc-internationalization/
+
+DateTimePicker
+http://www.asp.net/mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4
+http://xdsoft.net/jqplugins/datetimepicker/
+
+Using minified files.

@@ -8,6 +8,7 @@ using ShoppingListApp.Domain.Entities;
 
 namespace ShoppingListApp.Web.UI.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private IBackupProcessor backupProcessor;

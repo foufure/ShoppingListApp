@@ -7,6 +7,8 @@ using Ninject;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Concrete;
 using ShoppingListApp.Domain.Entities;
+using ShoppingListApp.Web.UI.Infrastructure.Abstract;
+using ShoppingListApp.Web.UI.Infrastructure.Concrete;
 
 namespace ShoppingListApp.Web.UI.Infrastructure
 {
@@ -37,6 +39,7 @@ namespace ShoppingListApp.Web.UI.Infrastructure
             kernel.Bind<IRepositoryNameProvider>().To<ArticleXMLRepositoryName>().WhenInjectedInto<IArticleRepository>();
             kernel.Bind<IRepositoryNameProvider>().To<ShoppingListXMLRepositoryName>().WhenInjectedInto<IShoppingListRepository>();
             kernel.Bind<IBackupProcessor>().To<EmailBackupProcessor>().WithConstructorArgument("settings", new EmailSettings());
+            kernel.Bind<IAuthenticationProvider>().To<FormsAuthenticationProvider>();
         }
     }
 }
