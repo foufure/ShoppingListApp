@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Entities;
+using ShoppingListApp.i18n.Utils;
 
 namespace ShoppingListApp.Web.UI.Controllers
 {
@@ -27,7 +28,7 @@ namespace ShoppingListApp.Web.UI.Controllers
         {
             backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ArticleRepository.xml");
             backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository.xml");
-            TempData["backup"] = "Backup Done on "+ DateTime.Now;
+            TempData["backup"] = ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("d", CultureHelper.getCurrentUICulture());
             return RedirectToAction("Index");
         }
     }

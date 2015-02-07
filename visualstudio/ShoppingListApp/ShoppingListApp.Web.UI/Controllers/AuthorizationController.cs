@@ -33,7 +33,7 @@ namespace ShoppingListApp.Web.UI.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Incorrect username or password");
+                    ModelState.AddModelError("", ShoppingListApp.i18n.Resources.Views.Authorization.LoginCommon.LogInFailed);
                     return View();
                 }
             }

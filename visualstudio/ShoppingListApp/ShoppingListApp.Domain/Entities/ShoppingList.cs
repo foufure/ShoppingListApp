@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using ShoppingListApp.i18n.Resources.ModelValidationMessages;
 
 namespace ShoppingListApp.Domain.Entities
 {
     public class ShoppingList
     {
         public uint ShoppingListID { get; set; }
-        [Required(ErrorMessage = "Please enter a ShoppingList Name")]
+        [Required(ErrorMessageResourceType = typeof(ShoppingListApp.i18n.Resources.ModelValidationMessages.ModelValidationMessagesCommon), ErrorMessageResourceName = "ShoppingListNameError")]
         public string ShoppingListName { get; set; }
-        [Required(ErrorMessage = "Please enter a ShoppingList Due Date")]
+        [Required(ErrorMessageResourceType = typeof(ShoppingListApp.i18n.Resources.ModelValidationMessages.ModelValidationMessagesCommon), ErrorMessageResourceName = "ShoppingListDueDateError")]
         [DataType(DataType.Date)]
         public DateTime ShoppingListDueDate { get; set; }
         public List<ShoppingListLine> ShoppingListContent { get; set; } 

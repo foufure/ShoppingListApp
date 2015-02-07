@@ -1,13 +1,9 @@
 ﻿@using ShoppingListApp.Domain.Entities
 @model IEnumerable<ShoppingList>
 
-@{
-    ViewBag.Title = "ShoppingLists";
-}
-
 <div class="container-fluid">
     <div class="row">
-        <span class="btn btn-primary navbar-btn btn-lg text-uppercase">ShoppingLists</span>
+        <span class="btn btn-primary navbar-btn btn-lg text-uppercase">@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.ShoppingLists</span>
     </div>
 
     <div class="row">
@@ -20,13 +16,13 @@
                             @Html.ActionLink(@shoppinglist.ShoppingListName.ToString(), "ShowShoppingList", "ShoppingList", new { shoppingListID = shoppinglist.ShoppingListID }, new { @class = "btn btn-primary" })
                         </td>
                         <td class="">
-                            @Html.ActionLink("Edit", "ModifyShoppingList", "ShoppingList", new { shoppinglistID = shoppinglist.ShoppingListID }, new { @class = "btn btn-danger" })
+                            @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Edit, "ModifyShoppingList", "ShoppingList", new { shoppinglistID = shoppinglist.ShoppingListID }, new { @class = "btn btn-danger" })
                         </td>
                         <td class="">
                             @using (@Html.BeginForm("RemoveShoppingList", "ShoppingList"))
                             {
                                 @Html.Hidden("shoppinglistToRemoveID", shoppinglist.ShoppingListID)
-                                <button typeof="submit" class="btn btn-danger">Delete</button>
+                                <button typeof="submit" class="btn btn-danger">@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Delete</button>
                             }
                         </td>
                     </tr>
@@ -38,8 +34,8 @@
     <div class="row">
         @using (@Html.BeginForm("AddShoppingList", "ShoppingList"))
         {
-            @Html.TextBox("shoppinglistToAddName", "Your ShoppingList Name", new { @autofocus = "autofocus" })
-            <button typeof="submit" class="btn btn-success">Add New ShoppingList</button>
+            @Html.TextBox("shoppinglistToAddName", @ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.YourShoppingListName, new { @autofocus = "autofocus" })
+            <button typeof="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.AddNewShoppingList</button>
         }
     </div>
 

@@ -22,9 +22,11 @@ Pass: villenord198x198xvilleest
 
 i18n resources
 http://en.wikipedia.org/wiki/Internationalization_and_localization
-https://ajdotnet.wordpress.com/2013/11/08/asp-net-mvc-internationalization/
+http://www.codeproject.com/Articles/778040/Beginners-Tutorial-on-Globalization-and-Localizati
+https://ajdotnet.wordpress.com/2013/11/23/asp-net-mvc-i18n-part-2-detect-browser-settings/
+http://rdonfack.developpez.com/tutoriels/dotnet/internationalisation-application-asp-net-mvc-3-razor/#LI
 
-DateTimePicker
+DateTimePicker - format must remain en-US otherwise model binding does not work
 http://www.asp.net/mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4
 http://xdsoft.net/jqplugins/datetimepicker/
 

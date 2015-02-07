@@ -1,13 +1,10 @@
-﻿@using ShoppingListApp.Domain.Entities
+﻿@using ShoppingListApp.i18n.Utils
+@using ShoppingListApp.Domain.Entities
 @model ShoppingList
-
-@{
-    ViewBag.Title = "AddShoppingList";
-}
 
 <div class="container-fluid">
     <div class="row">
-        <span class="btn btn-primary navbar-btn btn-lg text-uppercase">Edit ShoppingList</span>
+        <span class="btn btn-primary navbar-btn btn-lg text-uppercase">@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.EditShoppingList</span>
     </div>
     <div class="row">
         @using (@Html.BeginForm("SaveShoppingList", "ShoppingList"))
@@ -15,18 +12,18 @@
             <div class="form-group">
                 @Html.ValidationSummary("", new { @class="text-danger" })
                 @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListID, new { @class="form-control" })
-                @Html.Label("Name")
+                @Html.Label(@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Name)
                 @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListName, new { @class = "form-control" })
-                @Html.Label("Due Date")
-                @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListDueDate, new { @class = "form-control", @id = "_datetimepicker", type = "text" })
+                @Html.Label(@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.DueDate)
+                @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListDueDate, String.Format(CultureHelper.getCurrentUICulture(), "{0:d}", Model.ShoppingListDueDate), new { @class = "form-control", @id = "_datetimepicker_" + CultureHelper.getCurrentUICulture(), type = "text" })
             </div>
 
             <div class="form-group">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Quantity</th>
+                            <th>@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
+                            <th>@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +45,7 @@
             </div>
 
             <div>
-                <input type="submit" value="Save" class="btn btn-success navbar-btn btn-lg" />
+                <input type="submit" value=@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Save class="btn btn-success navbar-btn btn-lg" />
             </div>
 
         }

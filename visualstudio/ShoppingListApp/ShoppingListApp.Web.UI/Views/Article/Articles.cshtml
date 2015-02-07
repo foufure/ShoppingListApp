@@ -1,13 +1,9 @@
 ﻿@using ShoppingListApp.Domain.Entities
 @model IEnumerable<Article>
 
-@{
-    ViewBag.Title = "Articles";
-}
-
 <div class="container-fluid">
     <div class="row">
-        <span class="btn btn-primary navbar-btn btn-lg text-uppercase">Articles</span>
+        <span class="btn btn-primary navbar-btn btn-lg text-uppercase">@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.Articles</span>
     </div>
 
     <div class="row">
@@ -23,7 +19,7 @@
                             @using (@Html.BeginForm("RemoveArticle", "Article"))
                             {
                                 @Html.Hidden("articleToRemoveID", article.ArticleID)
-                                <button typeof="submit" class="btn btn-danger">Delete</button>
+                                <button typeof="submit" class="btn btn-danger">@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.Delete</button>
                             }
                         </td>
                     </tr>
@@ -35,8 +31,8 @@
     <div class="row">
         @using (@Html.BeginForm("AddNewArticle", "Article"))
         { 
-            @Html.TextBox("newArticleName", "Your Article Name", new { @autofocus = "autofocus" })
-            <button typeof="submit" class="btn btn-success">Add New Article</button>
+            @Html.TextBox("newArticleName", @ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.YourArticleName, new { @autofocus = "autofocus" })
+            <button typeof="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.AddNewArticle</button>
         }
     </div>
 

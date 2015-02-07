@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
-using System.Text;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Entities;
 

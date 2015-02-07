@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Entities;
 using System.Xml.Linq;
+using ShoppingListApp.i18n.Utils;
 
 namespace ShoppingListApp.Domain.Concrete
 {
@@ -79,7 +80,7 @@ namespace ShoppingListApp.Domain.Concrete
                 elements.Add(new XElement("ShoppingList",
                                             new XElement("ShoppingListID") { Value = shoppinglist.ShoppingListID.ToString() },
                                             new XElement("ShoppingListName") { Value = shoppinglist.ShoppingListName },
-                                            new XElement("ShoppingListDueDate") { Value = shoppinglist.ShoppingListDueDate.Date.ToString("d") },
+                                            new XElement("ShoppingListDueDate") { Value = shoppinglist.ShoppingListDueDate.Date.ToString("d", CultureHelper.getCurrentCulture()) },
                                             lines
                                             )
                              );

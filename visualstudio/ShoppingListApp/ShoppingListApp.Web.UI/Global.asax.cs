@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ShoppingListApp.i18n.Utils;
 
 namespace ShoppingListApp.Web.UI
 {
@@ -13,6 +14,11 @@ namespace ShoppingListApp.Web.UI
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+        }
+
+        private void Application_BeginRequest(Object source, EventArgs e)
+        {
+            (new CultureHelper()).ApplyUserCulture(((HttpApplication)source).Context.Request);
         }
     }
 }

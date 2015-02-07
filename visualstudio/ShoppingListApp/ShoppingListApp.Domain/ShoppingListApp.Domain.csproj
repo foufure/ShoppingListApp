@@ -56,7 +56,16 @@
     <Compile Include="Entities\ShoppingList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ShoppingListApp.i18n.Resources\ShoppingListApp.i18n.Resources.csproj">
+      <Project>{c4c06b74-f435-4409-866b-b9dc38f85e79}</Project>
+      <Name>ShoppingListApp.i18n.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShoppingListApp.i18n.Utils\ShoppingListApp.i18n.Utils.csproj">
+      <Project>{89437984-6d3a-4b92-92a5-1953e57d192e}</Project>
+      <Name>ShoppingListApp.i18n.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
