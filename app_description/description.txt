@@ -3,6 +3,8 @@ ShoppingList App!
 - create a list of shoppinglists
 - display shoppinglists
 - display the shoppinglist with the latest due date with datetimepicker
+- multilingual app with implicit (browser preferences + fallback + default en-US) and explicit (user) user culture choice
+- toogle strikethrough of articles of a shoppinglist to mark them as done during the shopping session
 
 Bootstrap use:
 http://getbootstrap.com for some examples and ideas of how to customize.
