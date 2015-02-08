@@ -9,7 +9,6 @@ using ShoppingListApp.i18n.Utils;
 
 namespace ShoppingListApp.Web.UI.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private IBackupProcessor backupProcessor;
@@ -24,6 +23,13 @@ namespace ShoppingListApp.Web.UI.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult RefreshAfterLogin()
+        {
+            return View("Index");
+        }
+
+        [Authorize]
         public RedirectToRouteResult Backup()
         {
             backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ArticleRepository.xml");

@@ -68,5 +68,14 @@ namespace ShoppingListApp.i18n.Resources.Views.Shared {
                 return ResourceManager.GetString("AppTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign In with Google Account.
+        /// </summary>
+        public static string SignInMessage {
+            get {
+                return ResourceManager.GetString("SignInMessage", resourceCulture);
+            }
+        }
     }
 }

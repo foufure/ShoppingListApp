@@ -1,0 +1,11 @@
+﻿@if (System.Security.Claims.ClaimsPrincipal.Current.Claims.Count() != 0)
+{
+    <div class="panel-group pull-left">
+        <span class="glyphicon glyphicon-user"></span>
+        <span class="">@System.Security.Claims.ClaimsPrincipal.Current.Claims.Where(type => type.Type.Contains("emailaddress")).First().Value</span>
+    </div>
+}
+else
+{
+    @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Shared._Layout.SignInMessage, "RefreshAfterLogin", "Home", null, new { @class = "btn btn-primary pull-left" })
+}

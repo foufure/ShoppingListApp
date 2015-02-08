@@ -120,4 +120,7 @@
   <data name="AppTitle" xml:space="preserve">
     <value>ShoppingList App!</value>
   </data>
+  <data name="SignInMessage" xml:space="preserve">
+    <value>Sign In with Google Account</value>
+  </data>
 </root>

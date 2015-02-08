@@ -7,6 +7,7 @@ using ShoppingListApp.i18n.Utils;
 
 namespace ShoppingListApp.Web.UI.Controllers
 {
+    [AllowAnonymous]
     public class UserCultureController : Controller
     {
         public ActionResult GetUserCulture(string userCulture, string returnUrl)

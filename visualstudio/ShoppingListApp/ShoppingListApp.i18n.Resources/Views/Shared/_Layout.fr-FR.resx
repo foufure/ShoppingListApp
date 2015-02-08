@@ -120,4 +120,7 @@
   <data name="AppTitle" xml:space="preserve">
     <value>Création de listes de courses!</value>
   </data>
+  <data name="SignInMessage" xml:space="preserve">
+    <value>Connectez-vous avec votre compte Google</value>
+  </data>
 </root>

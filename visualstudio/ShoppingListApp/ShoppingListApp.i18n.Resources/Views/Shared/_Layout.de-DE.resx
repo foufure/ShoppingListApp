@@ -120,4 +120,7 @@
   <data name="AppTitle" xml:space="preserve">
     <value>Meine Einkaufsliste!</value>
   </data>
+  <data name="SignInMessage" xml:space="preserve">
+    <value>Melden Sie sich bitte mit ihrem Google Konto an</value>
+  </data>
 </root>
