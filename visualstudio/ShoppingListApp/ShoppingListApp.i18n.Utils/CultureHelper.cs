@@ -11,24 +11,52 @@ using ShoppingListApp.i18n.Resources;
 
 namespace ShoppingListApp.i18n.Utils
 {
+    
+
     public class CultureHelper
     {
+        private const string WantedUserCultureCookieName = "WantedUserCultureCookie";
+
         public void ApplyUserCulture(HttpRequest request)
         {
             string culture = null;
-            if (request.UserLanguages != null && request.UserLanguages.Length > 0)
+
+            //Verify if the user has selected himself a culture explicitely on the Website
+            if ((culture = GetWantedUserCulture(request.Cookies)) == null)
             {
-                culture = BestCultureMatch((new SupportedCultures()).cultures, request.UserLanguages);
-            }
-            else 
-            {
-                culture = "en-US";
+                //If not then take the preferred culture from the browser
+                if (request.UserLanguages != null && request.UserLanguages.Length > 0)
+                {
+                    culture = BestCultureMatch((new SupportedCultures()).cultures, request.UserLanguages);
+                }
+                else
+                {
+                    culture = "en-US";
+                }
             }
 
             //Culture of the application background remains "en-US" for example for writing in the XML files for dates
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             //Culture of the UI changes according to the preferences of the user
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture);
+        }
+
+        public void SetWantedUserCulture(HttpCookieCollection cookies, string userCulture)
+        {
+            HttpCookie wantedUserCultureCookie = new HttpCookie(WantedUserCultureCookieName, userCulture);
+            wantedUserCultureCookie.Expires = DateTime.Now.AddDays(30);
+            cookies.Set(wantedUserCultureCookie);
+        }
+
+        private string GetWantedUserCulture(HttpCookieCollection cookies)
+        { 
+            HttpCookie cookie = null;
+            if( (cookie = cookies[WantedUserCultureCookieName]) != null)
+            {
+                return cookie.Value;
+            }
+
+            return null;
         }
 
         public static CultureInfo getCurrentUICulture()

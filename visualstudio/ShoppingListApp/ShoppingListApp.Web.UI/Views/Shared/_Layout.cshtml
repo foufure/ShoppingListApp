@@ -27,7 +27,12 @@
         </div>
 
         <div class="col-xs-12 col-sm-8 col-md-4 col-lg-4">
-            @RenderBody()
+            <div class="row">
+                @Html.Partial("GetUserCulture")
+            </div>
+            <div class="row">
+                @RenderBody()
+            </div>
         </div>
 
         <div class="col-xs-0 col-sm-2 col-md-4 col-lg-4">

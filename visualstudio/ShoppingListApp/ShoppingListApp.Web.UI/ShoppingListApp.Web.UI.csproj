@@ -136,6 +136,7 @@
     <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShoppingListController.cs" />
+    <Compile Include="Controllers\UserCultureController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -157,6 +158,7 @@
     <Content Include="Views\Authorization\Login.cshtml" />
     <Content Include="Views\Shared\BackToMainMenu.cshtml" />
     <Content Include="Views\Shared\BackToShoppingLists.cshtml" />
+    <Content Include="Views\Shared\GetUserCulture.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -164,7 +166,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\UserCulture\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShoppingListApp.Domain\ShoppingListApp.Domain.csproj">
       <Project>{b44b769b-ade6-4464-b270-fb6857b47d13}</Project>
