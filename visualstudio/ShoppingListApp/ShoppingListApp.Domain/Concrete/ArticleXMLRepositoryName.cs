@@ -9,9 +9,16 @@ namespace ShoppingListApp.Domain.Concrete
 {
     public class ArticleXMLRepositoryName : IRepositoryNameProvider
     {
+        private IUserInformation userInformation;
+
+        public ArticleXMLRepositoryName(IUserInformation userInformationParam)
+        {
+            userInformation = userInformationParam;
+        }
+
         public string repositoryName
         {
-            get { return System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ArticleRepository.xml"; }
+            get { return System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ArticleRepository." + userInformation.UserName + @".xml"; }
         }
     }
 }

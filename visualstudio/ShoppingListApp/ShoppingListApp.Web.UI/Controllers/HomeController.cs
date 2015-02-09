@@ -12,10 +12,12 @@ namespace ShoppingListApp.Web.UI.Controllers
     public class HomeController : Controller
     {
         private IBackupProcessor backupProcessor;
+        private IUserInformation userInformation;
 
-        public HomeController(IBackupProcessor backupProcessorParam)
+        public HomeController(IBackupProcessor backupProcessorParam, IUserInformation userInformationParam)
         {
             backupProcessor = backupProcessorParam;
+            userInformation = userInformationParam;
         }
 
         public ActionResult Index()
@@ -32,8 +34,8 @@ namespace ShoppingListApp.Web.UI.Controllers
         [Authorize]
         public RedirectToRouteResult Backup()
         {
-            backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ArticleRepository.xml");
-            backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository.xml");
+            backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ArticleRepository." + userInformation.UserName + @".xml");
+            backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository." + userInformation.UserName + ".xml");
             TempData["backup"] = ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("d", CultureHelper.getCurrentUICulture());
             return RedirectToAction("Index");
         }

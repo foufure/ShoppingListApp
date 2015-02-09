@@ -7,6 +7,7 @@ using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Entities;
 using System.Xml.Linq;
 using ShoppingListApp.i18n.Utils;
+using System.IO;
 
 namespace ShoppingListApp.Domain.Concrete
 {
@@ -18,7 +19,14 @@ namespace ShoppingListApp.Domain.Concrete
         public ShoppingListRepository(IRepositoryNameProvider repositoryNameProviderParam)
         {
             repositoryNameProvider = repositoryNameProviderParam;
+
+            if (!File.Exists(repositoryNameProvider.repositoryName))
+            {
+                XDocument newRepository = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XElement("ShoppingLists"));
+                newRepository.Save(repositoryNameProvider.repositoryName);
+            }
             XDocument parsedFile = XDocument.Load(repositoryNameProvider.repositoryName);
+            
             shoppinglistRepository = new List<ShoppingList>();
             foreach (XElement element in parsedFile.Elements("ShoppingLists").Elements("ShoppingList"))
             {

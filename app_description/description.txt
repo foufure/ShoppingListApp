@@ -29,7 +29,7 @@ Identifiant client
     143888277516-tn7pia64anes346ckbmd4uo1ep4dqeik.apps.googleusercontent.com
 Code secret du client
     62jGUM-EtoyjoRZZ9x6vMttD
-Redirect URI to configure: http://localhost:62506/signin-google 
+Redirect URI to configure: http://localhost:62506/signin-google (debug), http://shoppinglistapp.apphb.com/signin-google (production)  
 http://coding.abel.nu/2014/11/using-owin-external-login-without-asp-net-identity/#more-3630
 https://github.com/AndersAbel/SocialLoginWithoutIdentity 
 

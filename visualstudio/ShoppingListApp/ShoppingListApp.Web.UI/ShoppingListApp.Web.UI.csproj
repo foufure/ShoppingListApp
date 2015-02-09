@@ -116,7 +116,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ArticleRepository.shoppinglistappharbor.xml" />
     <Content Include="App_Data\ArticleRepository.xml" />
+    <Content Include="App_Data\ShoppingListRepository.shoppinglistappharbor.xml" />
     <Content Include="App_Data\ShoppingListRepository.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -162,17 +164,13 @@
     <Compile Include="App_Start\Startup.Auth.GoogleSettings.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
-    <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShoppingListController.cs" />
     <Compile Include="Controllers\UserCultureController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Abstract\IAuthenticationProvider.cs" />
-    <Compile Include="Infrastructure\Concrete\FormsAuthenticationProvider.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -185,7 +183,6 @@
     <Content Include="Views\ShoppingList\ShowShoppingList.cshtml" />
     <Content Include="Views\ShoppingList\AddShoppingList.cshtml" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
-    <Content Include="Views\Authorization\Login.cshtml" />
     <Content Include="Views\Shared\BackToMainMenu.cshtml" />
     <Content Include="Views\Shared\BackToShoppingLists.cshtml" />
     <Content Include="Views\Shared\GetUserCulture.cshtml" />
@@ -198,7 +195,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Account\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShoppingListApp.Domain\ShoppingListApp.Domain.csproj">

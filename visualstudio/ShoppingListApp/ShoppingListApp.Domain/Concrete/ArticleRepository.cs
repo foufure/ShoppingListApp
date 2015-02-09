@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ShoppingListApp.Domain.Abstract;
 using System.Xml.Linq;
 using ShoppingListApp.Domain.Entities;
+using System.IO;
 
 namespace ShoppingListApp.Domain.Concrete
 {
@@ -17,7 +18,16 @@ namespace ShoppingListApp.Domain.Concrete
         public ArticleRepository(IRepositoryNameProvider repositoryNameProviderParam)
         {
             repositoryNameProvider = repositoryNameProviderParam;
+
+            if (!File.Exists(repositoryNameProvider.repositoryName))
+            {
+                XDocument newRepository = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XElement("Articles"));
+                newRepository.Save(repositoryNameProvider.repositoryName);
+            }
+
             XDocument parsedFile = XDocument.Load(repositoryNameProvider.repositoryName);
+            
+            
             articleRepository = new List<Article>();
             foreach (XElement element in parsedFile.Elements("Articles").Elements("Article"))
             {

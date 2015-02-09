@@ -12,8 +12,8 @@ using ShoppingListApp.Domain.Entities;
 namespace ShoppingListApp.Domain.Concrete
 {
     public class EmailSettings 
-    {    
-        public string MailToAddress = "shoppinglistappharbor@gmail.com";
+    {
+        public string MailToAddress { get { return System.Security.Claims.ClaimsPrincipal.Current.Claims.Where(type => type.Type.Contains("emailaddress")).First().Value; } }
         public string MailFromAddress = "shoppinglistappharbor@gmail.com";
         public bool UseSsl = true;
         public string Username = "shoppinglistappharbor@gmail.com";
