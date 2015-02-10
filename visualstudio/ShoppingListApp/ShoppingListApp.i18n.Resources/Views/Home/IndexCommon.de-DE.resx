@@ -129,8 +129,20 @@
   <data name="BackupMessage" xml:space="preserve">
     <value>Backup ausgeführt am</value>
   </data>
+  <data name="BrowseArticleFile" xml:space="preserve">
+    <value>Datei auswählen (Artikeln)</value>
+  </data>
+  <data name="BrowseShoppingListFile" xml:space="preserve">
+    <value>Datei auswählen (Einkaufslisten)</value>
+  </data>
   <data name="DueShoppingList" xml:space="preserve">
     <value>Einkaufsliste zu erledigen</value>
+  </data>
+  <data name="RestoreBackup" xml:space="preserve">
+    <value>Backup restaurieren</value>
+  </data>
+  <data name="RestoreBackupMessage" xml:space="preserve">
+    <value>Backup restauriert am</value>
   </data>
   <data name="ShoppingLists" xml:space="preserve">
     <value>Einkaufsliste</value>

@@ -18,4 +18,17 @@
             <span class="alert-success">@TempData["backup"]</span>
         }
     </div>
+    <div class="row"></div>
+    <div class="row">
+        @using (@Html.BeginForm("RestoreBackup", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="submit" value="@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.RestoreBackup" class="btn btn-success btn-lg btn-block" />
+            <input type="file" class="filestyle" name="articlestorestorefile" data-buttonbefore="true" data-buttontext="@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BrowseArticleFile" />
+            <input type="file" class="filestyle" name="shoppingliststorestorefile" data-buttonbefore="true" data-buttontext="@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BrowseShoppingListFile" />
+        }
+        @if (TempData["restore"] != null)
+        {
+            <span class="alert-success">@TempData["restore"]</span>
+        }
+    </div>
 </div>

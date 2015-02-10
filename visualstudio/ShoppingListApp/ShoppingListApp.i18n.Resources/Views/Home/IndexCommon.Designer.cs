@@ -97,11 +97,47 @@ namespace ShoppingListApp.i18n.Resources.Views.Home {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose file to restore (articles).
+        /// </summary>
+        public static string BrowseArticleFile {
+            get {
+                return ResourceManager.GetString("BrowseArticleFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose file to restore (shoppinglists).
+        /// </summary>
+        public static string BrowseShoppingListFile {
+            get {
+                return ResourceManager.GetString("BrowseShoppingListFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Due Shopping List.
         /// </summary>
         public static string DueShoppingList {
             get {
                 return ResourceManager.GetString("DueShoppingList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore Backup.
+        /// </summary>
+        public static string RestoreBackup {
+            get {
+                return ResourceManager.GetString("RestoreBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup restored on.
+        /// </summary>
+        public static string RestoreBackupMessage {
+            get {
+                return ResourceManager.GetString("RestoreBackupMessage", resourceCulture);
             }
         }
         

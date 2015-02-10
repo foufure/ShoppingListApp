@@ -8,6 +8,7 @@ ShoppingList App!
 
 Bootstrap use:
 http://getbootstrap.com for some examples and ideas of how to customize.
+http://markusslima.github.io/bootstrap-filestyle/#Downloads - to customize upload file button.
 
 AppHarbor Deployment:
 
