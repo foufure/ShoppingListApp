@@ -61,6 +61,15 @@ namespace ShoppingListApp.i18n.Resources.Views.Home {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin.
+        /// </summary>
+        public static string Admin {
+            get {
+                return ResourceManager.GetString("Admin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ShoppingList App!.
         /// </summary>
         public static string AppTitle {

@@ -36,7 +36,7 @@
                                     @Html.Label(Model.ShoppingListContent[i].ArticleToBuy.ArticleName)
                                 </td>
                                 <td>
-                                    @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListContent[i].QuantityToBuy)
+                                    @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListContent[i].QuantityToBuy, new { @class="quantity_spinner" })
                                 </td>
                             </tr>
                         }

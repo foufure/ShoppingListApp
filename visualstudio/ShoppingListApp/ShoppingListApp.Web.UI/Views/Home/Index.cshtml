@@ -1,34 +1,23 @@
-﻿<div class="text-center container-fluid table" style="vertical-align:central">
-    <div class="row">
-        <div class=""><span class="btn btn-primary text-justify navbar-btn btn-lg btn-block text-uppercase">@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.AppTitle</span></div>
+﻿<div class="panel panel-primary panel-default panel-">
+    <div class="panel-heading text-uppercase text-center">
+        <h1 class="panel-title">@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.AppTitle</h1>
     </div>
-    <div class="row">
-        <span class="">@Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.Articles, "Articles", "Article", null, new { @class = "btn btn-success btn-lg btn-block" })</span>
-    </div>
-    <div class="row">
-        <span class="">@Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.ShoppingLists, "ShoppingLists", "ShoppingList", null, new { @class = "btn btn-success btn-lg btn-block" })</span>
-    </div>
-    <div class="row">
-        <span class="">@Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.DueShoppingList, "ShowShoppingList", "ShoppingList", null, new { @class = "btn btn-success btn-lg btn-block" })</span>
-    </div>
-    <div class="row">
-        <span class="">@Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BackupEmail, "Backup", "Home", null, new { @class = "btn btn-success btn-lg btn-block" })</span>
-        @if (TempData["backup"] != null)
-        {
-            <span class="alert-success">@TempData["backup"]</span>
-        }
-    </div>
-    <div class="row"></div>
-    <div class="row">
-        @using (@Html.BeginForm("RestoreBackup", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <input type="submit" value="@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.RestoreBackup" class="btn btn-success btn-lg btn-block" />
-            <input type="file" class="filestyle" name="articlestorestorefile" data-buttonbefore="true" data-buttontext="@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BrowseArticleFile" />
-            <input type="file" class="filestyle" name="shoppingliststorestorefile" data-buttonbefore="true" data-buttontext="@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BrowseShoppingListFile" />
-        }
-        @if (TempData["restore"] != null)
-        {
-            <span class="alert-success">@TempData["restore"]</span>
-        }
+    <div class="panel-body bg-info">
+        <div class="row">
+            @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.DueShoppingList, "ShowShoppingList", "ShoppingList", null, new { @class = "btn btn-success btn-lg btn-block" })
+        </div>
+        <div class="row">
+            @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.ShoppingLists, "ShoppingLists", "ShoppingList", null, new { @class = "btn btn-success btn-lg btn-block" })
+        </div>
+        </div>
+    <div class="panel-footer">
+        <div class="btn-group btn-group-justified">
+            <div class="btn-group">
+                @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.Articles, "Articles", "Article", null, new { @class = "btn btn-success" })
+            </div>
+            <div class="btn-group">
+                @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.Admin, "Admin", "Home", null, new { @class = "btn btn-success" })
+            </div>
+        </div>
     </div>
 </div>

@@ -3,16 +3,16 @@
   <ShoppingList>
     <ShoppingListID>1</ShoppingListID>
     <ShoppingListName>Aldi</ShoppingListName>
-    <ShoppingListDueDate>1/24/2015</ShoppingListDueDate>
+    <ShoppingListDueDate>2/11/2015</ShoppingListDueDate>
     <ShoppingListLine>
       <ArticleID>1</ArticleID>
       <ArticleName>Tomates</ArticleName>
-      <ArticleQuantity>1</ArticleQuantity>
+      <ArticleQuantity>2</ArticleQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
       <ArticleID>2</ArticleID>
       <ArticleName>Jambon Blanc</ArticleName>
-      <ArticleQuantity>1</ArticleQuantity>
+      <ArticleQuantity>5</ArticleQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
       <ArticleID>3</ArticleID>
@@ -27,7 +27,7 @@
     <ShoppingListLine>
       <ArticleID>5</ArticleID>
       <ArticleName>Oeufs</ArticleName>
-      <ArticleQuantity>12</ArticleQuantity>
+      <ArticleQuantity>21</ArticleQuantity>
     </ShoppingListLine>
   </ShoppingList>
 </ShoppingLists>

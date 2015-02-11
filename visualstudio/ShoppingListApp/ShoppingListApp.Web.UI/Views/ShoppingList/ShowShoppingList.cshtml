@@ -6,6 +6,7 @@
     <div class="row">
         <span class="btn btn-primary navbar-btn btn-lg text-uppercase">@Model.ShoppingListName</span>
         <span class="pull-right">@Model.ShoppingListDueDate.ToString("d", CultureHelper.getCurrentUICulture())</span>
+            
     </div>
 
     <div class="row">
@@ -30,6 +31,9 @@
                 }
             </tbody>
         </table>
+    </div>
+    <div>
+        <a href='javascript:window.print()' class="glyphicon glyphicon-print btn-default pull-right"></a>
     </div>
 
     @Html.Partial("BackToShoppingLists")

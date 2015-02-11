@@ -33,6 +33,12 @@ namespace ShoppingListApp.Web.UI.Controllers
         }
 
         [Authorize]
+        public ActionResult Admin()
+        {
+            return View();
+        }
+
+        [Authorize]
         public RedirectToRouteResult Backup()
         {
             backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ArticleRepository." + userInformation.UserName + @".xml");
