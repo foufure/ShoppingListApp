@@ -29,7 +29,7 @@ namespace ShoppingListApp.Web.UI.Controllers
         [Authorize]
         public ActionResult RefreshAfterLogin()
         {
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         [Authorize]
@@ -44,7 +44,7 @@ namespace ShoppingListApp.Web.UI.Controllers
             backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ArticleRepository." + userInformation.UserName + @".xml");
             backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository." + userInformation.UserName + ".xml");
             TempData["backup"] = ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("d", CultureHelper.getCurrentUICulture());
-            return RedirectToAction("Index");
+            return RedirectToAction("Admin");
         }
 
         [Authorize]
@@ -58,7 +58,7 @@ namespace ShoppingListApp.Web.UI.Controllers
                 TempData["restore"] = ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", CultureHelper.getCurrentUICulture()); ;
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Admin");
         }
     }
 }

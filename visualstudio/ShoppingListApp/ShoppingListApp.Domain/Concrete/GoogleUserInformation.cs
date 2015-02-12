@@ -11,12 +11,26 @@ namespace ShoppingListApp.Domain.Concrete
     {
         public string UserName
         {
-            get { return System.Security.Claims.ClaimsPrincipal.Current.Claims.Where(type => type.Type.Contains("emailaddress")).First().Value.Split('@')[0]; }
+            get 
+            {
+                try { return System.Security.Claims.ClaimsPrincipal.Current.Claims.Where(type => type.Type.Contains("emailaddress")).First().Value.Split('@')[0]; }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
+            }
         }
 
         public string UserEmail
         {
-            get { return System.Security.Claims.ClaimsPrincipal.Current.Claims.Where(type => type.Type.Contains("emailaddress")).First().Value; }
+            get 
+            {
+                try { return System.Security.Claims.ClaimsPrincipal.Current.Claims.Where(type => type.Type.Contains("emailaddress")).First().Value; }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
+            }
         }
     }
 }
