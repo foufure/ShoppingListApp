@@ -88,7 +88,7 @@ namespace ShoppingListApp.Domain.Concrete
                 elements.Add(new XElement("ShoppingList",
                                             new XElement("ShoppingListID") { Value = shoppinglist.ShoppingListID.ToString() },
                                             new XElement("ShoppingListName") { Value = shoppinglist.ShoppingListName },
-                                            new XElement("ShoppingListDueDate") { Value = shoppinglist.ShoppingListDueDate.Date.ToString("d", ConfiguredCultures.getCurrentCulture()) },
+                                            new XElement("ShoppingListDueDate") { Value = shoppinglist.ShoppingListDueDate.Date.ToString("u").Split(' ')[0] }, // Universal Date without Time
                                             lines
                                             )
                              );

@@ -16,9 +16,8 @@ $(function () {
             }
         },
         timepicker: false,
-        //forced to take the en-US format of date and time otherwise model binding does not work and date is rejected or worst taken wrong!
-        // month is taken as day and day is taken as month during data binding!
-        format: 'm/d/Y'
+        //culture insensitive date format yyyy-mm-dd accepted everywhere.
+        format: 'Y-m-d'
     });
 });
 
@@ -36,6 +35,6 @@ $(function () {
             }
         },
         timepicker: false,
-        format: 'm/d/Y'
+        format: 'Y-m-d'
     });
 });

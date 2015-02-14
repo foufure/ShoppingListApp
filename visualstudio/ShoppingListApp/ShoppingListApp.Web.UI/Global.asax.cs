@@ -10,6 +10,13 @@ namespace ShoppingListApp.Web.UI
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        private CultureHelper cultureHelper;
+
+        public MvcApplication()
+        {
+            cultureHelper = new CultureHelper();
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -18,7 +25,7 @@ namespace ShoppingListApp.Web.UI
 
         private void Application_BeginRequest(Object source, EventArgs e)
         {
-            (new CultureHelper()).ApplyUserCulture(((HttpApplication)source).Context.Request);
+            cultureHelper.ApplyUserCulture(((HttpApplication)source).Context.Request);
         }
     }
 }

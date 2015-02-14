@@ -14,10 +14,7 @@ namespace ShoppingListApp.Web.UI
     {
         private void ConfigureAuth(IAppBuilder app)
         {
-            var cookieOptions = new CookieAuthenticationOptions
-            {
-                LoginPath = new PathString("/Account/Login")
-            };
+            var cookieOptions = new CookieAuthenticationOptions() { LoginPath = new PathString("/Account/Login") };
 
             app.UseCookieAuthentication(cookieOptions);
 

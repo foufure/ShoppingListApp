@@ -3,7 +3,7 @@
   <ShoppingList>
     <ShoppingListID>1</ShoppingListID>
     <ShoppingListName>Aldi</ShoppingListName>
-    <ShoppingListDueDate>2/11/2015</ShoppingListDueDate>
+    <ShoppingListDueDate>2015-02-11</ShoppingListDueDate>
     <ShoppingListLine>
       <ArticleID>1</ArticleID>
       <ArticleName>Tomates</ArticleName>
@@ -33,6 +33,11 @@
   <ShoppingList>
     <ShoppingListID>2</ShoppingListID>
     <ShoppingListName>Name der Einkaufliste</ShoppingListName>
-    <ShoppingListDueDate>2/10/2015</ShoppingListDueDate>
+    <ShoppingListDueDate>2015-02-02</ShoppingListDueDate>
+  </ShoppingList>
+  <ShoppingList>
+    <ShoppingListID>3</ShoppingListID>
+    <ShoppingListName>Name der Einkaufliste</ShoppingListName>
+    <ShoppingListDueDate>2015-02-18</ShoppingListDueDate>
   </ShoppingList>
 </ShoppingLists>

@@ -3,7 +3,7 @@
   <ShoppingList>
     <ShoppingListID>1</ShoppingListID>
     <ShoppingListName>ShoppingList3</ShoppingListName>
-    <ShoppingListDueDate>12/4/2014</ShoppingListDueDate>
+    <ShoppingListDueDate>2014-12-04</ShoppingListDueDate>
     <ShoppingListLine>
       <ArticleID>1</ArticleID>
       <ArticleName>Article1</ArticleName>
@@ -23,7 +23,7 @@
   <ShoppingList>
     <ShoppingListID>2</ShoppingListID>
     <ShoppingListName>ShoppingList2</ShoppingListName>
-    <ShoppingListDueDate>4/13/1981</ShoppingListDueDate>
+    <ShoppingListDueDate>1981-04-13</ShoppingListDueDate>
     <ShoppingListLine>
       <ArticleID>1</ArticleID>
       <ArticleName>Article1</ArticleName>

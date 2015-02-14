@@ -14,7 +14,8 @@
                 @Html.Label(@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Name)
                 @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListName, new { @class = "form-control" })
                 @Html.Label(@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.DueDate)
-                @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListDueDate, Model.ShoppingListDueDate.ToString("d"), new { @class = "form-control", @id = "_datetimepicker_" + ConfiguredCultures.getCurrentUICulture(), type = "text" })
+                @* Universal Sortable Format Specifier "u": 2015-04-13 13:30:00Z - we need only the date *@
+                @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListDueDate, Model.ShoppingListDueDate.ToString("u").Split(' ')[0], new { @class = "form-control", @id = "_datetimepicker_" + ConfiguredCultures.getCurrentUICulture(), type = "text" })
             </div>
 
             <div class="form-group">

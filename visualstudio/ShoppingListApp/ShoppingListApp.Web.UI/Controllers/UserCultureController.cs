@@ -10,9 +10,15 @@ namespace ShoppingListApp.Web.UI.Controllers
     [AllowAnonymous]
     public class UserCultureController : Controller
     {
+        public CultureHelper cultureHelper;
+
+        public UserCultureController(CultureHelper cultureHelperParam)
+        {
+            cultureHelper = cultureHelperParam;
+        }
+
         public ActionResult GetUserCulture(string userCulture, string returnUrl)
         {
-            CultureHelper cultureHelper = new CultureHelper();
             cultureHelper.SetWantedUserCulture(this.ControllerContext.HttpContext.Response.Cookies, userCulture);
             return Redirect(returnUrl);
         }
