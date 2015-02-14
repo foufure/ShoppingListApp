@@ -1,21 +1,20 @@
-﻿@using ShoppingListApp.i18n.Utils
-@using ShoppingListApp.Domain.Entities
-@model ShoppingList
+﻿@model ShoppingList
 
-<div class="container-fluid">
-    <div class="row">
-        <span class="btn btn-primary navbar-btn btn-lg text-uppercase">@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.EditShoppingList</span>
+<div class="panel panel-primary">
+    <div class="panel-heading text-uppercase">
+        <h1 class="panel-title">@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.EditShoppingList</h1>
     </div>
-    <div class="row">
+
+    <div class="panel-body">
         @using (@Html.BeginForm("SaveShoppingList", "ShoppingList"))
         {
             <div class="form-group">
-                @Html.ValidationSummary("", new { @class="text-danger" })
-                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListID, new { @class="form-control" })
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListID, new { @class = "form-control" })
                 @Html.Label(@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Name)
                 @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListName, new { @class = "form-control" })
                 @Html.Label(@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.DueDate)
-                @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListDueDate, String.Format(CultureHelper.getCurrentUICulture(), "{0:d}", Model.ShoppingListDueDate), new { @class = "form-control", @id = "_datetimepicker_" + CultureHelper.getCurrentUICulture(), type = "text" })
+                @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListDueDate, Model.ShoppingListDueDate.ToString("d"), new { @class = "form-control", @id = "_datetimepicker_" + ConfiguredCultures.getCurrentUICulture(), type = "text" })
             </div>
 
             <div class="form-group">
@@ -29,14 +28,14 @@
                     <tbody>
                         @for (int i = 0; i < @Model.ShoppingListContent.Count(); i++)
                         {
-                            <tr> 
+                            <tr>
                                 @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ArticleToBuy.ArticleID)
                                 @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ArticleToBuy.ArticleName)
                                 <td>
                                     @Html.Label(Model.ShoppingListContent[i].ArticleToBuy.ArticleName)
                                 </td>
                                 <td>
-                                    @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListContent[i].QuantityToBuy, new { @class="quantity_spinner" })
+                                    @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListContent[i].QuantityToBuy, new { @class = "quantity_spinner" })
                                 </td>
                             </tr>
                         }
@@ -45,11 +44,13 @@
             </div>
 
             <div>
-                <input type="submit" value=@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Save class="btn btn-success navbar-btn btn-lg" />
+                <input type="submit" value=@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Save class="btn btn-success btn-lg" />
             </div>
 
         }
     </div>
+</div>
+<div>
     @Html.Partial("BackToShoppingLists")
 </div>
 

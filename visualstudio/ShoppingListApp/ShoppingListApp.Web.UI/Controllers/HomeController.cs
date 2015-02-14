@@ -27,7 +27,7 @@ namespace ShoppingListApp.Web.UI.Controllers
         }
 
         [Authorize]
-        public ActionResult RefreshAfterLogin()
+        public ActionResult LogIn()
         {
             return RedirectToAction("Index");
         }
@@ -43,7 +43,7 @@ namespace ShoppingListApp.Web.UI.Controllers
         {
             backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ArticleRepository." + userInformation.UserName + @".xml");
             backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository." + userInformation.UserName + ".xml");
-            TempData["backup"] = ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("d", CultureHelper.getCurrentUICulture());
+            TempData["backup"] = ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.getCurrentUICulture());
             return RedirectToAction("Admin");
         }
 
@@ -55,7 +55,7 @@ namespace ShoppingListApp.Web.UI.Controllers
             {
                 articlestorestorefile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ArticleRepository." + userInformation.UserName + @".xml");
                 shoppingliststorestorefile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository." + userInformation.UserName + ".xml");
-                TempData["restore"] = ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", CultureHelper.getCurrentUICulture()); ;
+                TempData["restore"] = ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.getCurrentUICulture()); ;
             }
 
             return RedirectToAction("Admin");

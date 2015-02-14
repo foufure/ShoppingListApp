@@ -1,8 +1,4 @@
-﻿@using ShoppingListApp.i18n.Resources
-
-<div class="btn-group-xs pull-right">
-    @foreach (string supportedCulture in (new SupportedCultures()).cultures)
-    { 
-        @Html.ActionLink(supportedCulture.Split('-')[1], "GetUserCulture", "UserCulture", new { userCulture=supportedCulture, returnUrl=Request.Url.PathAndQuery }, new { @class = "btn btn-primary" })
-    }
-</div>
+﻿@foreach (string supportedCulture in SupportedCultures.cultures)
+{ 
+    @Html.ActionLink(SupportedCultures.specificCulture(supportedCulture), "GetUserCulture", "UserCulture", new { userCulture=supportedCulture, returnUrl=Request.Url.PathAndQuery }, new { @class = "btn btn-primary" })
+}

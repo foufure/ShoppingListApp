@@ -1,24 +1,23 @@
-﻿@using ShoppingListApp.Domain.Entities
-@model IEnumerable<ShoppingList>
+﻿@model IEnumerable<ShoppingList>
 
-<div class="container-fluid">
-    <div class="row">
-        <span class="btn btn-primary navbar-btn btn-lg text-uppercase">@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.ShoppingLists</span>
+<div class="panel panel-primary">
+    <div class="panel-heading text-uppercase">
+        <h1 class="panel-title">@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.ShoppingLists</h1>
     </div>
 
-    <div class="row">
+    <div class="panel-body">
         <table class="table">
             <tbody>
                 @foreach (ShoppingList shoppinglist in @Model)
                 {
-                    <tr class="">
-                        <td class="">
-                            @Html.ActionLink(@shoppinglist.ShoppingListName.ToString(), "ShowShoppingList", "ShoppingList", new { shoppingListID = shoppinglist.ShoppingListID }, new { @class = "btn btn-primary" })
+                    <tr>
+                        <td>
+                            @Html.ActionLink(@shoppinglist.ShoppingListName, "ShowShoppingList", "ShoppingList", new { shoppingListID = shoppinglist.ShoppingListID }, new { @class = "btn btn-primary" })
                         </td>
-                        <td class="">
+                        <td>
                             @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Edit, "ModifyShoppingList", "ShoppingList", new { shoppinglistID = shoppinglist.ShoppingListID }, new { @class = "btn btn-danger" })
                         </td>
-                        <td class="">
+                        <td>
                             @using (@Html.BeginForm("RemoveShoppingList", "ShoppingList"))
                             {
                                 @Html.Hidden("shoppinglistToRemoveID", shoppinglist.ShoppingListID)
@@ -30,15 +29,16 @@
             </tbody>
         </table>
     </div>
-    
-    <div class="row">
+
+    <div class="panel-footer clearfix">
         @using (@Html.BeginForm("AddShoppingList", "ShoppingList"))
         {
             @Html.TextBox("shoppinglistToAddName", @ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.YourShoppingListName, new { @autofocus = "autofocus" })
             <button typeof="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.AddNewShoppingList</button>
         }
     </div>
-
+</div>
+<div>
     @Html.Partial("BackToMainMenu")
 </div>
 

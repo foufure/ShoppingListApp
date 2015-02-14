@@ -6,12 +6,20 @@ using System.Threading.Tasks;
 
 namespace ShoppingListApp.i18n.Resources
 {
-    public class SupportedCultures
+    public static class SupportedCultures
     {
-        private string[] supportedCultures = new string[] { "en-US", "fr-FR", "de-DE" };
+        // en-US is the culture
+        // US is the specific culture
+        private static string[] supportedCultures = new string[] { "en-US", "fr-FR", "de-DE" };
 
-        public string[] cultures {
+        public static string[] cultures 
+        {
             get { return supportedCultures; }
+        }
+
+        public static string specificCulture(string culture)
+        {
+            return culture.Split('-')[1];
         }
     }
 }

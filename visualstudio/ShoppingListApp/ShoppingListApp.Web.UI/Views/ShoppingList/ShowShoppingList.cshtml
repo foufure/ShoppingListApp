@@ -1,41 +1,39 @@
-﻿@using ShoppingListApp.i18n.Utils;
-@using ShoppingListApp.Domain.Entities;
-@model ShoppingList
+﻿@model ShoppingList
 
-<div class="container-fluid">
-    <div class="row">
-        <span class="btn btn-primary navbar-btn btn-lg text-uppercase">@Model.ShoppingListName</span>
-        <span class="pull-right">@Model.ShoppingListDueDate.ToString("d", CultureHelper.getCurrentUICulture())</span>
-            
+<div class="panel panel-primary">
+    <div class="panel-heading text-uppercase">
+        <span class="pull-right">@Model.ShoppingListDueDate.ToString("d", ConfiguredCultures.getCurrentUICulture())</span>
+        <h1 class="panel-title">@Model.ShoppingListName</h1> 
     </div>
 
-    <div class="row">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
-                    <th>@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (ShoppingListLine line in @Model.ShoppingListContent)
-                {
+    <div class="panel-body">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td class="">
-                            @line.ArticleToBuy.ArticleName
-                        </td>
-                        <td class="">
-                            @line.QuantityToBuy
-                        </td>
+                        <th>@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
+                        <th>@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <div>
-        <a href='javascript:window.print()' class="glyphicon glyphicon-print btn-default pull-right"></a>
+                </thead>
+                <tbody>
+                    @foreach (ShoppingListLine line in @Model.ShoppingListContent)
+                    {
+                        <tr>
+                            <td>
+                                @line.ArticleToBuy.ArticleName
+                            </td>
+                            <td>
+                                @line.QuantityToBuy
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
     </div>
 
+    <div class="panel-footer clearfix">
+        <a href='javascript:window.print()' class="glyphicon glyphicon-print pull-right"></a>
+    </div>
+</div>
+<div>
     @Html.Partial("BackToShoppingLists")
 </div>
-

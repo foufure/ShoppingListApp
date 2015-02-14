@@ -11,8 +11,6 @@ using ShoppingListApp.i18n.Resources;
 
 namespace ShoppingListApp.i18n.Utils
 {
-    
-
     public class CultureHelper
     {
         private const string WantedUserCultureCookieName = "WantedUserCultureCookie";
@@ -27,7 +25,7 @@ namespace ShoppingListApp.i18n.Utils
                 //If not then take the preferred culture from the browser
                 if (request.UserLanguages != null && request.UserLanguages.Length > 0)
                 {
-                    culture = BestCultureMatch((new SupportedCultures()).cultures, request.UserLanguages);
+                    culture = BestCultureMatch(SupportedCultures.cultures, request.UserLanguages);
                 }
                 else
                 {
@@ -57,16 +55,6 @@ namespace ShoppingListApp.i18n.Utils
             }
 
             return null;
-        }
-
-        public static CultureInfo getCurrentUICulture()
-        {
-            return Thread.CurrentThread.CurrentUICulture;
-        }
-
-        public static CultureInfo getCurrentCulture()
-        {
-            return Thread.CurrentThread.CurrentCulture;
         }
 
         private KeyValuePair<int, string> perfectMatchPosition(string[] supportedCultures, string[] userCultures)

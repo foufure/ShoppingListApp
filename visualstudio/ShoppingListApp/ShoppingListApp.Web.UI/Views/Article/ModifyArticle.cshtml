@@ -1,16 +1,17 @@
-﻿@using ShoppingListApp.Domain.Entities
-@model Article
+﻿@model Article
 
-<div>
-    @using (@Html.BeginForm("ModifyArticle", "Article"))
-    { 
-        @Html.Hidden("articleToModifyID", @Model.ArticleID)
-        @Html.TextBox("articleToModifyNewName", @Model.ArticleName)
-        <button type="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.Modify</button>
-    }
+<div class="panel panel-primary">
+    <div class="panel-body">
+        @using (@Html.BeginForm("ModifyArticle", "Article"))
+        {
+            @Html.Hidden("articleToModifyID", @Model.ArticleID)
+            @Html.TextBox("articleToModifyNewName", @Model.ArticleName)
+            <button type="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.Modify</button>
+        }
+    </div>
+    <div class="panel-footer"></div>
 </div>
-
-<div class="row">
-    @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.BackToArticles, "Articles", "Article", null, new { @class = "btn btn-success navbar-btn btn-lg" })
+<div>
+    @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.BackToArticles, "Articles", "Article", null, new { @class = "btn btn-success btn-lg" })
 </div>
 

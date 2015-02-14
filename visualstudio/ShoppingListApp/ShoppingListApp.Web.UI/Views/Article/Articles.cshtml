@@ -1,21 +1,20 @@
-﻿@using ShoppingListApp.Domain.Entities
-@model IEnumerable<Article>
+﻿@model IEnumerable<Article>
 
-<div class="container-fluid">
-    <div class="row">
-        <span class="btn btn-primary navbar-btn btn-lg text-uppercase">@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.Articles</span>
+<div class="panel panel-primary">
+    <div class="panel-heading text-uppercase">
+        <h1 class="panel-title text-uppercase">@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.Articles</h1>
     </div>
 
-    <div class="row">
+    <div class="panel-body">
         <table class="table">
             <tbody>
                 @foreach (Article article in @Model)
                 {
                     <tr>
-                        <td class="">
+                        <td>
                             @Html.ActionLink(@article.ArticleName.ToString(), "ModifyArticle", "Article", new { articleToModifyID = article.ArticleID }, new { @class = "btn btn-primary" })
                         </td>
-                        <td class="">
+                        <td>
                             @using (@Html.BeginForm("RemoveArticle", "Article"))
                             {
                                 @Html.Hidden("articleToRemoveID", article.ArticleID)
@@ -27,16 +26,15 @@
             </tbody>
         </table>
     </div>
-        
-    <div class="row">
+
+    <div class="panel-footer clearfix">
         @using (@Html.BeginForm("AddNewArticle", "Article"))
-        { 
+        {
             @Html.TextBox("newArticleName", @ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.YourArticleName, new { @autofocus = "autofocus" })
             <button typeof="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.AddNewArticle</button>
         }
     </div>
-
+</div>
+<div>
     @Html.Partial("BackToMainMenu")
 </div>
-
-
