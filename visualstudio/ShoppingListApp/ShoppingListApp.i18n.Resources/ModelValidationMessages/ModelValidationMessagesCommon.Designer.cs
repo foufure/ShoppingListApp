@@ -62,7 +62,7 @@ namespace ShoppingListApp.i18n.Resources.ModelValidationMessages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter a ShoppingList Due Date.
+        ///   Looks up a localized string similar to Please enter a Due Date.
         /// </summary>
         public static string ShoppingListDueDateError {
             get {
@@ -71,7 +71,7 @@ namespace ShoppingListApp.i18n.Resources.ModelValidationMessages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter a ShoppingList Name.
+        ///   Looks up a localized string similar to Please enter a Name for the shopping list.
         /// </summary>
         public static string ShoppingListNameError {
             get {

@@ -70,25 +70,7 @@ namespace ShoppingListApp.i18n.Resources.Views.Home {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ShoppingList App!.
-        /// </summary>
-        public static string AppTitle {
-            get {
-                return ResourceManager.GetString("AppTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Articles.
-        /// </summary>
-        public static string Articles {
-            get {
-                return ResourceManager.GetString("Articles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Backup per e-mail.
+        ///   Looks up a localized string similar to Backup via e-mail.
         /// </summary>
         public static string BackupEmail {
             get {
@@ -106,20 +88,29 @@ namespace ShoppingListApp.i18n.Resources.Views.Home {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose file to restore (articles).
+        ///   Looks up a localized string similar to Choose Items Backup to restore.
         /// </summary>
-        public static string BrowseArticleFile {
+        public static string BrowseItemFile {
             get {
-                return ResourceManager.GetString("BrowseArticleFile", resourceCulture);
+                return ResourceManager.GetString("BrowseItemFile", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose file to restore (shoppinglists).
+        ///   Looks up a localized string similar to Choose Shopping Lists Backup to restore.
         /// </summary>
         public static string BrowseShoppingListFile {
             get {
                 return ResourceManager.GetString("BrowseShoppingListFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
         
@@ -129,6 +120,15 @@ namespace ShoppingListApp.i18n.Resources.Views.Home {
         public static string DueShoppingList {
             get {
                 return ResourceManager.GetString("DueShoppingList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Items.
+        /// </summary>
+        public static string Items {
+            get {
+                return ResourceManager.GetString("Items", resourceCulture);
             }
         }
         

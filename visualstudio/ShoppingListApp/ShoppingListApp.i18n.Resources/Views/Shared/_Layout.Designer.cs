@@ -61,7 +61,7 @@ namespace ShoppingListApp.i18n.Resources.Views.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ShoppingList App!.
+        ///   Looks up a localized string similar to My Shopping List!.
         /// </summary>
         public static string AppTitle {
             get {
@@ -70,7 +70,7 @@ namespace ShoppingListApp.i18n.Resources.Views.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign In with Google Account.
+        ///   Looks up a localized string similar to Sign In with your Google Account.
         /// </summary>
         public static string SignInMessage {
             get {

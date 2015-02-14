@@ -6,12 +6,12 @@
         {
             @Html.Hidden("articleToModifyID", @Model.ArticleID)
             @Html.TextBox("articleToModifyNewName", @Model.ArticleName)
-            <button type="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.Modify</button>
+            <button type="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.Item.ItemsCommon.Modify</button>
         }
     </div>
     <div class="panel-footer"></div>
 </div>
 <div>
-    @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.BackToArticles, "Articles", "Article", null, new { @class = "btn btn-success btn-lg" })
+    @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Item.ItemsCommon.BackToItems, "Articles", "Article", null, new { @class = "btn btn-success btn-lg" })
 </div>
 

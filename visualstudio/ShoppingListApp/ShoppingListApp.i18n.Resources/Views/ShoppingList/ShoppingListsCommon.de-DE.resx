@@ -120,9 +120,6 @@
   <data name="AddNewShoppingList" xml:space="preserve">
     <value>Neue Einkaufsliste hinzufügen</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Löschen</value>
-  </data>
   <data name="DueDate" xml:space="preserve">
     <value>Datum</value>
   </data>
@@ -140,9 +137,6 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>
-  </data>
-  <data name="ShoppingLists" xml:space="preserve">
-    <value>Einkaufslisten</value>
   </data>
   <data name="YourShoppingListName" xml:space="preserve">
     <value>Name der Einkaufliste</value>

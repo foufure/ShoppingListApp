@@ -118,10 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddNewShoppingList" xml:space="preserve">
-    <value>Add New ShoppingList</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Add New Shopping List</value>
   </data>
   <data name="DueDate" xml:space="preserve">
     <value>Due Date</value>
@@ -130,7 +127,7 @@
     <value>Edit</value>
   </data>
   <data name="EditShoppingList" xml:space="preserve">
-    <value>Edit ShoppingList</value>
+    <value>Edit Shopping List</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -141,10 +138,7 @@
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="ShoppingLists" xml:space="preserve">
-    <value>Shopping Lists</value>
-  </data>
   <data name="YourShoppingListName" xml:space="preserve">
-    <value>Your ShoppingList Name</value>
+    <value>Your Shopping List Name</value>
   </data>
 </root>

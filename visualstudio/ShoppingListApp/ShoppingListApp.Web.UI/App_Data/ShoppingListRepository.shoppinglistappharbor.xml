@@ -30,14 +30,4 @@
       <ArticleQuantity>21</ArticleQuantity>
     </ShoppingListLine>
   </ShoppingList>
-  <ShoppingList>
-    <ShoppingListID>2</ShoppingListID>
-    <ShoppingListName>Name der Einkaufliste</ShoppingListName>
-    <ShoppingListDueDate>2015-02-02</ShoppingListDueDate>
-  </ShoppingList>
-  <ShoppingList>
-    <ShoppingListID>3</ShoppingListID>
-    <ShoppingListName>Name der Einkaufliste</ShoppingListName>
-    <ShoppingListDueDate>2015-02-18</ShoppingListDueDate>
-  </ShoppingList>
 </ShoppingLists>

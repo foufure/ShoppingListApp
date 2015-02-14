@@ -2,7 +2,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading text-uppercase">
-        <h1 class="panel-title">@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.ShoppingLists</h1>
+        <h1 class="panel-title">@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.ShoppingLists</h1>
     </div>
 
     <div class="panel-body">
@@ -21,7 +21,7 @@
                             @using (@Html.BeginForm("RemoveShoppingList", "ShoppingList"))
                             {
                                 @Html.Hidden("shoppinglistToRemoveID", shoppinglist.ShoppingListID)
-                                <button typeof="submit" class="btn btn-danger">@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Delete</button>
+                                <button typeof="submit" class="btn btn-danger">@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.Delete</button>
                             }
                         </td>
                     </tr>

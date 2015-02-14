@@ -120,26 +120,26 @@
   <data name="Admin" xml:space="preserve">
     <value>Admin</value>
   </data>
-  <data name="AppTitle" xml:space="preserve">
-    <value>Application de création de listes de course!</value>
-  </data>
-  <data name="Articles" xml:space="preserve">
-    <value>Articles</value>
-  </data>
   <data name="BackupEmail" xml:space="preserve">
     <value>Sauvegarder par e-mail</value>
   </data>
   <data name="BackupMessage" xml:space="preserve">
     <value>Sauvegarde effectuée le</value>
   </data>
-  <data name="BrowseArticleFile" xml:space="preserve">
-    <value>Choisir le fichier à restaurer (articles)</value>
+  <data name="BrowseItemFile" xml:space="preserve">
+    <value>Choisir les articles à restaurer</value>
   </data>
   <data name="BrowseShoppingListFile" xml:space="preserve">
-    <value>Choisir le fichier à restaurer (shoppinglists)</value>
+    <value>Choisir les listes de courses à restaurer</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Supprimer</value>
   </data>
   <data name="DueShoppingList" xml:space="preserve">
     <value>Liste de courses à effectuer</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Articles</value>
   </data>
   <data name="RestoreBackup" xml:space="preserve">
     <value>Charger le fichier de sauvegarde</value>

@@ -61,20 +61,11 @@ namespace ShoppingListApp.i18n.Resources.Views.ShoppingList {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add New ShoppingList.
+        ///   Looks up a localized string similar to Add New Shopping List.
         /// </summary>
         public static string AddNewShoppingList {
             get {
                 return ResourceManager.GetString("AddNewShoppingList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete.
-        /// </summary>
-        public static string Delete {
-            get {
-                return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
         
@@ -97,7 +88,7 @@ namespace ShoppingListApp.i18n.Resources.Views.ShoppingList {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit ShoppingList.
+        ///   Looks up a localized string similar to Edit Shopping List.
         /// </summary>
         public static string EditShoppingList {
             get {
@@ -133,16 +124,7 @@ namespace ShoppingListApp.i18n.Resources.Views.ShoppingList {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shopping Lists.
-        /// </summary>
-        public static string ShoppingLists {
-            get {
-                return ResourceManager.GetString("ShoppingLists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your ShoppingList Name.
+        ///   Looks up a localized string similar to Your Shopping List Name.
         /// </summary>
         public static string YourShoppingListName {
             get {

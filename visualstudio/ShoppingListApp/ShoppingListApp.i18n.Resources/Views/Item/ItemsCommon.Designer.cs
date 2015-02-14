@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoppingListApp.i18n.Resources.Views.Authorization {
+namespace ShoppingListApp.i18n.Resources.Views.Item {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace ShoppingListApp.i18n.Resources.Views.Authorization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class LoginCommon {
+    public class ItemsCommon {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal LoginCommon() {
+        internal ItemsCommon() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ShoppingListApp.i18n.Resources.Views.Authorization {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ShoppingListApp.i18n.Resources.Views.Authorization.LoginCommon", typeof(LoginCommon).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ShoppingListApp.i18n.Resources.Views.Item.ItemsCommon", typeof(ItemsCommon).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,38 @@ namespace ShoppingListApp.i18n.Resources.Views.Authorization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log In.
+        ///   Looks up a localized string similar to Add a New Item.
         /// </summary>
-        public static string LogIn {
+        public static string AddNewItem {
             get {
-                return ResourceManager.GetString("LogIn", resourceCulture);
+                return ResourceManager.GetString("AddNewItem", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect username or password.
+        ///   Looks up a localized string similar to Back To Items.
         /// </summary>
-        public static string LogInFailed {
+        public static string BackToItems {
             get {
-                return ResourceManager.GetString("LogInFailed", resourceCulture);
+                return ResourceManager.GetString("BackToItems", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please log in to access the ShoppingList App!:.
+        ///   Looks up a localized string similar to Modify.
         /// </summary>
-        public static string LogInMessage {
+        public static string Modify {
             get {
-                return ResourceManager.GetString("LogInMessage", resourceCulture);
+                return ResourceManager.GetString("Modify", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password:.
+        ///   Looks up a localized string similar to Your Item Name.
         /// </summary>
-        public static string Password {
+        public static string YourItemName {
             get {
-                return ResourceManager.GetString("Password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to User Name:.
-        /// </summary>
-        public static string UserName {
-            get {
-                return ResourceManager.GetString("UserName", resourceCulture);
+                return ResourceManager.GetString("YourItemName", resourceCulture);
             }
         }
     }

@@ -2,7 +2,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading text-uppercase">
-        <h1 class="panel-title text-uppercase">@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.Articles</h1>
+        <h1 class="panel-title text-uppercase">@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.Items</h1>
     </div>
 
     <div class="panel-body">
@@ -18,7 +18,7 @@
                             @using (@Html.BeginForm("RemoveArticle", "Article"))
                             {
                                 @Html.Hidden("articleToRemoveID", article.ArticleID)
-                                <button typeof="submit" class="btn btn-danger">@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.Delete</button>
+                                <button typeof="submit" class="btn btn-danger">@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.Delete</button>
                             }
                         </td>
                     </tr>
@@ -30,8 +30,8 @@
     <div class="panel-footer clearfix">
         @using (@Html.BeginForm("AddNewArticle", "Article"))
         {
-            @Html.TextBox("newArticleName", @ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.YourArticleName, new { @autofocus = "autofocus" })
-            <button typeof="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.Article.ArticlesCommon.AddNewArticle</button>
+            @Html.TextBox("newArticleName", @ShoppingListApp.i18n.Resources.Views.Item.ItemsCommon.YourItemName, new { @autofocus = "autofocus" })
+            <button typeof="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.Item.ItemsCommon.AddNewItem</button>
         }
     </div>
 </div>

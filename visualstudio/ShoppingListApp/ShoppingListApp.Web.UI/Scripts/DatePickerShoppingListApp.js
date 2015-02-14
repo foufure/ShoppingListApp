@@ -1,5 +1,20 @@
-﻿$(function () {
-    jQuery('#_datetimepicker_en-US').datetimepicker();
+﻿//culture insensitive date format yyyy-mm-dd accepted everywhere
+$(function () {
+    jQuery('#_datetimepicker_en-US').datetimepicker({
+        lang: 'en',
+        i18n: {
+            en: { // English
+                months: [
+					"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+                ],
+                dayOfWeek: [
+					"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
+                ]
+            }
+        },
+        timepicker: false,       
+        format: 'Y-m-d'
+    });
 });
 
 $(function () {
@@ -16,7 +31,6 @@ $(function () {
             }
         },
         timepicker: false,
-        //culture insensitive date format yyyy-mm-dd accepted everywhere.
         format: 'Y-m-d'
     });
 });

@@ -8,7 +8,6 @@ using System.Web;
 using System.Globalization;
 using ShoppingListApp.i18n.Resources;
 
-
 namespace ShoppingListApp.i18n.Utils
 {
     public class CultureHelper

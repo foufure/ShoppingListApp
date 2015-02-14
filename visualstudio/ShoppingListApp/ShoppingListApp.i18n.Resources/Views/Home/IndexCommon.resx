@@ -120,26 +120,26 @@
   <data name="Admin" xml:space="preserve">
     <value>Admin</value>
   </data>
-  <data name="AppTitle" xml:space="preserve">
-    <value>ShoppingList App!</value>
-  </data>
-  <data name="Articles" xml:space="preserve">
-    <value>Articles</value>
-  </data>
   <data name="BackupEmail" xml:space="preserve">
-    <value>Backup per e-mail</value>
+    <value>Backup via e-mail</value>
   </data>
   <data name="BackupMessage" xml:space="preserve">
     <value>Backup done on</value>
   </data>
-  <data name="BrowseArticleFile" xml:space="preserve">
-    <value>Choose file to restore (articles)</value>
+  <data name="BrowseItemFile" xml:space="preserve">
+    <value>Choose Items Backup to restore</value>
   </data>
   <data name="BrowseShoppingListFile" xml:space="preserve">
-    <value>Choose file to restore (shoppinglists)</value>
+    <value>Choose Shopping Lists Backup to restore</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="DueShoppingList" xml:space="preserve">
     <value>Due Shopping List</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Items</value>
   </data>
   <data name="RestoreBackup" xml:space="preserve">
     <value>Restore Backup</value>

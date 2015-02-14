@@ -120,32 +120,32 @@
   <data name="Admin" xml:space="preserve">
     <value>Admin</value>
   </data>
-  <data name="AppTitle" xml:space="preserve">
-    <value>Einkaufsliste App!</value>
-  </data>
-  <data name="Articles" xml:space="preserve">
-    <value>Artikeln</value>
-  </data>
   <data name="BackupEmail" xml:space="preserve">
     <value>Backup per e-mail</value>
   </data>
   <data name="BackupMessage" xml:space="preserve">
     <value>Backup ausgeführt am</value>
   </data>
-  <data name="BrowseArticleFile" xml:space="preserve">
-    <value>Datei auswählen (Artikeln)</value>
+  <data name="BrowseItemFile" xml:space="preserve">
+    <value>Datei auswählen (Artikel)</value>
   </data>
   <data name="BrowseShoppingListFile" xml:space="preserve">
     <value>Datei auswählen (Einkaufslisten)</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
   <data name="DueShoppingList" xml:space="preserve">
     <value>Einkaufsliste zu erledigen</value>
   </data>
+  <data name="Items" xml:space="preserve">
+    <value>Liste von Artikeln</value>
+  </data>
   <data name="RestoreBackup" xml:space="preserve">
-    <value>Backup restaurieren</value>
+    <value>Backup zurückspielen</value>
   </data>
   <data name="RestoreBackupMessage" xml:space="preserve">
-    <value>Backup restauriert am</value>
+    <value>Backup zurückgespielt am</value>
   </data>
   <data name="ShoppingLists" xml:space="preserve">
     <value>Einkaufsliste</value>

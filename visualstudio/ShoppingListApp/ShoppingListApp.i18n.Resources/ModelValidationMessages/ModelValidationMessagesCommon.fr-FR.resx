@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ShoppingListDueDateError" xml:space="preserve">
-    <value>Veuillez entrer une date pour réaliser la liste de courses</value>
+    <value>Veuillez entrer une date pour la liste de courses</value>
   </data>
   <data name="ShoppingListNameError" xml:space="preserve">
     <value>Veuillez entrer un nom pour la liste de courses</value>
