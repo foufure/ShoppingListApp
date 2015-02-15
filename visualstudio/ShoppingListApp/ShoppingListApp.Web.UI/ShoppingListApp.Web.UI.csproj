@@ -126,8 +126,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ArticleRepository.shoppinglistappharbor.xml" />
-    <Content Include="App_Data\ArticleRepository.xml" />
+    <Content Include="App_Data\ItemRepository.shoppinglistappharbor.xml" />
+    <Content Include="App_Data\ItemRepository.xml" />
     <Content Include="App_Data\ShoppingListRepository.shoppinglistappharbor.xml" />
     <Content Include="App_Data\ShoppingListRepository.xml">
       <SubType>Designer</SubType>
@@ -180,7 +180,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.Auth.GoogleSettings.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShoppingListController.cs" />
     <Compile Include="Controllers\UserCultureController.cs" />
@@ -194,8 +194,8 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\Article\Articles.cshtml" />
-    <Content Include="Views\Article\ModifyArticle.cshtml" />
+    <Content Include="Views\Item\Items.cshtml" />
+    <Content Include="Views\Item\ModifyItem.cshtml" />
     <Content Include="Views\ShoppingList\ShoppingLists.cshtml" />
     <Content Include="Views\ShoppingList\ShowShoppingList.cshtml" />
     <Content Include="Views\ShoppingList\AddShoppingList.cshtml" />

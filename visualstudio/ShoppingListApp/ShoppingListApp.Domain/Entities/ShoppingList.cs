@@ -21,7 +21,7 @@ namespace ShoppingListApp.Domain.Entities
 
     public class ShoppingListLine
     { 
-        public Article ArticleToBuy { get; set; }
+        public Item ItemToBuy { get; set; }
         public int QuantityToBuy { get; set; }
     }
 }

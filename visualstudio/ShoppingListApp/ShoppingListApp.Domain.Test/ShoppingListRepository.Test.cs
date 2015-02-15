@@ -24,16 +24,16 @@ namespace ShoppingListApp.Domain.Test
             {
                 new ShoppingList() { ShoppingListID=1, ShoppingListName="ShoppingList1", ShoppingListDueDate= new DateTime(1981,04,13), 
                                         ShoppingListContent= new List<ShoppingListLine>(){ 
-                                                                        new ShoppingListLine() { ArticleToBuy= new Article() {ArticleID=1, ArticleName="Article1"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ArticleToBuy= new Article() {ArticleID=2, ArticleName="Article2"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ArticleToBuy= new Article() {ArticleID=3, ArticleName="Article3"}, QuantityToBuy=2}
+                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=1, ItemName="Item1"}, QuantityToBuy=1},
+                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=2, ItemName="Item2"}, QuantityToBuy=1},
+                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=3, ItemName="Item3"}, QuantityToBuy=2}
                                                                         }
                                     },
                 new ShoppingList()  { ShoppingListID=2, ShoppingListName="ShoppingList2", ShoppingListDueDate= new DateTime(1982,05,27), 
                                         ShoppingListContent= new List<ShoppingListLine>(){ 
-                                                                        new ShoppingListLine() { ArticleToBuy= new Article() {ArticleID=1, ArticleName="Article1"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ArticleToBuy= new Article() {ArticleID=2, ArticleName="Article2"}, QuantityToBuy=5},
-                                                                        new ShoppingListLine() { ArticleToBuy= new Article() {ArticleID=5, ArticleName="Article5"}, QuantityToBuy=3}
+                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=1, ItemName="Item1"}, QuantityToBuy=1},
+                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=2, ItemName="Item2"}, QuantityToBuy=5},
+                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=5, ItemName="Item5"}, QuantityToBuy=3}
                                                                         }
                                     },
             };
@@ -65,9 +65,9 @@ namespace ShoppingListApp.Domain.Test
                                                                 ShoppingListDueDate = new DateTime(2014, 12, 04),
                                                                 ShoppingListContent = new List<ShoppingListLine>()
                                                                 { 
-                                                                        new ShoppingListLine() { ArticleToBuy= new Article() {ArticleID=1, ArticleName="Article1"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ArticleToBuy= new Article() {ArticleID=2, ArticleName="Article2"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ArticleToBuy= new Article() {ArticleID=3, ArticleName="Article3"}, QuantityToBuy=2}
+                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=1, ItemName="Item1"}, QuantityToBuy=1},
+                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=2, ItemName="Item2"}, QuantityToBuy=1},
+                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=3, ItemName="Item3"}, QuantityToBuy=2}
                                                                 }
             };
 
@@ -126,9 +126,9 @@ namespace ShoppingListApp.Domain.Test
                 ShoppingListDueDate = new DateTime(2014, 12, 04),
                 ShoppingListContent = new List<ShoppingListLine>()
                                                                 { 
-                                                                        new ShoppingListLine() { ArticleToBuy= new Article() {ArticleID=1, ArticleName="Article1"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ArticleToBuy= new Article() {ArticleID=2, ArticleName="Article2"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ArticleToBuy= new Article() {ArticleID=3, ArticleName="Article3"}, QuantityToBuy=2}
+                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=1, ItemName="Item1"}, QuantityToBuy=1},
+                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=2, ItemName="Item2"}, QuantityToBuy=1},
+                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=3, ItemName="Item3"}, QuantityToBuy=2}
                                                                 }
             };
 

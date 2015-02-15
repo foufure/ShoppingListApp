@@ -32,9 +32,9 @@ namespace ShoppingListApp.Web.UI.Infrastructure
 
         private void AddBindings()
         {
-            kernel.Bind<IArticleRepository>().To<ArticleRepository>();
+            kernel.Bind<IItemsRepository>().To<ItemRepository>();
             kernel.Bind<IShoppingListRepository>().To<ShoppingListRepository>();
-            kernel.Bind<IRepositoryNameProvider>().To<ArticleXMLRepositoryName>().WhenInjectedInto<IArticleRepository>();
+            kernel.Bind<IRepositoryNameProvider>().To<ItemXMLRepositoryName>().WhenInjectedInto<IItemsRepository>();
             kernel.Bind<IRepositoryNameProvider>().To<ShoppingListXMLRepositoryName>().WhenInjectedInto<IShoppingListRepository>();
             kernel.Bind<IUserInformation>().To<GoogleUserInformation>();
             kernel.Bind<IBackupProcessor>().To<EmailBackupProcessor>().WithConstructorArgument("settings", new EmailSettings());   

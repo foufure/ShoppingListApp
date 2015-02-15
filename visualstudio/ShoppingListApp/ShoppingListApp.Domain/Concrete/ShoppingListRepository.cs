@@ -31,9 +31,9 @@ namespace ShoppingListApp.Domain.Concrete
             foreach (XElement element in parsedFile.Elements("ShoppingLists").Elements("ShoppingList"))
             {
                 List<ShoppingListLine> shoppingListContent = new List<ShoppingListLine>();
-                foreach (XElement articleElement in element.Elements("ShoppingListLine"))
+                foreach (XElement itemElement in element.Elements("ShoppingListLine"))
                 {
-                    shoppingListContent.Add( new ShoppingListLine() { ArticleToBuy= new Article() {ArticleID = Convert.ToUInt32(articleElement.Element("ArticleID").Value), ArticleName = articleElement.Element("ArticleName").Value}, QuantityToBuy = Convert.ToInt32(articleElement.Element("ArticleQuantity").Value)});
+                    shoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemID = Convert.ToUInt32(itemElement.Element("ItemID").Value), ItemName = itemElement.Element("ItemName").Value }, QuantityToBuy = Convert.ToInt32(itemElement.Element("ItemQuantity").Value) });
                 }
 
                 shoppinglistRepository.Add(new ShoppingList() { ShoppingListID = Convert.ToUInt32(element.Element("ShoppingListID").Value), 
@@ -78,9 +78,9 @@ namespace ShoppingListApp.Domain.Concrete
                 foreach(ShoppingListLine line in shoppinglist.ShoppingListContent)
                 {
                     lines.Add(new XElement("ShoppingListLine",
-                                            new XElement("ArticleID") { Value = line.ArticleToBuy.ArticleID.ToString() },
-                                            new XElement("ArticleName") { Value = line.ArticleToBuy.ArticleName.ToString() },
-                                            new XElement("ArticleQuantity") { Value = line.QuantityToBuy.ToString() }
+                                            new XElement("ItemID") { Value = line.ItemToBuy.ItemID.ToString() },
+                                            new XElement("ItemName") { Value = line.ItemToBuy.ItemName.ToString() },
+                                            new XElement("ItemQuantity") { Value = line.QuantityToBuy.ToString() }
                                             )
                               );
                 }

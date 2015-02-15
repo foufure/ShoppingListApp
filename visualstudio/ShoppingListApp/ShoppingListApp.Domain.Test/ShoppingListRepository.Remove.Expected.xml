@@ -5,19 +5,19 @@
     <ShoppingListName>ShoppingList2</ShoppingListName>
     <ShoppingListDueDate>1981-04-13</ShoppingListDueDate>
     <ShoppingListLine>
-      <ArticleID>1</ArticleID>
-      <ArticleName>Article1</ArticleName>
-      <ArticleQuantity>1</ArticleQuantity>
+      <ItemID>1</ItemID>
+      <ItemName>Item1</ItemName>
+      <ItemQuantity>1</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ArticleID>2</ArticleID>
-      <ArticleName>Article2</ArticleName>
-      <ArticleQuantity>5</ArticleQuantity>
+      <ItemID>2</ItemID>
+      <ItemName>Item2</ItemName>
+      <ItemQuantity>5</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ArticleID>5</ArticleID>
-      <ArticleName>Article5</ArticleName>
-      <ArticleQuantity>3</ArticleQuantity>
+      <ItemID>5</ItemID>
+      <ItemName>Item5</ItemName>
+      <ItemQuantity>3</ItemQuantity>
     </ShoppingListLine>
   </ShoppingList>
 </ShoppingLists>

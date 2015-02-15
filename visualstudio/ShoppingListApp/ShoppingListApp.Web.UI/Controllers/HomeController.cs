@@ -41,18 +41,18 @@ namespace ShoppingListApp.Web.UI.Controllers
         [Authorize]
         public RedirectToRouteResult Backup()
         {
-            backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ArticleRepository." + userInformation.UserName + @".xml");
+            backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ItemRepository." + userInformation.UserName + @".xml");
             backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository." + userInformation.UserName + ".xml");
             TempData["backup"] = ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.getCurrentUICulture());
             return RedirectToAction("Admin");
         }
 
         [Authorize]
-        public RedirectToRouteResult RestoreBackup(HttpPostedFileBase articlestorestorefile, HttpPostedFileBase shoppingliststorestorefile)
+        public RedirectToRouteResult RestoreBackup(HttpPostedFileBase itemstorestorefile, HttpPostedFileBase shoppingliststorestorefile)
         {
-            if (articlestorestorefile != null && articlestorestorefile.ContentLength > 0)
+            if (itemstorestorefile != null && itemstorestorefile.ContentLength > 0)
             {
-                articlestorestorefile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ArticleRepository." + userInformation.UserName + @".xml");
+                itemstorestorefile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ItemRepository." + userInformation.UserName + @".xml");
                 TempData["restore"] = ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.getCurrentUICulture());
             }
             

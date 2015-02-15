@@ -5,29 +5,29 @@
     <ShoppingListName>Aldi</ShoppingListName>
     <ShoppingListDueDate>2015-02-11</ShoppingListDueDate>
     <ShoppingListLine>
-      <ArticleID>1</ArticleID>
-      <ArticleName>Tomates</ArticleName>
-      <ArticleQuantity>2</ArticleQuantity>
+      <ItemID>1</ItemID>
+      <ItemName>Tomates</ItemName>
+      <ItemQuantity>2</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ArticleID>2</ArticleID>
-      <ArticleName>Jambon Blanc</ArticleName>
-      <ArticleQuantity>5</ArticleQuantity>
+      <ItemID>2</ItemID>
+      <ItemName>Jambon Blanc</ItemName>
+      <ItemQuantity>5</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ArticleID>3</ArticleID>
-      <ArticleName>Gruyère rapé</ArticleName>
-      <ArticleQuantity>3</ArticleQuantity>
+      <ItemID>3</ItemID>
+      <ItemName>Gruyère rapé</ItemName>
+      <ItemQuantity>3</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ArticleID>4</ArticleID>
-      <ArticleName>Tilsitter</ArticleName>
-      <ArticleQuantity>1</ArticleQuantity>
+      <ItemID>4</ItemID>
+      <ItemName>Tilsitter</ItemName>
+      <ItemQuantity>1</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ArticleID>5</ArticleID>
-      <ArticleName>Oeufs</ArticleName>
-      <ArticleQuantity>21</ArticleQuantity>
+      <ItemID>5</ItemID>
+      <ItemName>Oeufs</ItemName>
+      <ItemQuantity>21</ItemQuantity>
     </ShoppingListLine>
   </ShoppingList>
 </ShoppingLists>

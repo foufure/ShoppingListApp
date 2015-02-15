@@ -12,12 +12,12 @@ namespace ShoppingListApp.Web.UI.Controllers
     public class ShoppingListController : Controller
     {
         private IShoppingListRepository shoppinglistRepository;
-        private IArticleRepository articleRepository;
+        private IItemsRepository itemRepository;
 
-        public ShoppingListController(IShoppingListRepository repositoryParamShoppingLists, IArticleRepository repositoryParamArticles)
+        public ShoppingListController(IShoppingListRepository repositoryParamShoppingLists, IItemsRepository repositoryParamItems)
         {
             shoppinglistRepository = repositoryParamShoppingLists;
-            articleRepository = repositoryParamArticles;
+            itemRepository = repositoryParamItems;
         }
 
         public ViewResult ShoppingLists()
@@ -51,9 +51,9 @@ namespace ShoppingListApp.Web.UI.Controllers
             if(shoppinglistToAddName != "")
             { 
                 List<ShoppingListLine> lines = new List<ShoppingListLine>();
-                foreach(Article article in articleRepository.repository)
+                foreach(Item item in itemRepository.repository)
                 {
-                    lines.Add(new ShoppingListLine() { ArticleToBuy = article, QuantityToBuy = 0});
+                    lines.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0});
                 }
             
                 ShoppingList shoppinglistToCreate = new ShoppingList()
@@ -77,11 +77,11 @@ namespace ShoppingListApp.Web.UI.Controllers
         {
             ShoppingList shoppinglistToModify = shoppinglistRepository.repository.Where(shoppinglist => shoppinglist.ShoppingListID == shoppinglistID).FirstOrDefault();
             
-            foreach(Article article in articleRepository.repository)
+            foreach(Item item in itemRepository.repository)
             {
-                if (!shoppinglistToModify.ShoppingListContent.Any(x => x.ArticleToBuy.ArticleID == article.ArticleID))
+                if (!shoppinglistToModify.ShoppingListContent.Any(x => x.ItemToBuy.ItemID == item.ItemID))
                 {
-                    shoppinglistToModify.ShoppingListContent.Add(new ShoppingListLine() { ArticleToBuy = article, QuantityToBuy = 0 });
+                    shoppinglistToModify.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0 });
                 }
             }
 

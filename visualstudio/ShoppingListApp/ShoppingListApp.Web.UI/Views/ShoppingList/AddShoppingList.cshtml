@@ -30,10 +30,10 @@
                         @for (int i = 0; i < @Model.ShoppingListContent.Count(); i++)
                         {
                             <tr>
-                                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ArticleToBuy.ArticleID)
-                                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ArticleToBuy.ArticleName)
+                                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemID)
+                                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemName)
                                 <td>
-                                    @Html.Label(Model.ShoppingListContent[i].ArticleToBuy.ArticleName)
+                                    @Html.Label(Model.ShoppingListContent[i].ItemToBuy.ItemName)
                                 </td>
                                 <td>
                                     @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListContent[i].QuantityToBuy, new { @class = "quantity_spinner" })

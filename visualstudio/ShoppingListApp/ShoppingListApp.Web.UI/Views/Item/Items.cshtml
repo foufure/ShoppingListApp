@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Article>
+﻿@model IEnumerable<Item>
 
 <div class="panel panel-primary">
     <div class="panel-heading text-uppercase">
@@ -8,16 +8,16 @@
     <div class="panel-body">
         <table class="table">
             <tbody>
-                @foreach (Article article in @Model)
+                @foreach (Item item in @Model)
                 {
                     <tr>
                         <td>
-                            @Html.ActionLink(@article.ArticleName.ToString(), "ModifyArticle", "Article", new { articleToModifyID = article.ArticleID }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink(@item.ItemName.ToString(), "ModifyItem", "Item", new { itemToModifyID = item.ItemID }, new { @class = "btn btn-primary" })
                         </td>
                         <td>
-                            @using (@Html.BeginForm("RemoveArticle", "Article"))
+                            @using (@Html.BeginForm("RemoveItem", "Item"))
                             {
-                                @Html.Hidden("articleToRemoveID", article.ArticleID)
+                                @Html.Hidden("itemToRemoveID", item.ItemID)
                                 <button typeof="submit" class="btn btn-danger">@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.Delete</button>
                             }
                         </td>
@@ -28,9 +28,9 @@
     </div>
 
     <div class="panel-footer clearfix">
-        @using (@Html.BeginForm("AddNewArticle", "Article"))
+        @using (@Html.BeginForm("AddNewItem", "Item"))
         {
-            @Html.TextBox("newArticleName", @ShoppingListApp.i18n.Resources.Views.Item.ItemsCommon.YourItemName, new { @autofocus = "autofocus" })
+            @Html.TextBox("newItemName", @ShoppingListApp.i18n.Resources.Views.Item.ItemsCommon.YourItemName, new { @autofocus = "autofocus" })
             <button typeof="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.Item.ItemsCommon.AddNewItem</button>
         }
     </div>

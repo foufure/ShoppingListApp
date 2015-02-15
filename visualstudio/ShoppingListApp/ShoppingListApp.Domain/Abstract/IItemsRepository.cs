@@ -7,12 +7,12 @@ using ShoppingListApp.Domain.Entities;
 
 namespace ShoppingListApp.Domain.Abstract
 {
-    public interface IArticleRepository
+    public interface IItemsRepository
     {
-        IEnumerable<Article> repository { get;}
-        void Add(string articleName);
-        void Remove(uint articleID);
-        void Modify(Article article);
+        IEnumerable<Item> repository { get;}
+        void Add(string itemName);
+        void Remove(uint itemID);
+        void Modify(Item item);
         void Save();
     }
 }

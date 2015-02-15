@@ -78,7 +78,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ArticleRepository.Test.cs" />
+    <Compile Include="ItemRepository.Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingListRepository.Test.cs" />
   </ItemGroup>
@@ -86,16 +86,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ArticleRepository.Add.Expected.xml">
+    <Content Include="ItemRepository.Add.Expected.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ArticleRepository.Modified.Expected.xml">
+    <Content Include="ItemRepository.Modified.Expected.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ArticleRepository.Remove.Expected.xml">
+    <Content Include="ItemRepository.Remove.Expected.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ArticleRepository.example.xml">
+    <Content Include="ItemRepository.example.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ShoppingListRepository.Add.Expected.xml">

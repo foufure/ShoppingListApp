@@ -1,0 +1,17 @@
+﻿@model Item
+
+<div class="panel panel-primary">
+    <div class="panel-body">
+        @using (@Html.BeginForm("ModifyItem", "Item"))
+        {
+            @Html.Hidden("itemToModifyID", @Model.ItemID)
+            @Html.TextBox("itemToModifyNewName", @Model.ItemName)
+            <button type="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.Item.ItemsCommon.Modify</button>
+        }
+    </div>
+    <div class="panel-footer"></div>
+</div>
+<div>
+    @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Item.ItemsCommon.BackToItems, "Items", "Item", null, new { @class = "btn btn-success btn-lg" })
+</div>
+

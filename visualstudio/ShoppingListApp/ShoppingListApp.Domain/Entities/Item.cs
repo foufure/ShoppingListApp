@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ShoppingListApp.Domain.Entities
 {
-    public class Article
+    public class Item
     {
-        public uint ArticleID { get; set; }
-        public string ArticleName { get; set; }
+        public uint ItemID { get; set; }
+        public string ItemName { get; set; }
     }
 }
