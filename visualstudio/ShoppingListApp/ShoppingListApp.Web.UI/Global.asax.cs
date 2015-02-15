@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ShoppingListApp.i18n.Utils;
+using System.Web.Optimization;
 
 namespace ShoppingListApp.Web.UI
 {
@@ -21,6 +22,7 @@ namespace ShoppingListApp.Web.UI
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
         private void Application_BeginRequest(Object source, EventArgs e)
