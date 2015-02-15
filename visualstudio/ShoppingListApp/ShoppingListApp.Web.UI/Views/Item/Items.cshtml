@@ -12,12 +12,12 @@
                 {
                     <tr>
                         <td>
-                            @Html.ActionLink(@item.ItemName.ToString(), "ModifyItem", "Item", new { itemToModifyID = item.ItemID }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink(@item.ItemName.ToString(), "ModifyItem", "Item", new { itemToModifyId = item.ItemId }, new { @class = "btn btn-primary" })
                         </td>
                         <td>
                             @using (@Html.BeginForm("RemoveItem", "Item"))
                             {
-                                @Html.Hidden("itemToRemoveID", item.ItemID)
+                                @Html.Hidden("itemToRemoveId", item.ItemId)
                                 <button typeof="submit" class="btn btn-danger">@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.Delete</button>
                             }
                         </td>

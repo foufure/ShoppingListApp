@@ -20,7 +20,7 @@ namespace ShoppingListApp.Web.UI.Controllers
 
         public ActionResult Items()
         {
-            return View(itemRepository.repository);
+            return View(itemRepository.Repository);
         }
 
         public RedirectToRouteResult AddNewItem(string newItemName)
@@ -34,25 +34,25 @@ namespace ShoppingListApp.Web.UI.Controllers
             return RedirectToAction("Items");
         }
 
-        public RedirectToRouteResult RemoveItem(uint itemToRemoveID)
+        public RedirectToRouteResult RemoveItem(uint itemToRemoveId)
         {
-            itemRepository.Remove(itemToRemoveID);
+            itemRepository.Remove(itemToRemoveId);
             itemRepository.Save();
             return RedirectToAction("Items");
         }
 
         [HttpGet]
-        public ViewResult ModifyItem(uint itemToModifyID)
+        public ViewResult ModifyItem(uint itemToModifyId)
         {
-            return View(itemRepository.repository.Where(item => item.ItemID == itemToModifyID).FirstOrDefault());
+            return View(itemRepository.Repository.Where(item => item.ItemId == itemToModifyId).FirstOrDefault());
         }
 
         [HttpPost]
-        public RedirectToRouteResult ModifyItem(uint itemToModifyID, string itemToModifyNewName)
+        public RedirectToRouteResult ModifyItem(uint itemToModifyId, string itemToModifyNewName)
         {
             if (itemToModifyNewName != "")
             {
-                itemRepository.Modify(new Item() { ItemID = itemToModifyID, ItemName = itemToModifyNewName });
+                itemRepository.Modify(new Item() { ItemId = itemToModifyId, ItemName = itemToModifyNewName });
                 itemRepository.Save();
             }
             

@@ -4,7 +4,7 @@
     <div class="panel-body">
         @using (@Html.BeginForm("ModifyItem", "Item"))
         {
-            @Html.Hidden("itemToModifyID", @Model.ItemID)
+            @Html.Hidden("itemToModifyId", @Model.ItemId)
             @Html.TextBox("itemToModifyNewName", @Model.ItemName)
             <button type="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.Item.ItemsCommon.Modify</button>
         }

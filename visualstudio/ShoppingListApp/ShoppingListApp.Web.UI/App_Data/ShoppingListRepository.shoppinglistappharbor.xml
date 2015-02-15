@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ShoppingLists>
   <ShoppingList>
-    <ShoppingListID>1</ShoppingListID>
+    <ShoppingListId>1</ShoppingListId>
     <ShoppingListName>Aldi</ShoppingListName>
     <ShoppingListDueDate>2015-02-11</ShoppingListDueDate>
     <ShoppingListLine>
-      <ItemID>1</ItemID>
+      <ItemId>1</ItemId>
       <ItemName>Tomates</ItemName>
       <ItemQuantity>2</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ItemID>2</ItemID>
+      <ItemId>2</ItemId>
       <ItemName>Jambon Blanc</ItemName>
       <ItemQuantity>5</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ItemID>3</ItemID>
+      <ItemId>3</ItemId>
       <ItemName>Gruyère rapé</ItemName>
       <ItemQuantity>3</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ItemID>4</ItemID>
+      <ItemId>4</ItemId>
       <ItemName>Tilsitter</ItemName>
       <ItemQuantity>1</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ItemID>5</ItemID>
+      <ItemId>5</ItemId>
       <ItemName>Oeufs</ItemName>
       <ItemQuantity>21</ItemQuantity>
     </ShoppingListLine>

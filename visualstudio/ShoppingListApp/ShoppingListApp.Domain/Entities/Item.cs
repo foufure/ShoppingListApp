@@ -8,7 +8,7 @@ namespace ShoppingListApp.Domain.Entities
 {
     public class Item
     {
-        public uint ItemID { get; set; }
+        public uint ItemId { get; set; }
         public string ItemName { get; set; }
     }
 }

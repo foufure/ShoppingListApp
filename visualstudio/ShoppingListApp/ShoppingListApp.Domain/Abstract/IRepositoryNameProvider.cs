@@ -8,6 +8,6 @@ namespace ShoppingListApp.Domain.Abstract
 {
     public interface IRepositoryNameProvider
     {
-        string repositoryName { get; }
+        string RepositoryName { get; }
     }
 }

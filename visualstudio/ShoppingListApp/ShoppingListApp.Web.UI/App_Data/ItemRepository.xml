@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
   <Item>
-    <ItemID>1</ItemID>
+    <ItemId>1</ItemId>
     <ItemName>Tomates</ItemName>
   </Item>
   <Item>
-    <ItemID>2</ItemID>
+    <ItemId>2</ItemId>
     <ItemName>Jambon Blanc</ItemName>
   </Item>
   <Item>
-    <ItemID>3</ItemID>
+    <ItemId>3</ItemId>
     <ItemName>Gruyère rapé</ItemName>
   </Item>
   <Item>
-    <ItemID>4</ItemID>
+    <ItemId>4</ItemId>
     <ItemName>Tilsitter</ItemName>
   </Item>
   <Item>
-    <ItemID>5</ItemID>
+    <ItemId>5</ItemId>
     <ItemName>Oeufs</ItemName>
   </Item>
 </Items>

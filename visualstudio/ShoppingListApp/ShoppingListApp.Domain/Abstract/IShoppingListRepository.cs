@@ -9,9 +9,9 @@ namespace ShoppingListApp.Domain.Abstract
 {
     public interface IShoppingListRepository
     {
-        IEnumerable<ShoppingList> repository { get; }
-        void Add(ShoppingList shoppinglistNew);
-        void Remove(uint shoppinglistID);
+        IEnumerable<ShoppingList> Repository { get; }
+        void Add(ShoppingList newShoppingList);
+        void Remove(uint shoppingListId);
         void Modify(ShoppingList shoppingList);
         void Save();
     }

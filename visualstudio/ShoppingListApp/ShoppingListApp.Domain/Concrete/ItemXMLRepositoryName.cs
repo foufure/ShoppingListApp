@@ -7,16 +7,16 @@ using ShoppingListApp.Domain.Abstract;
 
 namespace ShoppingListApp.Domain.Concrete
 {
-    public class ItemXMLRepositoryName : IRepositoryNameProvider
+    public class ItemXmlRepositoryName : IRepositoryNameProvider
     {
         private IUserInformation userInformation;
 
-        public ItemXMLRepositoryName(IUserInformation userInformationParam)
+        public ItemXmlRepositoryName(IUserInformation userInformation)
         {
-            userInformation = userInformationParam;
+            this.userInformation = userInformation;
         }
 
-        public string repositoryName
+        public string RepositoryName
         {
             get { return System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ItemRepository." + userInformation.UserName + @".xml"; }
         }

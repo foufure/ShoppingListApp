@@ -20,33 +20,29 @@ namespace ShoppingListApp.Domain.Test
         public void ShoppingListRepositoryContainsShoppingListsFromPersistentRepository_WhenReadFromXMLFileRepository()
         {
             //Arrange
-            IEnumerable<ShoppingList> Expected = new List<ShoppingList>()
-            {
-                new ShoppingList() { ShoppingListID=1, ShoppingListName="ShoppingList1", ShoppingListDueDate= new DateTime(1981,04,13), 
-                                        ShoppingListContent= new List<ShoppingListLine>(){ 
-                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=1, ItemName="Item1"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=2, ItemName="Item2"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=3, ItemName="Item3"}, QuantityToBuy=2}
-                                                                        }
-                                    },
-                new ShoppingList()  { ShoppingListID=2, ShoppingListName="ShoppingList2", ShoppingListDueDate= new DateTime(1982,05,27), 
-                                        ShoppingListContent= new List<ShoppingListLine>(){ 
-                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=1, ItemName="Item1"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=2, ItemName="Item2"}, QuantityToBuy=5},
-                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=5, ItemName="Item5"}, QuantityToBuy=3}
-                                                                        }
-                                    },
-            };
-
+            IList<ShoppingList> Expected = new List<ShoppingList>();
+            
+            ShoppingList shoppingList1 = new ShoppingList() { ShoppingListId=1, ShoppingListName="ShoppingList1", ShoppingListDueDate= new DateTime(1981,04,13)};
+            shoppingList1.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy= new Item() {ItemId=1, ItemName="Item1"}, QuantityToBuy=1});
+            shoppingList1.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy= new Item() {ItemId=2, ItemName="Item2"}, QuantityToBuy=1});
+            shoppingList1.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy= new Item() {ItemId=3, ItemName="Item3"}, QuantityToBuy=2});
+            Expected.Add(shoppingList1);
+            
+            ShoppingList shoppingList2 = new ShoppingList() { ShoppingListId=2, ShoppingListName="ShoppingList2", ShoppingListDueDate= new DateTime(1982,05,27)};
+            shoppingList2.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy= new Item() {ItemId=1, ItemName="Item1"}, QuantityToBuy=1});
+            shoppingList2.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy= new Item() {ItemId=2, ItemName="Item2"}, QuantityToBuy=5});
+            shoppingList2.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy= new Item() {ItemId=5, ItemName="Item5"}, QuantityToBuy=3});
+            Expected.Add(shoppingList2);
+            
             IEnumerable<ShoppingList> testee = null;
 
             //Act
-            ShoppingListXMLTestRepositoryName repositoryNameProvider = new ShoppingListXMLTestRepositoryName();
-            testee = (new ShoppingListRepository(repositoryNameProvider)).repository;
+            ShoppingListXmlTestRepositoryName repositoryNameProvider = new ShoppingListXmlTestRepositoryName();
+            testee = (new ShoppingListRepository(repositoryNameProvider)).Repository;
 
             //Assert
             Assert.AreEqual(2, testee.Count());
-            Assert.AreEqual(Expected.Select(shoppingList => shoppingList.ShoppingListID).AsEnumerable(), testee.Select(shoppingList => shoppingList.ShoppingListID).AsEnumerable(), "Failure by ID");
+            Assert.AreEqual(Expected.Select(shoppingList => shoppingList.ShoppingListId).AsEnumerable(), testee.Select(shoppingList => shoppingList.ShoppingListId).AsEnumerable(), "Failure by Id");
             Assert.AreEqual(Expected.Select(shoppingList => shoppingList.ShoppingListName).AsEnumerable(), testee.Select(shoppingList => shoppingList.ShoppingListName).AsEnumerable(), "Failure by Name");
         }
 
@@ -59,23 +55,16 @@ namespace ShoppingListApp.Domain.Test
             File.Delete(@"./ShoppingListRepository.example.orig.xml");
             File.Copy(@"./ShoppingListRepository.example.xml", @"./ShoppingListRepository.example.orig.xml");
 
-            ShoppingList shoppinglist = new ShoppingList() {
-                                                                ShoppingListID = 3,
-                                                                ShoppingListName = "ShoppingList3",
-                                                                ShoppingListDueDate = new DateTime(2014, 12, 04),
-                                                                ShoppingListContent = new List<ShoppingListLine>()
-                                                                { 
-                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=1, ItemName="Item1"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=2, ItemName="Item2"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=3, ItemName="Item3"}, QuantityToBuy=2}
-                                                                }
-            };
+            ShoppingList shoppingList = new ShoppingList() { ShoppingListId = 3, ShoppingListName = "ShoppingList3", ShoppingListDueDate = new DateTime(2014, 12, 04) };
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item1" }, QuantityToBuy = 1 });
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item2" }, QuantityToBuy = 1 });
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item3" }, QuantityToBuy = 2 });
 
             //Act
-            ShoppingListXMLTestRepositoryName repositoryNameProvider = new ShoppingListXMLTestRepositoryName();
+            ShoppingListXmlTestRepositoryName repositoryNameProvider = new ShoppingListXmlTestRepositoryName();
             testee = new ShoppingListRepository(repositoryNameProvider);
 
-            testee.Add(shoppinglist);
+            testee.Add(shoppingList);
             
             testee.Save();
             File.Copy(@"./ShoppingListRepository.example.xml", @"./ShoppingListRepository.Add.Actual.xml");
@@ -97,9 +86,9 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./ShoppingListRepository.example.xml", @"./ShoppingListRepository.example.orig.xml");
 
             //Act
-            ShoppingListXMLTestRepositoryName repositoryNameProvider = new ShoppingListXMLTestRepositoryName();
+            ShoppingListXmlTestRepositoryName repositoryNameProvider = new ShoppingListXmlTestRepositoryName();
             testee = new ShoppingListRepository(repositoryNameProvider);
-            testee.Remove(1); //Remove ShoppingListID 1
+            testee.Remove(1); //Remove ShoppingListId 1
             testee.Save();
             File.Copy(@"./ShoppingListRepository.example.xml", @"./ShoppingListRepository.Remove.Actual.xml");
             File.Delete(@"./ShoppingListRepository.example.xml");
@@ -119,24 +108,16 @@ namespace ShoppingListApp.Domain.Test
             File.Delete(@"./ShoppingListRepository.example.orig.xml");
             File.Copy(@"./ShoppingListRepository.example.xml", @"./ShoppingListRepository.example.orig.xml");
 
-            ShoppingList shoppinglist = new ShoppingList()
-            {
-                ShoppingListID = 1,
-                ShoppingListName = "ShoppingList3",
-                ShoppingListDueDate = new DateTime(2014, 12, 04),
-                ShoppingListContent = new List<ShoppingListLine>()
-                                                                { 
-                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=1, ItemName="Item1"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=2, ItemName="Item2"}, QuantityToBuy=1},
-                                                                        new ShoppingListLine() { ItemToBuy= new Item() {ItemID=3, ItemName="Item3"}, QuantityToBuy=2}
-                                                                }
-            };
+            ShoppingList shoppingList = new ShoppingList() { ShoppingListId = 1, ShoppingListName = "ShoppingList3", ShoppingListDueDate = new DateTime(2014, 12, 04) };
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item1" }, QuantityToBuy = 1 });
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item2" }, QuantityToBuy = 1 });
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item3" }, QuantityToBuy = 2 });
 
             //Act
-            ShoppingListXMLTestRepositoryName repositoryNameProvider = new ShoppingListXMLTestRepositoryName();
+            ShoppingListXmlTestRepositoryName repositoryNameProvider = new ShoppingListXmlTestRepositoryName();
             testee = new ShoppingListRepository(repositoryNameProvider);
 
-            testee.Modify(shoppinglist);
+            testee.Modify(shoppingList);
 
             testee.Save();
             File.Copy(@"./ShoppingListRepository.example.xml", @"./ShoppingListRepository.Modified.Actual.xml");

@@ -20,22 +20,22 @@ namespace ShoppingListApp.Domain.Test
             //Arrange
             IEnumerable<Item> Expected = new List<Item>()
             {
-                new Item() { ItemID=1, ItemName="Item1"},
-                new Item() { ItemID=2, ItemName="Item2"},
-                new Item() { ItemID=3, ItemName="Item3"},
-                new Item() { ItemID=4, ItemName="Item4"},
-                new Item() { ItemID=5, ItemName="Item5"}
+                new Item() { ItemId=1, ItemName="Item1"},
+                new Item() { ItemId=2, ItemName="Item2"},
+                new Item() { ItemId=3, ItemName="Item3"},
+                new Item() { ItemId=4, ItemName="Item4"},
+                new Item() { ItemId=5, ItemName="Item5"}
             };
 
             IEnumerable<Item> testee = null;
 
             //Act
-            ItemXMLTestRepositoryName repositoryNameProvider = new ItemXMLTestRepositoryName();
-            testee = (new ItemRepository(repositoryNameProvider)).repository;
+            ItemXmlTestRepositoryName repositoryNameProvider = new ItemXmlTestRepositoryName();
+            testee = (new ItemRepository(repositoryNameProvider)).Repository;
 
             //Assert
             Assert.AreEqual(5, testee.Count());
-            Assert.AreEqual(Expected.Select(Item => Item.ItemID).AsEnumerable(), testee.Select(Item => Item.ItemID).AsEnumerable());
+            Assert.AreEqual(Expected.Select(Item => Item.ItemId).AsEnumerable(), testee.Select(Item => Item.ItemId).AsEnumerable());
             Assert.AreEqual(Expected.Select(Item => Item.ItemName).AsEnumerable(), testee.Select(Item => Item.ItemName).AsEnumerable());
         }
 
@@ -49,7 +49,7 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./ItemRepository.example.xml", @"./ItemRepository.example.orig.xml");
 
             //Act
-            ItemXMLTestRepositoryName repositoryNameProvider = new ItemXMLTestRepositoryName();
+            ItemXmlTestRepositoryName repositoryNameProvider = new ItemXmlTestRepositoryName();
             testee = new ItemRepository(repositoryNameProvider);
             testee.Add("Item6");
             testee.Save();
@@ -72,9 +72,9 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./ItemRepository.example.xml", @"./ItemRepository.example.orig.xml");
 
             //Act
-            ItemXMLTestRepositoryName repositoryNameProvider = new ItemXMLTestRepositoryName();
+            ItemXmlTestRepositoryName repositoryNameProvider = new ItemXmlTestRepositoryName();
             testee = new ItemRepository(repositoryNameProvider);
-            testee.Remove(3); //Remove ItemID 3
+            testee.Remove(3); //Remove ItemId 3
             testee.Save();
             File.Copy(@"./ItemRepository.example.xml", @"./ItemRepository.Remove.Actual.xml");
             File.Delete(@"./ItemRepository.example.xml");
@@ -95,9 +95,9 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./ItemRepository.example.xml", @"./ItemRepository.example.orig.xml");
 
             //Act
-            ItemXMLTestRepositoryName repositoryNameProvider = new ItemXMLTestRepositoryName();
+            ItemXmlTestRepositoryName repositoryNameProvider = new ItemXmlTestRepositoryName();
             testee = new ItemRepository(repositoryNameProvider);
-            testee.Modify(new Item() { ItemID = 4, ItemName = "Item12" });
+            testee.Modify(new Item() { ItemId = 4, ItemName = "Item12" });
             testee.Save();
             File.Copy(@"./ItemRepository.example.xml", @"./ItemRepository.Modified.Actual.xml");
             File.Delete(@"./ItemRepository.example.xml");

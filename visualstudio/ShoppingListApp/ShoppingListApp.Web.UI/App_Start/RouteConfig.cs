@@ -15,13 +15,13 @@ namespace ShoppingListApp.Web.UI
 
             routes.MapRoute(
                 name: "Items",
-                url: "{controller}/{action}/Item{itemToModifyID}",
+                url: "{controller}/{action}/Item{itemToModifyId}",
                 defaults: new { controller = "Home", action = "Index"}
             );
 
             routes.MapRoute(
                 name: "ShoppingLists",
-                url: "{controller}/{action}/ShoppingList{shoppinglistID}",
+                url: "{controller}/{action}/ShoppingList{shoppinglistId}",
                 defaults: new { controller = "Home", action = "Index" }
             );
 

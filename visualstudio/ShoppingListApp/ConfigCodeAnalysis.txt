@@ -1,0 +1,2 @@
+Custom Dictionary config for all projects: https://msdn.microsoft.com/en-us/library/bb514188.aspx
+(Section: to apply a custom dictionary to a project)

@@ -7,9 +7,9 @@ using ShoppingListApp.Domain.Abstract;
 
 namespace ShoppingListApp.Domain.Concrete
 {
-    public class ItemXMLTestRepositoryName : IRepositoryNameProvider
+    public class ItemXmlTestRepositoryName : IRepositoryNameProvider
     {
-        public string repositoryName
+        public string RepositoryName
         {
             get { return @"./ItemRepository.example.xml"; }
         }

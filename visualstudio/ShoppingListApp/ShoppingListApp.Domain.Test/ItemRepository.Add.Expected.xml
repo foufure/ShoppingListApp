@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
   <Item>
-    <ItemID>1</ItemID>
+    <ItemId>1</ItemId>
     <ItemName>Item1</ItemName>
   </Item>
   <Item>
-    <ItemID>2</ItemID>
+    <ItemId>2</ItemId>
     <ItemName>Item2</ItemName>
   </Item>
   <Item>
-    <ItemID>3</ItemID>
+    <ItemId>3</ItemId>
     <ItemName>Item3</ItemName>
   </Item>
   <Item>
-    <ItemID>4</ItemID>
+    <ItemId>4</ItemId>
     <ItemName>Item4</ItemName>
   </Item>
   <Item>
-    <ItemID>5</ItemID>
+    <ItemId>5</ItemId>
     <ItemName>Item5</ItemName>
   </Item>
   <Item>
-    <ItemID>6</ItemID>
+    <ItemId>6</ItemId>
     <ItemName>Item6</ItemName>
   </Item>
 </Items>

@@ -12,15 +12,15 @@
                 {
                     <tr>
                         <td>
-                            @Html.ActionLink(@shoppinglist.ShoppingListName, "ShowShoppingList", "ShoppingList", new { shoppingListID = shoppinglist.ShoppingListID }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink(@shoppinglist.ShoppingListName, "ShowShoppingList", "ShoppingList", new { shoppingListId = shoppinglist.ShoppingListId }, new { @class = "btn btn-primary" })
                         </td>
                         <td>
-                            @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Edit, "ModifyShoppingList", "ShoppingList", new { shoppinglistID = shoppinglist.ShoppingListID }, new { @class = "btn btn-danger" })
+                            @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Edit, "ModifyShoppingList", "ShoppingList", new { shoppinglistId = shoppinglist.ShoppingListId }, new { @class = "btn btn-danger" })
                         </td>
                         <td>
                             @using (@Html.BeginForm("RemoveShoppingList", "ShoppingList"))
                             {
-                                @Html.Hidden("shoppinglistToRemoveID", shoppinglist.ShoppingListID)
+                                @Html.Hidden("shoppinglistToRemoveId", shoppinglist.ShoppingListId)
                                 <button typeof="submit" class="btn btn-danger">@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.Delete</button>
                             }
                         </td>

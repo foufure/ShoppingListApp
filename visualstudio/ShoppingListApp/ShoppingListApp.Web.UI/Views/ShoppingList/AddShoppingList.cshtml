@@ -10,7 +10,7 @@
         {
             <div class="form-group">
                 @Html.ValidationSummary("", new { @class = "text-danger" })
-                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListID, new { @class = "form-control" })
+                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListId, new { @class = "form-control" })
                 @Html.Label(@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Name)
                 @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListName, new { @class = "form-control" })
                 @Html.Label(@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.DueDate)
@@ -30,7 +30,7 @@
                         @for (int i = 0; i < @Model.ShoppingListContent.Count(); i++)
                         {
                             <tr>
-                                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemID)
+                                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemId)
                                 @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemName)
                                 <td>
                                     @Html.Label(Model.ShoppingListContent[i].ItemToBuy.ItemName)

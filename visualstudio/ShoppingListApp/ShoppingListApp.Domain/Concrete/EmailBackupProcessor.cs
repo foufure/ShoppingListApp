@@ -11,52 +11,41 @@ using ShoppingListApp.Domain.Entities;
 
 namespace ShoppingListApp.Domain.Concrete
 {
-    public class EmailSettings 
-    {
-        public string MailToAddress { get { return (new GoogleUserInformation()).UserEmail; } }
-        public string MailFromAddress = "shoppinglistappharbor@gmail.com";
-        public bool UseSsl = true;
-        public string Username = "shoppinglistappharbor@gmail.com";
-        public string Password = "cambrai19821981siltzheim";
-        public string ServerName = "smtp.gmail.com";
-        public int ServerPort = 587;
-    }
-
     public class EmailBackupProcessor : IBackupProcessor
     {
-        private EmailSettings emailSettings;
+        private IEmailSettings emailSettings;
 
-        public EmailBackupProcessor(EmailSettings settings) 
+        public EmailBackupProcessor(IEmailSettings settings) 
         {
             emailSettings = settings;
         }
 
-        public void ProcessBackup(string fileToBackup) {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
+        public void ProcessBackup(string fileToBackup) 
+        {
+                using (var smtpClient = new SmtpClient())
+                {
+                    smtpClient.EnableSsl = emailSettings.UseSsl;
+                    smtpClient.Host = emailSettings.ServerName;
+                    smtpClient.Port = emailSettings.ServerPort;
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Credentials = new NetworkCredential(emailSettings.UserName, emailSettings.Password);
 
-            using (var smtpClient = new SmtpClient()) {
+                    StringBuilder body = new StringBuilder()
+                        .AppendLine("A new backup is available")
+                        .AppendLine("---")
+                        .AppendLine(fileToBackup);
 
-                smtpClient.EnableSsl = emailSettings.UseSsl;
-                smtpClient.Host = emailSettings.ServerName;
-                smtpClient.Port = emailSettings.ServerPort;
-                smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials= new NetworkCredential(emailSettings.Username, emailSettings.Password);
+                    MailMessage mailMessage = new MailMessage(
+                                           emailSettings.MailFromAddress,   // From
+                                           emailSettings.MailToAddress,     // To
+                                          "New backup" + fileToBackup,        // Subject
+                                           body.ToString());                // Body
 
-                StringBuilder body = new StringBuilder()
-                    .AppendLine("A new backup is available")
-                    .AppendLine("---")
-                    .AppendLine(fileToBackup);
+                    mailMessage.Attachments.Add(new Attachment(fileToBackup, MediaTypeNames.Application.Octet));
 
-                MailMessage mailMessage = new MailMessage(
-                                       emailSettings.MailFromAddress,   // From
-                                       emailSettings.MailToAddress,     // To
-                                      "New backup"+fileToBackup,        // Subject
-                                       body.ToString());                // Body
-
-                Attachment fileAttachment = new Attachment(fileToBackup, MediaTypeNames.Application.Octet);
-                mailMessage.Attachments.Add(fileAttachment);
-
-                smtpClient.Send(mailMessage);
-            }
+                    smtpClient.Send(mailMessage);
+                }
         }
     }
 }

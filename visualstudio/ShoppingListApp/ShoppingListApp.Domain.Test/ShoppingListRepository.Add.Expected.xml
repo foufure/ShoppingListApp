@@ -1,61 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ShoppingLists>
   <ShoppingList>
-    <ShoppingListID>1</ShoppingListID>
+    <ShoppingListId>1</ShoppingListId>
     <ShoppingListName>ShoppingList1</ShoppingListName>
     <ShoppingListDueDate>1981-04-13</ShoppingListDueDate>
     <ShoppingListLine>
-      <ItemID>1</ItemID>
+      <ItemId>1</ItemId>
       <ItemName>Item1</ItemName>
       <ItemQuantity>1</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ItemID>2</ItemID>
+      <ItemId>2</ItemId>
       <ItemName>Item2</ItemName>
       <ItemQuantity>1</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ItemID>3</ItemID>
+      <ItemId>3</ItemId>
       <ItemName>Item3</ItemName>
       <ItemQuantity>2</ItemQuantity>
     </ShoppingListLine>
   </ShoppingList>
   <ShoppingList>
-    <ShoppingListID>2</ShoppingListID>
+    <ShoppingListId>2</ShoppingListId>
     <ShoppingListName>ShoppingList2</ShoppingListName>
     <ShoppingListDueDate>1981-04-13</ShoppingListDueDate>
     <ShoppingListLine>
-      <ItemID>1</ItemID>
+      <ItemId>1</ItemId>
       <ItemName>Item1</ItemName>
       <ItemQuantity>1</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ItemID>2</ItemID>
+      <ItemId>2</ItemId>
       <ItemName>Item2</ItemName>
       <ItemQuantity>5</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ItemID>5</ItemID>
+      <ItemId>5</ItemId>
       <ItemName>Item5</ItemName>
       <ItemQuantity>3</ItemQuantity>
     </ShoppingListLine>
   </ShoppingList>
   <ShoppingList>
-    <ShoppingListID>3</ShoppingListID>
+    <ShoppingListId>3</ShoppingListId>
     <ShoppingListName>ShoppingList3</ShoppingListName>
     <ShoppingListDueDate>2014-12-04</ShoppingListDueDate>
     <ShoppingListLine>
-      <ItemID>1</ItemID>
+      <ItemId>1</ItemId>
       <ItemName>Item1</ItemName>
       <ItemQuantity>1</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ItemID>2</ItemID>
+      <ItemId>2</ItemId>
       <ItemName>Item2</ItemName>
       <ItemQuantity>1</ItemQuantity>
     </ShoppingListLine>
     <ShoppingListLine>
-      <ItemID>3</ItemID>
+      <ItemId>3</ItemId>
       <ItemName>Item3</ItemName>
       <ItemQuantity>2</ItemQuantity>
     </ShoppingListLine>

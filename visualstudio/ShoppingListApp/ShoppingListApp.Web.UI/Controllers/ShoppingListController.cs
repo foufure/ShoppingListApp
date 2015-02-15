@@ -22,26 +22,26 @@ namespace ShoppingListApp.Web.UI.Controllers
 
         public ViewResult ShoppingLists()
         {
-            return View(shoppinglistRepository.repository);
+            return View(shoppinglistRepository.Repository);
         }
 
-        public ActionResult ShowShoppingList(uint? shoppingListID = null)
+        public ActionResult ShowShoppingList(uint? shoppingListId = null)
         {
-            if (shoppinglistRepository.repository.Count() == 0)
+            if (shoppinglistRepository.Repository.Count() == 0)
             {
                 return RedirectToAction("Index", "Home");
             }
 
             return View( 
-                (shoppingListID == null) ? 
-                shoppinglistRepository.repository.OrderByDescending(shoppinglist => shoppinglist.ShoppingListDueDate).First() :
-                shoppinglistRepository.repository.Where(shoppinglist => shoppinglist.ShoppingListID == shoppingListID).FirstOrDefault()
+                (shoppingListId == null) ? 
+                shoppinglistRepository.Repository.OrderByDescending(shoppinglist => shoppinglist.ShoppingListDueDate).First() :
+                shoppinglistRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId).FirstOrDefault()
                 );
         }
 
-        public RedirectToRouteResult RemoveShoppingList(uint shoppinglistToRemoveID)
+        public RedirectToRouteResult RemoveShoppingList(uint shoppinglistToRemoveId)
         {
-            shoppinglistRepository.Remove(shoppinglistToRemoveID);
+            shoppinglistRepository.Remove(shoppinglistToRemoveId);
             shoppinglistRepository.Save();
             return RedirectToAction("ShoppingLists");
         }
@@ -49,23 +49,21 @@ namespace ShoppingListApp.Web.UI.Controllers
         public ActionResult AddShoppingList(string shoppinglistToAddName)
         {
             if(shoppinglistToAddName != "")
-            { 
-                List<ShoppingListLine> lines = new List<ShoppingListLine>();
-                foreach(Item item in itemRepository.repository)
-                {
-                    lines.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0});
-                }
-            
+            {
                 ShoppingList shoppinglistToCreate = new ShoppingList()
                 {
-                    ShoppingListID = shoppinglistRepository.repository
-                                            .OrderByDescending(shoppinglist => shoppinglist.ShoppingListID)
-                                            .Select(shoppinglist => shoppinglist.ShoppingListID)
+                    ShoppingListId = shoppinglistRepository.Repository
+                                            .OrderByDescending(shoppinglist => shoppinglist.ShoppingListId)
+                                            .Select(shoppinglist => shoppinglist.ShoppingListId)
                                             .FirstOrDefault() + 1,
                     ShoppingListName = shoppinglistToAddName,
-                    ShoppingListDueDate = DateTime.Now,
-                    ShoppingListContent = new List<ShoppingListLine>(lines)
+                    ShoppingListDueDate = DateTime.Now
                 };
+
+                foreach(Item item in itemRepository.Repository)
+                {
+                    shoppinglistToCreate.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0 });
+                }
 
                 return View(shoppinglistToCreate);
             }
@@ -73,13 +71,13 @@ namespace ShoppingListApp.Web.UI.Controllers
             return RedirectToAction("ShoppingLists");
         }
 
-        public ViewResult ModifyShoppingList(uint shoppinglistID)
+        public ViewResult ModifyShoppingList(uint shoppinglistId)
         {
-            ShoppingList shoppinglistToModify = shoppinglistRepository.repository.Where(shoppinglist => shoppinglist.ShoppingListID == shoppinglistID).FirstOrDefault();
+            ShoppingList shoppinglistToModify = shoppinglistRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppinglistId).FirstOrDefault();
             
-            foreach(Item item in itemRepository.repository)
+            foreach(Item item in itemRepository.Repository)
             {
-                if (!shoppinglistToModify.ShoppingListContent.Any(x => x.ItemToBuy.ItemID == item.ItemID))
+                if (!shoppinglistToModify.ShoppingListContent.Any(x => x.ItemToBuy.ItemId == item.ItemId))
                 {
                     shoppinglistToModify.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0 });
                 }
@@ -94,7 +92,7 @@ namespace ShoppingListApp.Web.UI.Controllers
             { 
                 shoppingListToSave.ShoppingListContent.RemoveAll(item => item.QuantityToBuy == 0);
 
-                if (shoppinglistRepository.repository.Any(shoppinglist => shoppinglist.ShoppingListID == shoppingListToSave.ShoppingListID))
+                if (shoppinglistRepository.Repository.Any(shoppinglist => shoppinglist.ShoppingListId == shoppingListToSave.ShoppingListId))
                 {
                     shoppinglistRepository.Modify(shoppingListToSave);
                 }
@@ -104,7 +102,7 @@ namespace ShoppingListApp.Web.UI.Controllers
                 }
             
                 shoppinglistRepository.Save();
-                return RedirectToAction("ShowShoppingList", new { shoppingListID = shoppingListToSave.ShoppingListID });
+                return RedirectToAction("ShowShoppingList", new { shoppingListId = shoppingListToSave.ShoppingListId });
             }
 
             return View("AddShoppingList", shoppingListToSave);

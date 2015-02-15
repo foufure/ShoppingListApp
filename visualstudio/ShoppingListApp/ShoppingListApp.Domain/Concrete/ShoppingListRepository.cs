@@ -8,6 +8,7 @@ using ShoppingListApp.Domain.Entities;
 using System.Xml.Linq;
 using ShoppingListApp.i18n.Utils;
 using System.IO;
+using System.Globalization;
 
 namespace ShoppingListApp.Domain.Concrete
 {
@@ -16,35 +17,13 @@ namespace ShoppingListApp.Domain.Concrete
         private List<ShoppingList> shoppinglistRepository = null;
         private IRepositoryNameProvider repositoryNameProvider;
 
-        public ShoppingListRepository(IRepositoryNameProvider repositoryNameProviderParam)
+        public ShoppingListRepository(IRepositoryNameProvider repositoryNameProvider)
         {
-            repositoryNameProvider = repositoryNameProviderParam;
-
-            if (!File.Exists(repositoryNameProvider.repositoryName))
-            {
-                XDocument newRepository = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XElement("ShoppingLists"));
-                newRepository.Save(repositoryNameProvider.repositoryName);
-            }
-            XDocument parsedFile = XDocument.Load(repositoryNameProvider.repositoryName);
-            
-            shoppinglistRepository = new List<ShoppingList>();
-            foreach (XElement element in parsedFile.Elements("ShoppingLists").Elements("ShoppingList"))
-            {
-                List<ShoppingListLine> shoppingListContent = new List<ShoppingListLine>();
-                foreach (XElement itemElement in element.Elements("ShoppingListLine"))
-                {
-                    shoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemID = Convert.ToUInt32(itemElement.Element("ItemID").Value), ItemName = itemElement.Element("ItemName").Value }, QuantityToBuy = Convert.ToInt32(itemElement.Element("ItemQuantity").Value) });
-                }
-
-                shoppinglistRepository.Add(new ShoppingList() { ShoppingListID = Convert.ToUInt32(element.Element("ShoppingListID").Value), 
-                                                                ShoppingListName = element.Element("ShoppingListName").Value,
-                                                                ShoppingListDueDate = Convert.ToDateTime(element.Element("ShoppingListDueDate").Value),
-                                                                ShoppingListContent = shoppingListContent
-                });
-            }
+            this.repositoryNameProvider = repositoryNameProvider;
+            this.Load();
         }
 
-        public IEnumerable<ShoppingList> repository
+        public IEnumerable<ShoppingList> Repository
         {
             get
             {
@@ -52,48 +31,79 @@ namespace ShoppingListApp.Domain.Concrete
             }
         }
 
-        public void Add(ShoppingList shoppinglistNew)
+        public void Add(ShoppingList newShoppingList)
         {
-            shoppinglistRepository.Add(shoppinglistNew);
+            shoppinglistRepository.Add(newShoppingList);
         }
 
-        public void Remove(uint shoppinglistID)
+        public void Remove(uint shoppingListId)
         {
-            shoppinglistRepository.Remove(shoppinglistRepository.Where(repositoryShoppingList => repositoryShoppingList.ShoppingListID == shoppinglistID).FirstOrDefault());
+            shoppinglistRepository.Remove(shoppinglistRepository.Where(repositoryShoppingList => repositoryShoppingList.ShoppingListId == shoppingListId).FirstOrDefault());
         }
 
         public void Modify(ShoppingList shoppingList)
         {
-            shoppinglistRepository.RemoveAll( item => item.ShoppingListID == shoppingList.ShoppingListID);
+            shoppinglistRepository.RemoveAll( item => item.ShoppingListId == shoppingList.ShoppingListId);
             shoppinglistRepository.Add(shoppingList);
         }
 
         public void Save()
         {
             XElement elements = new XElement("ShoppingLists");
-            foreach (ShoppingList shoppinglist in shoppinglistRepository.OrderBy(list => list.ShoppingListID))
+            foreach (ShoppingList shoppinglist in shoppinglistRepository.OrderBy(list => list.ShoppingListId))
             {
                 List<XElement> lines = new List<XElement>();
                 
                 foreach(ShoppingListLine line in shoppinglist.ShoppingListContent)
                 {
                     lines.Add(new XElement("ShoppingListLine",
-                                            new XElement("ItemID") { Value = line.ItemToBuy.ItemID.ToString() },
+                                            new XElement("ItemId") { Value = line.ItemToBuy.ItemId.ToString(CultureInfo.InvariantCulture) },
                                             new XElement("ItemName") { Value = line.ItemToBuy.ItemName.ToString() },
-                                            new XElement("ItemQuantity") { Value = line.QuantityToBuy.ToString() }
+                                            new XElement("ItemQuantity") { Value = line.QuantityToBuy.ToString(CultureInfo.InvariantCulture) }
                                             )
                               );
                 }
                 
                 elements.Add(new XElement("ShoppingList",
-                                            new XElement("ShoppingListID") { Value = shoppinglist.ShoppingListID.ToString() },
+                                            new XElement("ShoppingListId") { Value = shoppinglist.ShoppingListId.ToString(CultureInfo.InvariantCulture) },
                                             new XElement("ShoppingListName") { Value = shoppinglist.ShoppingListName },
-                                            new XElement("ShoppingListDueDate") { Value = shoppinglist.ShoppingListDueDate.Date.ToString("u").Split(' ')[0] }, // Universal Date without Time
+                                            new XElement("ShoppingListDueDate") { Value = shoppinglist.ShoppingListDueDate.Date.ToString("u", CultureInfo.InvariantCulture).Split(' ')[0] }, // Universal Date without Time
                                             lines
                                             )
                              );
             }
-            elements.Save(repositoryNameProvider.repositoryName);
+            elements.Save(repositoryNameProvider.RepositoryName);
+        }
+
+        public void Load()
+        {
+            if(repositoryNameProvider.RepositoryName != null)
+            { 
+                if (!File.Exists(repositoryNameProvider.RepositoryName))
+                {
+                    XDocument newRepository = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XElement("ShoppingLists"));
+                    newRepository.Save(repositoryNameProvider.RepositoryName);
+                }
+                XDocument parsedFile = XDocument.Load(repositoryNameProvider.RepositoryName);
+
+                shoppinglistRepository = new List<ShoppingList>();
+                foreach (XElement element in parsedFile.Elements("ShoppingLists").Elements("ShoppingList"))
+                {
+                    ShoppingList newShoppingList = new ShoppingList()
+                    {
+                        ShoppingListId = Convert.ToUInt32(element.Element("ShoppingListId").Value, CultureInfo.InvariantCulture),
+                        ShoppingListName = element.Element("ShoppingListName").Value,
+                        ShoppingListDueDate = Convert.ToDateTime(element.Element("ShoppingListDueDate").Value, CultureInfo.InvariantCulture)
+                    };
+                    
+                    foreach (XElement itemElement in element.Elements("ShoppingListLine"))
+                    {
+                        newShoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = Convert.ToUInt32(itemElement.Element("ItemId").Value, CultureInfo.InvariantCulture), ItemName = itemElement.Element("ItemName").Value }, QuantityToBuy = Convert.ToInt32(itemElement.Element("ItemQuantity").Value, CultureInfo.InvariantCulture) });
+                    }
+
+                    shoppinglistRepository.Add(newShoppingList);
+                }
+            }
         }
     }
 }
