@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Globalization;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Globalization;
 
-namespace ShoppingListApp.i18n.Utils
+namespace ShoppingListApp.I18N.Utils
 {
     public static class ConfiguredCultures
     {
-        public static CultureInfo getCurrentUICulture()
+        public static CultureInfo GetCurrentUICulture
         {
-            return Thread.CurrentThread.CurrentUICulture;
+            get { return Thread.CurrentThread.CurrentUICulture; }
         }
 
-        public static CultureInfo getCurrentCulture()
+        public static CultureInfo GetCurrentCulture
         {
-            return Thread.CurrentThread.CurrentCulture;
+            get { return Thread.CurrentThread.CurrentCulture; }
         }
     }
 }

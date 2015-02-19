@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ShoppingListApp.Domain.Abstract;
-using System.Xml.Linq;
-using ShoppingListApp.Domain.Entities;
-using System.IO;
 using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
+using ShoppingListApp.Domain.Abstract;
+using ShoppingListApp.Domain.Entities;
 
 namespace ShoppingListApp.Domain.Concrete
 {
@@ -54,12 +52,13 @@ namespace ShoppingListApp.Domain.Concrete
             {
                 elements.Add(new XElement("Item", new XElement("ItemId") { Value = item.ItemId.ToString(CultureInfo.InvariantCulture) }, new XElement("ItemName") { Value = item.ItemName }));
             }
+
             elements.Save(repositoryNameProvider.RepositoryName);
         }
 
         private void Load()
         {
-            if(repositoryNameProvider != null)
+            if (repositoryNameProvider != null)
             { 
                 if (!File.Exists(repositoryNameProvider.RepositoryName))
                 {

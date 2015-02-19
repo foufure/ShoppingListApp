@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoppingListApp.i18n.Resources.Views.Item {
+namespace ShoppingListApp.I18N.Resources.Views.Item {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ShoppingListApp.i18n.Resources.Views.Item {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ShoppingListApp.i18n.Resources.Views.Item.ItemsCommon", typeof(ItemsCommon).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ShoppingListApp.I18N.Resources.Views.Item.ItemsCommon", typeof(ItemsCommon).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

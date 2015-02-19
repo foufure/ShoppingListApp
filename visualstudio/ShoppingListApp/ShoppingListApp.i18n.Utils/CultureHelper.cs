@@ -1,30 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.ObjectModel;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Web;
-using System.Globalization;
-using ShoppingListApp.i18n.Resources;
+using ShoppingListApp.I18N.Resources;
 
-namespace ShoppingListApp.i18n.Utils
+namespace ShoppingListApp.I18N.Utils
 {
-    public class CultureHelper
+    public static class CultureHelper
     {
         private const string WantedUserCultureCookieName = "WantedUserCultureCookie";
 
-        public void ApplyUserCulture(HttpRequest request)
+        public static void ApplyUserCulture(HttpRequest request)
         {
             string culture = null;
 
-            //Verify if the user has selected himself a culture explicitely on the Website
+            if (request == null)
+            {
+                return;
+            }
+
+            // Verify if the user has selected himself a culture explicitely on the Website
             if ((culture = GetWantedUserCulture(request.Cookies)) == null)
             {
-                //If not then take the preferred culture from the browser
+                // If not then take the preferred culture from the browser
                 if (request.UserLanguages != null && request.UserLanguages.Length > 0)
                 {
-                    culture = BestCultureMatch(SupportedCultures.cultures, request.UserLanguages);
+                    culture = BestCultureMatch(SupportedCultures.Cultures, request.UserLanguages);
                 }
                 else
                 {
@@ -32,23 +34,30 @@ namespace ShoppingListApp.i18n.Utils
                 }
             }
 
-            //Culture of the application background remains "en-US" for example for writing in the XML files for dates
+            // Culture of the application background remains "en-US" for example for writing in the XML files for dates
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            //Culture of the UI changes according to the preferences of the user
+
+            // Culture of the UI changes according to the preferences of the user
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture);
         }
 
-        public void SetWantedUserCulture(HttpCookieCollection cookies, string userCulture)
+        public static void SetWantedUserCulture(HttpCookieCollection cookies, string userCulture)
         {
-            HttpCookie wantedUserCultureCookie = new HttpCookie(WantedUserCultureCookieName, userCulture);
-            wantedUserCultureCookie.Expires = DateTime.Now.AddDays(30);
-            cookies.Set(wantedUserCultureCookie);
+            if (userCulture != null)
+            { 
+                HttpCookie wantedUserCultureCookie = new HttpCookie(WantedUserCultureCookieName, userCulture);
+                wantedUserCultureCookie.Expires = DateTime.Now.AddDays(30);
+                if (cookies != null)
+                {
+                    cookies.Set(wantedUserCultureCookie);
+                }
+            }
         }
 
-        private string GetWantedUserCulture(HttpCookieCollection cookies)
+        private static string GetWantedUserCulture(HttpCookieCollection cookies)
         { 
             HttpCookie cookie = null;
-            if( (cookie = cookies[WantedUserCultureCookieName]) != null)
+            if ((cookie = cookies[WantedUserCultureCookieName]) != null)
             {
                 return cookie.Value;
             }
@@ -56,7 +65,7 @@ namespace ShoppingListApp.i18n.Utils
             return null;
         }
 
-        private KeyValuePair<int, string> perfectMatchPosition(string[] supportedCultures, string[] userCultures)
+        private static KeyValuePair<int, string> PerfectMatchPosition(ReadOnlyCollection<string> supportedCultures, string[] userCultures)
         {
             // Position - Value
             KeyValuePair<int, string> perfectMatch;
@@ -66,19 +75,20 @@ namespace ShoppingListApp.i18n.Utils
             {
                 foreach (string supportedCulture in supportedCultures)
                 {
-                    //Format of user-cultures: de, en-US;q=0.8 - weighting must be taken away
+                    // Format of user-cultures: de, en-US;q=0.8 - weighting must be taken away
                     if (supportedCulture == userCulture.Split(';')[0])
                     {
-                        return perfectMatch = new KeyValuePair<int,string>(perfectMatchPosition, supportedCulture);
+                        return perfectMatch = new KeyValuePair<int, string>(perfectMatchPosition, supportedCulture);
                     }
+
                     perfectMatchPosition++;
                 }
             }
 
-            return perfectMatch = new KeyValuePair<int,string>(0, null);
+            return perfectMatch = new KeyValuePair<int, string>(0, null);
         }
 
-        private string invariantMatch(string[] supportedCultures, string[] userCultures)
+        private static string InvariantMatch(ReadOnlyCollection<string> supportedCultures, string[] userCultures)
         {
             string invariantMatch = null;
 
@@ -86,8 +96,8 @@ namespace ShoppingListApp.i18n.Utils
             {
                 foreach (string supportedCulture in supportedCultures)
                 {
-                    //Format of user-cultures: de, en-US;q=0.8 - weighting and strong culture must be taken away
-                    if (supportedCulture.Split('-')[0] == userCulture.Split('-',';')[0])
+                    // Format of user-cultures: de, en-US;q=0.8 - weighting and strong culture must be taken away
+                    if (supportedCulture.Split('-')[0] == userCulture.Split('-', ';')[0])
                     {
                         return invariantMatch = supportedCulture;
                     }
@@ -97,7 +107,7 @@ namespace ShoppingListApp.i18n.Utils
             return invariantMatch;
         }
 
-        private string bestMatch(KeyValuePair<int, string> perfectMatch, string invariantMatch)
+        private static string BestMatch(KeyValuePair<int, string> perfectMatch, string invariantMatch)
         {
             string bestMatch = null;
 
@@ -120,18 +130,18 @@ namespace ShoppingListApp.i18n.Utils
             return bestMatch;
         }
 
-        private string BestCultureMatch(string[] supportedCultures, string[] userCultures)
+        private static string BestCultureMatch(ReadOnlyCollection<string> supportedCultures, string[] userCultures)
         {
             string defaultCultureMatch = "en-US";
 
-            //Search for Perfect Match
-            KeyValuePair<int, string> perfectMatch = perfectMatchPosition(supportedCultures, userCultures);
+            // Search for Perfect Match
+            KeyValuePair<int, string> perfectMatch = PerfectMatchPosition(supportedCultures, userCultures);
 
-            //Search for Invariant Match
-            string invariantBestMatch = invariantMatch(supportedCultures, userCultures);
+            // Search for Invariant Match
+            string invariantBestMatch = InvariantMatch(supportedCultures, userCultures);
 
-            //Compare Perfect and Invariant Match for Best Match
-            string bestCultureMatch = bestMatch(perfectMatch, invariantBestMatch);
+            // Compare Perfect and Invariant Match for Best Match
+            string bestCultureMatch = BestMatch(perfectMatch, invariantBestMatch);
 
             return bestCultureMatch ?? defaultCultureMatch;
         }

@@ -2,7 +2,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading text-uppercase">
-        <h1 class="panel-title">@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.ShoppingLists</h1>
+        <h1 class="panel-title">@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.ShoppingLists</h1>
     </div>
 
     <div class="panel-body">
@@ -15,13 +15,13 @@
                             @Html.ActionLink(@shoppinglist.ShoppingListName, "ShowShoppingList", "ShoppingList", new { shoppingListId = shoppinglist.ShoppingListId }, new { @class = "btn btn-primary" })
                         </td>
                         <td>
-                            @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Edit, "ModifyShoppingList", "ShoppingList", new { shoppinglistId = shoppinglist.ShoppingListId }, new { @class = "btn btn-danger" })
+                            @Html.ActionLink(@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Edit, "ModifyShoppingList", "ShoppingList", new { shoppinglistId = shoppinglist.ShoppingListId }, new { @class = "btn btn-danger" })
                         </td>
                         <td>
                             @using (@Html.BeginForm("RemoveShoppingList", "ShoppingList"))
                             {
                                 @Html.Hidden("shoppinglistToRemoveId", shoppinglist.ShoppingListId)
-                                <button typeof="submit" class="btn btn-danger">@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.Delete</button>
+                                <button typeof="submit" class="btn btn-danger">@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Delete</button>
                             }
                         </td>
                     </tr>
@@ -33,8 +33,8 @@
     <div class="panel-footer clearfix">
         @using (@Html.BeginForm("AddShoppingList", "ShoppingList"))
         {
-            @Html.TextBox("shoppinglistToAddName", @ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.YourShoppingListName, new { @autofocus = "autofocus" })
-            <button typeof="submit" class="btn btn-success">@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.AddNewShoppingList</button>
+            @Html.TextBox("shoppinglistToAddName", @ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.YourShoppingListName, new { @autofocus = "autofocus" })
+            <button typeof="submit" class="btn btn-success">@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.AddNewShoppingList</button>
         }
     </div>
 </div>

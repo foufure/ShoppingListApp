@@ -1,23 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
-using ShoppingListApp.i18n.Utils;
 using System.Web.Optimization;
+using System.Web.Routing;
+using ShoppingListApp.I18N.Utils;
 
 namespace ShoppingListApp.Web.UI
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private CultureHelper cultureHelper;
-
-        public MvcApplication()
-        {
-            cultureHelper = new CultureHelper();
-        }
-
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -25,9 +16,11 @@ namespace ShoppingListApp.Web.UI
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1121:UseBuiltInTypeAlias", Justification = "Reviewed.")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Reviewed.")]
         private void Application_BeginRequest(Object source, EventArgs e)
         {
-            cultureHelper.ApplyUserCulture(((HttpApplication)source).Context.Request);
+            CultureHelper.ApplyUserCulture(((HttpApplication)source).Context.Request);
         }
     }
 }

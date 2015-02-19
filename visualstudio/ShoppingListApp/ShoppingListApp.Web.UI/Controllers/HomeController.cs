@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ShoppingListApp.Domain.Abstract;
-using ShoppingListApp.Domain.Entities;
-using ShoppingListApp.i18n.Utils;
-using System.IO;
+using ShoppingListApp.I18N.Utils;
 
 namespace ShoppingListApp.Web.UI.Controllers
 {
@@ -15,10 +11,10 @@ namespace ShoppingListApp.Web.UI.Controllers
         private IBackupProcessor backupProcessor;
         private IUserInformation userInformation;
 
-        public HomeController(IBackupProcessor backupProcessorParam, IUserInformation userInformationParam)
+        public HomeController(IBackupProcessor backupProcessor, IUserInformation userInformation)
         {
-            backupProcessor = backupProcessorParam;
-            userInformation = userInformationParam;
+            this.backupProcessor = backupProcessor;
+            this.userInformation = userInformation;
         }
 
         public ActionResult Index()
@@ -27,7 +23,7 @@ namespace ShoppingListApp.Web.UI.Controllers
         }
 
         [Authorize]
-        public ActionResult LogIn()
+        public ActionResult LogOn()
         {
             return RedirectToAction("Index");
         }
@@ -43,23 +39,23 @@ namespace ShoppingListApp.Web.UI.Controllers
         {
             backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ItemRepository." + userInformation.UserName + @".xml");
             backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository." + userInformation.UserName + ".xml");
-            TempData["backup"] = ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.getCurrentUICulture());
+            TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
             return RedirectToAction("Admin");
         }
 
         [Authorize]
-        public RedirectToRouteResult RestoreBackup(HttpPostedFileBase itemstorestorefile, HttpPostedFileBase shoppingliststorestorefile)
+        public RedirectToRouteResult RestoreBackup(HttpPostedFileBase itemsToRestoreFile, HttpPostedFileBase shoppingListsToRestoreFile)
         {
-            if (itemstorestorefile != null && itemstorestorefile.ContentLength > 0)
+            if (itemsToRestoreFile != null && itemsToRestoreFile.ContentLength > 0)
             {
-                itemstorestorefile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ItemRepository." + userInformation.UserName + @".xml");
-                TempData["restore"] = ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.getCurrentUICulture());
+                itemsToRestoreFile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ItemRepository." + userInformation.UserName + @".xml");
+                TempData["restore"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
             }
             
-            if (shoppingliststorestorefile != null && shoppingliststorestorefile.ContentLength > 0)
+            if (shoppingListsToRestoreFile != null && shoppingListsToRestoreFile.ContentLength > 0)
             { 
-                shoppingliststorestorefile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository." + userInformation.UserName + ".xml");
-                TempData["restore"] = ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.getCurrentUICulture());
+                shoppingListsToRestoreFile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository." + userInformation.UserName + ".xml");
+                TempData["restore"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
             }
 
             return RedirectToAction("Admin");

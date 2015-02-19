@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>722ed3a0</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,7 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\AllRules.ShoppingListApp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -80,11 +81,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ItemRepository.Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingListRepository.Test.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Settings.StyleCop">
+      <Link>Settings.StyleCop</Link>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

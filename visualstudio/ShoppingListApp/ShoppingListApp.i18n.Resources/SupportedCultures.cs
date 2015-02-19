@@ -1,25 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Linq; 
 
-namespace ShoppingListApp.i18n.Resources
+namespace ShoppingListApp.I18N.Resources
 {
     public static class SupportedCultures
     {
         // en-US is the culture
         // US is the specific culture
-        private static string[] supportedCultures = new string[] { "en-US", "fr-FR", "de-DE" };
+        private static string[] supportedCultures = { "en-US", "fr-FR", "de-DE" };
+        private static string defaultCulture = "en-US";
 
-        public static string[] cultures 
+        public static ReadOnlyCollection<string> Cultures 
         {
-            get { return supportedCultures; }
+            get { return new ReadOnlyCollection<string>(supportedCultures); }
         }
 
-        public static string specificCulture(string culture)
+        public static string SpecificCulture(string culture)
         {
-            return culture.Split('-')[1];
+            if (culture != null)
+            {
+                if (supportedCultures.Contains(culture))
+                {
+                    return culture.Split('-')[1];
+                }
+            }
+            
+            return defaultCulture;
         }
     }
 }

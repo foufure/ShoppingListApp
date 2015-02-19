@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Entities;
@@ -11,56 +9,54 @@ namespace ShoppingListApp.Web.UI.Controllers
     [Authorize]
     public class ShoppingListController : Controller
     {
-        private IShoppingListRepository shoppinglistRepository;
+        private IShoppingListRepository shoppingListRepository;
         private IItemsRepository itemRepository;
 
-        public ShoppingListController(IShoppingListRepository repositoryParamShoppingLists, IItemsRepository repositoryParamItems)
+        public ShoppingListController(IShoppingListRepository shoppingListRepository, IItemsRepository itemRepository)
         {
-            shoppinglistRepository = repositoryParamShoppingLists;
-            itemRepository = repositoryParamItems;
+            this.shoppingListRepository = shoppingListRepository;
+            this.itemRepository = itemRepository;
         }
 
         public ViewResult ShoppingLists()
         {
-            return View(shoppinglistRepository.Repository);
+            return View(shoppingListRepository.Repository);
         }
 
         public ActionResult ShowShoppingList(uint? shoppingListId = null)
         {
-            if (shoppinglistRepository.Repository.Count() == 0)
+            if (shoppingListRepository.Repository.Count() == 0)
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            return View( 
-                (shoppingListId == null) ? 
-                shoppinglistRepository.Repository.OrderByDescending(shoppinglist => shoppinglist.ShoppingListDueDate).First() :
-                shoppinglistRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId).FirstOrDefault()
-                );
+            return View((shoppingListId == null) ? 
+                        shoppingListRepository.Repository.OrderByDescending(shoppinglist => shoppinglist.ShoppingListDueDate).First() :
+                        shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId).FirstOrDefault());
         }
 
-        public RedirectToRouteResult RemoveShoppingList(uint shoppinglistToRemoveId)
+        public RedirectToRouteResult RemoveShoppingList(uint shoppingListToRemoveId)
         {
-            shoppinglistRepository.Remove(shoppinglistToRemoveId);
-            shoppinglistRepository.Save();
+            shoppingListRepository.Remove(shoppingListToRemoveId);
+            shoppingListRepository.Save();
             return RedirectToAction("ShoppingLists");
         }
 
-        public ActionResult AddShoppingList(string shoppinglistToAddName)
+        public ActionResult AddShoppingList(string shoppingListToAddName)
         {
-            if(shoppinglistToAddName != "")
+            if (!string.IsNullOrEmpty(shoppingListToAddName))
             {
                 ShoppingList shoppinglistToCreate = new ShoppingList()
                 {
-                    ShoppingListId = shoppinglistRepository.Repository
+                    ShoppingListId = shoppingListRepository.Repository
                                             .OrderByDescending(shoppinglist => shoppinglist.ShoppingListId)
                                             .Select(shoppinglist => shoppinglist.ShoppingListId)
                                             .FirstOrDefault() + 1,
-                    ShoppingListName = shoppinglistToAddName,
+                    ShoppingListName = shoppingListToAddName,
                     ShoppingListDueDate = DateTime.Now
                 };
 
-                foreach(Item item in itemRepository.Repository)
+                foreach (Item item in itemRepository.Repository)
                 {
                     shoppinglistToCreate.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0 });
                 }
@@ -71,11 +67,11 @@ namespace ShoppingListApp.Web.UI.Controllers
             return RedirectToAction("ShoppingLists");
         }
 
-        public ViewResult ModifyShoppingList(uint shoppinglistId)
+        public ViewResult ModifyShoppingList(uint shoppingListId)
         {
-            ShoppingList shoppinglistToModify = shoppinglistRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppinglistId).FirstOrDefault();
+            ShoppingList shoppinglistToModify = shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId).FirstOrDefault();
             
-            foreach(Item item in itemRepository.Repository)
+            foreach (Item item in itemRepository.Repository)
             {
                 if (!shoppinglistToModify.ShoppingListContent.Any(x => x.ItemToBuy.ItemId == item.ItemId))
                 {
@@ -88,20 +84,20 @@ namespace ShoppingListApp.Web.UI.Controllers
 
         public ActionResult SaveShoppingList(ShoppingList shoppingListToSave)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             { 
                 shoppingListToSave.ShoppingListContent.RemoveAll(item => item.QuantityToBuy == 0);
 
-                if (shoppinglistRepository.Repository.Any(shoppinglist => shoppinglist.ShoppingListId == shoppingListToSave.ShoppingListId))
+                if (shoppingListRepository.Repository.Any(shoppinglist => shoppinglist.ShoppingListId == shoppingListToSave.ShoppingListId))
                 {
-                    shoppinglistRepository.Modify(shoppingListToSave);
+                    shoppingListRepository.Modify(shoppingListToSave);
                 }
                 else 
                 {
-                    shoppinglistRepository.Add(shoppingListToSave);
+                    shoppingListRepository.Add(shoppingListToSave);
                 }
             
-                shoppinglistRepository.Save();
+                shoppingListRepository.Save();
                 return RedirectToAction("ShowShoppingList", new { shoppingListId = shoppingListToSave.ShoppingListId });
             }
 

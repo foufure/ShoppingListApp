@@ -1,22 +1,19 @@
-﻿using Microsoft.Owin.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
+using Microsoft.Owin.Security;
 
 namespace ShoppingListApp.Web.UI.Controllers
 {
     [AllowAnonymous]
     public class AccountController : Controller
     {
-        public ActionResult Login(string returnUrl)
+        public ActionResult LogOn(string returnUrl)
         {
-            // Request a redirect to the external login provider
-            return new ChallengeResult("Google", Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+            // Request a redirect to the external logOn provider
+            return new ChallengeResult("Google", Url.Action("ExternalLogOnCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
-        public ActionResult ExternalLoginCallback(string returnUrl)
+        public ActionResult ExternalLogOnCallback(string returnUrl)
         {
             return new RedirectResult(returnUrl);
         }
@@ -25,17 +22,21 @@ namespace ShoppingListApp.Web.UI.Controllers
         {
             public ChallengeResult(string provider, string redirectUri)
             {
-                LoginProvider = provider;
+                LogOnProvider = provider;
                 RedirectUri = redirectUri;
             }
 
-            public string LoginProvider { get; set; }
+            public string LogOnProvider { get; set; }
+            
             public string RedirectUri { get; set; }
 
             public override void ExecuteResult(ControllerContext context)
             {
-                var properties = new AuthenticationProperties() { RedirectUri = RedirectUri };
-                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
+                if (context != null)
+                { 
+                    var properties = new AuthenticationProperties() { RedirectUri = RedirectUri };
+                    context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LogOnProvider);
+                }
             }
         }
     }

@@ -10,7 +10,8 @@ namespace ShoppingListApp.Web.UI
                 .Include("~/Content/*.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/shoppinglistappscripts")
-                .Include("~/Scripts/jquery-{version}.js",
+                .Include(
+                    "~/Scripts/jquery-{version}.js",
                     "~/Scripts/jquery.validate.js",
                     "~/Scripts/jquery.validate.unobtrusive.js",
                     "~/Scripts/jquery.unobtrusive-ajax.js",

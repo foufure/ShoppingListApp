@@ -1,4 +1,4 @@
-﻿@foreach (string supportedCulture in SupportedCultures.cultures)
+﻿@foreach (string supportedCulture in SupportedCultures.Cultures)
 { 
-    @Html.ActionLink(SupportedCultures.specificCulture(supportedCulture), "GetUserCulture", "UserCulture", new { userCulture=supportedCulture, returnUrl=Request.Url.PathAndQuery }, new { @class = "btn btn-primary" })
+    @Html.ActionLink(SupportedCultures.SpecificCulture(supportedCulture), "GetUserCulture", "UserCulture", new { userCulture=supportedCulture, returnUrl=Request.Url.PathAndQuery }, new { @class = "btn btn-primary" })
 }

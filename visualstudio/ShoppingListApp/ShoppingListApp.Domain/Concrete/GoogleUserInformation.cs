@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ShoppingListApp.Domain.Abstract;
 
 namespace ShoppingListApp.Domain.Concrete
@@ -13,7 +10,10 @@ namespace ShoppingListApp.Domain.Concrete
         {
             get 
             {
-                try { return System.Security.Claims.ClaimsPrincipal.Current.Claims.Where(type => type.Type.Contains("emailaddress")).First().Value.Split('@')[0]; }
+                try 
+                { 
+                    return System.Security.Claims.ClaimsPrincipal.Current.Claims.Where(type => type.Type.Contains("emailaddress")).First().Value.Split('@')[0]; 
+                }
                 catch (InvalidOperationException)
                 {
                     return null;
@@ -25,7 +25,10 @@ namespace ShoppingListApp.Domain.Concrete
         {
             get 
             {
-                try { return System.Security.Claims.ClaimsPrincipal.Current.Claims.Where(type => type.Type.Contains("emailaddress")).First().Value; }
+                try 
+                { 
+                    return System.Security.Claims.ClaimsPrincipal.Current.Claims.Where(type => type.Type.Contains("emailaddress")).First().Value; 
+                }
                 catch (InvalidOperationException)
                 {
                     return null;

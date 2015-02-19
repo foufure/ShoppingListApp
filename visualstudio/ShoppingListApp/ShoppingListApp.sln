@@ -9,15 +9,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingListApp.Domain", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingListApp.Domain.Test", "ShoppingListApp.Domain.Test\ShoppingListApp.Domain.Test.csproj", "{E183B531-D157-4585-BD98-15AB6B980FBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingListApp.i18n.Resources", "ShoppingListApp.i18n.Resources\ShoppingListApp.i18n.Resources.csproj", "{C4C06B74-F435-4409-866B-B9DC38F85E79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingListApp.I18N.Resources", "ShoppingListApp.i18n.Resources\ShoppingListApp.I18N.Resources.csproj", "{C4C06B74-F435-4409-866B-B9DC38F85E79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingListApp.i18n.Utils", "ShoppingListApp.i18n.Utils\ShoppingListApp.i18n.Utils.csproj", "{89437984-6D3A-4B92-92A5-1953E57D192E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingListApp.I18N.Utils", "ShoppingListApp.i18n.Utils\ShoppingListApp.I18N.Utils.csproj", "{89437984-6D3A-4B92-92A5-1953E57D192E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0D276301-78CD-4154-9384-A3C779488DB9}"
 	ProjectSection(SolutionItems) = preProject
 		AllRules.ShoppingListApp.ruleset = AllRules.ShoppingListApp.ruleset
 		ConfigCodeAnalysis.txt = ConfigCodeAnalysis.txt
 		CustomDictionary.xml = CustomDictionary.xml
+		Settings.StyleCop = Settings.StyleCop
 	EndProjectSection
 EndProject
 Global

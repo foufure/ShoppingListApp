@@ -4,5 +4,9 @@
     <Compound>
       <Term CompoundAlternate="MailTo">MailTo</Term>
     </Compound>
+    <Recognized>
+      <Word>Mvc</Word>
+      <Word>Utils</Word>
+    </Recognized>
   </Words>
 </Dictionary>

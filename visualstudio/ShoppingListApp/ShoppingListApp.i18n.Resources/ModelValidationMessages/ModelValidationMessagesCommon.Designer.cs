@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoppingListApp.i18n.Resources.ModelValidationMessages {
+namespace ShoppingListApp.I18N.Resources.ModelValidationMessages {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ShoppingListApp.i18n.Resources.ModelValidationMessages {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ShoppingListApp.i18n.Resources.ModelValidationMessages.ModelValidationMessagesCom" +
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ShoppingListApp.I18N.Resources.ModelValidationMessages.ModelValidationMessagesCom" +
                             "mon", typeof(ModelValidationMessagesCommon).Assembly);
                     resourceMan = temp;
                 }

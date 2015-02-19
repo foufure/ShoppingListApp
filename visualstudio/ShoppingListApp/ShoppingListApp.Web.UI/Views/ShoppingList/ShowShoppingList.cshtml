@@ -2,7 +2,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading text-uppercase">
-        <span class="pull-right">@Model.ShoppingListDueDate.ToString("d", ConfiguredCultures.getCurrentUICulture())</span>
+        <span class="pull-right">@Model.ShoppingListDueDate.ToString("d", ConfiguredCultures.GetCurrentUICulture)</span>
         <h1 class="panel-title">@Model.ShoppingListName</h1> 
     </div>
 
@@ -10,8 +10,8 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
-                        <th>@ShoppingListApp.i18n.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
+                        <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
+                        <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
                     </tr>
                 </thead>
                 <tbody>

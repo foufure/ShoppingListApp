@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Entities;
@@ -13,9 +11,9 @@ namespace ShoppingListApp.Web.UI.Controllers
     {
         private IItemsRepository itemRepository;
 
-        public ItemController(IItemsRepository repositoryParam)
+        public ItemController(IItemsRepository itemRepository)
         {
-            itemRepository = repositoryParam;
+            this.itemRepository = itemRepository;
         }
 
         public ActionResult Items()
@@ -25,7 +23,7 @@ namespace ShoppingListApp.Web.UI.Controllers
 
         public RedirectToRouteResult AddNewItem(string newItemName)
         {
-            if(newItemName != "")
+            if (!string.IsNullOrEmpty(newItemName))
             { 
                 itemRepository.Add(newItemName);
                 itemRepository.Save();
@@ -50,7 +48,7 @@ namespace ShoppingListApp.Web.UI.Controllers
         [HttpPost]
         public RedirectToRouteResult ModifyItem(uint itemToModifyId, string itemToModifyNewName)
         {
-            if (itemToModifyNewName != "")
+            if (!string.IsNullOrEmpty(itemToModifyNewName))
             {
                 itemRepository.Modify(new Item() { ItemId = itemToModifyId, ItemName = itemToModifyNewName });
                 itemRepository.Save();

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Text;
 using ShoppingListApp.Domain.Abstract;
-using ShoppingListApp.Domain.Entities;
 
 namespace ShoppingListApp.Domain.Concrete
 {
@@ -20,7 +15,7 @@ namespace ShoppingListApp.Domain.Concrete
             emailSettings = settings;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Reviewed.")]
         public void ProcessBackup(string fileToBackup) 
         {
                 using (var smtpClient = new SmtpClient())

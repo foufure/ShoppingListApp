@@ -1,12 +1,8 @@
 ﻿using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
-using Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
+using Owin;
 
 namespace ShoppingListApp.Web.UI
 {
@@ -14,7 +10,7 @@ namespace ShoppingListApp.Web.UI
     {
         private void ConfigureAuth(IAppBuilder app)
         {
-            var cookieOptions = new CookieAuthenticationOptions() { LoginPath = new PathString("/Account/Login") };
+            var cookieOptions = new CookieAuthenticationOptions() { LoginPath = new PathString("/Account/LogOn") };
 
             app.UseCookieAuthentication(cookieOptions);
 

@@ -13,6 +13,7 @@ namespace ShoppingListApp.Web.UI.App_Start
 
     public static class NinjectWebCommon 
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1311:StaticReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>

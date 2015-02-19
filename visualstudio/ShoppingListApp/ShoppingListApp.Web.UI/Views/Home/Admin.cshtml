@@ -1,6 +1,6 @@
 ﻿<div class="panel panel-primary">
     <div class="panel-body">
-        @Html.ActionLink(@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BackupEmail, "Backup", "Home", null, new { @class = "btn btn-success btn-lg btn-block" })   
+        @Html.ActionLink(@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupEmail, "Backup", "Home", null, new { @class = "btn btn-success btn-lg btn-block" })   
     </div>
     <div class="panel-footer">
         @if (TempData["backup"] != null)
@@ -13,9 +13,9 @@
     <div class="panel-body">
         @using (@Html.BeginForm("RestoreBackup", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            <input type="submit" value="@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.RestoreBackup" class="btn btn-success btn-lg btn-block" />
-            <input type="file" class="filestyle" name="itemstorestorefile" data-buttonbefore="true" data-buttontext="@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BrowseItemFile" />
-            <input type="file" class="filestyle" name="shoppingliststorestorefile" data-buttonbefore="true" data-buttontext="@ShoppingListApp.i18n.Resources.Views.Home.IndexCommon.BrowseShoppingListFile" />
+            <input type="submit" value="@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackup" class="btn btn-success btn-lg btn-block" />
+            <input type="file" class="filestyle" name="itemstorestorefile" data-buttonbefore="true" data-buttontext="@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BrowseItemFile" />
+            <input type="file" class="filestyle" name="shoppingliststorestorefile" data-buttonbefore="true" data-buttontext="@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BrowseShoppingListFile" />
         }
     </div>
     <div class="panel-footer">
