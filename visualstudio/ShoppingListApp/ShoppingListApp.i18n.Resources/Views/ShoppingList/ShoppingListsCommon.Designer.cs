@@ -61,15 +61,6 @@ namespace ShoppingListApp.I18N.Resources.Views.ShoppingList {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add New Shopping List.
-        /// </summary>
-        public static string AddNewShoppingList {
-            get {
-                return ResourceManager.GetString("AddNewShoppingList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Due Date.
         /// </summary>
         public static string DueDate {
@@ -79,16 +70,7 @@ namespace ShoppingListApp.I18N.Resources.Views.ShoppingList {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit.
-        /// </summary>
-        public static string Edit {
-            get {
-                return ResourceManager.GetString("Edit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit Shopping List.
+        ///   Looks up a localized string similar to Shopping List.
         /// </summary>
         public static string EditShoppingList {
             get {
@@ -111,15 +93,6 @@ namespace ShoppingListApp.I18N.Resources.Views.ShoppingList {
         public static string Quantity {
             get {
                 return ResourceManager.GetString("Quantity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save.
-        /// </summary>
-        public static string Save {
-            get {
-                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         

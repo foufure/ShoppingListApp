@@ -5,13 +5,21 @@
         @using (@Html.BeginForm("ModifyItem", "Item"))
         {
             @Html.Hidden("itemToModifyId", @Model.ItemId)
-            @Html.TextBox("itemToModifyNewName", @Model.ItemName)
-            <button type="submit" class="btn btn-success">@ShoppingListApp.I18N.Resources.Views.Item.ItemsCommon.Modify</button>
+            <div class="input-group"> 
+                @Html.TextBox("itemToModifyNewName", @Model.ItemName, new { @class = "form-control", @autofocus = "autofocus" })
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                </span>  
+            </div>
         }
     </div>
     <div class="panel-footer"></div>
 </div>
 <div>
-    @Html.ActionLink(@ShoppingListApp.I18N.Resources.Views.Item.ItemsCommon.BackToItems, "Items", "Item", null, new { @class = "btn btn-success btn-lg" })
+    <a href="@Url.Action("Items", "Item")" class="btn btn-success btn-lg">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+    </a>
 </div>
 

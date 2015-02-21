@@ -1,1 +1,3 @@
-﻿@Html.ActionLink(@ShoppingListApp.I18N.Resources.Views.Shared.BackToMainMenu.BackToMainMenuButton, "Index", "Home", null, new { @class = "btn btn-success btn-lg" })
+﻿<a href="@Url.Action("Index", "Home")" class="btn btn-success btn-lg">
+    <span class="glyphicon glyphicon-home"></span>
+</a>

@@ -61,33 +61,6 @@ namespace ShoppingListApp.I18N.Resources.Views.Item {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a New Item.
-        /// </summary>
-        public static string AddNewItem {
-            get {
-                return ResourceManager.GetString("AddNewItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Back To Items.
-        /// </summary>
-        public static string BackToItems {
-            get {
-                return ResourceManager.GetString("BackToItems", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Modify.
-        /// </summary>
-        public static string Modify {
-            get {
-                return ResourceManager.GetString("Modify", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Your Item Name.
         /// </summary>
         public static string YourItemName {

@@ -89,36 +89,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Views\Shared\BackToShoppingLists.de-DE.Designer.cs">
-      <DependentUpon>BackToShoppingLists.de-DE.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Views\Shared\BackToShoppingLists.fr-FR.Designer.cs">
-      <DependentUpon>BackToShoppingLists.fr-FR.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Views\Shared\BackToShoppingLists.Designer.cs">
-      <DependentUpon>BackToShoppingLists.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Views\Shared\BackToMainMenu.fr-FR.Designer.cs">
-      <DependentUpon>BackToMainMenu.fr-FR.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Views\Shared\BackToMainMenu.de-DE.Designer.cs">
-      <DependentUpon>BackToMainMenu.de-DE.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Views\Shared\BackToMainMenu.Designer.cs">
-      <DependentUpon>BackToMainMenu.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Views\Shared\_Layout.de-DE.Designer.cs">
       <DependentUpon>_Layout.de-DE.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -186,30 +156,6 @@
     <EmbeddedResource Include="Views\Home\IndexCommon.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IndexCommon.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Shared\BackToShoppingLists.de-DE.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>BackToShoppingLists.de-DE.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Shared\BackToShoppingLists.fr-FR.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>BackToShoppingLists.fr-FR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Shared\BackToShoppingLists.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>BackToShoppingLists.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Shared\BackToMainMenu.fr-FR.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>BackToMainMenu.fr-FR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Shared\BackToMainMenu.de-DE.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>BackToMainMenu.de-DE.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Shared\BackToMainMenu.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>BackToMainMenu.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Shared\_Layout.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

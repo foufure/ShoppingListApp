@@ -11,14 +11,21 @@
                 @foreach (Item item in @Model)
                 {
                     <tr>
+                        <td style="width:70%">
+                            @item.ItemName.ToString()
+                        </td>
                         <td>
-                            @Html.ActionLink(@item.ItemName.ToString(), "ModifyItem", "Item", new { itemToModifyId = item.ItemId }, new { @class = "btn btn-primary" })
+                            <a href="@Url.Action("ModifyItem", "Item", new { itemToModifyId = item.ItemId })" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
                         </td>
                         <td>
                             @using (@Html.BeginForm("RemoveItem", "Item"))
                             {
                                 @Html.Hidden("itemToRemoveId", item.ItemId)
-                                <button typeof="submit" class="btn btn-danger">@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Delete</button>
+                                <button type="submit" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
                             }
                         </td>
                     </tr>
@@ -30,8 +37,14 @@
     <div class="panel-footer clearfix">
         @using (@Html.BeginForm("AddNewItem", "Item"))
         {
-            @Html.TextBox("newItemName", @ShoppingListApp.I18N.Resources.Views.Item.ItemsCommon.YourItemName, new { @autofocus = "autofocus" })
-            <button typeof="submit" class="btn btn-success">@ShoppingListApp.I18N.Resources.Views.Item.ItemsCommon.AddNewItem</button>
+            <div class="input-group"> 
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </span>
+                @Html.TextBox("newItemName", null, new { @class = "form-control", @placeholder = @ShoppingListApp.I18N.Resources.Views.Item.ItemsCommon.YourItemName })    
+            </div>    
         }
     </div>
 </div>

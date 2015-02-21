@@ -127,13 +127,10 @@
     <value>Backup ausgeführt am</value>
   </data>
   <data name="BrowseItemFile" xml:space="preserve">
-    <value>Datei auswählen (Artikel)</value>
+    <value>Artikeln</value>
   </data>
   <data name="BrowseShoppingListFile" xml:space="preserve">
-    <value>Datei auswählen (Einkaufslisten)</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Löschen</value>
+    <value>Einkaufslisten</value>
   </data>
   <data name="DueShoppingList" xml:space="preserve">
     <value>Einkaufsliste zu erledigen</value>

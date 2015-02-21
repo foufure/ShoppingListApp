@@ -127,13 +127,10 @@
     <value>Sauvegarde effectuée le</value>
   </data>
   <data name="BrowseItemFile" xml:space="preserve">
-    <value>Choisir les articles à restaurer</value>
+    <value>Articles</value>
   </data>
   <data name="BrowseShoppingListFile" xml:space="preserve">
-    <value>Choisir les listes de courses à restaurer</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Supprimer</value>
+    <value>Listes de courses</value>
   </data>
   <data name="DueShoppingList" xml:space="preserve">
     <value>Liste de courses à effectuer</value>

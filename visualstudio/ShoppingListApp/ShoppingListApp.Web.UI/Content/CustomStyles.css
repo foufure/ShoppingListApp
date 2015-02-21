@@ -1,3 +1,9 @@
-﻿.stroked {
+﻿/* strike-through style for text */
+.stroked {
     text-decoration: line-through;
+}
+
+/* override .btn of bootstrap to have text-wrap if the text does not fit in one line button */
+.btn {
+    white-space: normal;
 }

@@ -18,7 +18,7 @@
                     @foreach (ShoppingListLine line in @Model.ShoppingListContent)
                     {
                         <tr>
-                            <td>
+                            <td class="strikethrough_toggler">
                                 @line.ItemToBuy.ItemName
                             </td>
                             <td>
@@ -36,4 +36,5 @@
 </div>
 <div>
     @Html.Partial("BackToShoppingLists")
+    @Html.Partial("BackToMainMenu")
 </div>

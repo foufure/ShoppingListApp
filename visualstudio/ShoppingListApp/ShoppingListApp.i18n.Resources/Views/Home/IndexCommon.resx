@@ -127,13 +127,10 @@
     <value>Backup done on</value>
   </data>
   <data name="BrowseItemFile" xml:space="preserve">
-    <value>Choose Items Backup to restore</value>
+    <value>Items</value>
   </data>
   <data name="BrowseShoppingListFile" xml:space="preserve">
-    <value>Choose Shopping Lists Backup to restore</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Shopping Lists</value>
   </data>
   <data name="DueShoppingList" xml:space="preserve">
     <value>Due Shopping List</value>

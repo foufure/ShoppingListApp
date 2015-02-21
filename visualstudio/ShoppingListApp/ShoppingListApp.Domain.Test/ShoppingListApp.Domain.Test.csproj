@@ -38,6 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\packages\NUnitTestAdapter.WithFramework.1.2\lib\nunit.core.dll</HintPath>
       <Private>False</Private>
@@ -81,6 +84,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EmailBackupProcessor.Test.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ItemRepository.Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

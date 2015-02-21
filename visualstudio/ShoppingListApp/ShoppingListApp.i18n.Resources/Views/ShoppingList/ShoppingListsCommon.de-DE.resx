@@ -117,26 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddNewShoppingList" xml:space="preserve">
-    <value>Neue Einkaufsliste hinzufügen</value>
-  </data>
   <data name="DueDate" xml:space="preserve">
     <value>Datum</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Editieren</value>
-  </data>
   <data name="EditShoppingList" xml:space="preserve">
-    <value>Einkaufslite editieren</value>
+    <value>Einkaufsliste</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="Quantity" xml:space="preserve">
     <value>Menge</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Speichern</value>
   </data>
   <data name="YourShoppingListName" xml:space="preserve">
     <value>Name der Einkaufliste</value>

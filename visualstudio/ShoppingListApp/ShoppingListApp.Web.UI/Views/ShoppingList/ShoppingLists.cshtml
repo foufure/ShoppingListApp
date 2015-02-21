@@ -11,17 +11,26 @@
                 @foreach (ShoppingList shoppinglist in @Model)
                 {
                     <tr>
-                        <td>
-                            @Html.ActionLink(@shoppinglist.ShoppingListName, "ShowShoppingList", "ShoppingList", new { shoppingListId = shoppinglist.ShoppingListId }, new { @class = "btn btn-primary" })
+                        <td style="width:70%">
+                            @shoppinglist.ShoppingListName
                         </td>
                         <td>
-                            @Html.ActionLink(@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Edit, "ModifyShoppingList", "ShoppingList", new { shoppinglistId = shoppinglist.ShoppingListId }, new { @class = "btn btn-danger" })
+                            <a href="@Url.Action("ShowShoppingList", "ShoppingList", new { shoppinglistId = shoppinglist.ShoppingListId })" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </a>
                         </td>
-                        <td>
+                        <td class="">
+                            <a href="@Url.Action("ModifyShoppingList", "ShoppingList", new { shoppinglistId = shoppinglist.ShoppingListId })" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </td>
+                        <td class="right">
                             @using (@Html.BeginForm("RemoveShoppingList", "ShoppingList"))
                             {
                                 @Html.Hidden("shoppinglistToRemoveId", shoppinglist.ShoppingListId)
-                                <button typeof="submit" class="btn btn-danger">@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Delete</button>
+                                <button type="submit" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
                             }
                         </td>
                     </tr>
@@ -33,8 +42,14 @@
     <div class="panel-footer clearfix">
         @using (@Html.BeginForm("AddShoppingList", "ShoppingList"))
         {
-            @Html.TextBox("shoppinglistToAddName", @ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.YourShoppingListName, new { @autofocus = "autofocus" })
-            <button typeof="submit" class="btn btn-success">@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.AddNewShoppingList</button>
+            <div class="input-group"> 
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </span>
+                @Html.TextBox("shoppinglistToAddName", null, new { @class = "form-control", @placeholder = @ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.YourShoppingListName })    
+            </div>
         }
     </div>
 </div>

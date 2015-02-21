@@ -34,7 +34,7 @@ namespace ShoppingListApp.Domain.Concrete
                     MailMessage mailMessage = new MailMessage(
                                            emailSettings.MailFromAddress,   // From
                                            emailSettings.MailToAddress,     // To
-                                          "New backup" + fileToBackup,        // Subject
+                                           "New backup" + fileToBackup,     // Subject
                                            body.ToString());                // Body
 
                     mailMessage.Attachments.Add(new Attachment(fileToBackup, MediaTypeNames.Application.Octet));

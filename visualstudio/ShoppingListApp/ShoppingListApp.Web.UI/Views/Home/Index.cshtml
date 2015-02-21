@@ -2,29 +2,36 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading text-uppercase text-center">
-        <h1 class="panel-title">@ShoppingListApp.I18N.Resources.Views.Shared._Layout.AppTitle</h1>
+        <h1 class="panel-title">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            @ShoppingListApp.I18N.Resources.Views.Shared._Layout.AppTitle
+        </h1>
     </div>
     
     @if (User.Identity.IsAuthenticated)
     {
         <div class="panel-body">
-            <div class="btn-group-vertical btn-group-justified">
-                <div>
-                    @Html.ActionLink(@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.DueShoppingList, "ShowShoppingList", "ShoppingList", null, new { @class = "btn btn-success btn-lg btn-block" })
-                </div>
-                <div>
-                    @Html.ActionLink(@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.ShoppingLists, "ShoppingLists", "ShoppingList", null, new { @class = "btn btn-success btn-lg btn-block" })
-                </div>
+            <div class="btn-group btn-group-justified">
+                    <a href="@Url.Action("ShowShoppingList", "ShoppingList")" class="btn btn-success btn-lg btn-block">
+                        <span class="glyphicon glyphicon-star"></span>
+                        @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.DueShoppingList
+                    </a>
+                    <a href="@Url.Action("ShoppingLists", "ShoppingList")" class="btn btn-success btn-lg btn-block">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.ShoppingLists
+                    </a>
             </div>
         </div>
         <div class="panel-footer">
             <div class="btn-group btn-group-justified">
-                <div class="btn-group">
-                    @Html.ActionLink(@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Items, "Items", "Item", null, new { @class = "btn btn-success" })
-                </div>
-                <div class="btn-group">
-                    @Html.ActionLink(@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Admin, "Admin", "Home", null, new { @class = "btn btn-success" })
-                </div>
+                <a href="@Url.Action("Items", "Item")" class="btn btn-success btn-block">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Items
+                </a>
+                <a href="@Url.Action("Admin", "Home")" class="btn btn-success btn-block">
+                    <span class="glyphicon glyphicon-wrench"></span>
+                    @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Admin
+                </a>
             </div>
         </div>
     }

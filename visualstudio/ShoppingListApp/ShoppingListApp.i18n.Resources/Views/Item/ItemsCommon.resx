@@ -117,15 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddNewItem" xml:space="preserve">
-    <value>Add a New Item</value>
-  </data>
-  <data name="BackToItems" xml:space="preserve">
-    <value>Back To Items</value>
-  </data>
-  <data name="Modify" xml:space="preserve">
-    <value>Modify</value>
-  </data>
   <data name="YourItemName" xml:space="preserve">
     <value>Your Item Name</value>
   </data>

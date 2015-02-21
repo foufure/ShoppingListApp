@@ -1,2 +1,4 @@
-﻿@Html.ActionLink(@ShoppingListApp.I18N.Resources.Views.Shared.BackToShoppingLists.BackToShoppingListsButton, "ShoppingLists", "ShoppingList", null, new { @class = "btn btn-success btn-lg" })
-
+﻿<a href="@Url.Action("ShoppingLists", "ShoppingList")" class="btn btn-success btn-lg">
+    <span class="glyphicon glyphicon-arrow-left"></span>
+    <span class="glyphicon glyphicon-shopping-cart"></span>
+</a>

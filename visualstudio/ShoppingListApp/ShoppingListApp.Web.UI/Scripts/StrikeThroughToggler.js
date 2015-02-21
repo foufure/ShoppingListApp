@@ -1,5 +1,5 @@
 ﻿$(function () {
-    jQuery("td").click(
+    jQuery(".strikethrough_toggler").click(
         function () { $(this).toggleClass('stroked'); }
     );
 });

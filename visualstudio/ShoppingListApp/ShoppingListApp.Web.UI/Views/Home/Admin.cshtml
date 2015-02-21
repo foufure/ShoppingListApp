@@ -1,6 +1,9 @@
 ﻿<div class="panel panel-primary">
     <div class="panel-body">
-        @Html.ActionLink(@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupEmail, "Backup", "Home", null, new { @class = "btn btn-success btn-lg btn-block" })   
+        <a href="@Url.Action("Backup", "Home")" class="btn btn-success btn-lg btn-block">
+            <span class="glyphicon glyphicon-envelope"></span>
+            @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupEmail
+        </a>
     </div>
     <div class="panel-footer">
         @if (TempData["backup"] != null)
@@ -13,9 +16,12 @@
     <div class="panel-body">
         @using (@Html.BeginForm("RestoreBackup", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            <input type="submit" value="@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackup" class="btn btn-success btn-lg btn-block" />
-            <input type="file" class="filestyle" name="itemstorestorefile" data-buttonbefore="true" data-buttontext="@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BrowseItemFile" />
-            <input type="file" class="filestyle" name="shoppingliststorestorefile" data-buttonbefore="true" data-buttontext="@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BrowseShoppingListFile" />
+            <button type="submit" class="btn btn-success btn-lg btn-block">
+                <span class="glyphicon glyphicon-open"></span>
+                @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackup
+            </button>
+            <input type="file" class="filestyle" name="itemsToRestoreFile" data-buttonbefore="true" data-iconName="glyphicon-list" data-buttontext="" />
+            <input type="file" class="filestyle" name="shoppingListsToRestoreFile" data-buttonbefore="true" data-iconname="glyphicon-shopping-cart" data-buttontext="" />
         }
     </div>
     <div class="panel-footer">

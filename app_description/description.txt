@@ -35,6 +35,10 @@ Redirect URI to configure: http://localhost:62506/signin-google (debug), http://
 http://coding.abel.nu/2014/11/using-owin-external-login-without-asp-net-identity/#more-3630
 https://github.com/AndersAbel/SocialLoginWithoutIdentity 
 
+Google Additional Test Account:
+Login: testshoppinglistappharbor@gmail.com
+Pass: acceptancetests101
+
 i18n resources
 http://en.wikipedia.org/wiki/Internationalization_and_localization
 http://www.codeproject.com/Articles/778040/Beginners-Tutorial-on-Globalization-and-Localizati

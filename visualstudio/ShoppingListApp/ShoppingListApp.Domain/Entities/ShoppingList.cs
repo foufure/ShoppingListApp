@@ -14,11 +14,14 @@ namespace ShoppingListApp.Domain.Entities
         }
 
         public uint ShoppingListId { get; set; }
+        
         [Required(ErrorMessageResourceType = typeof(ShoppingListApp.I18N.Resources.ModelValidationMessages.ModelValidationMessagesCommon), ErrorMessageResourceName = "ShoppingListNameError")]
         public string ShoppingListName { get; set; }
+        
         [Required(ErrorMessageResourceType = typeof(ShoppingListApp.I18N.Resources.ModelValidationMessages.ModelValidationMessagesCommon), ErrorMessageResourceName = "ShoppingListDueDateError")]
         [DataType(DataType.Date)]
         public DateTime ShoppingListDueDate { get; set; }
+        
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Justification = "Reviewed.")]
         public List<ShoppingListLine> ShoppingListContent 
         { 
