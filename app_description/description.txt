@@ -39,6 +39,16 @@ Google Additional Test Account:
 Login: testshoppinglistappharbor@gmail.com
 Pass: acceptancetests101
 
+BDD with SpecFlow and Watin
+https://msdn.microsoft.com/en-us/magazine/gg490346.aspx
+http://volaresystems.com/blog/post/2013/01/06/SpecFlow-and-WatiN-Worst-Practices-What-NOT-to-do
+http://ardalis.com/everything-you-need-to-get-started-with-specflow-and-watin
+Test with Specflow and Watin cannot run under AppHarbor because the site is not deployed! The project must be excluded at least!
+http://support.appharbor.com/discussions/problems/570-watinspecflow-testing
+
+Testing with Authorize ==> create a context with a Mock Object
+http://stackoverflow.com/questions/1877225/how-do-i-unit-test-a-controller-method-that-has-the-authorize-attribute-applie
+
 i18n resources
 http://en.wikipedia.org/wiki/Internationalization_and_localization
 http://www.codeproject.com/Articles/778040/Beginners-Tutorial-on-Globalization-and-Localizati

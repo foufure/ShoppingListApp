@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
@@ -15,10 +16,12 @@ namespace ShoppingListApp.Domain.Concrete
             emailSettings = settings;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Reviewed.")]
-        public void ProcessBackup(string fileToBackup) 
+        public void ProcessBackup(string fileToBackup)
         {
-                using (var smtpClient = new SmtpClient())
+            if (File.Exists(fileToBackup))
+            {
+                using (SmtpClient smtpClient = new SmtpClient())
+                using (Attachment backupAttachment = new Attachment(fileToBackup, MediaTypeNames.Application.Octet))
                 {
                     smtpClient.EnableSsl = emailSettings.UseSsl;
                     smtpClient.Host = emailSettings.ServerName;
@@ -31,16 +34,17 @@ namespace ShoppingListApp.Domain.Concrete
                         .AppendLine("---")
                         .AppendLine(fileToBackup);
 
-                    MailMessage mailMessage = new MailMessage(
+                    using (MailMessage mailMessage = new MailMessage(
                                            emailSettings.MailFromAddress,   // From
                                            emailSettings.MailToAddress,     // To
                                            "New backup" + fileToBackup,     // Subject
-                                           body.ToString());                // Body
-
-                    mailMessage.Attachments.Add(new Attachment(fileToBackup, MediaTypeNames.Application.Octet));
-
-                    smtpClient.Send(mailMessage);
+                                           body.ToString()))               // Body
+                    {
+                        mailMessage.Attachments.Add(backupAttachment);
+                        smtpClient.Send(mailMessage);
+                    }
                 }
+            }
         }
     }
 }

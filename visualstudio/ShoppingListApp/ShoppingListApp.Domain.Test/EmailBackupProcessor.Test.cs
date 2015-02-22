@@ -12,7 +12,7 @@ namespace ShoppingListApp.Domain.Test
     [TestFixture]
     public class EmailBackupProcessorTest
     {
-        public Mock<IEmailSettings> emailSettingsMock;
+        private Mock<IEmailSettings> emailSettingsMock;
 
         [SetUp]
         public void Init()
