@@ -87,8 +87,10 @@
     <Compile Include="EmailBackupProcessor.Test.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ItemRepository.Test.cs" />
+    <Compile Include="ItemXmlTestRepositoryName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingListRepository.Test.cs" />
+    <Compile Include="ShoppingListXmlTestRepositoryName.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Settings.StyleCop">

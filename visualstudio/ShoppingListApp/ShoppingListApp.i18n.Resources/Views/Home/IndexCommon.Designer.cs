@@ -106,6 +106,24 @@ namespace ShoppingListApp.I18N.Resources.Views.Home {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We are experiencing technical problems. Please try later..
+        /// </summary>
+        public static string ConnectionFailed {
+            get {
+                return ResourceManager.GetString("ConnectionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The backup could not be delivered to your e-mail address. Please check that your inbox is not full and that your provider does not experience problems..
+        /// </summary>
+        public static string DeliveryFailed {
+            get {
+                return ResourceManager.GetString("DeliveryFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Due Shopping List.
         /// </summary>
         public static string DueShoppingList {
@@ -120,6 +138,24 @@ namespace ShoppingListApp.I18N.Resources.Views.Home {
         public static string Items {
             get {
                 return ResourceManager.GetString("Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup aborted: no files to backup.
+        /// </summary>
+        public static string NoFilesToBackup {
+            get {
+                return ResourceManager.GetString("NoFilesToBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No files to restore..
+        /// </summary>
+        public static string NoFilesToRestore {
+            get {
+                return ResourceManager.GetString("NoFilesToRestore", resourceCulture);
             }
         }
         
@@ -147,6 +183,15 @@ namespace ShoppingListApp.I18N.Resources.Views.Home {
         public static string ShoppingLists {
             get {
                 return ResourceManager.GetString("ShoppingLists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unexpected error has occurred. We are analyzing the problem..
+        /// </summary>
+        public static string UnexpectedError {
+            get {
+                return ResourceManager.GetString("UnexpectedError", resourceCulture);
             }
         }
     }

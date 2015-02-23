@@ -1,6 +1,6 @@
 ﻿using ShoppingListApp.Domain.Abstract;
 
-namespace ShoppingListApp.Domain.Concrete
+namespace ShoppingListApp.Domain.Test
 {
     public class ItemXmlTestRepositoryName : IRepositoryNameProvider
     {

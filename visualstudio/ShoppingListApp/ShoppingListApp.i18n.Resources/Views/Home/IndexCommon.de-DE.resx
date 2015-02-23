@@ -132,11 +132,23 @@
   <data name="BrowseShoppingListFile" xml:space="preserve">
     <value>Einkaufslisten</value>
   </data>
+  <data name="ConnectionFailed" xml:space="preserve">
+    <value>Wir kennen aktuell technische Probleme. Versuchen Sie es bitte später noch einmal.</value>
+  </data>
+  <data name="DeliveryFailed" xml:space="preserve">
+    <value>E-mail Adresse nicht erreichbar. Bitte überprüfen Sie, dass ihren Postfach nicht voll ist oder dass ihren Anbieter keine technische Probleme hat.</value>
+  </data>
   <data name="DueShoppingList" xml:space="preserve">
     <value>Einkaufsliste zu erledigen</value>
   </data>
   <data name="Items" xml:space="preserve">
     <value>Liste von Artikeln</value>
+  </data>
+  <data name="NoFilesToBackup" xml:space="preserve">
+    <value>Backup fehlgeschlagen: keine Dateien vorhanden.</value>
+  </data>
+  <data name="NoFilesToRestore" xml:space="preserve">
+    <value>Kein Datei gefunden.</value>
   </data>
   <data name="RestoreBackup" xml:space="preserve">
     <value>Backup zurückspielen</value>
@@ -146,5 +158,8 @@
   </data>
   <data name="ShoppingLists" xml:space="preserve">
     <value>Einkaufsliste</value>
+  </data>
+  <data name="UnexpectedError" xml:space="preserve">
+    <value>Ein unerwarteten Fehler ist aufgetreten. Wir analysieren das Problem.</value>
   </data>
 </root>

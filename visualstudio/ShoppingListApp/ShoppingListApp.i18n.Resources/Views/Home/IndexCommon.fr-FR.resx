@@ -132,11 +132,23 @@
   <data name="BrowseShoppingListFile" xml:space="preserve">
     <value>Listes de courses</value>
   </data>
+  <data name="ConnectionFailed" xml:space="preserve">
+    <value>Nous connaissons actuellement des problèmes techniques. Veuillez réessayer ultérieurement.</value>
+  </data>
+  <data name="DeliveryFailed" xml:space="preserve">
+    <value>La sauvegarde n'a pas pu être envoyée à votre adresse e-mail. Vérifiez que votre messagerie n'est pas pleine ou que votre fournisseur ne connait pas de problèmes techniques.</value>
+  </data>
   <data name="DueShoppingList" xml:space="preserve">
     <value>Liste de courses à effectuer</value>
   </data>
   <data name="Items" xml:space="preserve">
     <value>Articles</value>
+  </data>
+  <data name="NoFilesToBackup" xml:space="preserve">
+    <value>Sauvegarde interrompue: pas de fichier à sauvegarder.</value>
+  </data>
+  <data name="NoFilesToRestore" xml:space="preserve">
+    <value>Pas de fichier à restaurer.</value>
   </data>
   <data name="RestoreBackup" xml:space="preserve">
     <value>Charger le fichier de sauvegarde</value>
@@ -146,5 +158,8 @@
   </data>
   <data name="ShoppingLists" xml:space="preserve">
     <value>Listes de courses</value>
+  </data>
+  <data name="UnexpectedError" xml:space="preserve">
+    <value>Une erreur inconnue est survenue. Nous sommes en train d'analyser le problème.</value>
   </data>
 </root>

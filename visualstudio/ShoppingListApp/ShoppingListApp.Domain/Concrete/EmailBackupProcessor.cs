@@ -37,13 +37,17 @@ namespace ShoppingListApp.Domain.Concrete
                     using (MailMessage mailMessage = new MailMessage(
                                            emailSettings.MailFromAddress,   // From
                                            emailSettings.MailToAddress,     // To
-                                           "New backup" + fileToBackup,     // Subject
-                                           body.ToString()))               // Body
+                                           "New backup " + fileToBackup,    // Subject
+                                           body.ToString()))                // Body
                     {
                         mailMessage.Attachments.Add(backupAttachment);
                         smtpClient.Send(mailMessage);
                     }
                 }
+            }
+            else
+            {
+                throw new System.ArgumentNullException(fileToBackup);
             }
         }
     }
