@@ -38,7 +38,7 @@ namespace ShoppingListApp.Domain.Concrete
                                            emailSettings.MailFromAddress,   // From
                                            emailSettings.MailToAddress,     // To
                                            "New backup " + fileToBackup,    // Subject
-                                           body.ToString()))                // Body
+                                           body.ToString()))
                     {
                         mailMessage.Attachments.Add(backupAttachment);
                         smtpClient.Send(mailMessage);

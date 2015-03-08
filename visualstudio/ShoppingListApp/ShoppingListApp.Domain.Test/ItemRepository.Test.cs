@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Moq;
 using NUnit.Framework;
+using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Concrete;
 using ShoppingListApp.Domain.Entities;
 
@@ -10,6 +13,35 @@ namespace ShoppingListApp.Domain.Test
     [TestFixture]
     public class ItemRepositoryTest 
     {
+        private Mock<IRepositoryNameProvider> repositoryNameProvider;
+
+        [SetUp]
+        public void Init()
+        {
+            File.Copy(@"./ItemRepository.example.xml", @"./ItemRepository.example.orig.xml");
+            File.Copy(@"./ItemRepository.invalid.xml", @"./ItemRepository.invalid.orig.xml");
+            File.Copy(@"./ItemRepository.invalidempty.xml", @"./ItemRepository.invalidempty.orig.xml");
+            this.repositoryNameProvider = new Mock<IRepositoryNameProvider>();
+        }
+
+        [TearDown]
+        public static void Dispose()
+        {
+            File.Delete(@"./ItemRepository.example.xml");
+            File.Copy(@"./ItemRepository.example.orig.xml", @"./ItemRepository.example.xml");
+            File.Delete(@"./ItemRepository.example.orig.xml");
+
+            File.Delete(@"./ItemRepository.invalid.xml");
+            File.Copy(@"./ItemRepository.invalid.orig.xml", @"./ItemRepository.invalid.xml");
+            File.Delete(@"./ItemRepository.invalid.orig.xml");
+
+            File.Delete(@"./ItemRepository.invalidempty.xml");
+            File.Copy(@"./ItemRepository.invalidempty.orig.xml", @"./ItemRepository.invalidempty.xml");
+            File.Delete(@"./ItemRepository.invalidempty.orig.xml");
+
+            File.Delete(@"./ItemRepository.doesnotexists.xml");
+        }
+
         [Test]
         public void ItemRepositoryContainsItemsFromPersistentRepository_WhenReadFromXmlFileRepository() 
         {        
@@ -23,11 +55,10 @@ namespace ShoppingListApp.Domain.Test
                 new Item() { ItemId = 5, ItemName = "Item5" }
             };
 
-            IEnumerable<Item> testee = null;
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
-            ItemXmlTestRepositoryName repositoryNameProvider = new ItemXmlTestRepositoryName();
-            testee = (new ItemRepository(repositoryNameProvider)).Repository;
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object)).Repository;
 
             // Assert
             Assert.AreEqual(5, testee.Count());
@@ -36,72 +67,156 @@ namespace ShoppingListApp.Domain.Test
         }
 
         [Test]
+        public void ItemRepositoryIsEmpty_WhenReadFromEmptyXmlFileRepository()
+        {
+            // Arrange
+            IEnumerable<Item> expectedResult = new List<Item>();
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.empty.xml");
+
+            // Act
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object)).Repository;
+
+            // Assert
+            Assert.AreEqual(0, testee.Count());
+            Assert.AreEqual(expectedResult.Select(Item => Item.ItemId).AsEnumerable(), testee.Select(Item => Item.ItemId).AsEnumerable());
+            Assert.AreEqual(expectedResult.Select(Item => Item.ItemName).AsEnumerable(), testee.Select(Item => Item.ItemName).AsEnumerable());
+        }
+
+        [Test]
+        public void ItemRepositoryIsEmpty_WhenReadFromNewlyCreatedXmlFileRepository_WhichDidNotExistPreviously()
+        {
+            // Arrange
+            IEnumerable<Item> expectedResult = new List<Item>();
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.doesnotexists.xml");
+
+            // Act
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object)).Repository;
+
+            // Assert
+            Assert.AreEqual(0, testee.Count());
+            Assert.AreEqual(expectedResult.Select(Item => Item.ItemId).AsEnumerable(), testee.Select(Item => Item.ItemId).AsEnumerable());
+            Assert.AreEqual(expectedResult.Select(Item => Item.ItemName).AsEnumerable(), testee.Select(Item => Item.ItemName).AsEnumerable());
+            FileAssert.AreEqual(@"ItemRepository.empty.xml", @"./ItemRepository.doesnotexists.xml");
+        }
+
+        [Test]
+        public void ItemRepositoryIsEmpty_WhenReadFromNewlyCreatedXmlFileRepository_WhichWasAnInvalidXmlFile()
+        {
+            // Arrange
+            IEnumerable<Item> expectedResult = new List<Item>();
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.invalid.xml");
+
+            // Act
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object)).Repository;
+
+            // Assert
+            Assert.AreEqual(0, testee.Count());
+            Assert.AreEqual(expectedResult.Select(Item => Item.ItemId).AsEnumerable(), testee.Select(Item => Item.ItemId).AsEnumerable());
+            Assert.AreEqual(expectedResult.Select(Item => Item.ItemName).AsEnumerable(), testee.Select(Item => Item.ItemName).AsEnumerable());
+            FileAssert.AreEqual(@"ItemRepository.empty.xml", @"./ItemRepository.invalid.xml");
+        }
+
+        [Test]
+        public void ItemRepositoryIsEmpty_WhenReadFromNewlyCreatedXmlFileRepository_WhichWasAnInvalidEmptyXmlFile()
+        {
+            // Arrange
+            IEnumerable<Item> expectedResult = new List<Item>();
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.invalidempty.xml");
+
+            // Act
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object)).Repository;
+
+            // Assert
+            Assert.AreEqual(0, testee.Count());
+            Assert.AreEqual(expectedResult.Select(Item => Item.ItemId).AsEnumerable(), testee.Select(Item => Item.ItemId).AsEnumerable());
+            Assert.AreEqual(expectedResult.Select(Item => Item.ItemName).AsEnumerable(), testee.Select(Item => Item.ItemName).AsEnumerable());
+            FileAssert.AreEqual(@"ItemRepository.empty.xml", @"./ItemRepository.invalidempty.xml");
+        }
+
+        [Test]
+        public static void ItemRepositoryIsEmpty_WhenNoPersistentRepositoryNameProviderIsAvailable()
+        {
+            // Arrange
+            ItemXmlRepository testee = null;
+
+            // Act
+
+            // Assert
+            Assert.Throws(typeof(ArgumentNullException), () => testee = new ItemXmlRepository(null));
+        }
+
+        [Test]
+        public void ItemRepositoryIsEmpty_WhenNoRepositoryNameIsAvailable()
+        {
+            // Arrange
+            ItemXmlRepository testee = null;
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns((string)null);
+
+            // Act
+
+            // Assert
+            Assert.Throws(typeof(ArgumentNullException), () => testee = new ItemXmlRepository(this.repositoryNameProvider.Object));
+        }
+
+        [Test]
+        public void ItemRepositoryIsEmpty_WhenEmptyRepositoryNameIsAvailable()
+        {
+            // Arrange
+            ItemXmlRepository testee = null;
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(string.Empty);
+
+            // Act
+
+            // Assert
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new ItemXmlRepository(this.repositoryNameProvider.Object));
+        }
+
+        [Test]
         public void ItemAddedToPersistentRepository_WhenWrittenToXmlFileRepository()
         {
             // Arrange
-            ItemRepository testee = null;
-            File.Delete(@"./ItemRepository.Add.Actual.Xml");
-            File.Delete(@"./ItemRepository.example.orig.Xml");
-            File.Copy(@"./ItemRepository.example.Xml", @"./ItemRepository.example.orig.Xml");
+            ItemXmlRepository testee = null;
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
-            ItemXmlTestRepositoryName repositoryNameProvider = new ItemXmlTestRepositoryName();
-            testee = new ItemRepository(repositoryNameProvider);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
             testee.Add("Item6");
             testee.Save();
-            File.Copy(@"./ItemRepository.example.Xml", @"./ItemRepository.Add.Actual.Xml");
-            File.Delete(@"./ItemRepository.example.Xml");
-            File.Copy(@"./ItemRepository.example.orig.Xml", @"./ItemRepository.example.Xml");
-            File.Delete(@"./ItemRepository.example.orig.Xml");
 
             // Assert
-            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.Add.Expected.Xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.Add.Actual.Xml").Replace("\r\n", "\n"));
+            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.Add.Expected.Xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.example.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
         public void ItemRemovedFromPersistentRepository_WhenWrittenToXmlFileRepository()
         {
             // Arrange
-            ItemRepository testee = null;
-            File.Delete(@"./ItemRepository.Remove.Actual.Xml");
-            File.Delete(@"./ItemRepository.example.orig.Xml");
-            File.Copy(@"./ItemRepository.example.Xml", @"./ItemRepository.example.orig.Xml");
+            ItemXmlRepository testee = null;
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
-            ItemXmlTestRepositoryName repositoryNameProvider = new ItemXmlTestRepositoryName();
-            testee = new ItemRepository(repositoryNameProvider);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
             testee.Remove(3); // Remove ItemId 3
             testee.Save();
-            File.Copy(@"./ItemRepository.example.Xml", @"./ItemRepository.Remove.Actual.Xml");
-            File.Delete(@"./ItemRepository.example.Xml");
-            File.Copy(@"./ItemRepository.example.orig.Xml", @"./ItemRepository.example.Xml");
-            File.Delete(@"./ItemRepository.example.orig.Xml");
 
             // Assert
-            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.Remove.Expected.Xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.Remove.Actual.Xml").Replace("\r\n", "\n"));
+            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.Remove.Expected.Xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.example.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
         public void ItemModifiedOnPersistentRepository_WhenWrittenToXmlFileRepository()
         {
             // Arrange
-            ItemRepository testee = null;
-            File.Delete(@"./ItemRepository.Modified.Actual.Xml");
-            File.Delete(@"./ItemRepository.example.orig.Xml");
-            File.Copy(@"./ItemRepository.example.Xml", @"./ItemRepository.example.orig.Xml");
+            ItemXmlRepository testee = null;
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
-            ItemXmlTestRepositoryName repositoryNameProvider = new ItemXmlTestRepositoryName();
-            testee = new ItemRepository(repositoryNameProvider);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
             testee.Modify(new Item() { ItemId = 4, ItemName = "Item12" });
             testee.Save();
-            File.Copy(@"./ItemRepository.example.Xml", @"./ItemRepository.Modified.Actual.Xml");
-            File.Delete(@"./ItemRepository.example.Xml");
-            File.Copy(@"./ItemRepository.example.orig.Xml", @"./ItemRepository.example.Xml");
-            File.Delete(@"./ItemRepository.example.orig.Xml");
 
             // Assert
-            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.Modified.Expected.Xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.Modified.Actual.Xml").Replace("\r\n", "\n"));
+            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.Modified.Expected.Xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.example.xml").Replace("\r\n", "\n"));
         }
     }
 }

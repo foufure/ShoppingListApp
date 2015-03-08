@@ -9,12 +9,12 @@ using ShoppingListApp.Domain.Entities;
 
 namespace ShoppingListApp.Domain.Concrete
 {
-    public class ShoppingListRepository : IShoppingListRepository
+    public class ShoppingListXmlRepository : IShoppingListRepository
     {
         private List<ShoppingList> shoppinglistRepository = null;
         private IRepositoryNameProvider repositoryNameProvider;
 
-        public ShoppingListRepository(IRepositoryNameProvider repositoryNameProvider)
+        public ShoppingListXmlRepository(IRepositoryNameProvider repositoryNameProvider)
         {
             this.repositoryNameProvider = repositoryNameProvider;
             this.Load();

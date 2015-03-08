@@ -29,8 +29,8 @@ namespace ShoppingListApp.Web.UI.Infrastructure
 
         private void AddBindings()
         {
-            kernel.Bind<IItemsRepository>().To<ItemRepository>();
-            kernel.Bind<IShoppingListRepository>().To<ShoppingListRepository>();
+            kernel.Bind<IItemsRepository>().To<ItemXmlRepository>();
+            kernel.Bind<IShoppingListRepository>().To<ShoppingListXmlRepository>();
             kernel.Bind<IRepositoryNameProvider>().To<ItemXmlRepositoryName>().WhenInjectedInto<IItemsRepository>();
             kernel.Bind<IRepositoryNameProvider>().To<ShoppingListXmlRepositoryName>().WhenInjectedInto<IShoppingListRepository>();
             kernel.Bind<IUserInformation>().To<GoogleUserInformation>();

@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using Moq;
 using NUnit.Framework;
-using ShoppingListApp.Domain.Concrete;
-using ShoppingListApp.Domain.Entities;
 using ShoppingListApp.Domain.Abstract;
-using Moq;
+using ShoppingListApp.Domain.Concrete;
 
 namespace ShoppingListApp.Domain.Test
 {

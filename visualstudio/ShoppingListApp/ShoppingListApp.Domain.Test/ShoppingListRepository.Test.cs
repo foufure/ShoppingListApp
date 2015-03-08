@@ -9,10 +9,10 @@ using ShoppingListApp.Domain.Entities;
 namespace ShoppingListApp.Domain.Test
 {
     [TestFixture]
-    public class ShoppingListRepositoryTest
+    public static class ShoppingListRepositoryTest
     {
         [Test]
-        public void ShoppingListRepositoryContainsShoppingListsFromPersistentRepository_WhenReadFromXmlFileRepository()
+        public static void ShoppingListRepositoryContainsShoppingListsFromPersistentRepository_WhenReadFromXmlFileRepository()
         {
             // Arrange
             IList<ShoppingList> expectedResult = new List<ShoppingList>();
@@ -33,19 +33,19 @@ namespace ShoppingListApp.Domain.Test
 
             // Act
             ShoppingListXmlTestRepositoryName repositoryNameProvider = new ShoppingListXmlTestRepositoryName();
-            testee = (new ShoppingListRepository(repositoryNameProvider)).Repository;
+            testee = (new ShoppingListXmlRepository(repositoryNameProvider)).Repository;
 
             // Assert
             Assert.AreEqual(2, testee.Count());
-            Assert.AreEqual(expectedResult.Select(shoppingList => shoppingList.ShoppingListId).AsEnumerable(), testee.Select(shoppingList => shoppingList.ShoppingListId).AsEnumerable(), "Failure by Id");
-            Assert.AreEqual(expectedResult.Select(shoppingList => shoppingList.ShoppingListName).AsEnumerable(), testee.Select(shoppingList => shoppingList.ShoppingListName).AsEnumerable(), "Failure by Name");
+            Assert.AreEqual(expectedResult.Select(shoppingList => shoppingList.ShoppingListId).AsEnumerable(), testee.Select(shoppingList => shoppingList.ShoppingListId).AsEnumerable());
+            Assert.AreEqual(expectedResult.Select(shoppingList => shoppingList.ShoppingListName).AsEnumerable(), testee.Select(shoppingList => shoppingList.ShoppingListName).AsEnumerable());
         }
 
         [Test]
-        public void ShoppingListAddedToPersistentRepository_WhenWrittenToXmlFileRepository()
+        public static void ShoppingListAddedToPersistentRepository_WhenWrittenToXmlFileRepository()
         {
             // Arrange
-            ShoppingListRepository testee = null;
+            ShoppingListXmlRepository testee = null;
             File.Delete(@"./ShoppingListRepository.Add.Actual.Xml");
             File.Delete(@"./ShoppingListRepository.example.orig.Xml");
             File.Copy(@"./ShoppingListRepository.example.Xml", @"./ShoppingListRepository.example.orig.Xml");
@@ -57,7 +57,7 @@ namespace ShoppingListApp.Domain.Test
 
             // Act
             ShoppingListXmlTestRepositoryName repositoryNameProvider = new ShoppingListXmlTestRepositoryName();
-            testee = new ShoppingListRepository(repositoryNameProvider);
+            testee = new ShoppingListXmlRepository(repositoryNameProvider);
 
             testee.Add(shoppingList);
             
@@ -72,17 +72,17 @@ namespace ShoppingListApp.Domain.Test
         }
 
         [Test]
-        public void ShoppingListRemovedFromPersistentRepository_WhenWrittenToXmlFileRepository()
+        public static void ShoppingListRemovedFromPersistentRepository_WhenWrittenToXmlFileRepository()
         {
             // Arrange
-            ShoppingListRepository testee = null;
+            ShoppingListXmlRepository testee = null;
             File.Delete(@"./ShoppingListRepository.Remove.Actual.Xml");
             File.Delete(@"./ShoppingListRepository.example.orig.Xml");
             File.Copy(@"./ShoppingListRepository.example.Xml", @"./ShoppingListRepository.example.orig.Xml");
 
             // Act
             ShoppingListXmlTestRepositoryName repositoryNameProvider = new ShoppingListXmlTestRepositoryName();
-            testee = new ShoppingListRepository(repositoryNameProvider);
+            testee = new ShoppingListXmlRepository(repositoryNameProvider);
             testee.Remove(1); // Remove ShoppingListId 1
             testee.Save();
             File.Copy(@"./ShoppingListRepository.example.Xml", @"./ShoppingListRepository.Remove.Actual.Xml");
@@ -95,10 +95,10 @@ namespace ShoppingListApp.Domain.Test
         }
 
         [Test]
-        public void ShoppingListModifiedOnPersistentRepository_WhenWrittenToXmlFileRepository()
+        public static void ShoppingListModifiedOnPersistentRepository_WhenWrittenToXmlFileRepository()
         {
             // Arrange
-            ShoppingListRepository testee = null;
+            ShoppingListXmlRepository testee = null;
             File.Delete(@"./ShoppingListRepository.Modified.Actual.Xml");
             File.Delete(@"./ShoppingListRepository.example.orig.Xml");
             File.Copy(@"./ShoppingListRepository.example.Xml", @"./ShoppingListRepository.example.orig.Xml");
@@ -110,7 +110,7 @@ namespace ShoppingListApp.Domain.Test
 
             // Act
             ShoppingListXmlTestRepositoryName repositoryNameProvider = new ShoppingListXmlTestRepositoryName();
-            testee = new ShoppingListRepository(repositoryNameProvider);
+            testee = new ShoppingListXmlRepository(repositoryNameProvider);
 
             testee.Modify(shoppingList);
 

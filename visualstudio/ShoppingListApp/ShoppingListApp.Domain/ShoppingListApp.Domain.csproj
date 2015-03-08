@@ -51,10 +51,11 @@
     <Compile Include="Abstract\IShoppingListRepository.cs" />
     <Compile Include="Abstract\IUserInformation.cs" />
     <Compile Include="Concrete\GoogleEmailSettings.cs" />
-    <Compile Include="Concrete\ItemRepository.cs" />
+    <Compile Include="Concrete\ItemXmlRepository.cs" />
     <Compile Include="Concrete\EmailBackupProcessor.cs" />
     <Compile Include="Concrete\GoogleUserInformation.cs" />
-    <Compile Include="Concrete\ShoppingListRepository.cs" />
+    <Compile Include="Concrete\RepositoryNameProviderValidationExtensions.cs" />
+    <Compile Include="Concrete\ShoppingListXmlRepository.cs" />
     <Compile Include="Concrete\ShoppingListXmlRepositoryName.cs" />
     <Compile Include="Concrete\ItemXmlRepositoryName.cs" />
     <Compile Include="Entities\Item.cs" />
