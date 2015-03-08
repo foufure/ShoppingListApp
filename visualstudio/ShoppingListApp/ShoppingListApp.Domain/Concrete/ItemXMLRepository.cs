@@ -36,19 +36,41 @@ namespace ShoppingListApp.Domain.Concrete
 
         public void Add(string itemName)
         {
+            if (string.IsNullOrEmpty(itemName))
+            {
+                throw new ArgumentOutOfRangeException("Internal Error: the name of the item is empty or null. Please enter a valid name", (Exception)null);
+            }
+
             uint itemId = itemRepository.OrderByDescending(item => item.ItemId).Select(item => item.ItemId).FirstOrDefault() + 1;
             Item itemToAdd = new Item() { ItemId = itemId, ItemName = itemName };
             itemRepository.Add(itemToAdd);
         }
 
-        public void Modify(Item item)
+        public void Modify(uint itemId, string itemName)
         {
-            itemRepository.Where(repositoryItem => repositoryItem.ItemId == item.ItemId).FirstOrDefault().ItemName = item.ItemName;
+            Item itemToModify = null;
+
+            if (string.IsNullOrEmpty(itemName))
+            {
+                throw new ArgumentOutOfRangeException("Internal Error: the name of the item is empty or null. Please enter a valid name", (Exception)null);
+            }
+
+            if ((itemToModify = itemRepository.Where(repositoryItem => repositoryItem.ItemId == itemId).FirstOrDefault()) != null)
+            {
+                itemToModify.ItemName = itemName;
+            }
+            else 
+            {
+                throw new ArgumentOutOfRangeException("Internal Error: the item to be modified does not exist. Please enter a valid Item Id", (Exception)null);
+            } 
         }
 
         public void Remove(uint itemId)
         {
-            itemRepository.Remove(itemRepository.Where(repositoryItem => repositoryItem.ItemId == itemId).FirstOrDefault());
+            if (!itemRepository.Remove(itemRepository.Where(repositoryItem => repositoryItem.ItemId == itemId).FirstOrDefault()))
+            {
+                throw new ArgumentOutOfRangeException("Internal Error: the item to be deleted does not exist. Please enter a valid Item Id", (Exception)null);
+            }
         }
 
         public void Save()
@@ -84,8 +106,6 @@ namespace ShoppingListApp.Domain.Concrete
 
         private bool XmlRepositoryIsValid()
         {
-            bool xmlRepositoryValidationResult = true;
-
             ////W3C XML Schema (XSD) Validation online: http://www.utilities-online.info/xsdvalidation/#.VPpACeHp6i8
             string xmlRepositoryXsdMarkup =
                 @"<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
@@ -104,27 +124,8 @@ namespace ShoppingListApp.Domain.Concrete
                     </xsd:complexType>
                    </xsd:element>
                   </xsd:schema>";
-            XmlSchemaSet xmlRepositoryXsdSchemas = new XmlSchemaSet();
 
-            using (StringReader markupReader = new StringReader(xmlRepositoryXsdMarkup))
-            {
-                xmlRepositoryXsdSchemas.Add(string.Empty, XmlReader.Create(markupReader));
-
-                try
-                {
-                    XDocument.Load(repositoryNameProvider.RepositoryName).Validate(xmlRepositoryXsdSchemas, null);
-                }
-                catch (XmlSchemaValidationException)
-                {
-                    xmlRepositoryValidationResult = false;
-                }
-                catch (XmlException)
-                {
-                    xmlRepositoryValidationResult = false;
-                }   
-            }
-
-            return xmlRepositoryValidationResult;
+            return XmlRepositoryValidationExtensions.XmlRepositoryValidation(xmlRepositoryXsdMarkup, repositoryNameProvider);
         }
     }
 }

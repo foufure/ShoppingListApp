@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Schema;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Entities;
 
@@ -16,8 +18,12 @@ namespace ShoppingListApp.Domain.Concrete
 
         public ShoppingListXmlRepository(IRepositoryNameProvider repositoryNameProvider)
         {
-            this.repositoryNameProvider = repositoryNameProvider;
-            this.Load();
+            if (repositoryNameProvider.RepositoryNameIsValid())
+            {
+                this.repositoryNameProvider = repositoryNameProvider;
+                this.InitializeXmlPersistentStorage();
+                this.LoadFromXmlPersistentStorage();
+            } 
         }
 
         public IEnumerable<ShoppingList> Repository
@@ -30,17 +36,37 @@ namespace ShoppingListApp.Domain.Concrete
 
         public void Add(ShoppingList newShoppingList)
         {
+            if (newShoppingList == null)
+            {
+                throw new ArgumentNullException("Internal Error: the shopping list to add is empty or null. Please enter a valid shopping list", (Exception)null);
+            }
+
+            newShoppingList.ShoppingListId = shoppinglistRepository.OrderByDescending(shoppinglist => shoppinglist.ShoppingListId).Select(shoppinglist => shoppinglist.ShoppingListId).FirstOrDefault() + 1;
             shoppinglistRepository.Add(newShoppingList);
         }
 
         public void Remove(uint shoppingListId)
         {
-            shoppinglistRepository.Remove(shoppinglistRepository.Where(repositoryShoppingList => repositoryShoppingList.ShoppingListId == shoppingListId).FirstOrDefault());
+            if (!shoppinglistRepository.Remove(shoppinglistRepository.Where(repositoryShoppingList => repositoryShoppingList.ShoppingListId == shoppingListId).FirstOrDefault()))
+            {
+                throw new ArgumentOutOfRangeException("Internal Error: the item to be deleted does not exist. Please enter a valid Shopping List Id", (Exception)null);
+            }
         }
 
         public void Modify(ShoppingList shoppingList)
         {
-            shoppinglistRepository.RemoveAll(item => item.ShoppingListId == shoppingList.ShoppingListId);
+            int shoppingListNotFound = 0;
+
+            if (shoppingList == null)
+            {
+                throw new ArgumentNullException("Internal Error: the shopping list to modify is empty or null. Please enter a valid shopping list", (Exception)null);
+            }
+
+            if (shoppinglistRepository.RemoveAll(item => item.ShoppingListId == shoppingList.ShoppingListId) == shoppingListNotFound)
+            {
+                throw new ArgumentOutOfRangeException("Internal Error: the shopping list to modify does not exist in the repository. Please enter a valid shopping list", (Exception)null);
+            }
+
             shoppinglistRepository.Add(shoppingList);
         }
 
@@ -71,36 +97,70 @@ namespace ShoppingListApp.Domain.Concrete
             elements.Save(repositoryNameProvider.RepositoryName);
         }
 
-        public void Load()
+        public void LoadFromXmlPersistentStorage()
         {
-            if (repositoryNameProvider.RepositoryName != null)
-            { 
-                if (!File.Exists(repositoryNameProvider.RepositoryName))
-                {
-                    XDocument newRepository = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XElement("ShoppingLists"));
-                    newRepository.Save(repositoryNameProvider.RepositoryName);
-                }
+            XDocument parsedFile = XDocument.Load(repositoryNameProvider.RepositoryName);
 
-                XDocument parsedFile = XDocument.Load(repositoryNameProvider.RepositoryName);
-
-                shoppinglistRepository = new List<ShoppingList>();
-                foreach (XElement element in parsedFile.Elements("ShoppingLists").Elements("ShoppingList"))
+            shoppinglistRepository = new List<ShoppingList>();
+            foreach (XElement element in parsedFile.Elements("ShoppingLists").Elements("ShoppingList"))
+            {
+                ShoppingList newShoppingList = new ShoppingList()
                 {
-                    ShoppingList newShoppingList = new ShoppingList()
-                    {
-                        ShoppingListId = Convert.ToUInt32(element.Element("ShoppingListId").Value, CultureInfo.InvariantCulture),
-                        ShoppingListName = element.Element("ShoppingListName").Value,
-                        ShoppingListDueDate = Convert.ToDateTime(element.Element("ShoppingListDueDate").Value, CultureInfo.InvariantCulture)
-                    };
+                    ShoppingListId = Convert.ToUInt32(element.Element("ShoppingListId").Value, CultureInfo.InvariantCulture),
+                    ShoppingListName = element.Element("ShoppingListName").Value,
+                    ShoppingListDueDate = Convert.ToDateTime(element.Element("ShoppingListDueDate").Value, CultureInfo.InvariantCulture)
+                };
                     
-                    foreach (XElement itemElement in element.Elements("ShoppingListLine"))
-                    {
-                        newShoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = Convert.ToUInt32(itemElement.Element("ItemId").Value, CultureInfo.InvariantCulture), ItemName = itemElement.Element("ItemName").Value }, QuantityToBuy = Convert.ToInt32(itemElement.Element("ItemQuantity").Value, CultureInfo.InvariantCulture) });
-                    }
-
-                    shoppinglistRepository.Add(newShoppingList);
+                foreach (XElement itemElement in element.Elements("ShoppingListLine"))
+                {
+                    newShoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = Convert.ToUInt32(itemElement.Element("ItemId").Value, CultureInfo.InvariantCulture), ItemName = itemElement.Element("ItemName").Value }, QuantityToBuy = Convert.ToInt32(itemElement.Element("ItemQuantity").Value, CultureInfo.InvariantCulture) });
                 }
+
+                shoppinglistRepository.Add(newShoppingList);
             }
+        }
+
+        private void InitializeXmlPersistentStorage()
+        {
+            if (!File.Exists(repositoryNameProvider.RepositoryName) || !XmlRepositoryIsValid())
+            {
+                XDocument newRepository = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XElement("ShoppingLists"));
+                newRepository.Save(repositoryNameProvider.RepositoryName);
+            }
+        }
+
+        private bool XmlRepositoryIsValid()
+        {
+            ////W3C XML Schema (XSD) Validation online: http://www.utilities-online.info/xsdvalidation/#.VPpACeHp6i8
+            string xmlRepositoryXsdMarkup =
+                @"<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+                   <xsd:element name='ShoppingLists'>
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name='ShoppingList' minOccurs='0' maxOccurs='unbounded'>
+                             <xsd:complexType>
+                              <xsd:sequence>
+                               <xsd:element name='ShoppingListId' minOccurs='0'/>
+                               <xsd:element name='ShoppingListName' minOccurs='0'/>
+                               <xsd:element name='ShoppingListDueDate' minOccurs='0'/>
+                               <xsd:element name='ShoppingListLine' minOccurs='0' maxOccurs='unbounded'>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name='ItemId' minOccurs='0'/>
+                                        <xsd:element name='ItemName' minOccurs='0'/>
+                                        <xsd:element name='ItemQuantity' minOccurs='0'/>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                               </xsd:element>
+                              </xsd:sequence>
+                             </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                   </xsd:element>
+                  </xsd:schema>";
+
+            return XmlRepositoryValidationExtensions.XmlRepositoryValidation(xmlRepositoryXsdMarkup, repositoryNameProvider);
         }
     }
 }

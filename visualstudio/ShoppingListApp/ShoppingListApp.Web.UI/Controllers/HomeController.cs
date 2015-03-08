@@ -56,12 +56,6 @@ namespace ShoppingListApp.Web.UI.Controllers
             {
                 TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.ConnectionFailed;
             }
-            catch (System.Exception e)
-            {
-                ////Add Logging function to log the error message for later analysis + send an E-Mail if possible with the error message.
-                ////Use log4net? NLog? or simple custom logger?
-                TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.UnexpectedError;
-            }
             
             return RedirectToAction("Admin");
         }

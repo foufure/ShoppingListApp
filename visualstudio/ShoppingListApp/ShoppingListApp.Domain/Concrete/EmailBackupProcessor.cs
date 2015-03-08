@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
@@ -29,6 +30,9 @@ namespace ShoppingListApp.Domain.Concrete
                     smtpClient.UseDefaultCredentials = false;
                     smtpClient.Credentials = new NetworkCredential(emailSettings.UserName, emailSettings.Password);
 
+                    // Conditional - only for tests
+                    GenerateEmailAsAFileForUnitTesting(smtpClient);
+
                     StringBuilder body = new StringBuilder()
                         .AppendLine("A new backup is available")
                         .AppendLine("---")
@@ -49,6 +53,14 @@ namespace ShoppingListApp.Domain.Concrete
             {
                 throw new System.ArgumentNullException(fileToBackup);
             }
+        }
+
+        // [Conditional("NUNIT_UNITTEST")]
+        private static void GenerateEmailAsAFileForUnitTesting(SmtpClient smtpClient)
+        {
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
+            smtpClient.PickupDirectoryLocation = @"c:\temp";
+            smtpClient.EnableSsl = false;
         }
     }
 }

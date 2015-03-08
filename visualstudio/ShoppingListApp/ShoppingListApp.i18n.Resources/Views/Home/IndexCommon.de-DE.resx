@@ -159,7 +159,4 @@
   <data name="ShoppingLists" xml:space="preserve">
     <value>Einkaufsliste</value>
   </data>
-  <data name="UnexpectedError" xml:space="preserve">
-    <value>Ein unerwarteten Fehler ist aufgetreten. Wir analysieren das Problem.</value>
-  </data>
 </root>

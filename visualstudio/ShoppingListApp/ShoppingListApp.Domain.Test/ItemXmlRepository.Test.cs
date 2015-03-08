@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Moq;
 using NUnit.Framework;
 using ShoppingListApp.Domain.Abstract;
@@ -11,7 +12,7 @@ using ShoppingListApp.Domain.Entities;
 namespace ShoppingListApp.Domain.Test 
 {    
     [TestFixture]
-    public class ItemRepositoryTest 
+    public class ItemXmlRepositoryTest 
     {
         private Mock<IRepositoryNameProvider> repositoryNameProvider;
 
@@ -21,12 +22,15 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./ItemRepository.example.xml", @"./ItemRepository.example.orig.xml");
             File.Copy(@"./ItemRepository.invalid.xml", @"./ItemRepository.invalid.orig.xml");
             File.Copy(@"./ItemRepository.invalidempty.xml", @"./ItemRepository.invalidempty.orig.xml");
+            File.Copy(@"./ItemRepository.empty.xml", @"./ItemRepository.empty.orig.xml");
             this.repositoryNameProvider = new Mock<IRepositoryNameProvider>();
         }
 
         [TearDown]
         public static void Dispose()
         {
+            Thread.Sleep(10); // otherwise access to filesystem is too fast and creates access denied
+
             File.Delete(@"./ItemRepository.example.xml");
             File.Copy(@"./ItemRepository.example.orig.xml", @"./ItemRepository.example.xml");
             File.Delete(@"./ItemRepository.example.orig.xml");
@@ -38,6 +42,10 @@ namespace ShoppingListApp.Domain.Test
             File.Delete(@"./ItemRepository.invalidempty.xml");
             File.Copy(@"./ItemRepository.invalidempty.orig.xml", @"./ItemRepository.invalidempty.xml");
             File.Delete(@"./ItemRepository.invalidempty.orig.xml");
+
+            File.Delete(@"./ItemRepository.empty.xml");
+            File.Copy(@"./ItemRepository.empty.orig.xml", @"./ItemRepository.empty.xml");
+            File.Delete(@"./ItemRepository.empty.orig.xml");
 
             File.Delete(@"./ItemRepository.doesnotexists.xml");
         }
@@ -172,7 +180,7 @@ namespace ShoppingListApp.Domain.Test
         }
 
         [Test]
-        public void ItemAddedToPersistentRepository_WhenWrittenToXmlFileRepository()
+        public void ItemsAddedToPersistentRepository_WhenWrittenToXmlFileRepository()
         {
             // Arrange
             ItemXmlRepository testee = null;
@@ -182,9 +190,57 @@ namespace ShoppingListApp.Domain.Test
             testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
             testee.Add("Item6");
             testee.Save();
+            testee.Add("Item7");
+            testee.Save();
+            testee.Add("Item8");
+            testee.Save();
 
             // Assert
             Assert.AreEqual(File.ReadAllText(@"./ItemRepository.Add.Expected.Xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void FirstItemAddedToPersistentRepository_WhenWrittenToXmlFileRepository()
+        {
+            // Arrange
+            ItemXmlRepository testee = null;
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.empty.xml");
+
+            // Act
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee.Add("Item15");
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.AddFirst.Expected.Xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.empty.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void InvalidItemNameThrowsException_WhenWrittenToXmlFileRepository()
+        {
+            // Arrange
+            ItemXmlRepository testee = null;
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
+
+            // Act
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            
+            // Assert
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Add(string.Empty));
+        }
+
+        [Test]
+        public void NullItemNameThrowsException_WhenWrittenToXmlFileRepository()
+        {
+            // Arrange
+            ItemXmlRepository testee = null;
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
+
+            // Act
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+
+            // Assert
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Add(null));
         }
 
         [Test]
@@ -204,19 +260,66 @@ namespace ShoppingListApp.Domain.Test
         }
 
         [Test]
+        public void NonExistingItemRemovedFromPersistentRepositoryThrowsException_WhenWrittenToXmlFileRepository()
+        {
+            // Arrange
+            ItemXmlRepository testee = null;
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.empty.xml");
+
+            // Act
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+
+            // Assert
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Remove(1));
+        }
+
+        [Test]
         public void ItemModifiedOnPersistentRepository_WhenWrittenToXmlFileRepository()
         {
             // Arrange
             ItemXmlRepository testee = null;
+            uint itemId = 4;
+            string itemName = "Item12";
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
             testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
-            testee.Modify(new Item() { ItemId = 4, ItemName = "Item12" });
+            testee.Modify(itemId, itemName);
             testee.Save();
 
             // Assert
             Assert.AreEqual(File.ReadAllText(@"./ItemRepository.Modified.Expected.Xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void NonExistingItemModifiedOnPersistentRepositoryThrowsException_WhenWrittenToXmlFileRepository()
+        {
+            // Arrange
+            ItemXmlRepository testee = null;
+            uint itemId = 4;
+            string itemName = "Item12";
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.empty.xml");
+
+            // Act
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+
+            // Assert
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Modify(itemId, itemName));
+        }
+
+        [Test]
+        public void InvalidItemNameModifiedOnPersistentRepositoryThrowsException_WhenWrittenToXmlFileRepository()
+        {
+            // Arrange
+            ItemXmlRepository testee = null;
+            uint itemId = 1;
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
+
+            // Act
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+
+            // Assert
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Modify(itemId, null));
         }
     }
 }

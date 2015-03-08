@@ -185,14 +185,5 @@ namespace ShoppingListApp.I18N.Resources.Views.Home {
                 return ResourceManager.GetString("ShoppingLists", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An unexpected error has occurred. We are analyzing the problem..
-        /// </summary>
-        public static string UnexpectedError {
-            get {
-                return ResourceManager.GetString("UnexpectedError", resourceCulture);
-            }
-        }
     }
 }

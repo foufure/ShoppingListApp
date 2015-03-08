@@ -46,12 +46,10 @@ namespace ShoppingListApp.Web.UI.Controllers
         {
             if (!string.IsNullOrEmpty(shoppingListToAddName))
             {
+                uint defaultShoppingListId = 0;
                 ShoppingList shoppinglistToCreate = new ShoppingList()
                 {
-                    ShoppingListId = shoppingListRepository.Repository
-                                            .OrderByDescending(shoppinglist => shoppinglist.ShoppingListId)
-                                            .Select(shoppinglist => shoppinglist.ShoppingListId)
-                                            .FirstOrDefault() + 1,
+                    ShoppingListId = defaultShoppingListId,
                     ShoppingListName = shoppingListToAddName,
                     ShoppingListDueDate = DateTime.Now
                 };

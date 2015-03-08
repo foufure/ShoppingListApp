@@ -10,8 +10,8 @@ namespace ShoppingListApp.Domain.Abstract
         void Add(string itemName);
         
         void Remove(uint itemId);
-        
-        void Modify(Item item);
+
+        void Modify(uint itemId, string itemName);
         
         void Save();
     }

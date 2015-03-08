@@ -22,7 +22,7 @@ namespace ShoppingListApp.Domain.Entities
         [DataType(DataType.Date)]
         public DateTime ShoppingListDueDate { get; set; }
         
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Justification = "Reviewed.")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Justification = "Reviewed. No inheritance needed. Performance win.")]
         public List<ShoppingListLine> ShoppingListContent 
         { 
             get 
@@ -30,13 +30,5 @@ namespace ShoppingListApp.Domain.Entities
                 return shoppingListContent; 
             } 
         } 
-    }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed.")]
-    public class ShoppingListLine
-    { 
-        public Item ItemToBuy { get; set; }
-        
-        public int QuantityToBuy { get; set; }
     }
 }

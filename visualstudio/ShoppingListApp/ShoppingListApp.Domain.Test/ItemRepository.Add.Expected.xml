@@ -24,4 +24,12 @@
     <ItemId>6</ItemId>
     <ItemName>Item6</ItemName>
   </Item>
+  <Item>
+    <ItemId>7</ItemId>
+    <ItemName>Item7</ItemName>
+  </Item>
+  <Item>
+    <ItemId>8</ItemId>
+    <ItemName>Item8</ItemName>
+  </Item>
 </Items>
