@@ -17,6 +17,12 @@ namespace ShoppingListApp.Domain.Test
         [SetUp]
         public void Init()
         {
+            string directory = @"c:\temp";
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
             emailSettingsMock = new Mock<IEmailSettings>();
             emailSettingsMock.Setup(x => x.UseSsl).Returns(true);
             emailSettingsMock.Setup(x => x.MailFromAddress).Returns("shoppinglistappharbor@gmail.com");
