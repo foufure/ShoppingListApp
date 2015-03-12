@@ -25,9 +25,10 @@
         }
     </div>
     <div class="panel-footer">
-        @if (TempData["restore"] != null)
+        @if (TempData["restoreitems"] != null && TempData["restoreshoppinglists"] != null)
         {
-            <span class="alert-success">@TempData["restore"]</span>
+            <div class="alert-success">@TempData["restoreitems"]</div>
+            <div class="alert-success">@TempData["restoreshoppinglists"]</div>
         }
     </div>
 </div>

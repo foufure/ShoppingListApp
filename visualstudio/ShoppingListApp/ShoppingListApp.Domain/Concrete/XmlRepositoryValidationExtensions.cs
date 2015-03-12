@@ -13,11 +13,11 @@ namespace ShoppingListApp.Domain.Concrete
 {
     public static class XmlRepositoryValidationExtensions
     {
-        public static bool XmlRepositoryValidation(string xmlRepositoryXsdMarkup, IRepositoryNameProvider repositoryNameProvider)
+        public static bool XmlRepositoryValidation(string xmlRepositoryXsdMarkup, string repositoryName)
         {
             bool xmlRepositoryValidationResult = false;
 
-            if (repositoryNameProvider.RepositoryNameIsValid())
+            if (!string.IsNullOrEmpty(repositoryName))
             {
                 xmlRepositoryValidationResult = true;
 
@@ -29,7 +29,7 @@ namespace ShoppingListApp.Domain.Concrete
 
                     try
                     {
-                        XDocument.Load(repositoryNameProvider.RepositoryName).Validate(xmlRepositoryXsdSchemas, null);
+                        XDocument.Load(repositoryName).Validate(xmlRepositoryXsdSchemas, null);
                     }
                     catch (XmlSchemaValidationException)
                     {

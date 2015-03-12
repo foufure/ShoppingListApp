@@ -1,4 +1,6 @@
-﻿namespace ShoppingListApp.Domain.Abstract
+﻿using System.Net.Mail;
+
+namespace ShoppingListApp.Domain.Abstract
 {
     public interface IEmailSettings
     {
@@ -15,5 +17,9 @@
         string ServerName { get; }
        
         int ServerPort { get; }
+
+        SmtpDeliveryMethod DeliveryMethod { get; }
+
+        string PickupDirectoryLocation { get; }
     }
 }

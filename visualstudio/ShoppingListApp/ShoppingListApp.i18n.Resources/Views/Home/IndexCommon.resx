@@ -156,6 +156,12 @@
   <data name="RestoreBackupMessage" xml:space="preserve">
     <value>Backup restored on</value>
   </data>
+  <data name="RestoreItemsFailure" xml:space="preserve">
+    <value>Invalid Items XSD</value>
+  </data>
+  <data name="RestoreShoppingListsFailure" xml:space="preserve">
+    <value>Invalid Shopping Lists XSD</value>
+  </data>
   <data name="ShoppingLists" xml:space="preserve">
     <value>Shopping Lists</value>
   </data>

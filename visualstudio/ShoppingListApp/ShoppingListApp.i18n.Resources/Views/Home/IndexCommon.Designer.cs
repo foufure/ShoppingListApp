@@ -178,6 +178,24 @@ namespace ShoppingListApp.I18N.Resources.Views.Home {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Items XSD.
+        /// </summary>
+        public static string RestoreItemsFailure {
+            get {
+                return ResourceManager.GetString("RestoreItemsFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Shopping Lists XSD.
+        /// </summary>
+        public static string RestoreShoppingListsFailure {
+            get {
+                return ResourceManager.GetString("RestoreShoppingListsFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shopping Lists.
         /// </summary>
         public static string ShoppingLists {

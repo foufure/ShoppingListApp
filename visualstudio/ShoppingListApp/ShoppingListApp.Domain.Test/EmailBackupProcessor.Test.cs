@@ -1,7 +1,6 @@
-﻿#define NUNIT_UNITTEST
-
-using System;
+﻿using System;
 using System.IO;
+using System.Net.Mail;
 using Moq;
 using NUnit.Framework;
 using ShoppingListApp.Domain.Abstract;
@@ -13,30 +12,33 @@ namespace ShoppingListApp.Domain.Test
     public class EmailBackupProcessorTest
     {
         private Mock<IEmailSettings> emailSettingsMock;
+        private string directory;
 
         [SetUp]
         public void Init()
         {
-            string directory = @"c:\temp";
-            if (!Directory.Exists(directory))
+            this.directory = System.IO.Directory.GetCurrentDirectory() + @"\tests";
+            if (!Directory.Exists(this.directory))
             {
-                Directory.CreateDirectory(directory);
+                Directory.CreateDirectory(this.directory);
             }
 
             emailSettingsMock = new Mock<IEmailSettings>();
-            emailSettingsMock.Setup(x => x.UseSsl).Returns(true);
+            emailSettingsMock.Setup(x => x.UseSsl).Returns(false);
             emailSettingsMock.Setup(x => x.MailFromAddress).Returns("shoppinglistappharbor@gmail.com");
             emailSettingsMock.Setup(x => x.MailToAddress).Returns("shoppinglistappharbor@gmail.com");
             emailSettingsMock.Setup(x => x.Password).Returns("InvalidPassword");
             emailSettingsMock.Setup(x => x.ServerName).Returns("smtp.gmail.com");
             emailSettingsMock.Setup(x => x.ServerPort).Returns(587);
             emailSettingsMock.Setup(x => x.UserName).Returns("shoppinglistappharbor@gmail.com");
+            emailSettingsMock.Setup(x => x.DeliveryMethod).Returns(SmtpDeliveryMethod.SpecifiedPickupDirectory);
+            emailSettingsMock.Setup(x => x.PickupDirectoryLocation).Returns(this.directory);
         }
 
         [TearDown]
-        public static void Dispose()
+        public void Dispose()
         {
-            Array.ForEach(Directory.GetFiles(@"c:\temp\"), File.Delete);
+            Array.ForEach(Directory.GetFiles(this.directory), File.Delete);
         }
 
         [Test]
@@ -59,7 +61,7 @@ namespace ShoppingListApp.Domain.Test
 
             // Act
             testee.ProcessBackup(@"./ItemRepository.example.xml");
-            string[] files = Directory.GetFiles(@"c:\temp", "*.eml");
+            string[] files = Directory.GetFiles(this.directory, "*.eml");
 
             // Assert
             Assert.True(files.Length != 0);

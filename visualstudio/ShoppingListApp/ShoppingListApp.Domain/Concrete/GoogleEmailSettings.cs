@@ -1,4 +1,5 @@
-﻿using ShoppingListApp.Domain.Abstract;
+﻿using System.Net.Mail;
+using ShoppingListApp.Domain.Abstract;
 
 namespace ShoppingListApp.Domain.Concrete
 {
@@ -44,6 +45,16 @@ namespace ShoppingListApp.Domain.Concrete
         public int ServerPort
         {
             get { return 587; }
+        }
+
+        public SmtpDeliveryMethod DeliveryMethod
+        {
+            get { return SmtpDeliveryMethod.Network; }
+        }
+
+        public string PickupDirectoryLocation 
+        {
+            get { return string.Empty; } 
         }
     }
 }

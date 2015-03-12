@@ -148,13 +148,19 @@
     <value>Backup fehlgeschlagen: keine Dateien vorhanden.</value>
   </data>
   <data name="NoFilesToRestore" xml:space="preserve">
-    <value>Kein Datei gefunden.</value>
+    <value>Keine Datei gefunden.</value>
   </data>
   <data name="RestoreBackup" xml:space="preserve">
     <value>Backup zurückspielen</value>
   </data>
   <data name="RestoreBackupMessage" xml:space="preserve">
     <value>Backup zurückgespielt am</value>
+  </data>
+  <data name="RestoreItemsFailure" xml:space="preserve">
+    <value>XSD ungültig für die Artikeln</value>
+  </data>
+  <data name="RestoreShoppingListsFailure" xml:space="preserve">
+    <value>XSD ungültig für die Einkaufliste</value>
   </data>
   <data name="ShoppingLists" xml:space="preserve">
     <value>Einkaufsliste</value>

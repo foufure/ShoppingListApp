@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using ShoppingListApp.Domain.Abstract;
+using ShoppingListApp.Domain.Concrete;
 using ShoppingListApp.I18N.Utils;
 
 namespace ShoppingListApp.Web.UI.Controllers
@@ -63,18 +64,33 @@ namespace ShoppingListApp.Web.UI.Controllers
         [Authorize]
         public RedirectToRouteResult RestoreBackup(HttpPostedFileBase itemsToRestoreFile, HttpPostedFileBase shoppingListsToRestoreFile)
         {
-            TempData["restore"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.NoFilesToRestore;
+            TempData["restoreitems"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.NoFilesToRestore;
+            TempData["restoreshoppinglists"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.NoFilesToRestore;
 
             if (itemsToRestoreFile != null && itemsToRestoreFile.ContentLength > 0)
             {
                 itemsToRestoreFile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ItemRepository." + userInformation.UserName + @".xml");
-                TempData["restore"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
+                if (XmlRepositoryValidationExtensions.XmlRepositoryValidation(RepositoriesXsd.Items(), System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ItemRepository." + userInformation.UserName + @".xml"))
+                {   
+                    TempData["restoreitems"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
+                }
+                else
+                {
+                    TempData["restoreitems"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreItemsFailure;
+                }
             }
             
             if (shoppingListsToRestoreFile != null && shoppingListsToRestoreFile.ContentLength > 0)
-            { 
+            {
                 shoppingListsToRestoreFile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository." + userInformation.UserName + ".xml");
-                TempData["restore"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
+                if (XmlRepositoryValidationExtensions.XmlRepositoryValidation(RepositoriesXsd.Items(), System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository." + userInformation.UserName + @".xml"))
+                {
+                    TempData["restoreshoppinglists"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);           
+                }
+                else
+                {
+                    TempData["restoreshoppinglists"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreShoppingListsFailure;
+                }
             }
 
             return RedirectToAction("Admin");

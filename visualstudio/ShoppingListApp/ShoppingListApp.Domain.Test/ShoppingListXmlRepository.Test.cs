@@ -109,7 +109,7 @@ namespace ShoppingListApp.Domain.Test
             Assert.AreEqual(0, testee.Count());
             Assert.AreEqual(expectedResult.Select(ShoppingList => ShoppingList.ShoppingListId).AsEnumerable(), testee.Select(ShoppingList => ShoppingList.ShoppingListId).AsEnumerable());
             Assert.AreEqual(expectedResult.Select(ShoppingList => ShoppingList.ShoppingListName).AsEnumerable(), testee.Select(ShoppingList => ShoppingList.ShoppingListName).AsEnumerable());
-            FileAssert.AreEqual(@"ShoppingListRepository.empty.xml", @"./ShoppingListRepository.doesnotexists.xml");
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.doesnotexists.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
@@ -126,7 +126,7 @@ namespace ShoppingListApp.Domain.Test
             Assert.AreEqual(0, testee.Count());
             Assert.AreEqual(expectedResult.Select(ShoppingList => ShoppingList.ShoppingListId).AsEnumerable(), testee.Select(ShoppingList => ShoppingList.ShoppingListId).AsEnumerable());
             Assert.AreEqual(expectedResult.Select(ShoppingList => ShoppingList.ShoppingListName).AsEnumerable(), testee.Select(ShoppingList => ShoppingList.ShoppingListName).AsEnumerable());
-            FileAssert.AreEqual(@"ShoppingListRepository.empty.xml", @"./ShoppingListRepository.invalid.xml");
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.invalid.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
@@ -143,7 +143,7 @@ namespace ShoppingListApp.Domain.Test
             Assert.AreEqual(0, testee.Count());
             Assert.AreEqual(expectedResult.Select(ShoppingList => ShoppingList.ShoppingListId).AsEnumerable(), testee.Select(ShoppingList => ShoppingList.ShoppingListId).AsEnumerable());
             Assert.AreEqual(expectedResult.Select(ShoppingList => ShoppingList.ShoppingListName).AsEnumerable(), testee.Select(ShoppingList => ShoppingList.ShoppingListName).AsEnumerable());
-            FileAssert.AreEqual(@"ShoppingListRepository.empty.xml", @"./ShoppingListRepository.invalidempty.xml");
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.invalidempty.xml").Replace("\r\n", "\n"));
         }
 
         [Test]

@@ -54,6 +54,7 @@
     <Compile Include="Concrete\ItemXmlRepository.cs" />
     <Compile Include="Concrete\EmailBackupProcessor.cs" />
     <Compile Include="Concrete\GoogleUserInformation.cs" />
+    <Compile Include="Concrete\RepositoriesXsd.cs" />
     <Compile Include="Concrete\XmlRepositoryValidationExtensions.cs" />
     <Compile Include="Concrete\RepositoryNameProviderValidationExtensions.cs" />
     <Compile Include="Concrete\ShoppingListXmlRepository.cs" />

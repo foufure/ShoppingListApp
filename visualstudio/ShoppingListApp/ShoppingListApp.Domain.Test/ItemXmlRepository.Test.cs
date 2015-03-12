@@ -104,7 +104,7 @@ namespace ShoppingListApp.Domain.Test
             Assert.AreEqual(0, testee.Count());
             Assert.AreEqual(expectedResult.Select(Item => Item.ItemId).AsEnumerable(), testee.Select(Item => Item.ItemId).AsEnumerable());
             Assert.AreEqual(expectedResult.Select(Item => Item.ItemName).AsEnumerable(), testee.Select(Item => Item.ItemName).AsEnumerable());
-            FileAssert.AreEqual(@"ItemRepository.empty.xml", @"./ItemRepository.doesnotexists.xml");
+            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.doesnotexists.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
@@ -121,7 +121,7 @@ namespace ShoppingListApp.Domain.Test
             Assert.AreEqual(0, testee.Count());
             Assert.AreEqual(expectedResult.Select(Item => Item.ItemId).AsEnumerable(), testee.Select(Item => Item.ItemId).AsEnumerable());
             Assert.AreEqual(expectedResult.Select(Item => Item.ItemName).AsEnumerable(), testee.Select(Item => Item.ItemName).AsEnumerable());
-            FileAssert.AreEqual(@"ItemRepository.empty.xml", @"./ItemRepository.invalid.xml");
+            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.invalid.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
@@ -138,7 +138,7 @@ namespace ShoppingListApp.Domain.Test
             Assert.AreEqual(0, testee.Count());
             Assert.AreEqual(expectedResult.Select(Item => Item.ItemId).AsEnumerable(), testee.Select(Item => Item.ItemId).AsEnumerable());
             Assert.AreEqual(expectedResult.Select(Item => Item.ItemName).AsEnumerable(), testee.Select(Item => Item.ItemName).AsEnumerable());
-            FileAssert.AreEqual(@"ItemRepository.empty.xml", @"./ItemRepository.invalidempty.xml");
+            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.invalidempty.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
