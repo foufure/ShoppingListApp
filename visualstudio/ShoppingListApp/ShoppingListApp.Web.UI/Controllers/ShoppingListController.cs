@@ -31,7 +31,7 @@ namespace ShoppingListApp.Web.UI.Controllers
             }
 
             return View((shoppingListId == null) ? 
-                        shoppingListRepository.Repository.OrderByDescending(shoppinglist => shoppinglist.ShoppingListDueDate).First() :
+                        shoppingListRepository.Repository.OrderByDescending(shoppinglist => shoppinglist.ShoppingListDueDate).FirstOrDefault() :
                         shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId).FirstOrDefault());
         }
 

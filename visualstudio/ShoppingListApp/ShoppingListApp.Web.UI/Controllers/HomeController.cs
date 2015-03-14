@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
+using Ninject;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Concrete;
 using ShoppingListApp.I18N.Utils;
@@ -10,12 +11,14 @@ namespace ShoppingListApp.Web.UI.Controllers
     public class HomeController : Controller
     {
         private IBackupProcessor backupProcessor;
-        private IUserInformation userInformation;
+        private IRepositoryNameProvider itemRepositoryName;
+        private IRepositoryNameProvider shoppingListsRepositoryName;
 
-        public HomeController(IBackupProcessor backupProcessor, IUserInformation userInformation)
+        public HomeController(IBackupProcessor backupProcessor, [Named("ItemRepositoryName")] IRepositoryNameProvider itemRepositoryName, [Named("ShoppingListRepositoryName")] IRepositoryNameProvider shoppingListsRepositoryName)
         {
             this.backupProcessor = backupProcessor;
-            this.userInformation = userInformation;
+            this.itemRepositoryName = itemRepositoryName;
+            this.shoppingListsRepositoryName = shoppingListsRepositoryName;
         }
 
         public ActionResult Index()
@@ -42,8 +45,8 @@ namespace ShoppingListApp.Web.UI.Controllers
 
             try
             {
-                backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ItemRepository." + userInformation.UserName + @".xml");
-                backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository." + userInformation.UserName + ".xml");
+                backupProcessor.ProcessBackup(itemRepositoryName.RepositoryName);
+                backupProcessor.ProcessBackup(shoppingListsRepositoryName.RepositoryName);
             }
             catch (System.ArgumentNullException)
             {
@@ -64,36 +67,28 @@ namespace ShoppingListApp.Web.UI.Controllers
         [Authorize]
         public RedirectToRouteResult RestoreBackup(HttpPostedFileBase itemsToRestoreFile, HttpPostedFileBase shoppingListsToRestoreFile)
         {
-            TempData["restoreitems"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.NoFilesToRestore;
-            TempData["restoreshoppinglists"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.NoFilesToRestore;
-
-            if (itemsToRestoreFile != null && itemsToRestoreFile.ContentLength > 0)
-            {
-                itemsToRestoreFile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ItemRepository." + userInformation.UserName + @".xml");
-                if (XmlRepositoryValidationExtensions.XmlRepositoryValidation(RepositoriesXsd.Items(), System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ItemRepository." + userInformation.UserName + @".xml"))
-                {   
-                    TempData["restoreitems"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
-                }
-                else
-                {
-                    TempData["restoreitems"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreItemsFailure;
-                }
-            }
-            
-            if (shoppingListsToRestoreFile != null && shoppingListsToRestoreFile.ContentLength > 0)
-            {
-                shoppingListsToRestoreFile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository." + userInformation.UserName + ".xml");
-                if (XmlRepositoryValidationExtensions.XmlRepositoryValidation(RepositoriesXsd.Items(), System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\ShoppingListRepository." + userInformation.UserName + @".xml"))
-                {
-                    TempData["restoreshoppinglists"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);           
-                }
-                else
-                {
-                    TempData["restoreshoppinglists"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreShoppingListsFailure;
-                }
-            }
+            Restore(itemsToRestoreFile, "restoreitems", itemRepositoryName.RepositoryName, ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreItemsFailure);
+            Restore(shoppingListsToRestoreFile, "restoreshoppinglists", shoppingListsRepositoryName.RepositoryName, ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreShoppingListsFailure);
 
             return RedirectToAction("Admin");
+        }
+
+        private void Restore(HttpPostedFileBase fileToRestore, string typeToRestore, string repositoryName, string failureMessage)
+        {
+            TempData[typeToRestore] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.NoFilesToRestore;
+
+            if (fileToRestore != null && fileToRestore.ContentLength > 0)
+            {
+                fileToRestore.SaveAs(repositoryName);
+                if (XmlRepositoryValidationExtensions.XmlRepositoryValidation(RepositoriesXsd.Items(), repositoryName))
+                {
+                    TempData[typeToRestore] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
+                }
+                else
+                {
+                    TempData[typeToRestore] = failureMessage;
+                }
+            }
         }
     }
 }

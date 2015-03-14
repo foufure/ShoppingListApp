@@ -132,12 +132,6 @@
     <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
       <Link>CustomDictionary.xml</Link>
     </CodeAnalysisDictionary>
-    <Content Include="App_Data\ItemRepository.shoppinglistappharbor.xml" />
-    <Content Include="App_Data\ItemRepository.xml" />
-    <Content Include="App_Data\ShoppingListRepository.shoppinglistappharbor.xml" />
-    <Content Include="App_Data\ShoppingListRepository.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -223,6 +217,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

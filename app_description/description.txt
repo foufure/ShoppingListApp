@@ -46,6 +46,11 @@ http://ardalis.com/everything-you-need-to-get-started-with-specflow-and-watin
 Test with Specflow and Watin cannot run under AppHarbor because the site is not deployed! The project must be excluded at least!
 http://support.appharbor.com/discussions/problems/570-watinspecflow-testing
 
+Code Coverage with NuGet: OpenCover + ReportGenerator.
+http://www.codeproject.com/Articles/744882/Branch-level-code-coverage-with-NUnit-OpenCover-Re
+Do not forget to put "Copy alway" in the parameters of coverage.bat.
+Add the coverage.bat as post-build event command line.
+
 Testing with Authorize ==> create a context with a Mock Object
 http://stackoverflow.com/questions/1877225/how-do-i-unit-test-a-controller-method-that-has-the-authorize-attribute-applie
 
