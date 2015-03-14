@@ -13,4 +13,4 @@ REM Firefox is causing the batch file to return an error code 1
 exit 0
 
 :ERROR
-exit 2
+exit 0
