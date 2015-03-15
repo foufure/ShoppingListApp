@@ -33,7 +33,17 @@
                     @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Admin
                 </a>
             </div>
-        </div>
+
+            @if (User.Identity.Name == "Shopping List")
+            {
+            <div>
+                <a href="@Url.Action("SuperAdmin", "Home")" class="btn btn-success btn-block">
+                    <span class="glyphicon glyphicon-warning-sign"></span>
+                </a>
+            </div>
+            }
+
+        </div> 
     }
     else
     {

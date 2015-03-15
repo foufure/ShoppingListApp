@@ -45,6 +45,9 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin">
       <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -73,6 +76,10 @@
     </Reference>
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -154,6 +161,12 @@
     <Content Include="..\Settings.StyleCop">
       <Link>Settings.StyleCop</Link>
     </Content>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\DatePickerShoppingListApp.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
@@ -209,6 +222,7 @@
     <Content Include="Views\Shared\GetUserCulture.cshtml" />
     <Content Include="Views\Shared\LogOnStatus.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Home\SuperAdmin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -232,6 +246,10 @@
     <ProjectReference Include="..\ShoppingListApp.i18n.Utils\ShoppingListApp.I18N.Utils.csproj">
       <Project>{89437984-6d3a-4b92-92a5-1953e57d192e}</Project>
       <Name>ShoppingListApp.I18N.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShoppingListApp.JobsScheduler\ShoppingListApp.JobsScheduler.csproj">
+      <Project>{bb33cea6-ac5c-440c-8f82-a06dd24812f1}</Project>
+      <Name>ShoppingListApp.JobsScheduler</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

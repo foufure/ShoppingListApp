@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
+using Ionic.Zip;
 using Ninject;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Concrete;
@@ -71,6 +73,82 @@ namespace ShoppingListApp.Web.UI.Controllers
             Restore(shoppingListsToRestoreFile, "restoreshoppinglists", shoppingListsRepositoryName.RepositoryName, ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreShoppingListsFailure);
 
             return RedirectToAction("Admin");
+        }
+
+        [Authorize]
+        public ActionResult SuperAdmin()
+        {
+            return View();
+        }
+
+        [Authorize(Users = "Shopping List")]
+        public RedirectToRouteResult BackupAll()
+        {
+            TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
+
+            using (ZipFile backupAll = new ZipFile(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\backupAll.bak"))
+            {
+                foreach (string fileName in Directory.GetFiles(System.Web.HttpContext.Current.Server.MapPath("~/App_Data"), "*.xml"))
+                {
+                    backupAll.AddFile(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\" + Path.GetFileName(fileName), string.Empty);
+                }
+
+                backupAll.Save();
+            }
+
+            try
+            {
+                backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\backupAll.bak");
+            }
+            catch (System.ArgumentNullException)
+            {
+                TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.NoFilesToBackup;
+            }
+            catch (System.Net.Mail.SmtpFailedRecipientsException)
+            {
+                TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.DeliveryFailed;
+            }
+            catch (System.Net.Mail.SmtpException)
+            {
+                TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.ConnectionFailed;
+            }
+
+            System.IO.File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\backupAll.bak");
+
+            return RedirectToAction("SuperAdmin");
+        }
+
+        [Authorize(Users = "Shopping List")]
+        public RedirectToRouteResult RestoreAllBackups(HttpPostedFileBase fileToRestore)
+        {
+            TempData["allBackupsToRestore"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.NoFilesToRestore;
+
+            if (fileToRestore != null && fileToRestore.ContentLength > 0)
+            {
+                string fileNameAndPath = System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\" + fileToRestore.FileName;
+                fileToRestore.SaveAs(fileNameAndPath);
+                
+                try
+                {
+                    using (ZipFile backupAll = ZipFile.Read(fileNameAndPath))
+                    {
+                        foreach (ZipEntry repositoryFile in backupAll)
+                        {
+                            repositoryFile.Extract(System.Web.HttpContext.Current.Server.MapPath("~/App_Data"), ExtractExistingFileAction.OverwriteSilently);
+                        }
+                    }
+
+                    TempData["allBackupsToRestore"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
+                }
+                catch (System.Exception)
+                {
+                    TempData["allBackupsToRestore"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreItemsFailure;
+                }
+
+                System.IO.File.Delete(fileNameAndPath);
+            }
+
+            return RedirectToAction("SuperAdmin");
         }
 
         private void Restore(HttpPostedFileBase fileToRestore, string typeToRestore, string repositoryName, string failureMessage)

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using ShoppingListApp.I18N.Utils;
+using ShoppingListApp.JobsScheduler;
 
 namespace ShoppingListApp.Web.UI
 {
@@ -14,6 +15,7 @@ namespace ShoppingListApp.Web.UI
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            CronJobsScheduler.InitializeJobScheduler();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1121:UseBuiltInTypeAlias", Justification = "Reviewed.")]

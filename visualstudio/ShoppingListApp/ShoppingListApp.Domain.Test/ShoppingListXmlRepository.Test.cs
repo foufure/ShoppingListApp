@@ -318,7 +318,7 @@ namespace ShoppingListApp.Domain.Test
         {
             // Arrange
             ShoppingListXmlRepository testee = null;
-            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.empty.xml");
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.empty.xml");
             ShoppingList nonExistingShoppingList = new ShoppingList() { ShoppingListId = 1 };
 
             // Act

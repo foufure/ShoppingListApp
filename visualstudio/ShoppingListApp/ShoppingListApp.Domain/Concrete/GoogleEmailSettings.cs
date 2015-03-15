@@ -14,7 +14,7 @@ namespace ShoppingListApp.Domain.Concrete
 
         public string MailToAddress
         {
-            get { return userInformation.UserEmail; }
+            get { return userInformation.UserEmail ?? "shoppinglistappharbor@gmail.com"; }
         }
 
         public string MailFromAddress

@@ -51,6 +51,10 @@ http://www.codeproject.com/Articles/744882/Branch-level-code-coverage-with-NUnit
 Do not forget to put "Copy alway" in the parameters of coverage.bat.
 Add the coverage.bat as post-build event command line.
 
+Zip with DotNetZip library through NuGet.
+Quartz.NET and appHarbor Background Workers for Backup jobs Scheduling.
+Added NLog for logging - https://github.com/nlog/nlog/wiki/Tutorial
+
 Testing with Authorize ==> create a context with a Mock Object
 http://stackoverflow.com/questions/1877225/how-do-i-unit-test-a-controller-method-that-has-the-authorize-attribute-applie
 
