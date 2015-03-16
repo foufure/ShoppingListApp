@@ -80,26 +80,37 @@ namespace ShoppingListApp.Web.UI.Controllers
             return View("AddShoppingList", shoppinglistToModify);
         }
 
-        public ActionResult SaveShoppingList(ShoppingList shoppingListToSave)
+        public ActionResult SaveShoppingList(ShoppingList shoppingListToSave, string newItemName, string returnUrl)
         {
             if (ModelState.IsValid)
-            { 
+            {
                 shoppingListToSave.ShoppingListContent.RemoveAll(item => item.QuantityToBuy == 0);
 
                 if (shoppingListRepository.Repository.Any(shoppinglist => shoppinglist.ShoppingListId == shoppingListToSave.ShoppingListId))
                 {
                     shoppingListRepository.Modify(shoppingListToSave);
                 }
-                else 
+                else
                 {
                     shoppingListRepository.Add(shoppingListToSave);
                 }
-            
+
                 shoppingListRepository.Save();
+
+                if (!string.IsNullOrEmpty(newItemName))
+                {
+                    itemRepository.Add(newItemName);
+                    itemRepository.Save();
+
+                    return Redirect(returnUrl);
+                }
+
                 return RedirectToAction("ShowShoppingList", new { shoppingListId = shoppingListToSave.ShoppingListId });
             }
-
-            return View("AddShoppingList", shoppingListToSave);
+            else 
+            {
+                return View("AddShoppingList", shoppingListToSave);
+            }
         }
     }
 }

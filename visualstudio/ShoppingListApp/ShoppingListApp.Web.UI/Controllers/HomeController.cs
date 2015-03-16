@@ -43,7 +43,7 @@ namespace ShoppingListApp.Web.UI.Controllers
         [Authorize]
         public RedirectToRouteResult Backup()
         {
-            TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
+            TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("u", ConfiguredCultures.GetCurrentUICulture);
 
             try
             {
@@ -84,7 +84,7 @@ namespace ShoppingListApp.Web.UI.Controllers
         [Authorize(Users = "Shopping List")]
         public RedirectToRouteResult BackupAll()
         {
-            TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
+            TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("u", ConfiguredCultures.GetCurrentUICulture);
 
             using (ZipFile backupAll = new ZipFile(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\backupAll.bak"))
             {
@@ -138,7 +138,7 @@ namespace ShoppingListApp.Web.UI.Controllers
                         }
                     }
 
-                    TempData["allBackupsToRestore"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
+                    TempData["allBackupsToRestore"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("u", ConfiguredCultures.GetCurrentUICulture);
                 }
                 catch (System.Exception)
                 {
@@ -160,7 +160,7 @@ namespace ShoppingListApp.Web.UI.Controllers
                 fileToRestore.SaveAs(repositoryName);
                 if (XmlRepositoryValidationExtensions.XmlRepositoryValidation(RepositoriesXsd.Items(), repositoryName))
                 {
-                    TempData[typeToRestore] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("d", ConfiguredCultures.GetCurrentUICulture);
+                    TempData[typeToRestore] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("u", ConfiguredCultures.GetCurrentUICulture);
                 }
                 else
                 {

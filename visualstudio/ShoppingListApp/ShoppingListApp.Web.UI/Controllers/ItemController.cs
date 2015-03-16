@@ -21,7 +21,7 @@ namespace ShoppingListApp.Web.UI.Controllers
             return View(itemRepository.Repository);
         }
 
-        public RedirectToRouteResult AddNewItem(string newItemName)
+        public ActionResult AddNewItem(string newItemName, string returnUrl)
         {
             if (!string.IsNullOrEmpty(newItemName))
             { 
@@ -29,7 +29,7 @@ namespace ShoppingListApp.Web.UI.Controllers
                 itemRepository.Save();
             }
 
-            return RedirectToAction("Items");
+            return Redirect(returnUrl);
         }
 
         public RedirectToRouteResult RemoveItem(uint itemToRemoveId)

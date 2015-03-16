@@ -4,53 +4,63 @@
     <div class="panel-heading text-uppercase">
         <h1 class="panel-title">@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.EditShoppingList</h1>
     </div>
-
-    <div class="panel-body">
-        @using (@Html.BeginForm("SaveShoppingList", "ShoppingList"))
+        @using (@Html.BeginForm("SaveShoppingList", "ShoppingList", new { returnUrl = Request.Url.PathAndQuery }))
         {
-            <div class="form-group">
-                @Html.ValidationSummary("", new { @class = "text-danger" })
-                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListId, new { @class = "form-control" })
-                @Html.Label(@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name)
-                @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListName, new { @class = "form-control" })
-                @Html.Label(@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.DueDate)
-                @* Universal Sortable Format Specifier "u": 2015-04-13 13:30:00Z - we need only the date *@
-                @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListDueDate, Model.ShoppingListDueDate.ToString("u").Split(' ')[0], new { @class = "form-control", @id = "_datetimepicker_" + ConfiguredCultures.GetCurrentUICulture, type = "text" })
-            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListId, new { @class = "form-control" })
+                    @Html.Label(@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name)
+                    @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListName, new { @class = "form-control" })
+                    @Html.Label(@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.DueDate)
+                    @* Universal Sortable Format Specifier "u": 2015-04-13 13:30:00Z - we need only the date *@
+                    @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListDueDate, Model.ShoppingListDueDate.ToString("u").Split(' ')[0], new { @class = "form-control", @id = "_datetimepicker_" + ConfiguredCultures.GetCurrentUICulture, type = "text" })
+                </div>
 
-            <div class="form-group">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
-                            <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (int i = 0; i < @Model.ShoppingListContent.Count(); i++)
-                        {
+                <div class="form-group">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemId)
-                                @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemName)
-                                <td>
-                                    @Html.Label(Model.ShoppingListContent[i].ItemToBuy.ItemName)
-                                </td>
-                                <td>
-                                    @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListContent[i].QuantityToBuy, new { @class = "quantity_spinner" })
-                                </td>
+                                <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
+                                <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < @Model.ShoppingListContent.Count(); i++)
+                            {
+                                <tr>
+                                    @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemId)
+                                    @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemName)
+                                    <td>
+                                        @Html.Label(Model.ShoppingListContent[i].ItemToBuy.ItemName)
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListContent[i].QuantityToBuy, new { @class = "quantity_spinner" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
 
-            <div class="pull-right">
-                <button type="submit" class="btn btn-success btn-lg">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </button>
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                </div>
             </div>
-        }
-    </div>
+            
+            <div class="panel-footer clearfix">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
+                    @Html.TextBox("newItemName", null, new { @class = "form-control", @placeholder = @ShoppingListApp.I18N.Resources.Views.Item.ItemsCommon.YourItemName })
+                </div>
+            </div>
+         }
 </div>
 <div>
     @Html.Partial("BackToShoppingLists")

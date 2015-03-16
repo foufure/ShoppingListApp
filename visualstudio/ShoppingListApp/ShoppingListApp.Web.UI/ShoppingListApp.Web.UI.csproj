@@ -223,6 +223,7 @@
     <Content Include="Views\Shared\LogOnStatus.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\Home\SuperAdmin.cshtml" />
+    <Content Include="Views\Item\AddItem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

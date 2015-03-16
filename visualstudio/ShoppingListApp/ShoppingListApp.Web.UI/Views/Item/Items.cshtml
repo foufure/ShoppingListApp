@@ -35,17 +35,7 @@
     </div>
 
     <div class="panel-footer clearfix">
-        @using (@Html.BeginForm("AddNewItem", "Item"))
-        {
-            <div class="input-group"> 
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-success">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                </span>
-                @Html.TextBox("newItemName", null, new { @class = "form-control", @placeholder = @ShoppingListApp.I18N.Resources.Views.Item.ItemsCommon.YourItemName })    
-            </div>    
-        }
+        @Html.Partial("AddItem")
     </div>
 </div>
 <div>
