@@ -1,10 +1,19 @@
 ShoppingList App!
 - create a list of articles to buy
 - create a list of shoppinglists
+- categorize articles - collapse items in categories for visibility
 - display shoppinglists
 - display the shoppinglist with the latest due date with datetimepicker
 - multilingual app with implicit (browser preferences + fallback + default en-US) and explicit (user) user culture choice
 - toogle strikethrough of articles of a shoppinglist to mark them as done during the shopping session
+
+Websites for shoppinglists default:
+http://www.grocerylists.org/ultimatest/
+http://www.kidspot.com.au/shoppinglist/ShoppingList.asp
+
+Table Row Drag and Drop in ASP.NET MVC (jQuery DataTables and ASP.NET MVC Integration - Part VI)
+http://www.codeproject.com/Articles/331986/Table-Row-Drag-and-Drop-in-ASP-NET-MVC-jQuery-Data
+http://stackoverflow.com/questions/21978551/ordering-a-graphical-list-via-mouse-dragging-using-javascript
 
 Bootstrap use:
 http://getbootstrap.com for some examples and ideas of how to customize.
@@ -46,6 +55,15 @@ http://ardalis.com/everything-you-need-to-get-started-with-specflow-and-watin
 Test with Specflow and Watin cannot run under AppHarbor because the site is not deployed! The project must be excluded at least!
 http://support.appharbor.com/discussions/problems/570-watinspecflow-testing
 
+Try Bootstrap - Javascript Online
+http://jsfiddle.net/2Dj7Y/1792/
+http://getbootstrap.com/getting-started/#download
+libraries to put in jsfiddle so that it works in this order!!!! (from CDN)
+https://code.jquery.com/jquery-1.11.2.min.js
+https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css
+https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js
+https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css
+
 Code Coverage with NuGet: OpenCover + ReportGenerator.
 http://www.codeproject.com/Articles/744882/Branch-level-code-coverage-with-NUnit-OpenCover-Re
 Do not forget to put "Copy alway" in the parameters of coverage.bat.
@@ -72,4 +90,4 @@ DateTimePicker - format must remain en-US otherwise model binding does not work
 http://www.asp.net/mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4
 http://xdsoft.net/jqplugins/datetimepicker/
 
-Using minified files.
+Using minified files => bundles

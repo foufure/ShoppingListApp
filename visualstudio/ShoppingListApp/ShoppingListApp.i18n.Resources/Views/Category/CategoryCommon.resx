@@ -117,55 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Admin" xml:space="preserve">
-    <value>Admin</value>
-  </data>
-  <data name="BackupEmail" xml:space="preserve">
-    <value>Sauvegarder par e-mail</value>
-  </data>
-  <data name="BackupMessage" xml:space="preserve">
-    <value>Sauvegarde effectuée le</value>
-  </data>
-  <data name="BrowseItemFile" xml:space="preserve">
-    <value>Articles</value>
-  </data>
-  <data name="BrowseShoppingListFile" xml:space="preserve">
-    <value>Listes de courses</value>
-  </data>
-  <data name="Categories" xml:space="preserve">
-    <value>Catégories</value>
-  </data>
-  <data name="ConnectionFailed" xml:space="preserve">
-    <value>Nous connaissons actuellement des problèmes techniques. Veuillez réessayer ultérieurement.</value>
-  </data>
-  <data name="DeliveryFailed" xml:space="preserve">
-    <value>La sauvegarde n'a pas pu être envoyée à votre adresse e-mail. Vérifiez que votre messagerie n'est pas pleine ou que votre fournisseur ne connait pas de problèmes techniques.</value>
-  </data>
-  <data name="DueShoppingList" xml:space="preserve">
-    <value>Liste de courses à effectuer</value>
-  </data>
-  <data name="Items" xml:space="preserve">
-    <value>Articles</value>
-  </data>
-  <data name="NoFilesToBackup" xml:space="preserve">
-    <value>Sauvegarde interrompue: pas de fichier à sauvegarder.</value>
-  </data>
-  <data name="NoFilesToRestore" xml:space="preserve">
-    <value>Pas de fichier à restaurer.</value>
-  </data>
-  <data name="RestoreBackup" xml:space="preserve">
-    <value>Charger le fichier de sauvegarde</value>
-  </data>
-  <data name="RestoreBackupMessage" xml:space="preserve">
-    <value>Restauration effectuée le</value>
-  </data>
-  <data name="RestoreItemsFailure" xml:space="preserve">
-    <value>XSD invalide pour le fichier des articles</value>
-  </data>
-  <data name="RestoreShoppingListsFailure" xml:space="preserve">
-    <value>XSD invalide pour le fichier des listes de courses</value>
-  </data>
-  <data name="ShoppingLists" xml:space="preserve">
-    <value>Listes de courses</value>
+  <data name="YourCategoryName" xml:space="preserve">
+    <value>Your Category Name</value>
   </data>
 </root>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using ShoppingListApp.Domain.Abstract;
@@ -59,6 +60,8 @@ namespace ShoppingListApp.Web.UI.Controllers
                     shoppinglistToCreate.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0 });
                 }
 
+                ViewBag.existingCategories = new List<string>(shoppinglistToCreate.ShoppingListContent.Select(item => item.ItemToBuy.ItemCategory).Distinct().OrderBy(category => category).ToList());
+
                 return View(shoppinglistToCreate);
             }
 
@@ -75,7 +78,14 @@ namespace ShoppingListApp.Web.UI.Controllers
                 {
                     shoppinglistToModify.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0 });
                 }
+                else 
+                {
+                    //Item Category is only saved centrally in the item repository and not in the shoppinglists to alway remain up-to-date and not create a dependency
+                    shoppinglistToModify.ShoppingListContent.Where(line => line.ItemToBuy.ItemId == item.ItemId).FirstOrDefault().ItemToBuy.ItemCategory = item.ItemCategory;
+                }
             }
+
+            ViewBag.existingCategories = new List<string>(shoppinglistToModify.ShoppingListContent.Select(item => item.ItemToBuy.ItemCategory).Distinct().OrderBy(category => category).ToList());
 
             return View("AddShoppingList", shoppinglistToModify);
         }

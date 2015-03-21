@@ -44,12 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ICategoryRepository.cs" />
     <Compile Include="Abstract\IEmailSettings.cs" />
     <Compile Include="Abstract\IItemsRepository.cs" />
     <Compile Include="Abstract\IBackupProcessor.cs" />
     <Compile Include="Abstract\IRepositoryNameProvider.cs" />
     <Compile Include="Abstract\IShoppingListRepository.cs" />
     <Compile Include="Abstract\IUserInformation.cs" />
+    <Compile Include="Concrete\CategoryUtils.cs" />
+    <Compile Include="Concrete\CategoryXmlRepository.cs" />
+    <Compile Include="Concrete\CategoryXmlRepositoryName.cs" />
     <Compile Include="Concrete\GoogleEmailSettings.cs" />
     <Compile Include="Concrete\ItemXmlRepository.cs" />
     <Compile Include="Concrete\EmailBackupProcessor.cs" />

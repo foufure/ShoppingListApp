@@ -10,6 +10,11 @@ namespace ShoppingListApp.Web.UI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Categories",
+                url: "{controller}/{action}/Category{categoryToModify}",
+                defaults: new { controller = "Home", action = "Index" });
+
+            routes.MapRoute(
                 name: "Items",
                 url: "{controller}/{action}/Item{itemToModifyId}",
                 defaults: new { controller = "Home", action = "Index" });

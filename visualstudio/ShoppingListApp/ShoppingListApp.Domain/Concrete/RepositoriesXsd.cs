@@ -21,9 +21,23 @@ namespace ShoppingListApp.Domain.Concrete
                               <xsd:sequence>
                                <xsd:element name='ItemId' minOccurs='0'/>
                                <xsd:element name='ItemName' minOccurs='0'/>
+                               <xsd:element name='ItemCategory' minOccurs='0'/>
                               </xsd:sequence>
                              </xsd:complexType>
                             </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                   </xsd:element>
+                  </xsd:schema>";
+        }
+
+        public static string Categories()
+        {
+            return @"<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+                   <xsd:element name='Categories'>
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name='Category' minOccurs='0' maxOccurs='unbounded'/>
                         </xsd:sequence>
                     </xsd:complexType>
                    </xsd:element>

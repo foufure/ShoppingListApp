@@ -3,5 +3,6 @@
   <Item>
     <ItemId>1</ItemId>
     <ItemName>Item15</ItemName>
+    <ItemCategory>-</ItemCategory>
   </Item>
 </Items>

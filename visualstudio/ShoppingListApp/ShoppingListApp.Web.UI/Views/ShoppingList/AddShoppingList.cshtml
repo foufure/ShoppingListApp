@@ -18,29 +18,60 @@
                 </div>
 
                 <div class="form-group">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
-                                <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (int i = 0; i < @Model.ShoppingListContent.Count(); i++)
-                            {
-                                <tr>
-                                    @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemId)
-                                    @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemName)
-                                    <td>
-                                        @Html.Label(Model.ShoppingListContent[i].ItemToBuy.ItemName)
-                                    </td>
-                                    <td>
-                                        @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListContent[i].QuantityToBuy, new { @class = "quantity_spinner" })
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    @{ string firstElementToExpand = "true"; }
+                    @{ string elementsToCollapse = ""; }
+                    @{ string firstElementIn = "in";}
+                    @foreach (string category in ViewBag.existingCategories)
+                    {
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="@("heading" + category)">
+                                <h4 class="panel-title text-center">
+                                    <a class="@elementsToCollapse" data-toggle="collapse" data-parent="#accordion" href="@("#collapse" + category)" aria-expanded="@firstElementToExpand" aria-controls="@("collapse" + category)">
+                                        @category
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="@("collapse" + category)" class="@("panel-collapse collapse " + firstElementIn)" role="tabpanel" aria-labelledby="@("heading" + category)">
+                                <div class="panel-body">
+                                    <table class="table" style="border-collapse:collapse;">
+                                        <thead>
+                                            <tr>
+                                                <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
+                                                <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < @Model.ShoppingListContent.Count(); i++)
+                                            {
+                                                if (@Model.ShoppingListContent[i].ItemToBuy.ItemCategory == category)
+                                                {
+                                                    <tr>
+                                                        @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemId)
+                                                        @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemName)
+                                                        @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemCategory)
+                                                        <td>
+                                                            @Html.Label(@Model.ShoppingListContent[i].ItemToBuy.ItemName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListContent[i].QuantityToBuy, new { @class = "quantity_spinner" })
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </tbody> 
+                                    </table>    
+                                </div> 
+                            </div> 
+                        </div>
+                        
+                        firstElementToExpand = "false";
+                        elementsToCollapse = "collapsed";
+                        firstElementIn = "";
+                    }
+                                                     
+                     </div>
                 </div>
 
                 <div class="pull-right">

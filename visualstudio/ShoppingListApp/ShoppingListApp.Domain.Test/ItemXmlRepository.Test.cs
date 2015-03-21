@@ -56,11 +56,11 @@ namespace ShoppingListApp.Domain.Test
             // Arrange
             IEnumerable<Item> expectedResult = new List<Item>()
             {
-                new Item() { ItemId = 1, ItemName = "Item1" },
-                new Item() { ItemId = 2, ItemName = "Item2" },
-                new Item() { ItemId = 3, ItemName = "Item3" },
-                new Item() { ItemId = 4, ItemName = "Item4" },
-                new Item() { ItemId = 5, ItemName = "Item5" }
+                new Item() { ItemId = 1, ItemName = "Item1", ItemCategory = "-" },
+                new Item() { ItemId = 2, ItemName = "Item2", ItemCategory = "Category1" },
+                new Item() { ItemId = 3, ItemName = "Item3", ItemCategory = "-" },
+                new Item() { ItemId = 4, ItemName = "Item4", ItemCategory = "Category325" },
+                new Item() { ItemId = 5, ItemName = "Item5", ItemCategory = "-" }
             };
 
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");

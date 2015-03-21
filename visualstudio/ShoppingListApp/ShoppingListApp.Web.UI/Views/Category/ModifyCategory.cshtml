@@ -1,0 +1,36 @@
+﻿@model ItemsCategoryViewModel
+
+<div class="panel panel-primary">    
+    @using (@Html.BeginForm("ModifyCategory", "Category"))
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(itemsCategory => itemsCategory.Category)
+            <div class="input-group">
+                @Html.TextBox("newCategoryName", @Model.Category, new { @class = "form-control", @autofocus = "autofocus" })
+
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="panel-footer">
+            @for (int i = 0; i < @Model.CategoryLines.Count(); i++)
+            {
+                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[i].itemToCategorize.ItemId)
+                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[i].itemToCategorize.ItemCategory)
+                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[i].itemToCategorize.ItemName)
+                <div>
+                    <span>@Html.CheckBoxFor(itemsCategory => itemsCategory.CategoryLines[i].categorySelection)</span>
+                    <span>@Html.Label(@Model.CategoryLines[i].itemToCategorize.ItemName)</span>
+                </div>
+            }
+        </div>
+    } 
+</div>
+<div>
+    <a href="@Url.Action("Categories", "Category")" class="btn btn-success btn-lg">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+    </a>
+</div>

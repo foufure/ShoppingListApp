@@ -28,21 +28,25 @@
                     <span class="glyphicon glyphicon-plus"></span>
                     @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Items
                 </a>
+                <a href="@Url.Action("Categories", "Category")" class="btn btn-success btn-block">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Categories
+                </a>
+                
+            </div>
+
+            <div class="btn-group btn-group-justified">
                 <a href="@Url.Action("Admin", "Home")" class="btn btn-success btn-block">
                     <span class="glyphicon glyphicon-wrench"></span>
                     @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Admin
                 </a>
+                @if (User.Identity.Name == "Shopping List")
+                {
+                    <a href="@Url.Action("SuperAdmin", "Home")" class="btn btn-success btn-block">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                    </a>
+                }
             </div>
-
-            @if (User.Identity.Name == "Shopping List")
-            {
-            <div>
-                <a href="@Url.Action("SuperAdmin", "Home")" class="btn btn-success btn-block">
-                    <span class="glyphicon glyphicon-warning-sign"></span>
-                </a>
-            </div>
-            }
-
         </div> 
     }
     else

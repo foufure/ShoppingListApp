@@ -106,6 +106,15 @@ namespace ShoppingListApp.I18N.Resources.Views.Home {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        public static string Categories {
+            get {
+                return ResourceManager.GetString("Categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We are experiencing technical problems. Please try later..
         /// </summary>
         public static string ConnectionFailed {

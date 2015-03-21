@@ -42,7 +42,7 @@ namespace ShoppingListApp.Domain.Concrete
             }
 
             uint itemId = itemRepository.OrderByDescending(item => item.ItemId).Select(item => item.ItemId).FirstOrDefault() + 1;
-            Item itemToAdd = new Item() { ItemId = itemId, ItemName = itemName };
+            Item itemToAdd = new Item() { ItemId = itemId, ItemName = itemName, ItemCategory = CategoryUtils.DefaultCategory };
             itemRepository.Add(itemToAdd);
         }
 
@@ -65,6 +65,25 @@ namespace ShoppingListApp.Domain.Concrete
             } 
         }
 
+        public void ModifyCategory(uint itemId, string itemCategory)
+        {
+            Item itemToModify = null;
+
+            if (string.IsNullOrEmpty(itemCategory))
+            {
+                throw new ArgumentOutOfRangeException("Internal Error: the name of the categroy is empty or null. Please enter a valid name", (Exception)null);
+            }
+
+            if ((itemToModify = itemRepository.Where(repositoryItem => repositoryItem.ItemId == itemId).FirstOrDefault()) != null)
+            {
+                itemToModify.ItemCategory = itemCategory;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Internal Error: the item to be modified does not exist. Please enter a valid Item Id", (Exception)null);
+            }
+        }
+
         public void Remove(uint itemId)
         {
             if (!itemRepository.Remove(itemRepository.Where(repositoryItem => repositoryItem.ItemId == itemId).FirstOrDefault()))
@@ -78,7 +97,11 @@ namespace ShoppingListApp.Domain.Concrete
             XElement elements = new XElement("Items");
             foreach (Item item in itemRepository)
             {
-                elements.Add(new XElement("Item", new XElement("ItemId") { Value = item.ItemId.ToString(CultureInfo.InvariantCulture) }, new XElement("ItemName") { Value = item.ItemName }));
+                elements.Add(
+                    new XElement("Item",
+                    new XElement("ItemId") { Value = item.ItemId.ToString(CultureInfo.InvariantCulture) },
+                    new XElement("ItemName") { Value = item.ItemName },
+                    new XElement("ItemCategory") {  Value = item.ItemCategory }));
             }
 
             elements.Save(repositoryNameProvider.RepositoryName);
@@ -91,7 +114,10 @@ namespace ShoppingListApp.Domain.Concrete
             itemRepository = new List<Item>();
             foreach (XElement element in parsedFile.Elements("Items").Elements("Item"))
             {
-                itemRepository.Add(new Item() { ItemId = Convert.ToUInt32(element.Element("ItemId").Value, CultureInfo.InvariantCulture), ItemName = element.Element("ItemName").Value });
+                itemRepository.Add(new Item() { 
+                    ItemId = Convert.ToUInt32(element.Element("ItemId").Value, CultureInfo.InvariantCulture),
+                    ItemName = element.Element("ItemName").Value,
+                    ItemCategory = element.Element("ItemCategory").Value });
             }
         }
 

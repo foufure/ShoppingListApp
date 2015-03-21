@@ -132,6 +132,9 @@
   <data name="BrowseShoppingListFile" xml:space="preserve">
     <value>Shopping Lists</value>
   </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
   <data name="ConnectionFailed" xml:space="preserve">
     <value>We are experiencing technical problems. Please try later.</value>
   </data>

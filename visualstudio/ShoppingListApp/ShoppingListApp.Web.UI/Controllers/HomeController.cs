@@ -15,12 +15,14 @@ namespace ShoppingListApp.Web.UI.Controllers
         private IBackupProcessor backupProcessor;
         private IRepositoryNameProvider itemRepositoryName;
         private IRepositoryNameProvider shoppingListsRepositoryName;
+        private IRepositoryNameProvider categoriesRepositoryName;
 
-        public HomeController(IBackupProcessor backupProcessor, [Named("ItemRepositoryName")] IRepositoryNameProvider itemRepositoryName, [Named("ShoppingListRepositoryName")] IRepositoryNameProvider shoppingListsRepositoryName)
+        public HomeController(IBackupProcessor backupProcessor, [Named("ItemRepositoryName")] IRepositoryNameProvider itemRepositoryName, [Named("ShoppingListRepositoryName")] IRepositoryNameProvider shoppingListsRepositoryName, [Named("CategoryRepositoryName")] IRepositoryNameProvider categoriesRepositoryName)
         {
             this.backupProcessor = backupProcessor;
             this.itemRepositoryName = itemRepositoryName;
             this.shoppingListsRepositoryName = shoppingListsRepositoryName;
+            this.categoriesRepositoryName = categoriesRepositoryName; //TODO: add backup/restore for categories!!!!
         }
 
         public ActionResult Index()

@@ -20,7 +20,8 @@ namespace ShoppingListApp.Web.UI
                     "~/Scripts/StrikeThroughToggler.js",
                     "~/Scripts/bootstrap-filestyle.js",
                     "~/Scripts/jquery.bootstrap-touchspin.js",
-                    "~/Scripts/QuantitySpinner.js"));
+                    "~/Scripts/QuantitySpinner.js",
+                    "~/Scripts/bootstrap.js"));
         }
     }
 }

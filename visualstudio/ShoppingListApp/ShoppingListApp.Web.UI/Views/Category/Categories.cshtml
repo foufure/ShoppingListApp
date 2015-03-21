@@ -1,0 +1,43 @@
+﻿@model IEnumerable<string>
+
+<div class="panel panel-primary">
+    <div class="panel-heading text-uppercase">
+        <h1 class="panel-title text-uppercase">@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Categories</h1>
+    </div>
+
+    <div class="panel-body">
+        <table class="table">
+            <tbody>
+                @foreach (string category in @Model)
+                {
+                    <tr>
+                        <td style="width:70%">
+                            @category
+                        </td>
+                        <td>
+                            <a href="@Url.Action("ModifyCategory", "Category", new { categoryToModify = category })" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </td>
+                        <td>
+                            @using (@Html.BeginForm("RemoveCategory", "Category"))
+                            {
+                                @Html.Hidden("categoryToRemove", category)
+                                <button type="submit" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="panel-footer clearfix">
+        @Html.Partial("AddCategory")
+    </div>
+</div>
+<div>
+    @Html.Partial("BackToMainMenu")
+</div>
