@@ -57,7 +57,7 @@ namespace ShoppingListApp.Web.UI.Controllers
 
                 foreach (Item item in itemRepository.Repository)
                 {
-                    shoppinglistToCreate.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0 });
+                    shoppinglistToCreate.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0, LinePresentationOrder = 0 });
                 }
 
                 ViewBag.existingCategories = new List<string>(shoppinglistToCreate.ShoppingListContent.Select(item => item.ItemToBuy.ItemCategory).Distinct().OrderBy(category => category).ToList());
@@ -76,7 +76,7 @@ namespace ShoppingListApp.Web.UI.Controllers
             {
                 if (!shoppinglistToModify.ShoppingListContent.Any(x => x.ItemToBuy.ItemId == item.ItemId))
                 {
-                    shoppinglistToModify.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0 });
+                    shoppinglistToModify.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0, LinePresentationOrder = 0 });
                 }
                 else 
                 {
@@ -105,6 +105,14 @@ namespace ShoppingListApp.Web.UI.Controllers
                     shoppingListRepository.Add(shoppingListToSave);
                 }
 
+                foreach (ShoppingListLine line in shoppingListToSave.ShoppingListContent)
+                {
+                    if (line.LinePresentationOrder == 0)
+                    {
+                        line.LinePresentationOrder = shoppingListToSave.ShoppingListContent.OrderByDescending(lastLine => lastLine.LinePresentationOrder).FirstOrDefault().LinePresentationOrder + 1;
+                    }
+                }
+
                 shoppingListRepository.Save();
 
                 if (!string.IsNullOrEmpty(newItemName))
@@ -121,6 +129,44 @@ namespace ShoppingListApp.Web.UI.Controllers
             {
                 return View("AddShoppingList", shoppingListToSave);
             }
+        }
+
+        // AJAX call!
+        public void UpdateShoppingListLinesOrder(int  id, int fromPosition, int toPosition, string direction)
+        {
+            string incomingURL = Request.Url.PathAndQuery;
+            uint shoppingListId = Convert.ToUInt32(incomingURL.Split('/').LastOrDefault());
+
+            ShoppingList shoppingListToUpdate = shoppingListRepository.Repository
+                            .Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId)
+                            .FirstOrDefault();
+
+            if (direction == "back")
+            {
+                List<ShoppingListLine> shoppingListLinesToReorder = shoppingListToUpdate.ShoppingListContent
+                            .Where(shoppingListLine => (toPosition <= shoppingListLine.LinePresentationOrder && shoppingListLine.LinePresentationOrder <= fromPosition))
+                            .ToList();
+
+                foreach (ShoppingListLine shoppingListLine in shoppingListLinesToReorder)
+                {
+                    shoppingListLine.LinePresentationOrder++;
+                }
+            }
+            else
+            {
+                List<ShoppingListLine> shoppingListLinesToReorder = shoppingListToUpdate.ShoppingListContent
+                            .Where(shoppingListLine => (fromPosition <= shoppingListLine.LinePresentationOrder && shoppingListLine.LinePresentationOrder <= toPosition))
+                            .ToList();
+
+                foreach (ShoppingListLine shoppingListLine in shoppingListLinesToReorder)
+                {
+                    shoppingListLine.LinePresentationOrder--;
+                }
+            }
+
+            shoppingListToUpdate.ShoppingListContent.Where(line => line.ItemToBuy.ItemId == id).FirstOrDefault().LinePresentationOrder = toPosition;
+
+            shoppingListRepository.Save();
         }
     }
 }

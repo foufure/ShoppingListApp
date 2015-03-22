@@ -8,16 +8,19 @@
       <ItemId>1</ItemId>
       <ItemName>Item1</ItemName>
       <ItemQuantity>1</ItemQuantity>
+      <LinePresentationOrder>1</LinePresentationOrder>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>2</ItemId>
       <ItemName>Item2</ItemName>
       <ItemQuantity>1</ItemQuantity>
+      <LinePresentationOrder>2</LinePresentationOrder>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>3</ItemId>
       <ItemName>Item3</ItemName>
       <ItemQuantity>2</ItemQuantity>
+      <LinePresentationOrder>3</LinePresentationOrder>
     </ShoppingListLine>
   </ShoppingList>
   <ShoppingList>
@@ -28,16 +31,19 @@
       <ItemId>1</ItemId>
       <ItemName>Item1</ItemName>
       <ItemQuantity>1</ItemQuantity>
+      <LinePresentationOrder>1</LinePresentationOrder>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>2</ItemId>
       <ItemName>Item2</ItemName>
       <ItemQuantity>5</ItemQuantity>
+      <LinePresentationOrder>2</LinePresentationOrder>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>5</ItemId>
       <ItemName>Item5</ItemName>
       <ItemQuantity>3</ItemQuantity>
+      <LinePresentationOrder>3</LinePresentationOrder>
     </ShoppingListLine>
   </ShoppingList>
   <ShoppingList>
@@ -48,16 +54,19 @@
       <ItemId>1</ItemId>
       <ItemName>Item1</ItemName>
       <ItemQuantity>1</ItemQuantity>
+      <LinePresentationOrder>1</LinePresentationOrder>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>2</ItemId>
       <ItemName>Item2</ItemName>
       <ItemQuantity>1</ItemQuantity>
+      <LinePresentationOrder>2</LinePresentationOrder>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>3</ItemId>
       <ItemName>Item3</ItemName>
       <ItemQuantity>2</ItemQuantity>
+      <LinePresentationOrder>3</LinePresentationOrder>
     </ShoppingListLine>
   </ShoppingList>
   <ShoppingList>
@@ -68,16 +77,19 @@
       <ItemId>1</ItemId>
       <ItemName>Item4</ItemName>
       <ItemQuantity>1</ItemQuantity>
+      <LinePresentationOrder>1</LinePresentationOrder>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>2</ItemId>
       <ItemName>Item5</ItemName>
       <ItemQuantity>1</ItemQuantity>
+      <LinePresentationOrder>2</LinePresentationOrder>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>3</ItemId>
       <ItemName>Item6</ItemName>
       <ItemQuantity>2</ItemQuantity>
+      <LinePresentationOrder>3</LinePresentationOrder>
     </ShoppingListLine>
   </ShoppingList>
 </ShoppingLists>

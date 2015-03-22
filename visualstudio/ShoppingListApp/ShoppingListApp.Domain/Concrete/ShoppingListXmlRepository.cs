@@ -83,7 +83,8 @@ namespace ShoppingListApp.Domain.Concrete
                                             "ShoppingListLine",
                                             new XElement("ItemId") { Value = line.ItemToBuy.ItemId.ToString(CultureInfo.InvariantCulture) },
                                             new XElement("ItemName") { Value = line.ItemToBuy.ItemName.ToString() },
-                                            new XElement("ItemQuantity") { Value = line.QuantityToBuy.ToString(CultureInfo.InvariantCulture) }));
+                                            new XElement("ItemQuantity") { Value = line.QuantityToBuy.ToString(CultureInfo.InvariantCulture)},
+                                            new XElement("LinePresentationOrder") { Value = line.LinePresentationOrder.ToString(CultureInfo.InvariantCulture) }));
                 }
                 
                 elements.Add(new XElement(
@@ -113,7 +114,11 @@ namespace ShoppingListApp.Domain.Concrete
                     
                 foreach (XElement itemElement in element.Elements("ShoppingListLine"))
                 {
-                    newShoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = Convert.ToUInt32(itemElement.Element("ItemId").Value, CultureInfo.InvariantCulture), ItemName = itemElement.Element("ItemName").Value }, QuantityToBuy = Convert.ToInt32(itemElement.Element("ItemQuantity").Value, CultureInfo.InvariantCulture) });
+                    newShoppingList.ShoppingListContent.Add(new ShoppingListLine() { 
+                        ItemToBuy = new Item() { ItemId = Convert.ToUInt32(itemElement.Element("ItemId").Value, CultureInfo.InvariantCulture), ItemName = itemElement.Element("ItemName").Value }, 
+                        QuantityToBuy = Convert.ToInt32(itemElement.Element("ItemQuantity").Value, CultureInfo.InvariantCulture),
+                        LinePresentationOrder = Convert.ToInt32(itemElement.Element("LinePresentationOrder").Value, CultureInfo.InvariantCulture)
+                    });
                 }
 
                 shoppinglistRepository.Add(newShoppingList);

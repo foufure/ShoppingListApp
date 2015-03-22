@@ -21,7 +21,10 @@ namespace ShoppingListApp.Web.UI
                     "~/Scripts/bootstrap-filestyle.js",
                     "~/Scripts/jquery.bootstrap-touchspin.js",
                     "~/Scripts/QuantitySpinner.js",
-                    "~/Scripts/bootstrap.js"));
+                    "~/Scripts/bootstrap.js",
+                    "~/Scripts/jquery-ui-{version}.js",
+                    "~/Scripts/jquery.dataTables.js",
+                    "~/Scripts/jquery.dataTables.rowReordering.js"));
         }
     }
 }

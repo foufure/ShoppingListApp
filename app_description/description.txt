@@ -13,6 +13,9 @@ http://www.kidspot.com.au/shoppinglist/ShoppingList.asp
 
 Table Row Drag and Drop in ASP.NET MVC (jQuery DataTables and ASP.NET MVC Integration - Part VI)
 http://www.codeproject.com/Articles/331986/Table-Row-Drag-and-Drop-in-ASP-NET-MVC-jQuery-Data
+http://www.datatables.net/
+http://jquery-datatables-row-reordering.googlecode.com/svn/trunk/index.html
+jQuery UI Sortable
 http://stackoverflow.com/questions/21978551/ordering-a-graphical-list-via-mouse-dragging-using-javascript
 
 Bootstrap use:

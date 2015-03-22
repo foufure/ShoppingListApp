@@ -1,5 +1,21 @@
 ﻿@model ShoppingList
 
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $('#shoppinglistdatatoreorder').dataTable({
+            "bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": false,
+            "bAutoWidth": false,
+            "asStripClasses": null
+        });
+
+        $('#shoppinglistdatatoreorder').dataTable().rowReordering({ sURL: "@("/ShoppingList/UpdateShoppingListLinesOrder/" + Model.ShoppingListId)" });
+    });
+</script>
+
 <div class="panel panel-primary">
     <div class="panel-heading text-uppercase">
         <span class="pull-right">@Model.ShoppingListDueDate.ToString("d", ConfiguredCultures.GetCurrentUICulture)</span>
@@ -10,14 +26,18 @@
             <table class="table display" id="shoppinglistdatatoreorder">
                 <thead>
                     <tr>
+                        <th class="hidden debug">Idx</th>
                         <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
                         <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (ShoppingListLine line in @Model.ShoppingListContent)
+                    @foreach (ShoppingListLine line in @Model.ShoppingListContent.OrderBy(line => line.LinePresentationOrder))
                     {
-                        <tr>
+                        <tr id="@line.ItemToBuy.ItemId">
+                            <td class="hidden debug">
+                                @line.LinePresentationOrder
+                            </td>
                             <td class="strikethrough_toggler">
                                 @line.ItemToBuy.ItemName
                             </td>
@@ -30,7 +50,7 @@
             </table>
     </div>
 
-    <div class="panel-footer clearfix">
+    <div class="panel-footer clearfix hidden-print">
         <a href='javascript:window.print()' class="glyphicon glyphicon-print pull-right"></a>
     </div>
 </div>
