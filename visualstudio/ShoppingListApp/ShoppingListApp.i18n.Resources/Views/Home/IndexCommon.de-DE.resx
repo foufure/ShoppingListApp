@@ -138,6 +138,9 @@
   <data name="ConnectionFailed" xml:space="preserve">
     <value>Wir kennen aktuell technische Probleme. Versuchen Sie es bitte später noch einmal.</value>
   </data>
+  <data name="Defaults" xml:space="preserve">
+    <value>Default Parameter zurückspielen</value>
+  </data>
   <data name="DeliveryFailed" xml:space="preserve">
     <value>E-mail Adresse nicht erreichbar. Bitte überprüfen Sie, dass ihren Postfach nicht voll ist oder dass ihren Anbieter keine technische Probleme hat.</value>
   </data>

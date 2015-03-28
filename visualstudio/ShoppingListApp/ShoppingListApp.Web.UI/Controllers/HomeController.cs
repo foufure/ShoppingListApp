@@ -78,6 +78,21 @@ namespace ShoppingListApp.Web.UI.Controllers
         }
 
         [Authorize]
+        public RedirectToRouteResult RestoreDefaults()
+        {
+            string languageSuffix = "";
+            if (ConfiguredCultures.GetCurrentUICulture.TwoLetterISOLanguageName != "en")
+            {
+                languageSuffix = "_" + ConfiguredCultures.GetCurrentUICulture.TwoLetterISOLanguageName;
+            }
+
+            System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\DefaultItemRepository" + languageSuffix + @".xml", itemRepositoryName.RepositoryName, true);
+            System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\DefaultCategoryRepository" + languageSuffix + @".xml", categoriesRepositoryName.RepositoryName, true);
+
+            return RedirectToAction("Index");
+        }
+
+        [Authorize]
         public ActionResult SuperAdmin()
         {
             return View();

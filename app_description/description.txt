@@ -94,3 +94,7 @@ http://www.asp.net/mvc/overview/older-versions/using-the-html5-and-jquery-ui-dat
 http://xdsoft.net/jqplugins/datetimepicker/
 
 Using minified files => bundles
+
+NUnit Debugging:
+http://erraticdev.blogspot.ch/2012/01/running-or-debugging-nunit-tests-from.html
+

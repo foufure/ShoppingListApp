@@ -1,0 +1,8 @@
+*.Cache
+*.dll
+*.pdb
+*.htm
+/visualstudio/ShoppingListApp/*/obj/
+/visualstudio/ShoppingListApp/*/bin/
+*.suo
+*.user

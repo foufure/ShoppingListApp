@@ -124,6 +124,15 @@ namespace ShoppingListApp.I18N.Resources.Views.Home {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restore Defaults.
+        /// </summary>
+        public static string Defaults {
+            get {
+                return ResourceManager.GetString("Defaults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The backup could not be delivered to your e-mail address. Please check that your inbox is not full and that your provider does not experience problems..
         /// </summary>
         public static string DeliveryFailed {

@@ -1,0 +1,1163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item>
+    <ItemId>1</ItemId>
+    <ItemName>Asperges</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>2</ItemId>
+    <ItemName>Broccoli</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>3</ItemId>
+    <ItemName>Carrotes</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>4</ItemId>
+    <ItemName>Chou-fleur</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>5</ItemId>
+    <ItemName>Céleri</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>6</ItemId>
+    <ItemName>Maïs</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>7</ItemId>
+    <ItemName>Concombres</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>8</ItemId>
+    <ItemName>Laitue</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>9</ItemId>
+    <ItemName>Champignons</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>10</ItemId>
+    <ItemName>Oignons</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>11</ItemId>
+    <ItemName>Poivrons</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>12</ItemId>
+    <ItemName>Patates</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>13</ItemId>
+    <ItemName>Épinards</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>14</ItemId>
+    <ItemName>Citrouille</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>15</ItemId>
+    <ItemName>Courgettes</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>16</ItemId>
+    <ItemName>Tomates</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>17</ItemId>
+    <ItemName>Pommes</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>18</ItemId>
+    <ItemName>Avocats</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>19</ItemId>
+    <ItemName>Bananes</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>20</ItemId>
+    <ItemName>Fraises</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>21</ItemId>
+    <ItemName>Cerises</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>22</ItemId>
+    <ItemName>Pamplemousse</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>23</ItemId>
+    <ItemName>Raisins</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>24</ItemId>
+    <ItemName>Kiwis</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>25</ItemId>
+    <ItemName>Citrons</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>26</ItemId>
+    <ItemName>Melon</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>27</ItemId>
+    <ItemName>Nectarines</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>28</ItemId>
+    <ItemName>Oranges</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>29</ItemId>
+    <ItemName>Pêches</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>30</ItemId>
+    <ItemName>Poires</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>31</ItemId>
+    <ItemName>Prunes</ItemName>
+    <ItemCategory>Fruits frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>32</ItemId>
+    <ItemName>Sticks de poisson</ItemName>
+    <ItemCategory>Congelés</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>33</ItemId>
+    <ItemName>Frites</ItemName>
+    <ItemCategory>Congelés</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>34</ItemId>
+    <ItemName>Crème glacée</ItemName>
+    <ItemCategory>Congelés</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>35</ItemId>
+    <ItemName>Concentré de fruit</ItemName>
+    <ItemCategory>Congelés</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>36</ItemId>
+    <ItemName>Pizza</ItemName>
+    <ItemCategory>Congelés</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>37</ItemId>
+    <ItemName>Pâte à pizza</ItemName>
+    <ItemCategory>Congelés</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>38</ItemId>
+    <ItemName>Eskimos</ItemName>
+    <ItemCategory>Congelés</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>39</ItemId>
+    <ItemName>Légumes</ItemName>
+    <ItemCategory>Congelés</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>40</ItemId>
+    <ItemName>Sauce Barbecue</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>41</ItemId>
+    <ItemName>Fond de veau</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>42</ItemId>
+    <ItemName>Miel</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>43</ItemId>
+    <ItemName>Sauce épicé</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>44</ItemId>
+    <ItemName>Jambon</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>45</ItemId>
+    <ItemName>Ketchup</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>46</ItemId>
+    <ItemName>Moutarde</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>47</ItemId>
+    <ItemName>Mayonnaise</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>48</ItemId>
+    <ItemName>Sauce Tomate</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>49</ItemId>
+    <ItemName>Épices</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>50</ItemId>
+    <ItemName>Sauce Salade</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>51</ItemId>
+    <ItemName>Salsa</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>52</ItemId>
+    <ItemName>Sauce Soja</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>53</ItemId>
+    <ItemName>Sauce Steak</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>54</ItemId>
+    <ItemName>Sirop</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>55</ItemId>
+    <ItemName>Sauce Wocester</ItemName>
+    <ItemCategory>Condiments</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>56</ItemId>
+    <ItemName>Cubes de bouillon</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>57</ItemId>
+    <ItemName>Céréales</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>58</ItemId>
+    <ItemName>Café</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>59</ItemId>
+    <ItemName>Oeufs</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>60</ItemId>
+    <ItemName>Huile d'Olive</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>61</ItemId>
+    <ItemName>Pâtes</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>62</ItemId>
+    <ItemName>Beurre de cacahuètes</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>63</ItemId>
+    <ItemName>Pickles</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>64</ItemId>
+    <ItemName>Riz</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>65</ItemId>
+    <ItemName>Thé</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>66</ItemId>
+    <ItemName>Huile végétale</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>67</ItemId>
+    <ItemName>Vinaigre</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>68</ItemId>
+    <ItemName>Sauce Pomme</ItemName>
+    <ItemCategory>Conserves</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>69</ItemId>
+    <ItemName>Haricots à la sauce</ItemName>
+    <ItemCategory>Conserves</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>70</ItemId>
+    <ItemName>Bouillon</ItemName>
+    <ItemCategory>Conserves</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>71</ItemId>
+    <ItemName>Fruits</ItemName>
+    <ItemCategory>Conserves</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>72</ItemId>
+    <ItemName>Olives</ItemName>
+    <ItemCategory>Conserves</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>73</ItemId>
+    <ItemName>Viandes cuites</ItemName>
+    <ItemCategory>Conserves</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>74</ItemId>
+    <ItemName>Poulet</ItemName>
+    <ItemCategory>Conserves</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>75</ItemId>
+    <ItemName>Thon</ItemName>
+    <ItemCategory>Conserves</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>76</ItemId>
+    <ItemName>Tomates en boîtes</ItemName>
+    <ItemCategory>Conserves</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>77</ItemId>
+    <ItemName>Basilic</ItemName>
+    <ItemCategory>épices et herbes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>78</ItemId>
+    <ItemName>Poivre noir</ItemName>
+    <ItemCategory>épices et herbes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>79</ItemId>
+    <ItemName>Coriandre</ItemName>
+    <ItemCategory>épices et herbes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>80</ItemId>
+    <ItemName>Cannelle</ItemName>
+    <ItemCategory>épices et herbes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>81</ItemId>
+    <ItemName>Ail</ItemName>
+    <ItemCategory>épices et herbes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>82</ItemId>
+    <ItemName>Gingembre</ItemName>
+    <ItemCategory>épices et herbes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>83</ItemId>
+    <ItemName>Menthe</ItemName>
+    <ItemCategory>épices et herbes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>84</ItemId>
+    <ItemName>Origan</ItemName>
+    <ItemCategory>épices et herbes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>85</ItemId>
+    <ItemName>Paprika</ItemName>
+    <ItemCategory>épices et herbes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>86</ItemId>
+    <ItemName>Persil</ItemName>
+    <ItemCategory>épices et herbes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>87</ItemId>
+    <ItemName>Poivre rouge</ItemName>
+    <ItemCategory>épices et herbes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>88</ItemId>
+    <ItemName>Sel</ItemName>
+    <ItemCategory>épices et herbes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>89</ItemId>
+    <ItemName>Extrait de Vanille</ItemName>
+    <ItemCategory>épices et herbes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>90</ItemId>
+    <ItemName>Beurre ou Margarine</ItemName>
+    <ItemCategory>Produits laitiers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>91</ItemId>
+    <ItemName>Cottage cheese</ItemName>
+    <ItemCategory>Produits laitiers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>92</ItemId>
+    <ItemName>Crème liquide</ItemName>
+    <ItemCategory>Produits laitiers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>93</ItemId>
+    <ItemName>Laitue</ItemName>
+    <ItemCategory>Produits laitiers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>94</ItemId>
+    <ItemName>Crème</ItemName>
+    <ItemCategory>Produits laitiers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>95</ItemId>
+    <ItemName>Crème fouettée</ItemName>
+    <ItemCategory>Produits laitiers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>96</ItemId>
+    <ItemName>Yogurt</ItemName>
+    <ItemCategory>Produits laitiers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>97</ItemId>
+    <ItemName>Bleu</ItemName>
+    <ItemCategory>Fromages</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>98</ItemId>
+    <ItemName>Cheddar</ItemName>
+    <ItemCategory>Fromages</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>99</ItemId>
+    <ItemName>Cottage cheese</ItemName>
+    <ItemCategory>Fromages</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>100</ItemId>
+    <ItemName>Cream cheese</ItemName>
+    <ItemCategory>Fromages</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>101</ItemId>
+    <ItemName>Feta</ItemName>
+    <ItemCategory>Fromages</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>102</ItemId>
+    <ItemName>Fromage de chèvre</ItemName>
+    <ItemCategory>Fromages</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>103</ItemId>
+    <ItemName>Mozzarella</ItemName>
+    <ItemCategory>Fromages</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>104</ItemId>
+    <ItemName>Parmesan</ItemName>
+    <ItemCategory>Fromages</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>105</ItemId>
+    <ItemName>Provolone</ItemName>
+    <ItemCategory>Fromages</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>106</ItemId>
+    <ItemName>Ricotta</ItemName>
+    <ItemCategory>Fromages</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>107</ItemId>
+    <ItemName>Fromage à sandwich</ItemName>
+    <ItemCategory>Fromages</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>108</ItemId>
+    <ItemName>Fromage suisse</ItemName>
+    <ItemCategory>Fromages</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>109</ItemId>
+    <ItemName>Bacon</ItemName>
+    <ItemCategory>Viandes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>110</ItemId>
+    <ItemName>Boeuf</ItemName>
+    <ItemCategory>Viandes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>111</ItemId>
+    <ItemName>Poulet</ItemName>
+    <ItemCategory>Viandes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>112</ItemId>
+    <ItemName>Boeuf haché</ItemName>
+    <ItemCategory>Viandes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>113</ItemId>
+    <ItemName>Jambon</ItemName>
+    <ItemCategory>Viandes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>114</ItemId>
+    <ItemName>Hot dogs</ItemName>
+    <ItemCategory>Viandes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>115</ItemId>
+    <ItemName>Viande pour lunch</ItemName>
+    <ItemCategory>Viandes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>116</ItemId>
+    <ItemName>Dinde</ItemName>
+    <ItemCategory>Viandes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>117</ItemId>
+    <ItemName>Saucisse</ItemName>
+    <ItemCategory>Viandes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>118</ItemId>
+    <ItemName>Porc</ItemName>
+    <ItemCategory>Viandes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>119</ItemId>
+    <ItemName>Pangasius</ItemName>
+    <ItemCategory>Poisson et fruits de mer</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>120</ItemId>
+    <ItemName>Crabe</ItemName>
+    <ItemCategory>Poisson et fruits de mer</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>121</ItemId>
+    <ItemName>Homard</ItemName>
+    <ItemCategory>Poisson et fruits de mer</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>122</ItemId>
+    <ItemName>Moules</ItemName>
+    <ItemCategory>Poisson et fruits de mer</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>123</ItemId>
+    <ItemName>Huîtres</ItemName>
+    <ItemCategory>Poisson et fruits de mer</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>124</ItemId>
+    <ItemName>Saumon</ItemName>
+    <ItemCategory>Poisson et fruits de mer</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>125</ItemId>
+    <ItemName>Crevettes</ItemName>
+    <ItemCategory>Poisson et fruits de mer</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>126</ItemId>
+    <ItemName>Tilapia</ItemName>
+    <ItemCategory>Poisson et fruits de mer</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>127</ItemId>
+    <ItemName>Thon</ItemName>
+    <ItemCategory>Poisson et fruits de mer</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>128</ItemId>
+    <ItemName>Bière</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>129</ItemId>
+    <ItemName>Club soda</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>130</ItemId>
+    <ItemName>Champagne</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>131</ItemId>
+    <ItemName>Gin</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>132</ItemId>
+    <ItemName>Jus de Fruit</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>133</ItemId>
+    <ItemName>Mixers</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>134</ItemId>
+    <ItemName>Vinaigre</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>135</ItemId>
+    <ItemName>Rhum</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>136</ItemId>
+    <ItemName>Saké</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>137</ItemId>
+    <ItemName>Soda pop</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>138</ItemId>
+    <ItemName>Boissons de sport</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>139</ItemId>
+    <ItemName>Whisky</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>140</ItemId>
+    <ItemName>Vodka</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>141</ItemId>
+    <ItemName>Multivitamine</ItemName>
+    <ItemCategory>Boissons</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>142</ItemId>
+    <ItemName>Croissants</ItemName>
+    <ItemCategory>Viennoiseries et pâtisseries</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>143</ItemId>
+    <ItemName>Gâteau</ItemName>
+    <ItemCategory>Viennoiseries et pâtisseries</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>144</ItemId>
+    <ItemName>Cookies</ItemName>
+    <ItemCategory>Viennoiseries et pâtisseries</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>145</ItemId>
+    <ItemName>Donuts</ItemName>
+    <ItemCategory>Viennoiseries et pâtisseries</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>146</ItemId>
+    <ItemName>Pain frais</ItemName>
+    <ItemCategory>Viennoiseries et pâtisseries</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>147</ItemId>
+    <ItemName>Pita</ItemName>
+    <ItemCategory>Viennoiseries et pâtisseries</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>148</ItemId>
+    <ItemName>Pain prédécoupé</ItemName>
+    <ItemCategory>Viennoiseries et pâtisseries</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>149</ItemId>
+    <ItemName>Poudre à cuire</ItemName>
+    <ItemCategory>Boulangerie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>150</ItemId>
+    <ItemName>Miettes de pain</ItemName>
+    <ItemCategory>Boulangerie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>151</ItemId>
+    <ItemName>Mélange pour gâteaux</ItemName>
+    <ItemCategory>Boulangerie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>152</ItemId>
+    <ItemName>Décoration pour gâteaux</ItemName>
+    <ItemCategory>Boulangerie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>153</ItemId>
+    <ItemName>Chips chocolat</ItemName>
+    <ItemCategory>Boulangerie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>154</ItemId>
+    <ItemName>Farine</ItemName>
+    <ItemCategory>Boulangerie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>155</ItemId>
+    <ItemName>Graisse</ItemName>
+    <ItemCategory>Boulangerie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>156</ItemId>
+    <ItemName>Sucre</ItemName>
+    <ItemCategory>Boulangerie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>157</ItemId>
+    <ItemName>Substitut de sucre</ItemName>
+    <ItemCategory>Boulangerie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>158</ItemId>
+    <ItemName>Poudre agrave lever</ItemName>
+    <ItemCategory>Boulangerie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>159</ItemId>
+    <ItemName>Sucreries</ItemName>
+    <ItemCategory>Encas</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>160</ItemId>
+    <ItemName>Cookies</ItemName>
+    <ItemCategory>Encas</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>161</ItemId>
+    <ItemName>Crackers</ItemName>
+    <ItemCategory>Encas</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>162</ItemId>
+    <ItemName>Fruits secs</ItemName>
+    <ItemCategory>Encas</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>163</ItemId>
+    <ItemName>Barres de fruits</ItemName>
+    <ItemCategory>Encas</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>164</ItemId>
+    <ItemName>Noix</ItemName>
+    <ItemCategory>Encas</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>165</ItemId>
+    <ItemName>Flocons d'avoines</ItemName>
+    <ItemCategory>Encas</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>166</ItemId>
+    <ItemName>Popcorn</ItemName>
+    <ItemCategory>Encas</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>167</ItemId>
+    <ItemName>Chips chocolat</ItemName>
+    <ItemCategory>Encas</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>168</ItemId>
+    <ItemName>Bretzels</ItemName>
+    <ItemCategory>Encas</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>169</ItemId>
+    <ItemName>Petits pots</ItemName>
+    <ItemCategory>Bébé</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>170</ItemId>
+    <ItemName>Couches</ItemName>
+    <ItemCategory>Bébé</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>171</ItemId>
+    <ItemName>Lait en poudre</ItemName>
+    <ItemCategory>Bébé</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>172</ItemId>
+    <ItemName>Lotion</ItemName>
+    <ItemCategory>Bébé</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>173</ItemId>
+    <ItemName>Gel agrave laver</ItemName>
+    <ItemCategory>Bébé</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>174</ItemId>
+    <ItemName>Lingettes</ItemName>
+    <ItemCategory>Bébé</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>175</ItemId>
+    <ItemName>Aliment pour chat</ItemName>
+    <ItemCategory>Animaux</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>176</ItemId>
+    <ItemName>Litière</ItemName>
+    <ItemCategory>Animaux</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>177</ItemId>
+    <ItemName>Aliment pour chien</ItemName>
+    <ItemCategory>Animaux</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>178</ItemId>
+    <ItemName>Traitement pour poux</ItemName>
+    <ItemCategory>Animaux</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>179</ItemId>
+    <ItemName>Shampoing</ItemName>
+    <ItemCategory>Animaux</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>180</ItemId>
+    <ItemName>Déodorant</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>181</ItemId>
+    <ItemName>Savon</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>182</ItemId>
+    <ItemName>Préservatifs</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>183</ItemId>
+    <ItemName>Cosmétiques</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>184</ItemId>
+    <ItemName>Coton</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>185</ItemId>
+    <ItemName>Nettoyant visage</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>186</ItemId>
+    <ItemName>Crème visage</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>187</ItemId>
+    <ItemName>Hygiène féminine</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>188</ItemId>
+    <ItemName>Fil dentaire</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>189</ItemId>
+    <ItemName>Laque ou gel</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>190</ItemId>
+    <ItemName>Baume à lèvre</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>191</ItemId>
+    <ItemName>Moisturizing lotion</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>192</ItemId>
+    <ItemName>Eau dentifrice</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>193</ItemId>
+    <ItemName>Rasoir et Gel agrave Raser</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>194</ItemId>
+    <ItemName>Shampoing</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>195</ItemId>
+    <ItemName>Crème solaire</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>196</ItemId>
+    <ItemName>Papier toilette</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>197</ItemId>
+    <ItemName>Dentifrice</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>198</ItemId>
+    <ItemName>Vitamines</ItemName>
+    <ItemCategory>Hygiène</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>199</ItemId>
+    <ItemName>Anti-allergie</ItemName>
+    <ItemCategory>Pharmacie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>200</ItemId>
+    <ItemName>Antibiotiques</ItemName>
+    <ItemCategory>Pharmacie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>201</ItemId>
+    <ItemName>Antidiarheiques</ItemName>
+    <ItemCategory>Pharmacie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>202</ItemId>
+    <ItemName>Aspirine</ItemName>
+    <ItemCategory>Pharmacie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>203</ItemId>
+    <ItemName>Anti acid</ItemName>
+    <ItemCategory>Pharmacie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>204</ItemId>
+    <ItemName>Sparadraps</ItemName>
+    <ItemCategory>Pharmacie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>205</ItemId>
+    <ItemName>Prétuval C</ItemName>
+    <ItemCategory>Pharmacie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>206</ItemId>
+    <ItemName>Anti inflammatoires</ItemName>
+    <ItemCategory>Pharmacie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>207</ItemId>
+    <ItemName>Prescription</ItemName>
+    <ItemCategory>Pharmacie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>208</ItemId>
+    <ItemName>Aluminium</ItemName>
+    <ItemCategory>Cuisine</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>209</ItemId>
+    <ItemName>Papier essuie-tout</ItemName>
+    <ItemCategory>Cuisine</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>212</ItemId>
+    <ItemName>Film plastique</ItemName>
+    <ItemCategory>Cuisine</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>213</ItemId>
+    <ItemName>Sachets plastiques congélation</ItemName>
+    <ItemCategory>Cuisine</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>214</ItemId>
+    <ItemName>Papier cuisson</ItemName>
+    <ItemCategory>Cuisine</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>215</ItemId>
+    <ItemName>Désodorisant</ItemName>
+    <ItemCategory>Produits nettoyants</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>216</ItemId>
+    <ItemName>Nettoyant salle de bain</ItemName>
+    <ItemCategory>Produits nettoyants</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>217</ItemId>
+    <ItemName>Détergent</ItemName>
+    <ItemCategory>Produits nettoyants</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>218</ItemId>
+    <ItemName>Tablettes lave-vaiselle</ItemName>
+    <ItemCategory>Produits nettoyants</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>219</ItemId>
+    <ItemName>Sacs poubelle</ItemName>
+    <ItemCategory>Produits nettoyants</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>220</ItemId>
+    <ItemName>Nettoyant verres</ItemName>
+    <ItemCategory>Produits nettoyants</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>222</ItemId>
+    <ItemName>Éponges et grattoirs</ItemName>
+    <ItemCategory>Produits nettoyants</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>223</ItemId>
+    <ItemName>CDs et DVDS</ItemName>
+    <ItemCategory>Fournitures de bureau</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>224</ItemId>
+    <ItemName>Enveloppes et blocs-notes</ItemName>
+    <ItemCategory>Fournitures de bureau</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>225</ItemId>
+    <ItemName>Colle</ItemName>
+    <ItemCategory>Fournitures de bureau</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>226</ItemId>
+    <ItemName>Papier imprimante</ItemName>
+    <ItemCategory>Fournitures de bureau</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>227</ItemId>
+    <ItemName>Stylos</ItemName>
+    <ItemCategory>Fournitures de bureau</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>228</ItemId>
+    <ItemName>Timbres</ItemName>
+    <ItemCategory>Fournitures de bureau</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>229</ItemId>
+    <ItemName>Piles</ItemName>
+    <ItemCategory>Autres</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>230</ItemId>
+    <ItemName>Gaz et charbon</ItemName>
+    <ItemCategory>Autres</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>231</ItemId>
+    <ItemName>Fleurs</ItemName>
+    <ItemCategory>Autres</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>232</ItemId>
+    <ItemName>Répulsif insectes</ItemName>
+    <ItemCategory>Autres</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>233</ItemId>
+    <ItemName>Ampoules</ItemName>
+    <ItemCategory>Autres</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>234</ItemId>
+    <ItemName>Journal</ItemName>
+    <ItemCategory>Autres</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>235</ItemId>
+    <ItemName>Magazine</ItemName>
+    <ItemCategory>Autres</ItemCategory>
+  </Item>
+</Items>
