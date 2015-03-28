@@ -24,15 +24,17 @@
                     @{ string firstElementIn = "in";}
                     @foreach (string category in ViewBag.existingCategories)
                     {
+                        string categoryFixedAsValidParameterName = category.Replace(" ", "");
+                        
                         <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="@("heading" + category)">
+                            <div class="panel-heading" role="tab" id="@("heading" + categoryFixedAsValidParameterName)">
                                 <h4 class="panel-title text-center">
-                                    <a class="@elementsToCollapse" data-toggle="collapse" data-parent="#accordion" href="@("#collapse" + category)" aria-expanded="@firstElementToExpand" aria-controls="@("collapse" + category)">
+                                    <a class="@elementsToCollapse" data-toggle="collapse" data-parent="#accordion" href="@("#collapse" + categoryFixedAsValidParameterName)" aria-expanded="@firstElementToExpand" aria-controls="@("collapse" + categoryFixedAsValidParameterName)">
                                         @category
                                     </a>
                                 </h4>
                             </div>
-                            <div id="@("collapse" + category)" class="@("panel-collapse collapse " + firstElementIn)" role="tabpanel" aria-labelledby="@("heading" + category)">
+                            <div id="@("collapse" + categoryFixedAsValidParameterName)" class="@("panel-collapse collapse " + firstElementIn)" role="tabpanel" aria-labelledby="@("heading" + categoryFixedAsValidParameterName)">
                                 <div class="panel-body">
                                     <table class="table" style="border-collapse:collapse;">
                                         <thead>

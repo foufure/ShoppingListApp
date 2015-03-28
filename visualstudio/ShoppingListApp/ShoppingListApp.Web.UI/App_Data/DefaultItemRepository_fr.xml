@@ -7,7 +7,7 @@
   </Item>
   <Item>
     <ItemId>2</ItemId>
-    <ItemName>Broccoli</ItemName>
+    <ItemName>Brocoli</ItemName>
     <ItemCategory>Légumes frais</ItemCategory>
   </Item>
   <Item>
@@ -212,7 +212,7 @@
   </Item>
   <Item>
     <ItemId>43</ItemId>
-    <ItemName>Sauce épicé</ItemName>
+    <ItemName>Sauce épicée</ItemName>
     <ItemCategory>Condiments</ItemCategory>
   </Item>
   <Item>
@@ -462,7 +462,7 @@
   </Item>
   <Item>
     <ItemId>93</ItemId>
-    <ItemName>Laitue</ItemName>
+    <ItemName>Lait</ItemName>
     <ItemCategory>Produits laitiers</ItemCategory>
   </Item>
   <Item>
@@ -1159,5 +1159,85 @@
     <ItemId>235</ItemId>
     <ItemName>Magazine</ItemName>
     <ItemCategory>Autres</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>236</ItemId>
+    <ItemName>Carrelet</ItemName>
+    <ItemCategory>Poisson et fruits de mer</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>237</ItemId>
+    <ItemName>Flétan</ItemName>
+    <ItemCategory>Poisson et fruits de mer</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>238</ItemId>
+    <ItemName>Limande</ItemName>
+    <ItemCategory>Poisson et fruits de mer</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>239</ItemId>
+    <ItemName>Truite</ItemName>
+    <ItemCategory>Poisson et fruits de mer</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>240</ItemId>
+    <ItemName>Pâté en croute</ItemName>
+    <ItemCategory>Viandes</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>241</ItemId>
+    <ItemName>Pâtes aux épinards</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>242</ItemId>
+    <ItemName>Spätzli</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>243</ItemId>
+    <ItemName>Gnocchis</ItemName>
+    <ItemCategory>Divers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>244</ItemId>
+    <ItemName>Flans</ItemName>
+    <ItemCategory>Produits laitiers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>245</ItemId>
+    <ItemName>Mousse au chocolat</ItemName>
+    <ItemCategory>Produits laitiers</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>246</ItemId>
+    <ItemName>Babybel</ItemName>
+    <ItemCategory>Fromages</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>247</ItemId>
+    <ItemName>Tessiner</ItemName>
+    <ItemCategory>Boulangerie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>248</ItemId>
+    <ItemName>Couronne</ItemName>
+    <ItemCategory>Boulangerie</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>249</ItemId>
+    <ItemName>Fenouil</ItemName>
+    <ItemCategory>Légumes frais</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>250</ItemId>
+    <ItemName>Petits pois</ItemName>
+    <ItemCategory>Conserves</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>251</ItemId>
+    <ItemName>Lentilles</ItemName>
+    <ItemCategory>Conserves</ItemCategory>
   </Item>
 </Items>
