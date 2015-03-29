@@ -162,6 +162,9 @@
   <data name="RestoreBackupMessage" xml:space="preserve">
     <value>Backup zurückgespielt am</value>
   </data>
+  <data name="RestoreCategoriesFailure" xml:space="preserve">
+    <value>XSD ungültig für die Kategorien</value>
+  </data>
   <data name="RestoreItemsFailure" xml:space="preserve">
     <value>XSD ungültig für die Artikeln</value>
   </data>

@@ -196,6 +196,15 @@ namespace ShoppingListApp.I18N.Resources.Views.Home {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Categories XSD.
+        /// </summary>
+        public static string RestoreCategoriesFailure {
+            get {
+                return ResourceManager.GetString("RestoreCategoriesFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Items XSD.
         /// </summary>
         public static string RestoreItemsFailure {

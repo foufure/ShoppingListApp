@@ -162,6 +162,9 @@
   <data name="RestoreBackupMessage" xml:space="preserve">
     <value>Restauration effectuée le</value>
   </data>
+  <data name="RestoreCategoriesFailure" xml:space="preserve">
+    <value>XSD invalide pour le fichier des catégories</value>
+  </data>
   <data name="RestoreItemsFailure" xml:space="preserve">
     <value>XSD invalide pour le fichier des articles</value>
   </data>

@@ -20,14 +20,16 @@
                 <span class="glyphicon glyphicon-open"></span>
                 @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackup
             </button>
-            <input type="file" class="filestyle" name="itemsToRestoreFile" data-buttonbefore="true" data-iconName="glyphicon-list" data-buttontext="" />
+            <input type="file" class="filestyle" name="itemsToRestoreFile" data-buttonbefore="true" data-iconName="glyphicon-list-alt" data-buttontext="" />
+            <input type="file" class="filestyle" name="categoriesToRestoreFile" data-buttonbefore="true" data-iconname="glyphicon-briefcase" data-buttontext="" />
             <input type="file" class="filestyle" name="shoppingListsToRestoreFile" data-buttonbefore="true" data-iconname="glyphicon-shopping-cart" data-buttontext="" />
         }
     </div>
     <div class="panel-footer">
-        @if (TempData["restoreitems"] != null && TempData["restoreshoppinglists"] != null)
+        @if (TempData["restoreitems"] != null && TempData["restorecategories"] != null && TempData["restoreshoppinglists"] != null)
         {
             <div class="alert-success">@TempData["restoreitems"]</div>
+            <div class="alert-success">@TempData["restorecategories"]</div>
             <div class="alert-success">@TempData["restoreshoppinglists"]</div>
         }
     </div>

@@ -162,6 +162,9 @@
   <data name="RestoreBackupMessage" xml:space="preserve">
     <value>Backup restored on</value>
   </data>
+  <data name="RestoreCategoriesFailure" xml:space="preserve">
+    <value>Invalid Categories XSD</value>
+  </data>
   <data name="RestoreItemsFailure" xml:space="preserve">
     <value>Invalid Items XSD</value>
   </data>

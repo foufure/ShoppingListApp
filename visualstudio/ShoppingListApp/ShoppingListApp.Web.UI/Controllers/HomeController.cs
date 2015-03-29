@@ -22,7 +22,7 @@ namespace ShoppingListApp.Web.UI.Controllers
             this.backupProcessor = backupProcessor;
             this.itemRepositoryName = itemRepositoryName;
             this.shoppingListsRepositoryName = shoppingListsRepositoryName;
-            this.categoriesRepositoryName = categoriesRepositoryName; //TODO: add backup/restore for categories!!!!
+            this.categoriesRepositoryName = categoriesRepositoryName;
         }
 
         public ActionResult Index()
@@ -51,6 +51,7 @@ namespace ShoppingListApp.Web.UI.Controllers
             {
                 backupProcessor.ProcessBackup(itemRepositoryName.RepositoryName);
                 backupProcessor.ProcessBackup(shoppingListsRepositoryName.RepositoryName);
+                backupProcessor.ProcessBackup(categoriesRepositoryName.RepositoryName);
             }
             catch (System.ArgumentNullException)
             {
@@ -69,10 +70,11 @@ namespace ShoppingListApp.Web.UI.Controllers
         }
 
         [Authorize]
-        public RedirectToRouteResult RestoreBackup(HttpPostedFileBase itemsToRestoreFile, HttpPostedFileBase shoppingListsToRestoreFile)
+        public RedirectToRouteResult RestoreBackup(HttpPostedFileBase itemsToRestoreFile, HttpPostedFileBase shoppingListsToRestoreFile, HttpPostedFileBase categoriesToRestoreFile)
         {
-            Restore(itemsToRestoreFile, "restoreitems", itemRepositoryName.RepositoryName, ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreItemsFailure);
-            Restore(shoppingListsToRestoreFile, "restoreshoppinglists", shoppingListsRepositoryName.RepositoryName, ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreShoppingListsFailure);
+            Restore(itemsToRestoreFile, "restoreitems", itemRepositoryName.RepositoryName, ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreItemsFailure, RepositoriesXsd.Items());
+            Restore(shoppingListsToRestoreFile, "restoreshoppinglists", shoppingListsRepositoryName.RepositoryName, ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreShoppingListsFailure, RepositoriesXsd.ShoppingLists());
+            Restore(categoriesToRestoreFile, "restorecategories", categoriesRepositoryName.RepositoryName, ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreCategoriesFailure, RepositoriesXsd.Categories());
 
             return RedirectToAction("Admin");
         }
@@ -168,14 +170,14 @@ namespace ShoppingListApp.Web.UI.Controllers
             return RedirectToAction("SuperAdmin");
         }
 
-        private void Restore(HttpPostedFileBase fileToRestore, string typeToRestore, string repositoryName, string failureMessage)
+        private void Restore(HttpPostedFileBase fileToRestore, string typeToRestore, string repositoryName, string failureMessage, string repositoryType)
         {
             TempData[typeToRestore] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.NoFilesToRestore;
 
             if (fileToRestore != null && fileToRestore.ContentLength > 0)
             {
                 fileToRestore.SaveAs(repositoryName);
-                if (XmlRepositoryValidationExtensions.XmlRepositoryValidation(RepositoriesXsd.Items(), repositoryName))
+                if (XmlRepositoryValidationExtensions.XmlRepositoryValidation(repositoryType, repositoryName))
                 {
                     TempData[typeToRestore] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("u", ConfiguredCultures.GetCurrentUICulture);
                 }
