@@ -32,7 +32,7 @@ namespace ShoppingListApp.JobsScheduler
             // http://www.quartz-scheduler.org/documentation/quartz-1.x/tutorials/crontrigger
             var cron = TriggerBuilder.Create()
                             //// .WithCronSchedule("0 * * ? * *") // Every minute
-                            .WithCronSchedule("* * 0 ? * *") // Every day
+                            .WithCronSchedule("0 5 8,10,12,18,20 * * ?") // Every day at 8:05, 10:05 ...
                             //// .WithCronSchedule("0 0 23 ? * *") // Every day at 23:00
                             .StartAt(DateBuilder.FutureDate(1, IntervalUnit.Second)) // Next scheduled backup is configured ASAP after the service is up
                             .Build();
