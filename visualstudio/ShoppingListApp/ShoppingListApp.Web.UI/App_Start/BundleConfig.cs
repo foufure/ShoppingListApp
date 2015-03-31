@@ -23,6 +23,7 @@ namespace ShoppingListApp.Web.UI
                     "~/Scripts/QuantitySpinner.js",
                     "~/Scripts/bootstrap.js",
                     "~/Scripts/jquery-ui-{version}.js",
+                    "~/Scripts/jquery.ui.touch-punch.js",
                     "~/Scripts/jquery.dataTables.js",
                     "~/Scripts/jquery.dataTables.rowReordering.js"));
         }

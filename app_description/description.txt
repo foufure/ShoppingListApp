@@ -18,6 +18,8 @@ http://jquery-datatables-row-reordering.googlecode.com/svn/trunk/index.html
 jQuery UI Sortable
 http://stackoverflow.com/questions/21978551/ordering-a-graphical-list-via-mouse-dragging-using-javascript
 
+Added: http://touchpunch.furf.com/ - jQuery UI Touch Punch so that drag & drop also works on mobile devices. 
+
 Bootstrap use:
 http://getbootstrap.com for some examples and ideas of how to customize.
 http://markusslima.github.io/bootstrap-filestyle/#Downloads - to customize upload file button.
