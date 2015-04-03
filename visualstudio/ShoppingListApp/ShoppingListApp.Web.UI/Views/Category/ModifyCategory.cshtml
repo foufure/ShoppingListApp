@@ -16,16 +16,25 @@
             </div>
         </div>
         <div class="panel-footer">
-            @for (int i = 0; i < @Model.CategoryLines.Count(); i++)
-            {
-                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[i].itemToCategorize.ItemId)
-                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[i].itemToCategorize.ItemCategory)
-                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[i].itemToCategorize.ItemName)
-                <div>
-                    <span>@Html.CheckBoxFor(itemsCategory => itemsCategory.CategoryLines[i].categorySelection)</span>
-                    <span>@Html.Label(@Model.CategoryLines[i].itemToCategorize.ItemName)</span>
-                </div>
-            }
+            <table class="table">
+                <tbody>
+                        @for (int i = 0; i < @Model.CategoryLines.Count(); i=i+3)
+                        {
+                            <tr>
+                            @for (int j = i; j < i + 3 && j < @Model.CategoryLines.Count(); j++)
+                            { 
+                                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[j].itemToCategorize.ItemId)
+                                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[j].itemToCategorize.ItemCategory)
+                                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[j].itemToCategorize.ItemName)
+                                <td>
+                                    <span>@Html.CheckBoxFor(itemsCategory => itemsCategory.CategoryLines[j].categorySelection)</span>
+                                    <span>@Html.Label(@Model.CategoryLines[j].itemToCategorize.ItemName)</span>
+                                </td>
+                            }
+                            </tr>
+                        }
+                </tbody>
+            </table>
         </div>
     } 
 </div>

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Entities;
+using ShoppingListApp.Web.UI.ViewModels;
 
 namespace ShoppingListApp.Web.UI.Controllers
 {
@@ -10,10 +11,12 @@ namespace ShoppingListApp.Web.UI.Controllers
     public class ItemController : Controller
     {
         private IItemsRepository itemRepository;
+        private ICategoryRepository categoryRepository;
 
-        public ItemController(IItemsRepository itemRepository)
+        public ItemController(IItemsRepository itemRepository, ICategoryRepository categoryRepository)
         {
             this.itemRepository = itemRepository;
+            this.categoryRepository = categoryRepository;
         }
 
         public ActionResult Items()
@@ -42,15 +45,21 @@ namespace ShoppingListApp.Web.UI.Controllers
         [HttpGet]
         public ViewResult ModifyItem(uint itemToModifyId)
         {
-            return View(itemRepository.Repository.Where(item => item.ItemId == itemToModifyId).FirstOrDefault());
+            CategoriesItemViewModel categoriesItemViewModel = new CategoriesItemViewModel();
+
+            categoriesItemViewModel.itemToModify = itemRepository.Repository.Where(item => item.ItemId == itemToModifyId).FirstOrDefault();
+            categoriesItemViewModel.categoriesToChooseFrom = categoryRepository.Repository.ToList();
+
+            return View(categoriesItemViewModel);
         }
 
         [HttpPost]
-        public RedirectToRouteResult ModifyItem(uint itemToModifyId, string itemToModifyNewName)
+        public RedirectToRouteResult ModifyItem(uint itemToModifyId, string itemToModifyNewName, string itemToModifyCategory)
         {
             if (!string.IsNullOrEmpty(itemToModifyNewName))
             {
                 itemRepository.Modify(itemToModifyId, itemToModifyNewName);
+                itemRepository.ModifyCategory(itemToModifyId, itemToModifyCategory);
                 itemRepository.Save();
             }
             

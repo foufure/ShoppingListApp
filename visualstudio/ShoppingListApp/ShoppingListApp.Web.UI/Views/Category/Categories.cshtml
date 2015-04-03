@@ -1,14 +1,21 @@
 ﻿@model IEnumerable<string>
 
+<div style="margin-bottom:10px;">
+    @Html.Partial("BackToMainMenu")
+</div>
+
 <div class="panel panel-primary">
     <div class="panel-heading text-uppercase">
         <h1 class="panel-title text-uppercase">@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Categories</h1>
     </div>
 
     <div class="panel-body">
+
+        <div style="margin-bottom:10px;">@Html.Partial("AddCategory")</div>
+
         <table class="table">
             <tbody>
-                @foreach (string category in @Model)
+                @foreach (string category in @Model.OrderBy(category => category))
                 {
                     <tr>
                         <td style="width:70%">

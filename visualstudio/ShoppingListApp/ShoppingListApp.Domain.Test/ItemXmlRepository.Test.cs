@@ -280,6 +280,7 @@ namespace ShoppingListApp.Domain.Test
             ItemXmlRepository testee = null;
             uint itemId = 4;
             string itemName = "Item12";
+            string categoryName = "myCategory";
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act

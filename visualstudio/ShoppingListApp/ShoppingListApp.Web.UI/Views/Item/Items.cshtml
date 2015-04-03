@@ -1,37 +1,46 @@
 ﻿@model IEnumerable<Item>
 
+<div style="margin-bottom:10px">
+    @Html.Partial("BackToMainMenu")
+</div>
+
 <div class="panel panel-primary">
     <div class="panel-heading text-uppercase">
         <h1 class="panel-title text-uppercase">@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Items</h1>
     </div>
 
     <div class="panel-body">
-        <table class="table">
-            <tbody>
-                @foreach (Item item in @Model)
-                {
-                    <tr>
-                        <td style="width:70%">
-                            @item.ItemName.ToString()
-                        </td>
-                        <td>
-                            <a href="@Url.Action("ModifyItem", "Item", new { itemToModifyId = item.ItemId })" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </a>
-                        </td>
-                        <td>
-                            @using (@Html.BeginForm("RemoveItem", "Item"))
-                            {
-                                @Html.Hidden("itemToRemoveId", item.ItemId)
-                                <button type="submit" class="btn btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                            }
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+            
+        <div style="margin-bottom:10px;">@Html.Partial("AddItem")</div>
+
+        <div>
+            <table class="table">
+                <tbody>
+                    @foreach (Item item in @Model.OrderBy(item => item.ItemName))
+                    {
+                        <tr>
+                            <td style="width:70%">
+                                @item.ItemName.ToString()
+                            </td>
+                            <td>
+                                <a href="@Url.Action("ModifyItem", "Item", new { itemToModifyId = item.ItemId })" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </td>
+                            <td>
+                                @using (@Html.BeginForm("RemoveItem", "Item"))
+                                {
+                                    @Html.Hidden("itemToRemoveId", item.ItemId)
+                                    <button type="submit" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="panel-footer clearfix">

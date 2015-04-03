@@ -31,9 +31,17 @@ namespace ShoppingListApp.Web.UI.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return View((shoppingListId == null) ? 
-                        shoppingListRepository.Repository.OrderByDescending(shoppinglist => shoppinglist.ShoppingListDueDate).FirstOrDefault() :
-                        shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId).FirstOrDefault());
+            return View((shoppingListId == null) ?
+                shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListDueDate.Date >= DateTime.Now.Date)
+                                                 .OrderBy(shoppinglist => shoppinglist.ShoppingListDueDate)
+                                                 .DefaultIfEmpty(shoppingListRepository.Repository.OrderByDescending(shoppinglist => shoppinglist.ShoppingListDueDate).First())
+                                                 .FirstOrDefault() :
+                shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId).FirstOrDefault());
+        }
+
+        public ActionResult FastModifyShoppingList(uint shoppingListId)
+        {
+            return View(shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId).FirstOrDefault());
         }
 
         public RedirectToRouteResult RemoveShoppingList(uint shoppingListToRemoveId)
@@ -80,7 +88,7 @@ namespace ShoppingListApp.Web.UI.Controllers
                 }
                 else 
                 {
-                    //Item Category is only saved centrally in the item repository and not in the shoppinglists to alway remain up-to-date and not create a dependency
+                    //Item Category is only saved centrally in the item repository and not in the shoppinglists to always remain up-to-date and not create a dependency
                     shoppinglistToModify.ShoppingListContent.Where(line => line.ItemToBuy.ItemId == item.ItemId).FirstOrDefault().ItemToBuy.ItemCategory = item.ItemCategory;
                 }
             }
@@ -88,6 +96,17 @@ namespace ShoppingListApp.Web.UI.Controllers
             ViewBag.existingCategories = new List<string>(shoppinglistToModify.ShoppingListContent.Select(item => item.ItemToBuy.ItemCategory).Distinct().OrderBy(category => category).ToList());
 
             return View("AddShoppingList", shoppinglistToModify);
+        }
+
+        public ActionResult DeleteShoppingListLine(uint shoppingListId, uint itemId, string returnUrl)
+        {
+            ShoppingList shoppinglistToModify = shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId).FirstOrDefault();
+            ShoppingListLine shoppinglistLineToRemove = shoppinglistToModify.ShoppingListContent.Where(item => item.ItemToBuy.ItemId == itemId).FirstOrDefault();
+
+            shoppinglistToModify.ShoppingListContent.Remove(shoppinglistLineToRemove);
+            shoppingListRepository.Save();
+
+            return Redirect(returnUrl);
         }
 
         public ActionResult SaveShoppingList(ShoppingList shoppingListToSave, string newItemName, string returnUrl)

@@ -1,5 +1,6 @@
 ﻿@if (User.Identity.IsAuthenticated)
 {
     <span class="glyphicon glyphicon-user hidden-print"></span>
-    <span class="hidden-print">@User.Identity.Name</span>
+    <span class="hidden-print badge">@User.Identity.Name</span>
+    @Html.ActionLink("Log Off", "LogOff", "Account", null, new { @class="hidden-print btn btn-xs btn-info"})
 }

@@ -40,6 +40,13 @@ namespace ShoppingListApp.Web.UI.Controllers
         public RedirectToRouteResult RemoveCategory(string categoryToRemove)
         {
             categoryRepository.Remove(categoryToRemove);
+            
+            foreach (Item item in itemRepository.Repository.Where(item => item.ItemCategory == categoryToRemove))
+            { 
+                item.ItemCategory = CategoryUtils.DefaultCategory;
+            }
+            
+            itemRepository.Save();
             categoryRepository.Save();
             return RedirectToAction("Categories");
         }

@@ -1,21 +1,5 @@
 ﻿@model ShoppingList
 
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function () {
-        $('#shoppinglistdatatoreorder').dataTable({
-            "bPaginate": false,
-            "bLengthChange": false,
-            "bFilter": false,
-            "bSort": true,
-            "bInfo": false,
-            "bAutoWidth": false,
-            "asStripClasses": null
-        });
-
-        $('#shoppinglistdatatoreorder').dataTable().rowReordering({ sURL: "@("/ShoppingList/UpdateShoppingListLinesOrder/" + Model.ShoppingListId)" });
-    });
-</script>
-
 <div style="margin-bottom:10px;">
     @Html.Partial("BackToShoppingLists")
     @Html.Partial("BackToMainMenu")
@@ -28,10 +12,9 @@
     </div>
 
     <div class="panel-body">
-            <table class="table display" id="shoppinglistdatatoreorder">
+            <table class="table">
                 <thead>
                     <tr>
-                        <th class="hidden debug">Idx</th>
                         <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
                         <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
                     </tr>
@@ -39,24 +22,27 @@
                 <tbody>
                     @foreach (ShoppingListLine line in @Model.ShoppingListContent.OrderBy(line => line.LinePresentationOrder))
                     {
-                        <tr id="@line.ItemToBuy.ItemId">
-                            <td class="hidden debug">
-                                @line.LinePresentationOrder
-                            </td>
+                        <tr>
                             <td class="strikethrough_toggler">
                                 @line.ItemToBuy.ItemName
                             </td>
                             <td>
                                 @line.QuantityToBuy
                             </td>
+                            <td>
+                                @using (@Html.BeginForm("DeleteShoppingListLine", "ShoppingList", new { returnUrl = Request.Url.PathAndQuery }))
+                                {
+                                    @Html.Hidden("shoppingListId", @Model.ShoppingListId)
+                                    @Html.Hidden("itemId", @line.ItemToBuy.ItemId)
+                                    <button type="submit" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                }
+                            </td>
                         </tr>
                     }
                 </tbody>
             </table>
-    </div>
-
-    <div class="panel-footer clearfix hidden-print">
-        <a href='javascript:window.print()' class="glyphicon glyphicon-print pull-right"></a>
     </div>
 </div>
 <div>

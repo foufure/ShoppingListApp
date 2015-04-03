@@ -120,6 +120,9 @@
   <data name="Admin" xml:space="preserve">
     <value>Admin</value>
   </data>
+  <data name="BackupAllEmail" xml:space="preserve">
+    <value>Backup All via e-mail</value>
+  </data>
   <data name="BackupEmail" xml:space="preserve">
     <value>Backup via e-mail</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="NoFilesToRestore" xml:space="preserve">
     <value>No files to restore.</value>
+  </data>
+  <data name="RestoreAllBackup" xml:space="preserve">
+    <value>Restore All Backup</value>
   </data>
   <data name="RestoreBackup" xml:space="preserve">
     <value>Restore Backup</value>

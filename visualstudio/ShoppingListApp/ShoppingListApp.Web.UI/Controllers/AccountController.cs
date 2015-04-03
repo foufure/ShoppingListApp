@@ -13,6 +13,12 @@ namespace ShoppingListApp.Web.UI.Controllers
             return new ChallengeResult("Google", Url.Action("ExternalLogOnCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
+        public RedirectToRouteResult LogOff()
+        {
+            Request.GetOwinContext().Authentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult ExternalLogOnCallback(string returnUrl)
         {
             return new RedirectResult(returnUrl);

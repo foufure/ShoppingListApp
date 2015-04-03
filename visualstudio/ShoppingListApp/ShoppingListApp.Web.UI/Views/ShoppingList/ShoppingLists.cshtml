@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<ShoppingList>
 
+<div style="margin-bottom:10px;">
+    @Html.Partial("BackToMainMenu")
+</div>
+
 <div class="panel panel-primary">
     <div class="panel-heading text-uppercase">
         <h1 class="panel-title">@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.ShoppingLists</h1>
@@ -8,7 +12,7 @@
     <div class="panel-body">
         <table class="table">
             <tbody>
-                @foreach (ShoppingList shoppinglist in @Model)
+                @foreach (ShoppingList shoppinglist in @Model.OrderByDescending(shoppinglist => shoppinglist.ShoppingListDueDate))
                 {
                     <tr>
                         <td style="width:70%">
@@ -22,6 +26,11 @@
                         <td class="">
                             <a href="@Url.Action("ModifyShoppingList", "ShoppingList", new { shoppinglistId = shoppinglist.ShoppingListId })" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </td>
+                        <td class="">
+                            <a href="@Url.Action("FastModifyShoppingList", "ShoppingList", new { shoppinglistId = shoppinglist.ShoppingListId })" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-edit"></span>
                             </a>
                         </td>
                         <td class="right">

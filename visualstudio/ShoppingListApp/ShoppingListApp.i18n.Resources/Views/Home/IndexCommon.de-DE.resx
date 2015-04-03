@@ -120,6 +120,9 @@
   <data name="Admin" xml:space="preserve">
     <value>Admin</value>
   </data>
+  <data name="BackupAllEmail" xml:space="preserve">
+    <value>Backup aller Anwender Dateien per e-mail</value>
+  </data>
   <data name="BackupEmail" xml:space="preserve">
     <value>Backup per e-mail</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="NoFilesToRestore" xml:space="preserve">
     <value>Keine Datei gefunden.</value>
+  </data>
+  <data name="RestoreAllBackup" xml:space="preserve">
+    <value>Backup aller Anwender Dateien zurückspielen</value>
   </data>
   <data name="RestoreBackup" xml:space="preserve">
     <value>Backup zurückspielen</value>

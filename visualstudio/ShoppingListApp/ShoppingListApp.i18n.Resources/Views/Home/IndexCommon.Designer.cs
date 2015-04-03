@@ -70,6 +70,15 @@ namespace ShoppingListApp.I18N.Resources.Views.Home {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup All via e-mail.
+        /// </summary>
+        public static string BackupAllEmail {
+            get {
+                return ResourceManager.GetString("BackupAllEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup via e-mail.
         /// </summary>
         public static string BackupEmail {
@@ -174,6 +183,15 @@ namespace ShoppingListApp.I18N.Resources.Views.Home {
         public static string NoFilesToRestore {
             get {
                 return ResourceManager.GetString("NoFilesToRestore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore All Backup.
+        /// </summary>
+        public static string RestoreAllBackup {
+            get {
+                return ResourceManager.GetString("RestoreAllBackup", resourceCulture);
             }
         }
         

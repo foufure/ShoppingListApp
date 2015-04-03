@@ -1,21 +1,26 @@
-﻿@model Item
+﻿@model CategoriesItemViewModel
 
 <div class="panel panel-primary">
-    <div class="panel-body">
+    
         @using (@Html.BeginForm("ModifyItem", "Item"))
         {
-            @Html.Hidden("itemToModifyId", @Model.ItemId)
-            <div class="input-group"> 
-                @Html.TextBox("itemToModifyNewName", @Model.ItemName, new { @class = "form-control", @autofocus = "autofocus" })
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-success">
-                        <span class="glyphicon glyphicon-ok"></span>
-                    </button>
-                </span>  
+            <div class="panel-body">
+                @Html.Hidden("itemToModifyId", @Model.itemToModify.ItemId)
+                <div class="input-group">
+                    @Html.TextBox("itemToModifyNewName", @Model.itemToModify.ItemName, new { @class = "form-control", @autofocus = "autofocus" })
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="panel-footer">
+                @Html.Label(@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Categories + ": ")
+                @Html.DropDownList("itemToModifyCategory", new SelectList(@Model.categoriesToChooseFrom, @Model.itemToModify.ItemCategory))
             </div>
         }
-    </div>
-    <div class="panel-footer"></div>
+            
 </div>
 <div>
     <a href="@Url.Action("Items", "Item")" class="btn btn-success btn-lg">
