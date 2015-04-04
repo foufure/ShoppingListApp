@@ -23,12 +23,12 @@
                             <tr>
                             @for (int j = i; j < i + 3 && j < @Model.CategoryLines.Count(); j++)
                             { 
-                                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[j].itemToCategorize.ItemId)
-                                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[j].itemToCategorize.ItemCategory)
-                                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[j].itemToCategorize.ItemName)
+                                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[j].ItemToCategorize.ItemId)
+                                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[j].ItemToCategorize.ItemCategory)
+                                @Html.HiddenFor(itemsCategory => itemsCategory.CategoryLines[j].ItemToCategorize.ItemName)
                                 <td>
-                                    <span>@Html.CheckBoxFor(itemsCategory => itemsCategory.CategoryLines[j].categorySelection)</span>
-                                    <span>@Html.Label(@Model.CategoryLines[j].itemToCategorize.ItemName)</span>
+                                    <span>@Html.CheckBoxFor(itemsCategory => itemsCategory.CategoryLines[j].CategorySelection)</span>
+                                    <span>@Html.Label(@Model.CategoryLines[j].ItemToCategorize.ItemName)</span>
                                 </td>
                             }
                             </tr>
