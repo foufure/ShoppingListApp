@@ -141,8 +141,17 @@
   <data name="ConnectionFailed" xml:space="preserve">
     <value>Nous connaissons actuellement des problèmes techniques. Veuillez réessayer ultérieurement.</value>
   </data>
+  <data name="DataDeleted" xml:space="preserve">
+    <value>Toutes les données ont été effacées</value>
+  </data>
   <data name="Defaults" xml:space="preserve">
     <value>Restaurer les paramètres par défaut</value>
+  </data>
+  <data name="DefaultsRestored" xml:space="preserve">
+    <value>Les valeurs par défaut ont été restaurées</value>
+  </data>
+  <data name="DeleteData" xml:space="preserve">
+    <value>Supprimer toutes les données</value>
   </data>
   <data name="DeliveryFailed" xml:space="preserve">
     <value>La sauvegarde n'a pas pu être envoyée à votre adresse e-mail. Vérifiez que votre messagerie n'est pas pleine ou que votre fournisseur ne connait pas de problèmes techniques.</value>

@@ -313,6 +313,7 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\QuantitySpinner.js" />
     <Content Include="Scripts\StrikeThroughToggler.js" />
+    <Content Include="Scripts\TooltipConfig.js" />
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

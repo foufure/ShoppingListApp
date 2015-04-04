@@ -133,11 +133,38 @@ namespace ShoppingListApp.I18N.Resources.Views.Home {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All data was deleted.
+        /// </summary>
+        public static string DataDeleted {
+            get {
+                return ResourceManager.GetString("DataDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restore Defaults.
         /// </summary>
         public static string Defaults {
             get {
                 return ResourceManager.GetString("Defaults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defaults were restored.
+        /// </summary>
+        public static string DefaultsRestored {
+            get {
+                return ResourceManager.GetString("DefaultsRestored", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete All Data.
+        /// </summary>
+        public static string DeleteData {
+            get {
+                return ResourceManager.GetString("DeleteData", resourceCulture);
             }
         }
         

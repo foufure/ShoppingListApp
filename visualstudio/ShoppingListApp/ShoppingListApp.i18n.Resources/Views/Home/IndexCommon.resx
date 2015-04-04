@@ -141,8 +141,17 @@
   <data name="ConnectionFailed" xml:space="preserve">
     <value>We are experiencing technical problems. Please try later.</value>
   </data>
+  <data name="DataDeleted" xml:space="preserve">
+    <value>All data was deleted</value>
+  </data>
   <data name="Defaults" xml:space="preserve">
     <value>Restore Defaults</value>
+  </data>
+  <data name="DefaultsRestored" xml:space="preserve">
+    <value>Defaults were restored</value>
+  </data>
+  <data name="DeleteData" xml:space="preserve">
+    <value>Delete All Data</value>
   </data>
   <data name="DeliveryFailed" xml:space="preserve">
     <value>The backup could not be delivered to your e-mail address. Please check that your inbox is not full and that your provider does not experience problems.</value>

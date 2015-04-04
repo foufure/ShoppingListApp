@@ -63,6 +63,8 @@ namespace ShoppingListApp.Domain.Concrete
                                         <xsd:element name='ItemName' minOccurs='0'/>
                                         <xsd:element name='ItemQuantity' minOccurs='0'/>
                                         <xsd:element name='LinePresentationOrder' minOccurs='0'/>
+                                        <xsd:element name='Unit' minOccurs='0'/>
+                                        <xsd:element name='Done' minOccurs='0'/>
                                     </xsd:sequence>
                                 </xsd:complexType>
                                </xsd:element>

@@ -12,6 +12,10 @@ namespace ShoppingListApp.Domain.Entities
 
         public Item ItemToBuy { get; set; }
 
-        public int QuantityToBuy { get; set; }
+        public decimal QuantityToBuy { get; set; }
+
+        public string Unit { get; set; }
+
+        public bool Done { get; set; }
     }
 }

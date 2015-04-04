@@ -61,6 +61,24 @@ namespace ShoppingListApp.I18N.Resources.Views.ShoppingList {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click on the elements done to strike them through.
+        /// </summary>
+        public static string Done {
+            get {
+                return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag &amp; Drop the lines to sort them.
+        /// </summary>
+        public static string DragDrop {
+            get {
+                return ResourceManager.GetString("DragDrop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Due Date.
         /// </summary>
         public static string DueDate {
@@ -79,6 +97,24 @@ namespace ShoppingListApp.I18N.Resources.Views.ShoppingList {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quick Edit.
+        /// </summary>
+        public static string FastEdit {
+            get {
+                return ResourceManager.GetString("FastEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full Edit.
+        /// </summary>
+        public static string FullEdit {
+            get {
+                return ResourceManager.GetString("FullEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -93,6 +129,24 @@ namespace ShoppingListApp.I18N.Resources.Views.ShoppingList {
         public static string Quantity {
             get {
                 return ResourceManager.GetString("Quantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string Reset {
+            get {
+                return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit.
+        /// </summary>
+        public static string Unit {
+            get {
+                return ResourceManager.GetString("Unit", resourceCulture);
             }
         }
         

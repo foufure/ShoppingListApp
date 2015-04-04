@@ -83,8 +83,10 @@ namespace ShoppingListApp.Domain.Concrete
                                             "ShoppingListLine",
                                             new XElement("ItemId") { Value = line.ItemToBuy.ItemId.ToString(CultureInfo.InvariantCulture) },
                                             new XElement("ItemName") { Value = line.ItemToBuy.ItemName.ToString() },
-                                            new XElement("ItemQuantity") { Value = line.QuantityToBuy.ToString(CultureInfo.InvariantCulture)},
-                                            new XElement("LinePresentationOrder") { Value = line.LinePresentationOrder.ToString(CultureInfo.InvariantCulture) }));
+                                            new XElement("ItemQuantity") { Value = line.QuantityToBuy.ToString(CultureInfo.InvariantCulture) },
+                                            new XElement("LinePresentationOrder") { Value = line.LinePresentationOrder.ToString(CultureInfo.InvariantCulture) },
+                                            new XElement("Unit") { Value = line.Unit },
+                                            new XElement("Done") { Value = line.Done.ToString() }));
                 }
                 
                 elements.Add(new XElement(
@@ -116,8 +118,10 @@ namespace ShoppingListApp.Domain.Concrete
                 {
                     newShoppingList.ShoppingListContent.Add(new ShoppingListLine() { 
                         ItemToBuy = new Item() { ItemId = Convert.ToUInt32(itemElement.Element("ItemId").Value, CultureInfo.InvariantCulture), ItemName = itemElement.Element("ItemName").Value }, 
-                        QuantityToBuy = Convert.ToInt32(itemElement.Element("ItemQuantity").Value, CultureInfo.InvariantCulture),
-                        LinePresentationOrder = Convert.ToInt32(itemElement.Element("LinePresentationOrder").Value, CultureInfo.InvariantCulture)
+                        QuantityToBuy = Convert.ToDecimal(itemElement.Element("ItemQuantity").Value, CultureInfo.InvariantCulture),
+                        LinePresentationOrder = Convert.ToInt32(itemElement.Element("LinePresentationOrder").Value, CultureInfo.InvariantCulture),
+                        Unit = itemElement.Element("Unit").Value,
+                        Done = Convert.ToBoolean(itemElement.Element("Done").Value, CultureInfo.InvariantCulture)
                     });
                 }
 

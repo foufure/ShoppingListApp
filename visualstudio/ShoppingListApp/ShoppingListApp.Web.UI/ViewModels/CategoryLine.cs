@@ -8,7 +8,7 @@ namespace ShoppingListApp.Web.UI.ViewModels
 {
     public class CategoryLine
     {
-        public Item itemToCategorize { get; set; }
-        public bool categorySelection { get; set; }
+        public Item ItemToCategorize { get; set; }
+        public bool CategorySelection { get; set; }
     }
 }

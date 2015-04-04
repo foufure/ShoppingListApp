@@ -25,7 +25,8 @@ namespace ShoppingListApp.Web.UI
                     "~/Scripts/jquery-ui-{version}.js",
                     "~/Scripts/jquery.ui.touch-punch.js",
                     "~/Scripts/jquery.dataTables.js",
-                    "~/Scripts/jquery.dataTables.rowReordering.js"));
+                    "~/Scripts/jquery.dataTables.rowReordering.js",
+                    "~/Scripts/TooltipConfig.js"));
         }
     }
 }

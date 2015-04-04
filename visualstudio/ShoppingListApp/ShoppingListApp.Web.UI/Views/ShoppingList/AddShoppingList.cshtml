@@ -1,4 +1,5 @@
-﻿@model ShoppingList
+﻿@using ShoppingListApp.Domain.Concrete
+@model ShoppingList
 
 <div style="margin-bottom:10px">
     @Html.Partial("BackToShoppingLists")
@@ -45,6 +46,7 @@
                                             <tr>
                                                 <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
                                                 <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
+                                                <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Unit</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -56,11 +58,15 @@
                                                         @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemId)
                                                         @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemName)
                                                         @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemCategory)
+                                                        @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].Done)
                                                         <td>
                                                             @Html.Label(@Model.ShoppingListContent[i].ItemToBuy.ItemName)
                                                         </td>
                                                         <td>
                                                             @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListContent[i].QuantityToBuy, new { @class = "quantity_spinner" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.DropDownListFor(shoppinglist => shoppinglist.ShoppingListContent[i].Unit, new SelectList(UnitsUtils.Units.Values, UnitsUtils.Units["default"]), new { @class="well-sm"})
                                                         </td>
                                                     </tr>
                                                 }

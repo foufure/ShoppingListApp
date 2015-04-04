@@ -117,17 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Done" xml:space="preserve">
+    <value>Click on the elements done to strike them through</value>
+  </data>
+  <data name="DragDrop" xml:space="preserve">
+    <value>Drag &amp; Drop the lines to sort them</value>
+  </data>
   <data name="DueDate" xml:space="preserve">
     <value>Due Date</value>
   </data>
   <data name="EditShoppingList" xml:space="preserve">
     <value>Shopping List</value>
   </data>
+  <data name="FastEdit" xml:space="preserve">
+    <value>Quick Edit</value>
+  </data>
+  <data name="FullEdit" xml:space="preserve">
+    <value>Full Edit</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="Quantity" xml:space="preserve">
     <value>Quantity</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Unit</value>
   </data>
   <data name="YourShoppingListName" xml:space="preserve">
     <value>Your Shopping List Name</value>

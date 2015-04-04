@@ -141,8 +141,17 @@
   <data name="ConnectionFailed" xml:space="preserve">
     <value>Wir kennen aktuell technische Probleme. Versuchen Sie es bitte später noch einmal.</value>
   </data>
+  <data name="DataDeleted" xml:space="preserve">
+    <value>Alle Daten wurden gelöscht</value>
+  </data>
   <data name="Defaults" xml:space="preserve">
     <value>Default Parameter zurückspielen</value>
+  </data>
+  <data name="DefaultsRestored" xml:space="preserve">
+    <value>Die Defaultwerte wurden zurückgespielt</value>
+  </data>
+  <data name="DeleteData" xml:space="preserve">
+    <value>Alle Daten löschen</value>
   </data>
   <data name="DeliveryFailed" xml:space="preserve">
     <value>E-mail Adresse nicht erreichbar. Bitte überprüfen Sie, dass ihren Postfach nicht voll ist oder dass ihren Anbieter keine technische Probleme hat.</value>

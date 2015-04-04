@@ -63,7 +63,7 @@ namespace ShoppingListApp.Web.UI.Controllers
             {
                 if (item.ItemCategory == CategoryUtils.DefaultCategory || item.ItemCategory == categoryToModify)
                 {
-                    itemsCategoryViewModel.CategoryLines.Add(new CategoryLine() { itemToCategorize = item, categorySelection = (item.ItemCategory == categoryToModify) });
+                    itemsCategoryViewModel.CategoryLines.Add(new CategoryLine() { ItemToCategorize = item, CategorySelection = (item.ItemCategory == categoryToModify) });
                 }
             }
 
@@ -83,13 +83,13 @@ namespace ShoppingListApp.Web.UI.Controllers
             {
                 foreach (CategoryLine categoryLine in itemsCategory.CategoryLines)
                 {
-                    if (categoryLine.categorySelection == true)
+                    if (categoryLine.CategorySelection == true)
                     {
-                        itemRepository.ModifyCategory(categoryLine.itemToCategorize.ItemId, newCategoryName);
+                        itemRepository.ModifyCategory(categoryLine.ItemToCategorize.ItemId, newCategoryName);
                     }
                     else
                     {
-                        itemRepository.ModifyCategory(categoryLine.itemToCategorize.ItemId, CategoryUtils.DefaultCategory);
+                        itemRepository.ModifyCategory(categoryLine.ItemToCategorize.ItemId, CategoryUtils.DefaultCategory);
                     }
                 }
             }

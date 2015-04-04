@@ -57,15 +57,15 @@ namespace ShoppingListApp.Domain.Test
             IList<ShoppingList> expectedResult = new List<ShoppingList>();
             
             ShoppingList shoppingList1 = new ShoppingList() { ShoppingListId = 1, ShoppingListName = "ShoppingList1", ShoppingListDueDate = new DateTime(1981, 04, 13) };
-            shoppingList1.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item1" }, QuantityToBuy = 1, LinePresentationOrder = 1 });
-            shoppingList1.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item2" }, QuantityToBuy = 1, LinePresentationOrder = 2 });
-            shoppingList1.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item3" }, QuantityToBuy = 2, LinePresentationOrder = 3 });
+            shoppingList1.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item1" }, QuantityToBuy = 1, LinePresentationOrder = 1, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingList1.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item2" }, QuantityToBuy = 1, LinePresentationOrder = 2, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingList1.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item3" }, QuantityToBuy = 2, LinePresentationOrder = 3, Unit = UnitsUtils.Units["default"], Done = false });
             expectedResult.Add(shoppingList1);
             
             ShoppingList shoppingList2 = new ShoppingList() { ShoppingListId = 2, ShoppingListName = "ShoppingList2", ShoppingListDueDate = new DateTime(1982, 05, 27) };
-            shoppingList2.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item1" }, QuantityToBuy = 1, LinePresentationOrder = 1 });
-            shoppingList2.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item2" }, QuantityToBuy = 5, LinePresentationOrder = 2 });
-            shoppingList2.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 5, ItemName = "Item5" }, QuantityToBuy = 3, LinePresentationOrder = 3 });
+            shoppingList2.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item1" }, QuantityToBuy = 1, LinePresentationOrder = 1, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingList2.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item2" }, QuantityToBuy = 5, LinePresentationOrder = 2, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingList2.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 5, ItemName = "Item5" }, QuantityToBuy = 3, LinePresentationOrder = 3, Unit = UnitsUtils.Units["default"], Done = false });
             expectedResult.Add(shoppingList2);
 
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
@@ -189,14 +189,14 @@ namespace ShoppingListApp.Domain.Test
         {
             // Arrange
             ShoppingList shoppingList = new ShoppingList() { ShoppingListId = 0, ShoppingListName = "ShoppingList3", ShoppingListDueDate = new DateTime(2014, 12, 04) };
-            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item1" }, QuantityToBuy = 1, LinePresentationOrder = 1 });
-            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item2" }, QuantityToBuy = 1, LinePresentationOrder = 2 });
-            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item3" }, QuantityToBuy = 2, LinePresentationOrder = 3 });
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item1" }, QuantityToBuy = 1, LinePresentationOrder = 1, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item2" }, QuantityToBuy = 1, LinePresentationOrder = 2, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item3" }, QuantityToBuy = 2, LinePresentationOrder = 3, Unit = UnitsUtils.Units["default"], Done = false });
 
             ShoppingList shoppingListNext = new ShoppingList() { ShoppingListId = 0, ShoppingListName = "ShoppingList4", ShoppingListDueDate = new DateTime(2014, 12, 04) };
-            shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item4" }, QuantityToBuy = 1, LinePresentationOrder = 1 });
-            shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item5" }, QuantityToBuy = 1, LinePresentationOrder = 2 });
-            shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item6" }, QuantityToBuy = 2, LinePresentationOrder = 3 });
+            shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item4" }, QuantityToBuy = 1, LinePresentationOrder = 1, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item5" }, QuantityToBuy = 1, LinePresentationOrder = 2, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item6" }, QuantityToBuy = 2, LinePresentationOrder = 3, Unit = UnitsUtils.Units["default"], Done = false });
 
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
             ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object);
@@ -215,14 +215,14 @@ namespace ShoppingListApp.Domain.Test
         {
             // Arrange
             ShoppingList shoppingList = new ShoppingList() { ShoppingListId = 0, ShoppingListName = "ShoppingList3", ShoppingListDueDate = new DateTime(2014, 12, 04) };
-            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item1" }, QuantityToBuy = 1, LinePresentationOrder = 1 });
-            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item2" }, QuantityToBuy = 1, LinePresentationOrder = 2 });
-            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item3" }, QuantityToBuy = 2, LinePresentationOrder = 3 });
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item1" }, QuantityToBuy = 1, LinePresentationOrder = 1, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item2" }, QuantityToBuy = 1, LinePresentationOrder = 2, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item3" }, QuantityToBuy = 2, LinePresentationOrder = 3, Unit = UnitsUtils.Units["default"], Done = false });
 
             ShoppingList shoppingListNext = new ShoppingList() { ShoppingListId = 0, ShoppingListName = "ShoppingList4", ShoppingListDueDate = new DateTime(2014, 12, 04) };
-            shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item4" }, QuantityToBuy = 1, LinePresentationOrder = 1  });
-            shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item5" }, QuantityToBuy = 1, LinePresentationOrder = 2 });
-            shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item6" }, QuantityToBuy = 2, LinePresentationOrder = 3 });
+            shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item4" }, QuantityToBuy = 1, LinePresentationOrder = 1, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item5" }, QuantityToBuy = 1, LinePresentationOrder = 2, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item6" }, QuantityToBuy = 2, LinePresentationOrder = 3, Unit = UnitsUtils.Units["default"], Done = false });
 
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.empty.xml");
             ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object);
@@ -284,9 +284,9 @@ namespace ShoppingListApp.Domain.Test
         {
             // Arrange
             ShoppingList shoppingList = new ShoppingList() { ShoppingListId = 1, ShoppingListName = "ShoppingList3", ShoppingListDueDate = new DateTime(2014, 12, 04) };
-            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item1" }, QuantityToBuy = 1, LinePresentationOrder = 1 });
-            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item2" }, QuantityToBuy = 1, LinePresentationOrder = 2 });
-            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item3" }, QuantityToBuy = 2, LinePresentationOrder = 3 });
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 1, ItemName = "Item1" }, QuantityToBuy = 1, LinePresentationOrder = 1, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 2, ItemName = "Item2" }, QuantityToBuy = 1, LinePresentationOrder = 2, Unit = UnitsUtils.Units["default"], Done = false });
+            shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item3" }, QuantityToBuy = 2, LinePresentationOrder = 3, Unit = UnitsUtils.Units["default"], Done = false });
 
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
             ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object);

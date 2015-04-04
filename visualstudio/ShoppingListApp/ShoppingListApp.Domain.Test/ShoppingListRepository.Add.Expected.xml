@@ -9,18 +9,24 @@
       <ItemName>Item1</ItemName>
       <ItemQuantity>1</ItemQuantity>
       <LinePresentationOrder>1</LinePresentationOrder>
+      <Unit>-</Unit>
+      <Done>False</Done>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>2</ItemId>
       <ItemName>Item2</ItemName>
       <ItemQuantity>1</ItemQuantity>
       <LinePresentationOrder>2</LinePresentationOrder>
+      <Unit>-</Unit>
+      <Done>False</Done>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>3</ItemId>
       <ItemName>Item3</ItemName>
       <ItemQuantity>2</ItemQuantity>
       <LinePresentationOrder>3</LinePresentationOrder>
+      <Unit>-</Unit>
+      <Done>False</Done>
     </ShoppingListLine>
   </ShoppingList>
   <ShoppingList>
@@ -32,18 +38,24 @@
       <ItemName>Item1</ItemName>
       <ItemQuantity>1</ItemQuantity>
       <LinePresentationOrder>1</LinePresentationOrder>
+      <Unit>-</Unit>
+      <Done>False</Done>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>2</ItemId>
       <ItemName>Item2</ItemName>
       <ItemQuantity>5</ItemQuantity>
       <LinePresentationOrder>2</LinePresentationOrder>
+      <Unit>-</Unit>
+      <Done>False</Done>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>5</ItemId>
       <ItemName>Item5</ItemName>
       <ItemQuantity>3</ItemQuantity>
       <LinePresentationOrder>3</LinePresentationOrder>
+      <Unit>-</Unit>
+      <Done>False</Done>
     </ShoppingListLine>
   </ShoppingList>
   <ShoppingList>
@@ -55,18 +67,24 @@
       <ItemName>Item1</ItemName>
       <ItemQuantity>1</ItemQuantity>
       <LinePresentationOrder>1</LinePresentationOrder>
+      <Unit>-</Unit>
+      <Done>False</Done>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>2</ItemId>
       <ItemName>Item2</ItemName>
       <ItemQuantity>1</ItemQuantity>
       <LinePresentationOrder>2</LinePresentationOrder>
+      <Unit>-</Unit>
+      <Done>False</Done>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>3</ItemId>
       <ItemName>Item3</ItemName>
       <ItemQuantity>2</ItemQuantity>
       <LinePresentationOrder>3</LinePresentationOrder>
+      <Unit>-</Unit>
+      <Done>False</Done>
     </ShoppingListLine>
   </ShoppingList>
   <ShoppingList>
@@ -78,18 +96,24 @@
       <ItemName>Item4</ItemName>
       <ItemQuantity>1</ItemQuantity>
       <LinePresentationOrder>1</LinePresentationOrder>
+      <Unit>-</Unit>
+      <Done>False</Done>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>2</ItemId>
       <ItemName>Item5</ItemName>
       <ItemQuantity>1</ItemQuantity>
       <LinePresentationOrder>2</LinePresentationOrder>
+      <Unit>-</Unit>
+      <Done>False</Done>
     </ShoppingListLine>
     <ShoppingListLine>
       <ItemId>3</ItemId>
       <ItemName>Item6</ItemName>
       <ItemQuantity>2</ItemQuantity>
       <LinePresentationOrder>3</LinePresentationOrder>
+      <Unit>-</Unit>
+      <Done>False</Done>
     </ShoppingListLine>
   </ShoppingList>
 </ShoppingLists>

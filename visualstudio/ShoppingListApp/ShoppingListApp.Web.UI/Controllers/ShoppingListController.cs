@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using ShoppingListApp.Domain.Abstract;
+using ShoppingListApp.Domain.Concrete;
 using ShoppingListApp.Domain.Entities;
 
 namespace ShoppingListApp.Web.UI.Controllers
@@ -65,7 +67,7 @@ namespace ShoppingListApp.Web.UI.Controllers
 
                 foreach (Item item in itemRepository.Repository)
                 {
-                    shoppinglistToCreate.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0, LinePresentationOrder = 0 });
+                    shoppinglistToCreate.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0, LinePresentationOrder = 0, Unit = UnitsUtils.Units["default"], Done = false });
                 }
 
                 ViewBag.existingCategories = new List<string>(shoppinglistToCreate.ShoppingListContent.Select(item => item.ItemToBuy.ItemCategory).Distinct().OrderBy(category => category).ToList());
@@ -84,7 +86,7 @@ namespace ShoppingListApp.Web.UI.Controllers
             {
                 if (!shoppinglistToModify.ShoppingListContent.Any(x => x.ItemToBuy.ItemId == item.ItemId))
                 {
-                    shoppinglistToModify.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0, LinePresentationOrder = 0 });
+                    shoppinglistToModify.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0, LinePresentationOrder = 0, Unit = UnitsUtils.Units["default"], Done = false });
                 }
                 else 
                 {
@@ -150,11 +152,33 @@ namespace ShoppingListApp.Web.UI.Controllers
             }
         }
 
+        public ActionResult ResetAllDoneElements(uint shoppinglistIdToReset, string returnUrl)
+        {
+            foreach (ShoppingListLine shoppingListLine in shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppinglistIdToReset).FirstOrDefault().ShoppingListContent)
+            {
+                shoppingListLine.Done = false;
+            }
+
+            shoppingListRepository.Save();
+            return Redirect(returnUrl);
+        }
+
+        // AJAX call!
+        public void ToggleStrikeOnDoneElement(uint shoppinglistIdToToggle, uint itemIdToToggle)
+        {
+            shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppinglistIdToToggle)
+                                             .FirstOrDefault().ShoppingListContent
+                                             .Where(item => item.ItemToBuy.ItemId == itemIdToToggle)
+                                             .FirstOrDefault()
+                                             .Done ^= true; // XOR operator to toggle value
+            shoppingListRepository.Save();
+        }
+
         // AJAX call!
         public void UpdateShoppingListLinesOrder(int  id, int fromPosition, int toPosition, string direction)
         {
             string incomingURL = Request.Url.PathAndQuery;
-            uint shoppingListId = Convert.ToUInt32(incomingURL.Split('/').LastOrDefault());
+            uint shoppingListId = Convert.ToUInt32(incomingURL.Split('/').LastOrDefault(), CultureInfo.InvariantCulture);
 
             ShoppingList shoppingListToUpdate = shoppingListRepository.Repository
                             .Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId)

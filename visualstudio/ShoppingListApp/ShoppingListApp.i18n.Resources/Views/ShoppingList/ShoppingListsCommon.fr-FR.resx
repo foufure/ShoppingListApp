@@ -117,17 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Done" xml:space="preserve">
+    <value>Cliquez sur les articles déjà dans le panier pour les barrer</value>
+  </data>
+  <data name="DragDrop" xml:space="preserve">
+    <value>Sélectionnez et glissez les lignes pour réoganiser la liste de courses</value>
+  </data>
   <data name="DueDate" xml:space="preserve">
     <value>Date</value>
   </data>
   <data name="EditShoppingList" xml:space="preserve">
     <value>Liste de courses</value>
   </data>
+  <data name="FastEdit" xml:space="preserve">
+    <value>Edition rapide</value>
+  </data>
+  <data name="FullEdit" xml:space="preserve">
+    <value>Edition</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
   </data>
   <data name="Quantity" xml:space="preserve">
     <value>Quantité</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Unité</value>
   </data>
   <data name="YourShoppingListName" xml:space="preserve">
     <value>Nom de votre liste de courses</value>

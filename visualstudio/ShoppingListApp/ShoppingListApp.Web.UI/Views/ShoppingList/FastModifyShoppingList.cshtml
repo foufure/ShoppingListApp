@@ -17,17 +17,21 @@
                     <tr>
                         <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
                         <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
+                        <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Unit</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (ShoppingListLine line in @Model.ShoppingListContent.OrderBy(line => line.LinePresentationOrder))
                     {
                         <tr>
-                            <td class="strikethrough_toggler">
+                            <td>
                                 @line.ItemToBuy.ItemName
                             </td>
                             <td>
                                 @line.QuantityToBuy
+                            </td>
+                            <td>
+                                @line.Unit
                             </td>
                             <td>
                                 @using (@Html.BeginForm("DeleteShoppingListLine", "ShoppingList", new { returnUrl = Request.Url.PathAndQuery }))

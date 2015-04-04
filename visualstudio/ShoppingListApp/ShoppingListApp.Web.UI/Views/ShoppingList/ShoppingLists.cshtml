@@ -25,12 +25,12 @@
                         </td>
                         <td class="">
                             <a href="@Url.Action("ModifyShoppingList", "ShoppingList", new { shoppinglistId = shoppinglist.ShoppingListId })" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.FullEdit"></span>
                             </a>
                         </td>
                         <td class="">
                             <a href="@Url.Action("FastModifyShoppingList", "ShoppingList", new { shoppinglistId = shoppinglist.ShoppingListId })" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-edit"></span>
+                                <span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.FastEdit"></span>
                             </a>
                         </td>
                         <td class="right">

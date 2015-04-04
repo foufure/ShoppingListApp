@@ -20,12 +20,15 @@
                 <span class="glyphicon glyphicon-open"></span>
                 @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackup
             </button>
-            <input type="file" class="filestyle" name="itemsToRestoreFile" data-buttonbefore="true" data-iconName="glyphicon-list-alt" data-buttontext="" />
-            <input type="file" class="filestyle" name="categoriesToRestoreFile" data-buttonbefore="true" data-iconname="glyphicon-briefcase" data-buttontext="" />
-            <input type="file" class="filestyle" name="shoppingListsToRestoreFile" data-buttonbefore="true" data-iconname="glyphicon-shopping-cart" data-buttontext="" />
+            <div style="text-wrap:none !important">
+                <input type="file" class="filestyle" name="itemsToRestoreFile" data-buttonbefore="true" data-iconname="glyphicon-list-alt" data-buttontext="" />
+                <input type="file" class="filestyle" name="categoriesToRestoreFile" data-buttonbefore="true" data-iconname="glyphicon-briefcase" data-buttontext="" />
+                <input type="file" class="filestyle" name="shoppingListsToRestoreFile" data-buttonbefore="true" data-iconname="glyphicon-shopping-cart" data-buttontext="" />
+            </div>
         }
     </div>
     <div class="panel-footer">
+        <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Items, @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Categories, @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.ShoppingLists"></span>
         @if (TempData["restoreitems"] != null && TempData["restorecategories"] != null && TempData["restoreshoppinglists"] != null)
         {
             <div class="alert-success">@TempData["restoreitems"]</div>
@@ -34,6 +37,37 @@
         }
     </div>
 </div>
+
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <a href="@Url.Action("RestoreDefaults", "Home")" class="btn btn-danger btn-block">
+            <span class="glyphicon glyphicon-wrench"></span>
+            @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Defaults
+        </a>
+    </div>
+    <div class="panel-footer">
+        @if (TempData["defaults"] != null)
+        {
+            <div class="alert-success">@TempData["defaults"]</div>
+        }
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <a href="@Url.Action("DeleteData", "Home")" class="btn btn-danger btn-block">
+            <span class="glyphicon glyphicon-wrench"></span>
+            @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.DeleteData
+        </a>
+    </div>
+    <div class="panel-footer">
+        @if (TempData["deleted"] != null)
+        {
+            <div class="alert-success">@TempData["deleted"]</div>
+        }
+    </div>
+</div>
+
 <div>
     @Html.Partial("BackToMainMenu")
 </div>

@@ -33,6 +33,11 @@ namespace ShoppingListApp.Web.UI.Controllers
         [Authorize]
         public ActionResult LogOn()
         {
+            if (!System.IO.File.Exists(itemRepositoryName.RepositoryName) && !System.IO.File.Exists(categoriesRepositoryName.RepositoryName))
+            { 
+                SetDefaults();
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -82,16 +87,23 @@ namespace ShoppingListApp.Web.UI.Controllers
         [Authorize]
         public RedirectToRouteResult RestoreDefaults()
         {
-            string languageSuffix = "";
-            if (ConfiguredCultures.GetCurrentUICulture.TwoLetterISOLanguageName != "en")
-            {
-                languageSuffix = "_" + ConfiguredCultures.GetCurrentUICulture.TwoLetterISOLanguageName;
-            }
+            SetDefaults();
 
-            System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\DefaultItemRepository" + languageSuffix + @".xml", itemRepositoryName.RepositoryName, true);
-            System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\DefaultCategoryRepository" + languageSuffix + @".xml", categoriesRepositoryName.RepositoryName, true);
+            TempData["defaults"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.DefaultsRestored;
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Admin");
+        }
+
+        [Authorize]
+        public RedirectToRouteResult DeleteData()
+        {
+            System.IO.File.Delete(itemRepositoryName.RepositoryName);
+            System.IO.File.Delete(categoriesRepositoryName.RepositoryName);
+            System.IO.File.Delete(shoppingListsRepositoryName.RepositoryName);
+
+            TempData["deleted"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.DataDeleted;
+
+            return RedirectToAction("Admin");
         }
 
         [Authorize]
@@ -186,6 +198,18 @@ namespace ShoppingListApp.Web.UI.Controllers
                     TempData[typeToRestore] = failureMessage;
                 }
             }
+        }
+
+        private void SetDefaults()
+        {
+            string languageSuffix = "";
+            if (ConfiguredCultures.GetCurrentUICulture.TwoLetterISOLanguageName != "en")
+            {
+                languageSuffix = "_" + ConfiguredCultures.GetCurrentUICulture.TwoLetterISOLanguageName;
+            }
+
+            System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\DefaultItemRepository" + languageSuffix + @".xml", itemRepositoryName.RepositoryName, true);
+            System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\DefaultCategoryRepository" + languageSuffix + @".xml", categoriesRepositoryName.RepositoryName, true);
         }
     }
 }

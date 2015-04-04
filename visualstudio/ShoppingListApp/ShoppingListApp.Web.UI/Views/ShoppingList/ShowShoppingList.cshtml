@@ -24,7 +24,8 @@
 <div class="panel panel-primary">
     <div class="panel-heading text-uppercase">
         <span class="pull-right">@Model.ShoppingListDueDate.ToString("d", ConfiguredCultures.GetCurrentUICulture)</span>
-        <h1 class="panel-title">@Model.ShoppingListName</h1> 
+        <h1 class="panel-title">@Model.ShoppingListName</h1>
+         
     </div>
 
     <div class="panel-body">
@@ -34,20 +35,26 @@
                         <th class="hidden debug">Idx</th>
                         <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
                         <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
+                        <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Unit</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (ShoppingListLine line in @Model.ShoppingListContent.OrderBy(line => line.LinePresentationOrder))
                     {
+                        string isStroked = line.Done ? " stroked" : "";
+                        
                         <tr id="@line.ItemToBuy.ItemId">
                             <td class="hidden debug">
                                 @line.LinePresentationOrder
                             </td>
-                            <td class="strikethrough_toggler">
-                                @line.ItemToBuy.ItemName
+                            <td class="@("strikethrough_toggler" + isStroked)">
+                                @Ajax.ActionLink(@line.ItemToBuy.ItemName, "ToggleStrikeOnDoneElement", new { shoppinglistIdToToggle = @Model.ShoppingListId, itemIdToToggle = @line.ItemToBuy.ItemId }, null, new { @style="text-decoration:none; color:black" })
                             </td>
                             <td>
                                 @line.QuantityToBuy
+                            </td>
+                            <td>
+                                @line.Unit
                             </td>
                         </tr>
                     }
@@ -55,8 +62,20 @@
             </table>
     </div>
 
-    <div class="panel-footer clearfix hidden-print">
-        <a href='javascript:window.print()' class="glyphicon glyphicon-print pull-right"></a>
+    <div class="panel-footer clearfix hidden-print group">
+        <div>
+            <span class="glyphicon glyphicon-sort"></span>
+            <span class="small">@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.DragDrop</span>
+            <a href='javascript:window.print()' class="glyphicon glyphicon-print pull-right"></a>
+        </div>
+        <div>
+            <span class="glyphicon glyphicon-check"></span>
+            <span class="small">@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Done</span>
+            <a href="@Url.Action("ResetAllDoneElements", "ShoppingList", new { shoppinglistIdToReset = @Model.ShoppingListId, returnUrl = Request.Url.PathAndQuery })" class="btn btn-xs btn-danger">
+                <span class="glyphicon glyphicon-unchecked"></span>
+                @ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Reset
+            </a>
+        </div>
     </div>
 </div>
 <div>

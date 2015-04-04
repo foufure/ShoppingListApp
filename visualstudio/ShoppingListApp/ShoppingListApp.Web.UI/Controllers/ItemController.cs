@@ -47,8 +47,8 @@ namespace ShoppingListApp.Web.UI.Controllers
         {
             CategoriesItemViewModel categoriesItemViewModel = new CategoriesItemViewModel();
 
-            categoriesItemViewModel.itemToModify = itemRepository.Repository.Where(item => item.ItemId == itemToModifyId).FirstOrDefault();
-            categoriesItemViewModel.categoriesToChooseFrom = categoryRepository.Repository.ToList();
+            categoriesItemViewModel.ItemToModify = itemRepository.Repository.Where(item => item.ItemId == itemToModifyId).FirstOrDefault();
+            categoriesItemViewModel.CategoriesToChooseFrom = categoryRepository.Repository.ToList();
 
             return View(categoriesItemViewModel);
         }
