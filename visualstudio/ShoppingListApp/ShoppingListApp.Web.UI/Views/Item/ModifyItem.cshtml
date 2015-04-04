@@ -5,9 +5,9 @@
         @using (@Html.BeginForm("ModifyItem", "Item"))
         {
             <div class="panel-body">
-                @Html.Hidden("itemToModifyId", @Model.itemToModify.ItemId)
+                @Html.Hidden("itemToModifyId", @Model.ItemToModify.ItemId)
                 <div class="input-group">
-                    @Html.TextBox("itemToModifyNewName", @Model.itemToModify.ItemName, new { @class = "form-control", @autofocus = "autofocus" })
+                    @Html.TextBox("itemToModifyNewName", @Model.ItemToModify.ItemName, new { @class = "form-control", @autofocus = "autofocus" })
                     <span class="input-group-btn">
                         <button type="submit" class="btn btn-success">
                             <span class="glyphicon glyphicon-ok"></span>
@@ -17,7 +17,7 @@
             </div>
             <div class="panel-footer">
                 @Html.Label(@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Categories + ": ")
-                @Html.DropDownList("itemToModifyCategory", new SelectList(@Model.categoriesToChooseFrom, @Model.itemToModify.ItemCategory))
+                @Html.DropDownList("itemToModifyCategory", new SelectList(@Model.CategoriesToChooseFrom, @Model.ItemToModify.ItemCategory))
             </div>
         }
             
