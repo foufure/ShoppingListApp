@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
@@ -54,9 +56,12 @@ namespace ShoppingListApp.Web.UI.Controllers
 
             try
             {
-                backupProcessor.ProcessBackup(itemRepositoryName.RepositoryName);
-                backupProcessor.ProcessBackup(shoppingListsRepositoryName.RepositoryName);
-                backupProcessor.ProcessBackup(categoriesRepositoryName.RepositoryName);
+                List<string> filesToBackup = new List<string>() { itemRepositoryName.RepositoryName, shoppingListsRepositoryName.RepositoryName, categoriesRepositoryName.RepositoryName };
+                backupProcessor.ProcessBackup(filesToBackup);
+            }
+            catch (System.NullReferenceException)
+            {
+                TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.NoFilesToBackup;
             }
             catch (System.ArgumentNullException)
             {
@@ -129,7 +134,11 @@ namespace ShoppingListApp.Web.UI.Controllers
 
             try
             {
-                backupProcessor.ProcessBackup(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\backupAll.bak");
+                backupProcessor.ProcessBackup(new List<string>() {System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\backupAll.bak"});
+            }
+            catch (System.NullReferenceException)
+            {
+                TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.NoFilesToBackup;
             }
             catch (System.ArgumentNullException)
             {

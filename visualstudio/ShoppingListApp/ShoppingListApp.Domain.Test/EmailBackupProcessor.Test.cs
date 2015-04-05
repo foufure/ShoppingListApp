@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Mail;
+using System.Text;
 using Moq;
 using NUnit.Framework;
 using ShoppingListApp.Domain.Abstract;
@@ -42,7 +44,7 @@ namespace ShoppingListApp.Domain.Test
         }
 
         [Test]
-        public void EmailBackupProcessorThrowsException_WhenFileToBeAttachedIsNull()
+        public void EmailBackupProcessorThrowsException_WhenFileListToBeAttachedIsNull()
         { 
             // Arrange
             EmailBackupProcessor testee = new EmailBackupProcessor(emailSettingsMock.Object);
@@ -50,7 +52,19 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(ArgumentNullException), () => testee.ProcessBackup(null));
+            Assert.Throws(typeof(NullReferenceException), () => testee.ProcessBackup(null));
+        }
+
+        [Test]
+        public void EmailBackupProcessorThrowsException_WhenFileToBeAttachedDoesNotExists()
+        {
+            // Arrange
+            EmailBackupProcessor testee = new EmailBackupProcessor(emailSettingsMock.Object);
+
+            // Act
+
+            // Assert
+            Assert.Throws(typeof(ArgumentNullException), () => testee.ProcessBackup(new List<string>() { "non_existing_file.xml" }));
         }
 
         [Test]
@@ -60,12 +74,31 @@ namespace ShoppingListApp.Domain.Test
             EmailBackupProcessor testee = new EmailBackupProcessor(emailSettingsMock.Object);
 
             // Act
-            testee.ProcessBackup(@"./ItemRepository.example.xml");
+            testee.ProcessBackup(new List<string>() {@"./ItemRepository.example.xml"});
             string[] files = Directory.GetFiles(this.directory, "*.eml");
 
             // Assert
-            Assert.True(files.Length != 0);
-            Assert.True(files[0].Contains(".eml"));
-        } 
+            Assert.AreEqual(stripUnwantedContentFromEmail(@"./Email_reference.eml"), stripUnwantedContentFromEmail(files[0]));
+        }
+
+        private static string stripUnwantedContentFromEmail(string fileToStrip)
+        {
+            string line;
+
+            StringBuilder referenceString = new StringBuilder();
+
+            using (StreamReader referenceReader = new StreamReader(fileToStrip))
+            {
+                while ((line = referenceReader.ReadLine()) != null)
+                {
+                    if (!line.Contains("Date:") && !line.Contains("boundary") && !string.IsNullOrEmpty(line))
+                    {
+                        referenceString.AppendLine();
+                    }
+                }
+            }
+
+            return referenceString.ToString();
+        }
     }
 }

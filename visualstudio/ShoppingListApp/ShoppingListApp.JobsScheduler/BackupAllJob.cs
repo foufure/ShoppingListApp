@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Ionic.Zip;
 using NLog;
@@ -31,7 +32,11 @@ namespace ShoppingListApp.JobsScheduler
 
             try
             {
-                backupProcessor.ProcessBackup(zipFileName);
+                backupProcessor.ProcessBackup(new List<string>() {zipFileName});
+            }
+            catch (System.NullReferenceException)
+            {
+                backupAllJobLogger.Error("No Zip File given as argument!");
             }
             catch (System.ArgumentNullException)
             {

@@ -76,6 +76,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EmailSettings.Test.cs" />
     <Compile Include="EmailBackupProcessor.Test.cs" />
     <Compile Include="ItemXmlRepository.Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +87,9 @@
       <Link>Settings.StyleCop</Link>
     </None>
     <None Include="coverage.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Email_reference.eml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

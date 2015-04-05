@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
@@ -17,41 +18,43 @@ namespace ShoppingListApp.Domain.Concrete
             emailSettings = settings;
         }
 
-        public void ProcessBackup(string fileToBackup)
+        public void ProcessBackup(List<string> filesToBackup)
         {
-            if (File.Exists(fileToBackup))
+            using (SmtpClient smtpClient = new SmtpClient())
             {
-                using (SmtpClient smtpClient = new SmtpClient())
-                using (Attachment backupAttachment = new Attachment(fileToBackup, MediaTypeNames.Application.Octet))
-                {
-                    smtpClient.EnableSsl = emailSettings.UseSsl;
-                    smtpClient.Host = emailSettings.ServerName;
-                    smtpClient.Port = emailSettings.ServerPort;
-                    smtpClient.UseDefaultCredentials = false;
-                    smtpClient.Credentials = new NetworkCredential(emailSettings.UserName, emailSettings.Password);
-                    smtpClient.DeliveryMethod = emailSettings.DeliveryMethod;
-                    smtpClient.PickupDirectoryLocation = emailSettings.PickupDirectoryLocation;
+                smtpClient.EnableSsl = emailSettings.UseSsl;
+                smtpClient.Host = emailSettings.ServerName;
+                smtpClient.Port = emailSettings.ServerPort;
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials = new NetworkCredential(emailSettings.UserName, emailSettings.Password);
+                smtpClient.DeliveryMethod = emailSettings.DeliveryMethod;
+                smtpClient.PickupDirectoryLocation = emailSettings.PickupDirectoryLocation;
 
-                    StringBuilder body = new StringBuilder()
+                StringBuilder body = new StringBuilder()
                         .AppendLine("A new backup is available")
-                        .AppendLine("---")
-                        .AppendLine(fileToBackup);
+                        .AppendLine("---");
 
-                    using (MailMessage mailMessage = new MailMessage(
-                                           emailSettings.MailFromAddress,   // From
-                                           emailSettings.MailToAddress,     // To
-                                           "New backup " + fileToBackup,    // Subject
-                                           body.ToString()))
-                    {
-                        mailMessage.Attachments.Add(backupAttachment);
-                        smtpClient.Send(mailMessage);
+                using (MailMessage mailMessage = new MailMessage(
+                                       emailSettings.MailFromAddress,   // From
+                                       emailSettings.MailToAddress,     // To
+                                       "New backup",    // Subject
+                                       body.ToString()))
+                {
+                    foreach (string fileToBackup in filesToBackup)
+                    { 
+                        if (File.Exists(fileToBackup))
+                        {
+                            mailMessage.Attachments.Add(new Attachment(fileToBackup, MediaTypeNames.Application.Octet));
+                        }
+                        else
+                        {
+                            throw new System.ArgumentNullException(fileToBackup);
+                        }
                     }
+                
+                    smtpClient.Send(mailMessage);
                 }
-            }
-            else
-            {
-                throw new System.ArgumentNullException(fileToBackup);
-            }
+            }     
         }
     }
 }

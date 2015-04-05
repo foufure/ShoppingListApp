@@ -1,7 +1,9 @@
-﻿namespace ShoppingListApp.Domain.Abstract
+﻿using System.Collections.Generic;
+
+namespace ShoppingListApp.Domain.Abstract
 {
     public interface IBackupProcessor
-    {
-        void ProcessBackup(string fileToBackup);
+    {  
+        void ProcessBackup(List<string> filesToBackup);
     }
 }
