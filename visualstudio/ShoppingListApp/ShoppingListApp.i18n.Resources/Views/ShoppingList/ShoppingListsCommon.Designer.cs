@@ -61,6 +61,15 @@ namespace ShoppingListApp.I18N.Resources.Views.ShoppingList {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The shopping list was changed since you loaded it the last time..
+        /// </summary>
+        public static string ChangedAlert {
+            get {
+                return ResourceManager.GetString("ChangedAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click on the elements done to strike them through.
         /// </summary>
         public static string Done {
@@ -129,6 +138,15 @@ namespace ShoppingListApp.I18N.Resources.Views.ShoppingList {
         public static string Quantity {
             get {
                 return ResourceManager.GetString("Quantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reload.
+        /// </summary>
+        public static string Reload {
+            get {
+                return ResourceManager.GetString("Reload", resourceCulture);
             }
         }
         

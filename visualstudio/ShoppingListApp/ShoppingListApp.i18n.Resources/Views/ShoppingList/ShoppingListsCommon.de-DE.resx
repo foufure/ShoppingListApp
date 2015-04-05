@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ChangedAlert" xml:space="preserve">
+    <value>Die Einkaufsliste wurde geändert.</value>
+  </data>
   <data name="Done" xml:space="preserve">
     <value>Auf die Artikeln klicken die sich schon im Einkaufswagen befinden um die durchzustreichen</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="Quantity" xml:space="preserve">
     <value>Menge</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Neu laden</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Neu initialisieren</value>

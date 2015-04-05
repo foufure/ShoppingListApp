@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ChangedAlert" xml:space="preserve">
+    <value>La liste de course a été modifiée depuis que vous l'avez ouverte.</value>
+  </data>
   <data name="Done" xml:space="preserve">
     <value>Cliquez sur les articles déjà dans le panier pour les barrer</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="Quantity" xml:space="preserve">
     <value>Quantité</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Mettre à jour</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Réinitialiser</value>

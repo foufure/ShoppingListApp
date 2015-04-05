@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Concrete;
 using ShoppingListApp.Domain.Entities;
+using Ninject;
 
 namespace ShoppingListApp.Web.UI.Controllers
 {
@@ -14,11 +15,13 @@ namespace ShoppingListApp.Web.UI.Controllers
     {
         private IShoppingListRepository shoppingListRepository;
         private IItemsRepository itemRepository;
+        private IRepositoryNameProvider shoppingListsRepositoryName;
 
-        public ShoppingListController(IShoppingListRepository shoppingListRepository, IItemsRepository itemRepository)
+        public ShoppingListController(IShoppingListRepository shoppingListRepository, IItemsRepository itemRepository, [Named("ShoppingListRepositoryName")] IRepositoryNameProvider shoppingListsRepositoryName)
         {
             this.shoppingListRepository = shoppingListRepository;
             this.itemRepository = itemRepository;
+            this.shoppingListsRepositoryName = shoppingListsRepositoryName;
         }
 
         public ViewResult ShoppingLists()
@@ -32,6 +35,8 @@ namespace ShoppingListApp.Web.UI.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+
+            ViewBag.LastWriteTime = System.IO.File.GetLastWriteTime(shoppingListsRepositoryName.RepositoryName);
 
             return View((shoppingListId == null) ?
                 shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListDueDate.Date >= DateTime.Now.Date)
@@ -161,6 +166,13 @@ namespace ShoppingListApp.Web.UI.Controllers
 
             shoppingListRepository.Save();
             return Redirect(returnUrl);
+        }
+
+        // AJAX call!
+        public JsonResult GetLastChangedDate()
+        {
+            string lastChangedDate = Convert.ToString(System.IO.File.GetLastWriteTime(shoppingListsRepositoryName.RepositoryName));
+            return Json(lastChangedDate);
         }
 
         // AJAX call!
