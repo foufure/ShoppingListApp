@@ -29,6 +29,7 @@ namespace ShoppingListApp.Web.UI.Infrastructure
 
         private void AddBindings()
         {
+            kernel.Bind<IDataPathProvider>().To<ServerDataPathProvider>();
             kernel.Bind<IItemsRepository>().To<ItemXmlRepository>();
             kernel.Bind<IShoppingListRepository>().To<ShoppingListXmlRepository>();
             kernel.Bind<ICategoryRepository>().To<CategoryXmlRepository>();

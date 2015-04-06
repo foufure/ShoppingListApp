@@ -9,11 +9,9 @@ namespace ShoppingListApp.Domain.Concrete
 {
     public static class RepositoryNameProviderValidationExtensions
     {
-        public static bool RepositoryNameIsValid<T>(this T repositoryNameProviderToValidate)
+        public static void RepositoryNameValidation<T>(this T repositoryNameProviderToValidate)
                 where T : IRepositoryNameProvider
         {
-            bool repositoryNameValidationResult = true;
-
             if (repositoryNameProviderToValidate == null)
             {
                 throw new ArgumentNullException("Internal error: Items Repository could not be initialized because the repository name provider is null", (Exception)null);
@@ -28,8 +26,6 @@ namespace ShoppingListApp.Domain.Concrete
             {
                 throw new ArgumentOutOfRangeException("Internal error: Items Repository could not be initialized because the repository name is an empty string", (Exception)null);
             }
-
-            return repositoryNameValidationResult;
         }
     }
 }

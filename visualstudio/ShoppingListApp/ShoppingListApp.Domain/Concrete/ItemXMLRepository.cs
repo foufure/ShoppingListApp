@@ -18,12 +18,11 @@ namespace ShoppingListApp.Domain.Concrete
 
         public ItemXmlRepository(IRepositoryNameProvider repositoryNameProvider)
         {
-            if (repositoryNameProvider.RepositoryNameIsValid())
-            {
-                this.repositoryNameProvider = repositoryNameProvider;
-                this.InitializeXmlPersistentStorage();
-                this.LoadFromXmlPersistentStorage();
-            } 
+            repositoryNameProvider.RepositoryNameValidation();
+
+            this.repositoryNameProvider = repositoryNameProvider;
+            this.InitializeXmlPersistentStorage();
+            this.LoadFromXmlPersistentStorage();
         }
 
         public IEnumerable<Entities.Item> Repository
@@ -71,7 +70,7 @@ namespace ShoppingListApp.Domain.Concrete
 
             if (string.IsNullOrEmpty(itemCategory))
             {
-                throw new ArgumentOutOfRangeException("Internal Error: the name of the categroy is empty or null. Please enter a valid name", (Exception)null);
+                throw new ArgumentOutOfRangeException("Internal Error: the name of the category is empty or null. Please enter a valid name", (Exception)null);
             }
 
             if ((itemToModify = itemRepository.Where(repositoryItem => repositoryItem.ItemId == itemId).FirstOrDefault()) != null)
@@ -97,11 +96,11 @@ namespace ShoppingListApp.Domain.Concrete
             XElement elements = new XElement("Items");
             foreach (Item item in itemRepository)
             {
-                elements.Add(
-                    new XElement("Item",
+                elements.Add(new XElement(
+                    "Item",
                     new XElement("ItemId") { Value = item.ItemId.ToString(CultureInfo.InvariantCulture) },
                     new XElement("ItemName") { Value = item.ItemName },
-                    new XElement("ItemCategory") {  Value = item.ItemCategory }));
+                    new XElement("ItemCategory") { Value = item.ItemCategory }));
             }
 
             elements.Save(repositoryNameProvider.RepositoryName);
@@ -114,10 +113,12 @@ namespace ShoppingListApp.Domain.Concrete
             itemRepository = new List<Item>();
             foreach (XElement element in parsedFile.Elements("Items").Elements("Item"))
             {
-                itemRepository.Add(new Item() { 
+                itemRepository.Add(new Item() 
+                { 
                     ItemId = Convert.ToUInt32(element.Element("ItemId").Value, CultureInfo.InvariantCulture),
                     ItemName = element.Element("ItemName").Value,
-                    ItemCategory = element.Element("ItemCategory").Value });
+                    ItemCategory = element.Element("ItemCategory").Value 
+                });
             }
         }
 

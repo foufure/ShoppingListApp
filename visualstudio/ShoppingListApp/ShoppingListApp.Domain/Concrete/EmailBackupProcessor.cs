@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -20,6 +21,11 @@ namespace ShoppingListApp.Domain.Concrete
 
         public void ProcessBackup(List<string> filesToBackup)
         {
+            if (filesToBackup == null)
+            {
+                throw new System.ArgumentNullException("filesToBackup");
+            }
+
             using (SmtpClient smtpClient = new SmtpClient())
             {
                 smtpClient.EnableSsl = emailSettings.UseSsl;

@@ -321,5 +321,54 @@ namespace ShoppingListApp.Domain.Test
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Modify(itemId, null));
         }
+
+        [Test]
+        public void ItemCategoryModifiedOnPersistentRepository_WhenWrittenToXmlFileRepository()
+        {
+            // Arrange
+            ItemXmlRepository testee = null;
+            uint itemId = 4;
+            string itemCategory = "Others";
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
+
+            // Act
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee.ModifyCategory(itemId, itemCategory);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.ModifiedCategory.Expected.Xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void NonExistingItemCategoryModifiedOnPersistentRepositoryThrowsException_WhenWrittenToXmlFileRepository()
+        {
+            // Arrange
+            ItemXmlRepository testee = null;
+            uint itemId = 4;
+            string itemCategory = "Others";
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.empty.xml");
+
+            // Act
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+
+            // Assert
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.ModifyCategory(itemId, itemCategory));
+        }
+
+        [Test]
+        public void InvalidItemCategoryModifiedOnPersistentRepositoryThrowsException_WhenWrittenToXmlFileRepository()
+        {
+            // Arrange
+            ItemXmlRepository testee = null;
+            uint itemId = 1;
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
+
+            // Act
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+
+            // Assert
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.ModifyCategory(itemId, null));
+        }
     }
 }

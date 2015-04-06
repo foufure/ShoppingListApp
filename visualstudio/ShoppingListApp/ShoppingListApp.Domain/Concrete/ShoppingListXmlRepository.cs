@@ -18,12 +18,11 @@ namespace ShoppingListApp.Domain.Concrete
 
         public ShoppingListXmlRepository(IRepositoryNameProvider repositoryNameProvider)
         {
-            if (repositoryNameProvider.RepositoryNameIsValid())
-            {
-                this.repositoryNameProvider = repositoryNameProvider;
-                this.InitializeXmlPersistentStorage();
-                this.LoadFromXmlPersistentStorage();
-            } 
+            repositoryNameProvider.RepositoryNameValidation();
+
+            this.repositoryNameProvider = repositoryNameProvider;
+            this.InitializeXmlPersistentStorage();
+            this.LoadFromXmlPersistentStorage();
         }
 
         public IEnumerable<ShoppingList> Repository
@@ -116,7 +115,8 @@ namespace ShoppingListApp.Domain.Concrete
                     
                 foreach (XElement itemElement in element.Elements("ShoppingListLine"))
                 {
-                    newShoppingList.ShoppingListContent.Add(new ShoppingListLine() { 
+                    newShoppingList.ShoppingListContent.Add(new ShoppingListLine() 
+                    { 
                         ItemToBuy = new Item() { ItemId = Convert.ToUInt32(itemElement.Element("ItemId").Value, CultureInfo.InvariantCulture), ItemName = itemElement.Element("ItemName").Value }, 
                         QuantityToBuy = Convert.ToDecimal(itemElement.Element("ItemQuantity").Value, CultureInfo.InvariantCulture),
                         LinePresentationOrder = Convert.ToInt32(itemElement.Element("LinePresentationOrder").Value, CultureInfo.InvariantCulture),

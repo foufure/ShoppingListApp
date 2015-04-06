@@ -18,12 +18,11 @@ namespace ShoppingListApp.Domain.Concrete
 
         public CategoryXmlRepository(IRepositoryNameProvider repositoryNameProvider)
         {
-            if (repositoryNameProvider.RepositoryNameIsValid())
-            {
-                this.repositoryNameProvider = repositoryNameProvider;
-                this.InitializeXmlPersistentStorage();
-                this.LoadFromXmlPersistentStorage();
-            }
+            repositoryNameProvider.RepositoryNameValidation();
+
+            this.repositoryNameProvider = repositoryNameProvider;
+            this.InitializeXmlPersistentStorage();
+            this.LoadFromXmlPersistentStorage();
         }
 
         public IEnumerable<string> Repository
@@ -54,7 +53,10 @@ namespace ShoppingListApp.Domain.Concrete
                 throw new ArgumentOutOfRangeException("Internal Error: the name of the category is empty or null. Please enter a valid name", (Exception)null);
             }
 
-            categoryRepository.Remove(categoryName);
+            if (!categoryRepository.Remove(categoryName))
+            {
+                throw new ArgumentOutOfRangeException("Internal Error: the category does not exist. Please enter a valid category name", (Exception)null);
+            }
         }
 
         public void Modify(string oldCategoryName, string newCategoryName)
@@ -67,6 +69,10 @@ namespace ShoppingListApp.Domain.Concrete
             if (categoryRepository.Remove(oldCategoryName))
             {
                 categoryRepository.Add(newCategoryName);
+            }
+            else 
+            {
+                throw new ArgumentOutOfRangeException("Internal Error: the category does not exist. Please enter a valid category name", (Exception)null);
             }
         }
 

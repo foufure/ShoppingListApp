@@ -3,7 +3,6 @@
 if %ERRORLEVEL% GEQ 1 GOTO ERROR
 
 DEL /F /Q ".\coverage\*.*"
-if %ERRORLEVEL% GEQ 1 GOTO ERROR
 
 "..\..\..\packages\ReportGenerator.2.1.3.0\reportgenerator.exe" -reports:"results.xml" -targetdir:"coverage" Verbosity:"Error"
 if %ERRORLEVEL% GEQ 1 GOTO ERROR

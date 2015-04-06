@@ -23,12 +23,6 @@ namespace ShoppingListApp.Domain.Test
             googleEmailSettings = new GoogleEmailSettings(googleUserInformation);
         }
 
-        [TearDown]
-        public void Dispose()
-        {
-
-        }
-
         [Test]
         public void UserNameIsNull_WhenNotLoggedOn()
         {
@@ -52,7 +46,7 @@ namespace ShoppingListApp.Domain.Test
         }
 
         [Test]
-        public void MailToAddressIsDefault_WhenNotLoggedOn()
+        public void MailtoAddressIsDefault_WhenNotLoggedOn()
         {
             // Arrange
 
@@ -63,12 +57,13 @@ namespace ShoppingListApp.Domain.Test
         }
 
         [Test]
-        public void MailToAddressIsUserEmail_WhenLoggedOn()
+        public static void MailtoAddressIsUserEmail_WhenLoggedOn()
         {
             // Arrange
             Mock<IUserInformation> userInformation = new Mock<IUserInformation>();
             userInformation.Setup(x => x.UserEmail).Returns("test@test.com");
             GoogleEmailSettings googleEmailSettingsWithCustomUserInformation = new GoogleEmailSettings(userInformation.Object);
+            
             // Act
 
             // Assert

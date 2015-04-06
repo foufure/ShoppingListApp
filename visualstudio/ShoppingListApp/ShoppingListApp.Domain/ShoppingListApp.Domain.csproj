@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\ICategoryRepository.cs" />
+    <Compile Include="Abstract\IDataPathProvider.cs" />
     <Compile Include="Abstract\IEmailSettings.cs" />
     <Compile Include="Abstract\IItemsRepository.cs" />
     <Compile Include="Abstract\IBackupProcessor.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Concrete\EmailBackupProcessor.cs" />
     <Compile Include="Concrete\GoogleUserInformation.cs" />
     <Compile Include="Concrete\RepositoriesXsd.cs" />
+    <Compile Include="Concrete\ServerDataPathProvider.cs" />
     <Compile Include="Concrete\UnitsUtils.cs" />
     <Compile Include="Concrete\XmlRepositoryValidationExtensions.cs" />
     <Compile Include="Concrete\RepositoryNameProviderValidationExtensions.cs" />

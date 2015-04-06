@@ -62,6 +62,8 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -76,6 +78,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CategoryXmlRepository.Test.cs" />
+    <Compile Include="XmlValidation.Test.cs" />
+    <Compile Include="RepositoryNameProvider.Test.cs" />
     <Compile Include="EmailSettings.Test.cs" />
     <Compile Include="EmailBackupProcessor.Test.cs" />
     <Compile Include="ItemXmlRepository.Test.cs" />
@@ -89,16 +94,46 @@
     <None Include="coverage.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Email_reference_no_attachment.eml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Email_reference.eml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CategoryRepository.Add.Expected.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CategoryRepository.AddFirst.Expected.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CategoryRepository.empty.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CategoryRepository.example.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CategoryRepository.invalid.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CategoryRepository.invalidempty.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CategoryRepository.Modified.Expected.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CategoryRepository.Remove.Expected.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ItemRepository.AddFirst.Expected.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ItemRepository.Add.Expected.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ItemRepository.ModifiedCategory.Expected.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ShoppingListRepository.AddFirst.Expected.xml">

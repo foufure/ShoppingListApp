@@ -22,7 +22,6 @@ namespace ShoppingListApp.Domain.Entities
         [DataType(DataType.Date)]
         public DateTime ShoppingListDueDate { get; set; }
         
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Justification = "Reviewed. No inheritance needed. Performance win.")]
         public List<ShoppingListLine> ShoppingListContent 
         { 
             get 

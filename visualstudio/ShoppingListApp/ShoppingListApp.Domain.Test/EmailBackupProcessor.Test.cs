@@ -52,7 +52,7 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(NullReferenceException), () => testee.ProcessBackup(null));
+            Assert.Throws(typeof(ArgumentNullException), () => testee.ProcessBackup(null));
         }
 
         [Test]
@@ -74,14 +74,28 @@ namespace ShoppingListApp.Domain.Test
             EmailBackupProcessor testee = new EmailBackupProcessor(emailSettingsMock.Object);
 
             // Act
-            testee.ProcessBackup(new List<string>() {@"./ItemRepository.example.xml"});
+            testee.ProcessBackup(new List<string>() { @"./ItemRepository.example.xml" });
             string[] files = Directory.GetFiles(this.directory, "*.eml");
 
             // Assert
-            Assert.AreEqual(stripUnwantedContentFromEmail(@"./Email_reference.eml"), stripUnwantedContentFromEmail(files[0]));
+            Assert.AreEqual(StripUnwantedContentFromEmail(@"./Email_reference.eml"), StripUnwantedContentFromEmail(files[0]));
         }
 
-        private static string stripUnwantedContentFromEmail(string fileToStrip)
+        [Test]
+        public void EmailBackupProcessorBackupComplete_WhenEmailSentWithNoAttachment()
+        {
+            // Arrange
+            EmailBackupProcessor testee = new EmailBackupProcessor(emailSettingsMock.Object);
+
+            // Act
+            testee.ProcessBackup(new List<string>());
+            string[] files = Directory.GetFiles(this.directory, "*.eml");
+
+            // Assert
+            Assert.AreEqual(StripUnwantedContentFromEmail(@"./Email_reference_no_attachment.eml"), StripUnwantedContentFromEmail(files[0]));
+        }
+
+        private static string StripUnwantedContentFromEmail(string fileToStrip)
         {
             string line;
 
