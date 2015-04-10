@@ -11,17 +11,14 @@ using ShoppingListApp.Domain.Entities;
 
 namespace ShoppingListApp.Domain.Concrete
 {
-    public class ShoppingListXmlRepository : IShoppingListRepository
+    public class ShoppingListXmlRepository : BaseRepository, IShoppingListRepository
     {
         private List<ShoppingList> shoppinglistRepository = null;
-        private IRepositoryNameProvider repositoryNameProvider;
 
         public ShoppingListXmlRepository(IRepositoryNameProvider repositoryNameProvider)
+            : base(repositoryNameProvider)
         {
-            repositoryNameProvider.RepositoryNameValidation();
-
-            this.repositoryNameProvider = repositoryNameProvider;
-            this.InitializeXmlPersistentStorage();
+            this.InitializeXmlPersistentStorage("ShoppingLists", RepositoriesXsd.ShoppingLists());
             this.LoadFromXmlPersistentStorage();
         }
 
@@ -75,7 +72,7 @@ namespace ShoppingListApp.Domain.Concrete
             foreach (ShoppingList shoppinglist in shoppinglistRepository.OrderBy(list => list.ShoppingListId))
             {
                 List<XElement> lines = new List<XElement>();
-                
+
                 foreach (ShoppingListLine line in shoppinglist.ShoppingListContent)
                 {
                     lines.Add(new XElement(
@@ -87,7 +84,7 @@ namespace ShoppingListApp.Domain.Concrete
                                             new XElement("Unit") { Value = line.Unit },
                                             new XElement("Done") { Value = line.Done.ToString() }));
                 }
-                
+
                 elements.Add(new XElement(
                                             "ShoppingList",
                                             new XElement("ShoppingListId") { Value = shoppinglist.ShoppingListId.ToString(CultureInfo.InvariantCulture) },
@@ -96,12 +93,12 @@ namespace ShoppingListApp.Domain.Concrete
                                             lines));
             }
 
-            elements.Save(repositoryNameProvider.RepositoryName);
+            elements.Save(RepositoryName);
         }
 
         public void LoadFromXmlPersistentStorage()
         {
-            XDocument parsedFile = XDocument.Load(repositoryNameProvider.RepositoryName);
+            XDocument parsedFile = XDocument.Load(RepositoryName);
 
             shoppinglistRepository = new List<ShoppingList>();
             foreach (XElement element in parsedFile.Elements("ShoppingLists").Elements("ShoppingList"))
@@ -112,12 +109,12 @@ namespace ShoppingListApp.Domain.Concrete
                     ShoppingListName = element.Element("ShoppingListName").Value,
                     ShoppingListDueDate = Convert.ToDateTime(element.Element("ShoppingListDueDate").Value, CultureInfo.InvariantCulture)
                 };
-                    
+
                 foreach (XElement itemElement in element.Elements("ShoppingListLine"))
                 {
-                    newShoppingList.ShoppingListContent.Add(new ShoppingListLine() 
-                    { 
-                        ItemToBuy = new Item() { ItemId = Convert.ToUInt32(itemElement.Element("ItemId").Value, CultureInfo.InvariantCulture), ItemName = itemElement.Element("ItemName").Value }, 
+                    newShoppingList.ShoppingListContent.Add(new ShoppingListLine()
+                    {
+                        ItemToBuy = new Item() { ItemId = Convert.ToUInt32(itemElement.Element("ItemId").Value, CultureInfo.InvariantCulture), ItemName = itemElement.Element("ItemName").Value },
                         QuantityToBuy = Convert.ToDecimal(itemElement.Element("ItemQuantity").Value, CultureInfo.InvariantCulture),
                         LinePresentationOrder = Convert.ToInt32(itemElement.Element("LinePresentationOrder").Value, CultureInfo.InvariantCulture),
                         Unit = itemElement.Element("Unit").Value,
@@ -127,20 +124,6 @@ namespace ShoppingListApp.Domain.Concrete
 
                 shoppinglistRepository.Add(newShoppingList);
             }
-        }
-
-        private void InitializeXmlPersistentStorage()
-        {
-            if (!File.Exists(repositoryNameProvider.RepositoryName) || !XmlRepositoryIsValid())
-            {
-                XDocument newRepository = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XElement("ShoppingLists"));
-                newRepository.Save(repositoryNameProvider.RepositoryName);
-            }
-        }
-
-        private bool XmlRepositoryIsValid()
-        {
-            return XmlRepositoryValidationExtensions.XmlRepositoryValidation(RepositoriesXsd.ShoppingLists(), repositoryNameProvider.RepositoryName);
         }
     }
 }

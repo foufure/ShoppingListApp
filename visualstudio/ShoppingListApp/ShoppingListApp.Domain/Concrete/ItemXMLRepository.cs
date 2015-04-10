@@ -11,17 +11,14 @@ using ShoppingListApp.Domain.Entities;
 
 namespace ShoppingListApp.Domain.Concrete
 {
-    public class ItemXmlRepository : IItemsRepository
+    public class ItemXmlRepository : BaseRepository, IItemsRepository
     {
         private List<Item> itemRepository = null;
-        private IRepositoryNameProvider repositoryNameProvider;
 
         public ItemXmlRepository(IRepositoryNameProvider repositoryNameProvider)
+            : base(repositoryNameProvider)
         {
-            repositoryNameProvider.RepositoryNameValidation();
-
-            this.repositoryNameProvider = repositoryNameProvider;
-            this.InitializeXmlPersistentStorage();
+            this.InitializeXmlPersistentStorage("Items", RepositoriesXsd.Items());
             this.LoadFromXmlPersistentStorage();
         }
 
@@ -103,12 +100,12 @@ namespace ShoppingListApp.Domain.Concrete
                     new XElement("ItemCategory") { Value = item.ItemCategory }));
             }
 
-            elements.Save(repositoryNameProvider.RepositoryName);
+            elements.Save(RepositoryName);
         }
 
         private void LoadFromXmlPersistentStorage()
         {
-            XDocument parsedFile = XDocument.Load(repositoryNameProvider.RepositoryName);
+            XDocument parsedFile = XDocument.Load(RepositoryName);
 
             itemRepository = new List<Item>();
             foreach (XElement element in parsedFile.Elements("Items").Elements("Item"))
@@ -120,20 +117,6 @@ namespace ShoppingListApp.Domain.Concrete
                     ItemCategory = element.Element("ItemCategory").Value 
                 });
             }
-        }
-
-        private void InitializeXmlPersistentStorage()
-        {
-            if (!File.Exists(repositoryNameProvider.RepositoryName) || !XmlRepositoryIsValid())
-            {
-                XDocument newRepository = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XElement("Items"));
-                newRepository.Save(repositoryNameProvider.RepositoryName);
-            }
-        }
-
-        private bool XmlRepositoryIsValid()
-        {
-            return XmlRepositoryValidationExtensions.XmlRepositoryValidation(RepositoriesXsd.Items(), repositoryNameProvider.RepositoryName);
         }
     }
 }

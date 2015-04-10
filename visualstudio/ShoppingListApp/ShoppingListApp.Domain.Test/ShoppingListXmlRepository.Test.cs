@@ -23,6 +23,7 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./ShoppingListRepository.invalid.xml", @"./ShoppingListRepository.invalid.orig.xml");
             File.Copy(@"./ShoppingListRepository.invalidempty.xml", @"./ShoppingListRepository.invalidempty.orig.xml");
             File.Copy(@"./ShoppingListRepository.empty.xml", @"./ShoppingListRepository.empty.orig.xml");
+            File.Copy(@"./ShoppingListRepository.invalidxsd.xml", @"./ShoppingListRepository.invalidxsd.orig.xml");
             this.repositoryNameProvider = new Mock<IRepositoryNameProvider>();
         }
 
@@ -47,7 +48,24 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./ShoppingListRepository.empty.orig.xml", @"./ShoppingListRepository.empty.xml");
             File.Delete(@"./ShoppingListRepository.empty.orig.xml");
 
+            File.Delete(@"./ShoppingListRepository.invalidxsd.xml");
+            File.Copy(@"./ShoppingListRepository.invalidxsd.orig.xml", @"./ShoppingListRepository.invalidxsd.xml");
+            File.Delete(@"./ShoppingListRepository.invalidxsd.orig.xml");
+
             File.Delete(@"./ShoppingListRepository.doesnotexists.xml");
+        }
+
+        [Test]
+        public void ShoppingListRepositoryIsResetToDefault_WhenXsdSchemaIsInvalid()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.invalidxsd.xml");
+
+            // Act
+            IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object)).Repository;
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.invalidxsd.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
@@ -168,7 +186,7 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(ArgumentNullException), () => testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object));
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object));
         }
 
         [Test]

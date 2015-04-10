@@ -79,7 +79,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CategoryXmlRepository.Test.cs" />
-    <Compile Include="XmlValidation.Test.cs" />
     <Compile Include="RepositoryNameProvider.Test.cs" />
     <Compile Include="EmailSettings.Test.cs" />
     <Compile Include="EmailBackupProcessor.Test.cs" />
@@ -112,6 +111,9 @@
     <Content Include="CategoryRepository.empty.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="CategoryRepository.invalidxsd.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="CategoryRepository.example.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -133,10 +135,16 @@
     <Content Include="ItemRepository.Add.Expected.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ItemRepository.invalidxsd.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ItemRepository.ModifiedCategory.Expected.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ShoppingListRepository.AddFirst.Expected.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ShoppingListRepository.invalidxsd.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ShoppingListRepository.invalidempty.xml">

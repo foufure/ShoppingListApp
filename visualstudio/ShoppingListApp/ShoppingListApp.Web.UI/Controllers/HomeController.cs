@@ -198,14 +198,14 @@ namespace ShoppingListApp.Web.UI.Controllers
             if (fileToRestore != null && fileToRestore.ContentLength > 0)
             {
                 fileToRestore.SaveAs(repositoryName);
-                if (XmlRepositoryValidationExtensions.XmlRepositoryValidation(repositoryType, repositoryName))
-                {
+                // if (XmlRepositoryValidationExtensions.XmlRepositoryValidation(repositoryType, repositoryName))
+                // {
                     TempData[typeToRestore] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("u", ConfiguredCultures.GetCurrentUICulture);
-                }
-                else
-                {
-                    TempData[typeToRestore] = failureMessage;
-                }
+                // }
+                // else
+                // {
+                //     TempData[typeToRestore] = failureMessage;
+                // }
             }
         }
 

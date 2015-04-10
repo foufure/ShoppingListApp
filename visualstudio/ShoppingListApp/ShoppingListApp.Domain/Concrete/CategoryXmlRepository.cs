@@ -11,17 +11,14 @@ using ShoppingListApp.Domain.Entities;
 
 namespace ShoppingListApp.Domain.Concrete
 {
-    public class CategoryXmlRepository : ICategoryRepository
+    public class CategoryXmlRepository : BaseRepository, ICategoryRepository
     {
         private List<string> categoryRepository = null;
-        private IRepositoryNameProvider repositoryNameProvider;
 
         public CategoryXmlRepository(IRepositoryNameProvider repositoryNameProvider)
+            : base(repositoryNameProvider)
         {
-            repositoryNameProvider.RepositoryNameValidation();
-
-            this.repositoryNameProvider = repositoryNameProvider;
-            this.InitializeXmlPersistentStorage();
+            this.InitializeXmlPersistentStorage("Categories", RepositoriesXsd.Categories());
             this.LoadFromXmlPersistentStorage();
         }
 
@@ -84,32 +81,18 @@ namespace ShoppingListApp.Domain.Concrete
                 elements.Add(new XElement("Category", category));
             }
 
-            elements.Save(repositoryNameProvider.RepositoryName);
+            elements.Save(RepositoryName);
         }
 
         private void LoadFromXmlPersistentStorage()
         {
-            XDocument parsedFile = XDocument.Load(repositoryNameProvider.RepositoryName);
+            XDocument parsedFile = XDocument.Load(RepositoryName);
 
             categoryRepository = new List<string>();
             foreach (XElement element in parsedFile.Elements("Categories").Elements("Category"))
             {
                 categoryRepository.Add(element.Value);
             }
-        }
-
-        private void InitializeXmlPersistentStorage()
-        {
-            if (!File.Exists(repositoryNameProvider.RepositoryName) || !XmlRepositoryIsValid())
-            {
-                XDocument newRepository = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XElement("Categories"));
-                newRepository.Save(repositoryNameProvider.RepositoryName);
-            }
-        }
-
-        private bool XmlRepositoryIsValid()
-        {
-            return XmlRepositoryValidationExtensions.XmlRepositoryValidation(RepositoriesXsd.Categories(), repositoryNameProvider.RepositoryName);
         }
     }
 }

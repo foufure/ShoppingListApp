@@ -2,20 +2,16 @@
 
 namespace ShoppingListApp.Domain.Concrete
 {
-    public class ItemXmlRepositoryName : IRepositoryNameProvider
+    public class ItemXmlRepositoryName : BaseRepositoryName
     {
-        private IUserInformation userInformation;
-        private IDataPathProvider dataPathProvider;
-
-        public ItemXmlRepositoryName(IUserInformation userInformation, IDataPathProvider dataPathProvider)
+        public ItemXmlRepositoryName(IUserInformation userInformation, IDataPathProvider dataPathProvider) 
+            : base(userInformation, dataPathProvider)
         {
-            this.userInformation = userInformation;
-            this.dataPathProvider = dataPathProvider;
         }
 
-        public string RepositoryName
+        override public string RepositoryName
         {
-            get { return (userInformation.UserName != null) ? (dataPathProvider.DataPath + @"\ItemRepository." + userInformation.UserName + @".xml") : null; }
+            get { return ComputeRepositoryName(@"\ItemRepository."); }
         }
     }
 }

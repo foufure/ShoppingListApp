@@ -23,6 +23,7 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./CategoryRepository.invalid.xml", @"./CategoryRepository.invalid.orig.xml");
             File.Copy(@"./CategoryRepository.invalidempty.xml", @"./CategoryRepository.invalidempty.orig.xml");
             File.Copy(@"./CategoryRepository.empty.xml", @"./CategoryRepository.empty.orig.xml");
+            File.Copy(@"./CategoryRepository.invalidxsd.xml", @"./CategoryRepository.invalidxsd.orig.xml");
             this.repositoryNameProvider = new Mock<IRepositoryNameProvider>();
         }
 
@@ -47,7 +48,24 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./CategoryRepository.empty.orig.xml", @"./CategoryRepository.empty.xml");
             File.Delete(@"./CategoryRepository.empty.orig.xml");
 
+            File.Delete(@"./CategoryRepository.invalidxsd.xml");
+            File.Copy(@"./CategoryRepository.invalidxsd.orig.xml", @"./CategoryRepository.invalidxsd.xml");
+            File.Delete(@"./CategoryRepository.invalidxsd.orig.xml");
+
             File.Delete(@"./CategoryRepository.doesnotexists.xml");
+        }
+
+        [Test]
+        public void CategoryRepositoryIsResetToDefault_WhenXsdSchemaIsInvalid()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.invalidxsd.xml");
+
+            // Act
+            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object)).Repository;
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./CategoryRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./CategoryRepository.invalidxsd.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
@@ -163,7 +181,7 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(ArgumentNullException), () => testee = new CategoryXmlRepository(this.repositoryNameProvider.Object));
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new CategoryXmlRepository(this.repositoryNameProvider.Object));
         }
 
         [Test]

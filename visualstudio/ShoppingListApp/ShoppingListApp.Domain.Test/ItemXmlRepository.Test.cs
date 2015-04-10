@@ -23,6 +23,7 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./ItemRepository.invalid.xml", @"./ItemRepository.invalid.orig.xml");
             File.Copy(@"./ItemRepository.invalidempty.xml", @"./ItemRepository.invalidempty.orig.xml");
             File.Copy(@"./ItemRepository.empty.xml", @"./ItemRepository.empty.orig.xml");
+            File.Copy(@"./ItemRepository.invalidxsd.xml", @"./ItemRepository.invalidxsd.orig.xml");
             this.repositoryNameProvider = new Mock<IRepositoryNameProvider>();
         }
 
@@ -47,7 +48,24 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./ItemRepository.empty.orig.xml", @"./ItemRepository.empty.xml");
             File.Delete(@"./ItemRepository.empty.orig.xml");
 
+            File.Delete(@"./ItemRepository.invalidxsd.xml");
+            File.Copy(@"./ItemRepository.invalidxsd.orig.xml", @"./ItemRepository.invalidxsd.xml");
+            File.Delete(@"./ItemRepository.invalidxsd.orig.xml");
+
             File.Delete(@"./ItemRepository.doesnotexists.xml");
+        }
+
+        [Test]
+        public void ItemRepositoryIsResetToDefault_WhenXsdSchemaIsInvalid()
+        { 
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.invalidxsd.xml");
+
+            // Act
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object)).Repository;
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.invalidxsd.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
@@ -163,7 +181,7 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(ArgumentNullException), () => testee = new ItemXmlRepository(this.repositoryNameProvider.Object));
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new ItemXmlRepository(this.repositoryNameProvider.Object));
         }
 
         [Test]

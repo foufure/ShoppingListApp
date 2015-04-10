@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item>
+    <ItemId>1</ItemId>
+    <ItemName>Item1</ItemName>
+    <ItemCategory>-</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>2</ItemId>
+    <ItemName>Item2</ItemName>
+    <ItemCategory>Category1</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>3</ItemId>
+    <ItemName>Item3</ItemName>
+    <ItemCategory>-</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>4</ItemId>
+    <ItemName>Item4</ItemName>
+    <ItemCategory>Category325</ItemCategory>
+  </Item>
+  <Item>
+    <ItemId>5</ItemId>
+    <ItemName>Item5</ItemName>
+    <ItemCategory>-</ItemCategory>
+    <ItemCategory>invalid</ItemCategory>
+  </Item>
+</Items>

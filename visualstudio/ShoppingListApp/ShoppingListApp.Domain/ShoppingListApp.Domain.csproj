@@ -52,6 +52,8 @@
     <Compile Include="Abstract\IRepositoryNameProvider.cs" />
     <Compile Include="Abstract\IShoppingListRepository.cs" />
     <Compile Include="Abstract\IUserInformation.cs" />
+    <Compile Include="Concrete\BaseRepository.cs" />
+    <Compile Include="Concrete\BaseRepositoryName.cs" />
     <Compile Include="Concrete\CategoryUtils.cs" />
     <Compile Include="Concrete\CategoryXmlRepository.cs" />
     <Compile Include="Concrete\CategoryXmlRepositoryName.cs" />
@@ -62,15 +64,12 @@
     <Compile Include="Concrete\RepositoriesXsd.cs" />
     <Compile Include="Concrete\ServerDataPathProvider.cs" />
     <Compile Include="Concrete\UnitsUtils.cs" />
-    <Compile Include="Concrete\XmlRepositoryValidationExtensions.cs" />
-    <Compile Include="Concrete\RepositoryNameProviderValidationExtensions.cs" />
     <Compile Include="Concrete\ShoppingListXmlRepository.cs" />
     <Compile Include="Concrete\ShoppingListXmlRepositoryName.cs" />
     <Compile Include="Concrete\ItemXmlRepositoryName.cs" />
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\ShoppingList.cs" />
     <Compile Include="Entities\ShoppingListLine.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
