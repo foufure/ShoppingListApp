@@ -7,7 +7,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading text-uppercase">
-        <span class="pull-right">@Model.ShoppingListDueDate.ToString("d", ConfiguredCultures.GetCurrentUICulture)</span>
+        <span class="pull-right">@Model.ShoppingListDueDate.ToString("d", CurrentCultureConfiguration.GetCurrentUICulture)</span>
         <h1 class="panel-title">@Model.ShoppingListName</h1> 
     </div>
 
