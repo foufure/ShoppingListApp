@@ -52,7 +52,7 @@ namespace ShoppingListApp.Web.UI.Controllers
         [Authorize]
         public RedirectToRouteResult Backup()
         {
-            TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("u", ConfiguredCultures.GetCurrentUICulture);
+            TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("u", CurrentCultureConfiguration.GetCurrentUICulture);
 
             try
             {
@@ -120,7 +120,7 @@ namespace ShoppingListApp.Web.UI.Controllers
         [Authorize(Users = "Shopping List")]
         public RedirectToRouteResult BackupAll()
         {
-            TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("u", ConfiguredCultures.GetCurrentUICulture);
+            TempData["backup"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupMessage + " " + DateTime.Now.ToString("u", CurrentCultureConfiguration.GetCurrentUICulture);
 
             using (ZipFile backupAll = new ZipFile(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\backupAll.bak"))
             {
@@ -178,7 +178,7 @@ namespace ShoppingListApp.Web.UI.Controllers
                         }
                     }
 
-                    TempData["allBackupsToRestore"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("u", ConfiguredCultures.GetCurrentUICulture);
+                    TempData["allBackupsToRestore"] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("u", CurrentCultureConfiguration.GetCurrentUICulture);
                 }
                 catch (System.Exception)
                 {
@@ -200,7 +200,7 @@ namespace ShoppingListApp.Web.UI.Controllers
                 fileToRestore.SaveAs(repositoryName);
                 // if (XmlRepositoryValidationExtensions.XmlRepositoryValidation(repositoryType, repositoryName))
                 // {
-                    TempData[typeToRestore] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("u", ConfiguredCultures.GetCurrentUICulture);
+                    TempData[typeToRestore] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("u", CurrentCultureConfiguration.GetCurrentUICulture);
                 // }
                 // else
                 // {
@@ -212,9 +212,9 @@ namespace ShoppingListApp.Web.UI.Controllers
         private void SetDefaults()
         {
             string languageSuffix = "";
-            if (ConfiguredCultures.GetCurrentUICulture.TwoLetterISOLanguageName != "en")
+            if (CurrentCultureConfiguration.GetCurrentUICulture.TwoLetterISOLanguageName != "en")
             {
-                languageSuffix = "_" + ConfiguredCultures.GetCurrentUICulture.TwoLetterISOLanguageName;
+                languageSuffix = "_" + CurrentCultureConfiguration.GetCurrentUICulture.TwoLetterISOLanguageName;
             }
 
             System.IO.File.Copy(System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\DefaultItemRepository" + languageSuffix + @".xml", itemRepositoryName.RepositoryName, true);

@@ -65,6 +65,7 @@ namespace ShoppingListApp.Domain.Test
             IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object)).Repository;
 
             // Assert
+            Assert.True(testee.Count() == 0);
             Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.invalidxsd.xml").Replace("\r\n", "\n"));
         }
 

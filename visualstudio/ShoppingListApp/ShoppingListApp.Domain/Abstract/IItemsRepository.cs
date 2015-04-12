@@ -11,7 +11,7 @@ namespace ShoppingListApp.Domain.Abstract
         
         void Remove(uint itemId);
 
-        void Modify(uint itemId, string itemName);
+        void ModifyName(uint itemId, string itemName);
 
         void ModifyCategory(uint itemId, string itemCategory);
         

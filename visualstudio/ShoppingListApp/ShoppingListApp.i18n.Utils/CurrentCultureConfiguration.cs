@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace ShoppingListApp.I18N.Utils
 {
-    public static class ConfiguredCultures
+    public static class CurrentCultureConfiguration
     {
         public static CultureInfo GetCurrentUICulture
         {

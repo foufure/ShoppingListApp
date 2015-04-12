@@ -45,8 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfiguredCultures.cs" />
-    <Compile Include="CultureHelper.cs" />
+    <Compile Include="CurrentCultureConfiguration.cs" />
+    <Compile Include="CultureChoiceUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

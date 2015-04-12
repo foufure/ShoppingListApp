@@ -65,6 +65,7 @@ namespace ShoppingListApp.Domain.Test
             IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object)).Repository;
 
             // Assert
+            Assert.True(testee.Count() == 0);
             Assert.AreEqual(File.ReadAllText(@"./ItemRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.invalidxsd.xml").Replace("\r\n", "\n"));
         }
 
@@ -302,7 +303,7 @@ namespace ShoppingListApp.Domain.Test
 
             // Act
             testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
-            testee.Modify(itemId, itemName);
+            testee.ModifyName(itemId, itemName);
             testee.Save();
 
             // Assert
@@ -322,7 +323,7 @@ namespace ShoppingListApp.Domain.Test
             testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
 
             // Assert
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Modify(itemId, itemName));
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.ModifyName(itemId, itemName));
         }
 
         [Test]
@@ -337,7 +338,7 @@ namespace ShoppingListApp.Domain.Test
             testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
 
             // Assert
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Modify(itemId, null));
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.ModifyName(itemId, null));
         }
 
         [Test]

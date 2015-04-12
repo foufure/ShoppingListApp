@@ -30,7 +30,7 @@ namespace ShoppingListApp.Web.UI
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Reviewed.")]
         private void Application_BeginRequest(Object source, EventArgs e)
         {
-            CultureHelper.ApplyUserCulture(((HttpApplication)source).Context.Request);
+            CultureChoiceUtils.SetBestSupportedCultureMatchBetweenUserBrowserAndDefault(((HttpApplication)source).Context.Request);
         }
     }
 }

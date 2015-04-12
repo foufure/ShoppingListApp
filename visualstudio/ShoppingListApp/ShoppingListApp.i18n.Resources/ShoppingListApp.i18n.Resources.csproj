@@ -58,7 +58,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SupportedCultures.cs" />
+    <Compile Include="ApplicationCultures.cs" />
     <Compile Include="Views\Category\CategoryCommon.de-DE.Designer.cs">
       <DependentUpon>CategoryCommon.de-DE.resx</DependentUpon>
       <AutoGen>True</AutoGen>

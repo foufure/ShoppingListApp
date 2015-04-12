@@ -9,7 +9,7 @@ namespace ShoppingListApp.Domain.Concrete
         {
         }
 
-        override public string RepositoryName
+        public override string RepositoryName
         {
             get { return ComputeRepositoryName(@"\ShoppingListRepository."); }
         }

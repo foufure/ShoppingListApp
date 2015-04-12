@@ -42,7 +42,7 @@ namespace ShoppingListApp.Domain.Concrete
             itemRepository.Add(itemToAdd);
         }
 
-        public void Modify(uint itemId, string itemName)
+        public void ModifyName(uint itemId, string itemName)
         {
             Item itemToModify = null;
 

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ShoppingListApp.Domain.Abstract;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using ShoppingListApp.Domain.Abstract;
 
 namespace ShoppingListApp.Domain.Concrete
 {
@@ -34,7 +30,10 @@ namespace ShoppingListApp.Domain.Concrete
             }
         }
 
-        public string RepositoryName { get { return repositoryName; } }
+        protected string RepositoryName 
+        { 
+            get { return repositoryName; } 
+        }
 
         protected void InitializeXmlPersistentStorage(string repositoryType, string xsdRepositoryType)
         {
@@ -47,9 +46,7 @@ namespace ShoppingListApp.Domain.Concrete
 
         protected bool XmlRepositoryIsValid(string xsdRepositoryType)
         {
-            bool xmlRepositoryValidationResult = false;
-
-            xmlRepositoryValidationResult = true;
+            bool xmlRepositoryValidationResult = true;
 
             XmlSchemaSet xmlRepositoryXsdSchemas = new XmlSchemaSet();
 
