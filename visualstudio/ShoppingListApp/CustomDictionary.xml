@@ -10,4 +10,9 @@
       <Word>Cron</Word>
     </Recognized>
   </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>Utils</Acronym>
+    </CasingExceptions>
+  </Acronyms>
 </Dictionary>

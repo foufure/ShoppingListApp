@@ -21,7 +21,7 @@ namespace ShoppingListApp.Web.UI
 
             AppStartLogger.Trace("Start App Cron JobScheduler: " + DateTime.Now.ToString());
 
-            CronJobsScheduler.InitializeJobScheduler();
+            CronJobsScheduler.InitializeJobScheduler(string.Empty);
 
             AppStartLogger.Trace("App Cron JobScheduler Started: " + DateTime.Now.ToString());
         }
@@ -30,7 +30,9 @@ namespace ShoppingListApp.Web.UI
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Reviewed.")]
         private void Application_BeginRequest(Object source, EventArgs e)
         {
-            CultureChoiceUtils.SetBestSupportedCultureMatchBetweenUserBrowserAndDefault(((HttpApplication)source).Context.Request);
+            // To be able to mock HttpRequest, etc... the SystemWeb.Abstractions references must be added and the wrappers used.
+            // http://www.codemerlin.com/2011/07/mocking-httpcontext-httpresponse-httprequest-httpsessionstate-etc-in-asp-net/
+            CultureChoiceUtils.SetBestSupportedCultureMatchBetweenUserBrowserAndDefault(new HttpRequestWrapper(((HttpApplication)source).Context.Request));
         }
     }
 }

@@ -27,7 +27,7 @@ namespace ShoppingListApp.I18N.Utils
             }
         }
 
-        public static void SetBestSupportedCultureMatchBetweenUserBrowserAndDefault(HttpRequest request)
+        public static void SetBestSupportedCultureMatchBetweenUserBrowserAndDefault(HttpRequestBase request)
         {
             if (request != null)
             {
@@ -35,7 +35,7 @@ namespace ShoppingListApp.I18N.Utils
                 string culture = (request.Cookies[UserCultureCookieName] != null) ? request.Cookies[UserCultureCookieName].Value : null;
 
                 // If the user has not chosen a culture explicitely, then the browser preferences will be taken if they contain supported cultures
-                if (culture == null)
+                if ((culture == null) || !ApplicationCultures.IsASupportedCulture(culture))
                 {
                     // Cultures configured in the browser will be matched with the supported cultures and the best match will be chosen
                     if (request.UserLanguages != null && request.UserLanguages.Length > 0)
@@ -87,16 +87,16 @@ namespace ShoppingListApp.I18N.Utils
         private static KeyValuePair<int, string> PerfectMatch(ReadOnlyDictionary<string, string> supportedCultures, string[] configuredBrowserCultures)
         {
             // Format of user-cultures: de, en-US;q=0.8 - weighting must be taken away
-            return cultureMatch(supportedCultures, configuredBrowserCultures, (supportedCulture, browserCulture) => supportedCulture == browserCulture.Split(';')[0]);
+            return CultureMatch(supportedCultures, configuredBrowserCultures, (supportedCulture, browserCulture) => supportedCulture == browserCulture.Split(';')[0]);
         }
 
         private static KeyValuePair<int, string> InvariantMatch(ReadOnlyDictionary<string, string> supportedCultures, string[] configuredBrowserCultures)
         {
             // Format of user-cultures: de, en-US;q=0.8 - weighting and strong culture must be taken away
-            return cultureMatch(supportedCultures, configuredBrowserCultures, (supportedCulture, browserCulture) => supportedCulture.Split('-')[0] == browserCulture.Split('-', ';')[0]);
+            return CultureMatch(supportedCultures, configuredBrowserCultures, (supportedCulture, browserCulture) => supportedCulture.Split('-')[0] == browserCulture.Split('-', ';')[0]);
         }
 
-        private static KeyValuePair<int, string> cultureMatch(ReadOnlyDictionary<string, string> supportedCultures, string[] configuredBrowserCultures, Func<string, string, bool> CompareSupportedCultureAndConfiguredCultureForMatch)
+        private static KeyValuePair<int, string> CultureMatch(ReadOnlyDictionary<string, string> supportedCultures, string[] configuredBrowserCultures, Func<string, string, bool> compareSupportedCultureAndConfiguredCultureForMatch)
         {
             // Position - Value
             KeyValuePair<int, string> match;
@@ -106,7 +106,7 @@ namespace ShoppingListApp.I18N.Utils
             {
                 foreach (string supportedCulture in supportedCultures.Values)
                 { 
-                    if (CompareSupportedCultureAndConfiguredCultureForMatch(supportedCulture, userCulture))
+                    if (compareSupportedCultureAndConfiguredCultureForMatch(supportedCulture, userCulture))
                     {
                         return match = new KeyValuePair<int, string>(matchPosition, supportedCulture);
                     }

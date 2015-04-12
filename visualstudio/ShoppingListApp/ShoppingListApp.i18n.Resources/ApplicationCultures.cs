@@ -14,5 +14,10 @@ namespace ShoppingListApp.I18N.Resources
                 return new ReadOnlyDictionary<string, string>(supportedCultures); 
             }
         }
+
+        public static bool IsASupportedCulture(string cultureToValidate)
+        {
+            return supportedCultures.ContainsValue(cultureToValidate);
+        }
     }
 }

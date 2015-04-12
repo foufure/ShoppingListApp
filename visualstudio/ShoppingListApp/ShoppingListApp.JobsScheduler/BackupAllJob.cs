@@ -4,6 +4,7 @@ using System.IO;
 using Ionic.Zip;
 using NLog;
 using Quartz;
+using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Concrete;
 
 namespace ShoppingListApp.JobsScheduler
@@ -11,28 +12,26 @@ namespace ShoppingListApp.JobsScheduler
     public class BackupAllJob : IJob
     {
         private static Logger backupAllJobLogger = LogManager.GetCurrentClassLogger();
+        private static string baseSystemPath = System.Web.HttpRuntime.AppDomainAppPath + @"App_Data";
+
 
         public void Execute(IJobExecutionContext context)
         {
             backupAllJobLogger.Trace("BackupAllJob Start Execution: " + DateTime.Now.ToString());
 
+            // Use Dependency Injection: read the following articles:
+            // http://stackoverflow.com/questions/6741599/asp-net-mvc-3-ninject-and-quartz-net-how-to
+            // http://stackoverflow.com/questions/22810793/how-to-inject-quartzs-job-with-ninject
+            // http://stackoverflow.com/questions/25889255/quartz-net-and-ninject-how-to-bind-implementation-to-my-job-using-ninject
             EmailBackupProcessor backupProcessor = new EmailBackupProcessor(new GoogleEmailSettings(new GoogleUserInformation()));
 
-            string zipFileName = System.Web.HttpRuntime.AppDomainAppPath + @"App_Data" + @"\backupAll.bak";
+            string backupZipFileName = baseSystemPath + @"\backupAll.bak";
 
-            using (ZipFile backupAll = new ZipFile(zipFileName))
-            {
-                foreach (string fileName in Directory.GetFiles(System.Web.HttpRuntime.AppDomainAppPath + @"App_Data", "*.xml"))
-                {
-                    backupAll.AddFile(System.Web.HttpRuntime.AppDomainAppPath + @"App_Data" + @"\" + Path.GetFileName(fileName), string.Empty);
-                }
-
-                backupAll.Save();
-            }
+            zipDirectoryContent(backupZipFileName);
 
             try
             {
-                backupProcessor.ProcessBackup(new List<string>() {zipFileName});
+                backupProcessor.ProcessBackup(new List<string>() { backupZipFileName });
             }
             catch (System.NullReferenceException)
             {
@@ -44,15 +43,29 @@ namespace ShoppingListApp.JobsScheduler
             }
             catch (System.Net.Mail.SmtpFailedRecipientsException)
             {
-                backupAllJobLogger.Error("Email Recipients does not answer!");
+                backupAllJobLogger.Error("Email Recipients not reachable!");
             }
             catch (System.Net.Mail.SmtpException)
             {
                 backupAllJobLogger.Error("Email could not be sent! Smtp Server down!");
             }
 
-            System.IO.File.Delete(zipFileName);
+            System.IO.File.Delete(backupZipFileName);
+            
             backupAllJobLogger.Trace("BackupAllJob End Execution: " + DateTime.Now.ToString());
+        }
+
+        private void zipDirectoryContent(string zipBackupFileName)
+        {
+            using (ZipFile backupAll = new ZipFile(zipBackupFileName))
+            {
+                foreach (string fileName in Directory.GetFiles(baseSystemPath, "*.xml"))
+                {
+                    backupAll.AddFile(baseSystemPath + @"\" + Path.GetFileName(fileName), string.Empty);
+                }
+
+                backupAll.Save();
+            }
         }
     }
 }

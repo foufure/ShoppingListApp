@@ -100,3 +100,7 @@ Using minified files => bundles
 NUnit Debugging:
 http://erraticdev.blogspot.ch/2012/01/running-or-debugging-nunit-tests-from.html
 
+Mocking of ASP.NET:
+To be able to mock HttpRequest, etc... the SystemWeb.Abstractions references must be added and the wrappers used.
+http://www.codemerlin.com/2011/07/mocking-httpcontext-httpresponse-httprequest-httpsessionstate-etc-in-asp-net/
+

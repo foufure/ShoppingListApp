@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Mail;
 using System.Text;
+using System.Threading;
 using Moq;
 using NUnit.Framework;
 using ShoppingListApp.Domain.Abstract;
@@ -40,6 +41,7 @@ namespace ShoppingListApp.Domain.Test
         [TearDown]
         public void Dispose()
         {
+            Thread.Sleep(10); // otherwise access to filesystem is too fast and creates access denied
             Array.ForEach(Directory.GetFiles(this.directory), File.Delete);
         }
 
