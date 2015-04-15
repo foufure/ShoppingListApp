@@ -3,9 +3,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Ninject;
+using NLog;
 using ShoppingListApp.I18N.Utils;
 using ShoppingListApp.JobsScheduler;
-using NLog;
 
 namespace ShoppingListApp.Web.UI
 {
@@ -19,9 +20,8 @@ namespace ShoppingListApp.Web.UI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            AppStartLogger.Trace("Start App Cron JobScheduler: " + DateTime.Now.ToString());
-
-            CronJobsScheduler.InitializeJobScheduler(string.Empty);
+            CronJobsScheduler cronJobsScheduler = new CronJobsScheduler(DependencyResolver.Current.GetService<IKernel>());
+            cronJobsScheduler.InitializeJobScheduler(string.Empty);
 
             AppStartLogger.Trace("App Cron JobScheduler Started: " + DateTime.Now.ToString());
         }

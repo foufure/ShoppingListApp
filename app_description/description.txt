@@ -104,3 +104,5 @@ Mocking of ASP.NET:
 To be able to mock HttpRequest, etc... the SystemWeb.Abstractions references must be added and the wrappers used.
 http://www.codemerlin.com/2011/07/mocking-httpcontext-httpresponse-httprequest-httpsessionstate-etc-in-asp-net/
 
+Precompilation of views to detect errors:
+https://chrismckee.co.uk/asp-net-mvc-compiled-views/

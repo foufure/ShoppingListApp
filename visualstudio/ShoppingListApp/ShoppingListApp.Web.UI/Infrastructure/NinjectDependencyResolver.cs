@@ -4,6 +4,8 @@ using System.Web.Mvc;
 using Ninject;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Concrete;
+using Quartz;
+using ShoppingListApp.JobsScheduler;
 
 namespace ShoppingListApp.Web.UI.Infrastructure
 {
@@ -29,6 +31,7 @@ namespace ShoppingListApp.Web.UI.Infrastructure
 
         private void AddBindings()
         {
+            kernel.Bind<IDataPathProvider>().To<RuntimeDataPathProvider>().WhenInjectedInto<IJob>();
             kernel.Bind<IDataPathProvider>().To<ServerDataPathProvider>();
             kernel.Bind<IItemsRepository>().To<ItemXmlRepository>();
             kernel.Bind<IShoppingListRepository>().To<ShoppingListXmlRepository>();
@@ -40,7 +43,8 @@ namespace ShoppingListApp.Web.UI.Infrastructure
             kernel.Bind<IRepositoryNameProvider>().To<CategoryXmlRepositoryName>().Named("CategoryRepositoryName");
             kernel.Bind<IRepositoryNameProvider>().To<ShoppingListXmlRepositoryName>().Named("ShoppingListRepositoryName");
             kernel.Bind<IUserInformation>().To<GoogleUserInformation>();
-            kernel.Bind<IBackupProcessor>().To<EmailBackupProcessor>().WithConstructorArgument("settings", new GoogleEmailSettings(new GoogleUserInformation()));   
+            kernel.Bind<IBackupProcessor>().To<EmailBackupProcessor>().WithConstructorArgument("settings", new GoogleEmailSettings(new GoogleUserInformation()));
+            kernel.Bind<IJob>().To<BackupAllJob>();
         }
     }
 }

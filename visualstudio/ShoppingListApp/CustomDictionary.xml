@@ -8,6 +8,7 @@
       <Word>Mvc</Word>
       <Word>Utils</Word>
       <Word>Cron</Word>
+      <Word>Ninject</Word>
     </Recognized>
   </Words>
   <Acronyms>

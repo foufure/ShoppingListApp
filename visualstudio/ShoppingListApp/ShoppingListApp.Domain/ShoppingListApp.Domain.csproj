@@ -62,6 +62,7 @@
     <Compile Include="Concrete\EmailBackupProcessor.cs" />
     <Compile Include="Concrete\GoogleUserInformation.cs" />
     <Compile Include="Concrete\RepositoriesXsd.cs" />
+    <Compile Include="Concrete\RuntimeDataPathProvider.cs" />
     <Compile Include="Concrete\ServerDataPathProvider.cs" />
     <Compile Include="Concrete\UnitsUtils.cs" />
     <Compile Include="Concrete\ShoppingListXmlRepository.cs" />

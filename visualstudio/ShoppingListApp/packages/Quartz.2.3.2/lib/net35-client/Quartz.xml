@@ -68,7 +68,7 @@
         </member>
         <member name="M:Quartz.Collection.TreeSet`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
-            Constructor that prepolutates.
+            Constructor that prepopulates.
             </summary>
             <param name="items"></param>
         </member>
@@ -673,7 +673,7 @@
         </member>
         <member name="M:Quartz.Core.QuartzScheduler.RemoveNoGCObject(System.Object)">
             <summary>
-            Removes the object from garbae collection protected list.
+            Removes the object from garbage collection protected list.
             </summary>
             <param name="obj">The obj.</param>
             <returns></returns>
@@ -1060,7 +1060,7 @@
             <summary>
             Notifies the trigger listeners of completion.
             </summary>
-            <param name="jec">The job executution context.</param>
+            <param name="jec">The job execution context.</param>
             <param name="instCode">The instruction code to report to triggers.</param>
         </member>
         <member name="M:Quartz.Core.QuartzScheduler.NotifyJobListenersToBeExecuted(Quartz.IJobExecutionContext)">
@@ -1071,7 +1071,7 @@
         </member>
         <member name="M:Quartz.Core.QuartzScheduler.NotifyJobListenersWasVetoed(Quartz.IJobExecutionContext)">
             <summary>
-            Notifies the job listeners that job exucution was vetoed.
+            Notifies the job listeners that job execution was vetoed.
             </summary>
             <param name="jec">The job execution context.</param>
         </member>
@@ -1228,7 +1228,7 @@
             Gets or sets a value indicating whether to signal on scheduling change.
             </summary>
             <value>
-            	<c>true</c> if schduler should signal on scheduling change; otherwise, <c>false</c>.
+            	<c>true</c> if scheduler should signal on scheduling change; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Quartz.Core.QuartzScheduler.InStandbyMode">
@@ -1596,7 +1596,7 @@
         <member name="M:Quartz.Core.QuartzSchedulerThread.SignalSchedulingChange(System.Nullable{System.DateTimeOffset})">
             <summary>
             Signals the main processing loop that a change in scheduling has been
-            made - in order to interrupt any sleeping that may be occuring while
+            made - in order to interrupt any sleeping that may be occurring while
             waiting for the fire time to arrive.
             </summary>
             <param name="candidateNewNextFireTimeUtc">
@@ -1690,7 +1690,7 @@
         </member>
         <member name="T:Quartz.Impl.AdoJobStore.Common.DbMetadataFactory">
             <summary>
-            Base class for the DbMetadata Factory implentations
+            Base class for the DbMetadata Factory implementations
             </summary>
         </member>
         <member name="M:Quartz.Impl.AdoJobStore.Common.DbMetadataFactory.GetProviderNames">
@@ -1701,7 +1701,7 @@
         </member>
         <member name="M:Quartz.Impl.AdoJobStore.Common.DbMetadataFactory.GetDbMetadata(System.String)">
             <summary>
-            Gets the database metadata assotiated to the specified provider name.
+            Gets the database metadata associated to the specified provider name.
             </summary>
             <param name="providerName">Name of the provider.</param>
             <returns>The metadata instance for the requested provider</returns>
@@ -1728,7 +1728,7 @@
         </member>
         <member name="M:Quartz.Impl.AdoJobStore.Common.ConfigurationBasedDbMetadataFactory.GetDbMetadata(System.String)">
             <summary>
-            Gets the database metadata assotiated to the specified provider name.
+            Gets the database metadata associated to the specified provider name.
             </summary>
             <param name="providerName">Name of the provider.</param>
             <returns>The metadata instance for the specified name</returns>
@@ -1872,7 +1872,7 @@
         </member>
         <member name="M:Quartz.Impl.AdoJobStore.Common.IDbProvider.CreateCommand">
             <summary>
-            Returns a new command object for executing SQL statments/Stored Procedures
+            Returns a new command object for executing SQL statements/Stored Procedures
             against the database.
             </summary>
             <returns>An new <see cref="T:System.Data.IDbCommand"/></returns>
@@ -1936,7 +1936,7 @@
         </member>
         <member name="M:Quartz.Impl.AdoJobStore.Common.DbProvider.CreateCommand">
             <summary>
-            Returns a new command object for executing SQL statments/Stored Procedures
+            Returns a new command object for executing SQL statements/Stored Procedures
             against the database.
             </summary>
             <returns>An new <see cref="T:System.Data.IDbCommand"/></returns>
@@ -2000,7 +2000,7 @@
         </member>
         <member name="M:Quartz.Impl.AdoJobStore.Common.EmbeddedAssemblyResourceDbMetadataFactory.GetDbMetadata(System.String)">
             <summary>
-            Gets the database metadata assotiated to the specified provider name.
+            Gets the database metadata associated to the specified provider name.
             </summary>
             <param name="providerName">Name of the provider.</param>
             <returns>The metadata instance for the specified name</returns>
@@ -2051,7 +2051,7 @@
             Replace the table prefix in a query by replacing any occurrences of
             "{0}" with the table prefix.
             </summary>
-            <param name="query">The unsubstitued query</param>
+            <param name="query">The unsubstituted query</param>
             <param name="tablePrefix">The table prefix</param>
             <param name="schedNameLiteral">the scheduler name</param>
             <returns>The query, with proper table prefix substituted</returns>
@@ -2310,7 +2310,7 @@
         </member>
         <member name="T:Quartz.Impl.AdoJobStore.DelegateInitializationArgs">
             <summary>
-            Initialization argumens holder for <see cref="T:Quartz.Impl.AdoJobStore.IDriverDelegate"/> implementations.
+            Initialization arguments holder for <see cref="T:Quartz.Impl.AdoJobStore.IDriverDelegate"/> implementations.
             </summary>
         </member>
         <member name="P:Quartz.Impl.AdoJobStore.DelegateInitializationArgs.UseProperties">
@@ -3084,7 +3084,7 @@
             <summary>
             Prepares a <see cref="T:System.Data.IDbCommand"/> to be used to access database.
             </summary>
-            <param name="cth">Connection and tranasction pair</param>
+            <param name="cth">Connection and transaction pair</param>
             <param name="commandText">SQL to run</param>
             <returns></returns>
         </member>
@@ -3890,12 +3890,12 @@
             Replace the table prefix in a query by replacing any occurrences of
             "{0}" with the table prefix.
             </summary>
-            <param name="query">The unsubstitued query</param>
+            <param name="query">The unsubstituted query</param>
             <returns>The query, with proper table prefix substituted</returns>
         </member>
         <member name="M:Quartz.Impl.AdoJobStore.StdAdoDelegate.SerializeObject(System.Object)">
             <summary>
-            Create a serialized <see lanword="byte[]"/> version of an Object.
+            Create a serialized <see langword="byte[]"/> version of an Object.
             </summary>
             <param name="obj">the object to serialize</param>
             <returns>Serialized object as byte array.</returns>
@@ -5226,7 +5226,7 @@
             lockCallback is still executed in a transaction. 
             </param>
             <param name="txCallback">
-            The callback to excute after having acquired the given lock.
+            The callback to execute after having acquired the given lock.
             </param>
         </member>
         <member name="M:Quartz.Impl.AdoJobStore.JobStoreSupport.ExecuteInNonManagedTXLock``1(System.String,System.Func{Quartz.Impl.AdoJobStore.ConnectionAndTransactionHolder,``0},System.Func{Quartz.Impl.AdoJobStore.ConnectionAndTransactionHolder,``0,System.Boolean})">
@@ -5240,7 +5240,7 @@
             lockCallback is still executed in a non-managed transaction. 
             </param>
             <param name="txCallback">
-            The callback to excute after having acquired the given lock.
+            The callback to execute after having acquired the given lock.
             </param>
             <param name="txValidator"></param>
         </member>
@@ -5346,7 +5346,7 @@
         <member name="P:Quartz.Impl.AdoJobStore.JobStoreSupport.DontSetAutoCommitFalse">
             <summary> 
             Don't call set autocommit(false) on connections obtained from the
-            DataSource. This can be helpfull in a few situations, such as if you
+            DataSource. This can be helpful in a few situations, such as if you
             have a driver that complains if it is called when it is already off.
             </summary>
         </member>
@@ -5430,7 +5430,7 @@
         <member name="M:Quartz.Spi.ITypeLoadHelper.Initialize">
             <summary> 
             Called to give the ClassLoadHelper a chance to Initialize itself,
-            including the oportunity to "steal" the class loader off of the calling
+            including the opportunity to "steal" the class loader off of the calling
             thread, which is the thread that is initializing Quartz.
             </summary>
         </member>
@@ -5557,20 +5557,20 @@
         </member>
         <member name="M:Quartz.Impl.AdoJobStore.JobStoreTX.ExecuteInLock``1(System.String,System.Func{Quartz.Impl.AdoJobStore.ConnectionAndTransactionHolder,``0})">
             <summary>
-            Execute the given callback having optionally aquired the given lock.
+            Execute the given callback having optionally acquired the given lock.
             For <see cref="T:Quartz.Impl.AdoJobStore.JobStoreTX"/>, because it manages its own transactions
             and only has the one datasource, this is the same behavior as 
             <see cref="M:Quartz.Impl.AdoJobStore.JobStoreSupport.ExecuteInNonManagedTXLock(System.String,System.Action{Quartz.Impl.AdoJobStore.ConnectionAndTransactionHolder})"/>.
             </summary>
             <param name="lockName">
-            The name of the lock to aquire, for example "TRIGGER_ACCESS". 
-            If null, then no lock is aquired, but the lockCallback is still
+            The name of the lock to acquire, for example "TRIGGER_ACCESS". 
+            If null, then no lock is acquired, but the lockCallback is still
             executed in a transaction.
             </param>
             <param name="txCallback">Callback to execute.</param>
             <returns></returns>
             <seealso cref="M:Quartz.Impl.AdoJobStore.JobStoreSupport.ExecuteInNonManagedTXLock(System.String,System.Action{Quartz.Impl.AdoJobStore.ConnectionAndTransactionHolder})"/>
-            <sssseealso crsef="JobStoreCMT.ExecuteInLock(string, ITransactionCallback)"/>
+            <seealso cref="M:Quartz.Impl.AdoJobStore.JobStoreCMT.ExecuteInLock``1(System.String,System.Func{Quartz.Impl.AdoJobStore.ConnectionAndTransactionHolder,``0})"/>
             <seealso cref="M:Quartz.Impl.AdoJobStore.JobStoreSupport.GetNonManagedTXConnection"/>
             <seealso cref="M:Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection"/>
         </member>
@@ -6030,7 +6030,7 @@
         </member>
         <member name="M:Quartz.Impl.Calendar.AnnualCalendar.IsDayExcluded(System.DateTimeOffset)">
             <summary>
-            Return true, if day is defined to be exluded.
+            Return true, if day is defined to be excluded.
             </summary>
         </member>
         <member name="M:Quartz.Impl.Calendar.AnnualCalendar.SetDayExcluded(System.DateTimeOffset,System.Boolean)">
@@ -6196,7 +6196,7 @@
             <summary>
             Create a <see cref="T:Quartz.Impl.Calendar.DailyCalendar"/> with a time range defined by the
             specified strings and no baseCalendar. 
-            <param name="rangeStartingTime"/> and <param name="rangeEndingTime"/>
+            <paramref name="rangeStartingTime"/> and <paramref name="rangeEndingTime"/>
             must be in the format "HH:MM[:SS[:mmm]]" where:
             <ul>
                 <li>
@@ -6224,12 +6224,14 @@
                 </li>  
             </ul>
             </summary>
+            <param name="rangeStartingTime">The range starting time in millis.</param>
+            <param name="rangeEndingTime">The range ending time in millis.</param>
         </member>
         <member name="M:Quartz.Impl.Calendar.DailyCalendar.#ctor(Quartz.ICalendar,System.String,System.String)">
             <summary>
             Create a <see cref="T:Quartz.Impl.Calendar.DailyCalendar"/> with a time range defined by the
             specified strings and the specified baseCalendar.
-            <param name="rangeStartingTime"/> and <param name="rangeEndingTime"/>
+            <paramref name="rangeStartingTime"/> and <paramref name="rangeEndingTime"/>
             must be in the format "HH:MM[:SS[:mmm]]" where:
             <ul>
             		<li>
@@ -6261,6 +6263,8 @@
             </summary>
             <param name="baseCalendar">The base calendar for this calendar instance see BaseCalendar for more
             information on base calendar functionality.</param>
+            <param name="rangeStartingTime">The range starting time in millis.</param>
+            <param name="rangeEndingTime">The range ending time in millis.</param>
         </member>
         <member name="M:Quartz.Impl.Calendar.DailyCalendar.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -6294,7 +6298,7 @@
         <member name="M:Quartz.Impl.Calendar.DailyCalendar.#ctor(Quartz.ICalendar,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Create a <see cref="T:Quartz.Impl.Calendar.DailyCalendar"/> with a time range defined by the
-            specified values and the specified <param name="baseCalendar"/>. Values are
+            specified values and the specified <paramref name="baseCalendar"/>. Values are
             subject to the following validations:
             <ul>
             		<li>
@@ -6311,6 +6315,8 @@
             </li>
             	</ul>
             </summary>
+            <param name="baseCalendar">The base calendar for this calendar instance see BaseCalendar for more
+            information on base calendar functionality.</param>
             <param name="rangeStartingHourOfDay">The range starting hour of day.</param>
             <param name="rangeStartingMinute">The range starting minute.</param>
             <param name="rangeStartingSecond">The range starting second.</param>
@@ -6349,7 +6355,7 @@
             <summary>
             Create a <see cref="T:Quartz.Impl.Calendar.DailyCalendar"/> with a time range defined by the
             specified <see cref="T:System.DateTime"/>s and the specified
-            <param name="baseCalendar"/>. The Calendars are subject to the following
+            <paramref name="baseCalendar"/>. The Calendars are subject to the following
             considerations:
             <ul>
             		<li>
@@ -6366,6 +6372,8 @@
             		</li>
             	</ul>
             </summary>
+            <param name="baseCalendar">The base calendar for this calendar instance see BaseCalendar for more
+            information on base calendar functionality.</param>
             <param name="rangeStartingCalendarUtc">The range starting calendar.</param>
             <param name="rangeEndingCalendarUtc">The range ending calendar.</param>
         </member>
@@ -6394,7 +6402,7 @@
         <member name="M:Quartz.Impl.Calendar.DailyCalendar.#ctor(Quartz.ICalendar,System.Int64,System.Int64)">
             <summary>
             Create a <see cref="T:Quartz.Impl.Calendar.DailyCalendar"/> with a time range defined by the
-            specified values and the specified <param name="baseCalendar"/>. The values
+            specified values and the specified <paramref name="baseCalendar"/>. The values
             are subject to the following considerations:
             <ul>
             		<li>
@@ -6410,6 +6418,8 @@
             		</li>
             	</ul>
             </summary>
+            <param name="baseCalendar">The base calendar for this calendar instance see BaseCalendar for more
+            information on base calendar functionality.</param>
             <param name="rangeStartingTimeInMillis">The range starting time in millis.</param>
             <param name="rangeEndingTimeInMillis">The range ending time in millis.</param>
         </member>
@@ -6441,7 +6451,7 @@
         <member name="M:Quartz.Impl.Calendar.DailyCalendar.GetTimeRangeStartingTimeUtc(System.DateTimeOffset)">
             <summary>
             Returns the start time of the time range of the day 
-            specified in <param name="timeUtc" />.
+            specified in <paramref name="timeUtc" />.
             </summary>
             <returns>
                 a DateTime representing the start time of the
@@ -6451,7 +6461,7 @@
         <member name="M:Quartz.Impl.Calendar.DailyCalendar.GetTimeRangeEndingTimeUtc(System.DateTimeOffset)">
             <summary>
             Returns the end time of the time range of the day
-            specified in <param name="timeUtc" />
+            specified in <paramref name="timeUtc" />
             </summary>
             <returns>
             A DateTime representing the end time of the
@@ -6513,7 +6523,7 @@
         </member>
         <member name="M:Quartz.Impl.Calendar.DailyCalendar.GetEndOfDay(System.DateTimeOffset)">
             <summary>
-            Gets the end of day, pratically sets time parts to maximum allowed values.
+            Gets the end of day, practically sets time parts to maximum allowed values.
             </summary>
             <param name="time">The time.</param>
             <returns></returns>
@@ -6645,7 +6655,7 @@
         </member>
         <member name="M:Quartz.Impl.Calendar.MonthlyCalendar.IsDayExcluded(System.Int32)">
             <summary>
-            Return true, if mday is defined to be exluded.
+            Return true, if day is defined to be excluded.
             </summary>
         </member>
         <member name="M:Quartz.Impl.Calendar.MonthlyCalendar.SetDayExcluded(System.Int32,System.Boolean)">
@@ -6729,7 +6739,7 @@
         </member>
         <member name="M:Quartz.Impl.Calendar.WeeklyCalendar.IsDayExcluded(System.DayOfWeek)">
             <summary> 
-            Return true, if wday is defined to be exluded. E. g.
+            Return true, if wday is defined to be excluded. E. g.
             saturday and sunday.
             </summary>
         </member>
@@ -8514,16 +8524,21 @@
         <member name="M:Quartz.Impl.Triggers.CronTriggerImpl.#ctor(System.String,System.String,System.String,System.String,System.DateTimeOffset,System.Nullable{System.DateTimeOffset},System.String,System.TimeZoneInfo)">
             <summary>
             Create a <see cref="T:Quartz.Impl.Triggers.CronTriggerImpl"/> with fire time dictated by the
-            <param name="cronExpression"/> resolved with respect to the specified
-            <param name="timeZone"/> occurring from the <see cref="F:Quartz.Impl.Triggers.CronTriggerImpl.startTimeUtc"/> until
-            the given <paran name="endTimeUtc"/>.
+            <paramref name="cronExpression"/> resolved with respect to the specified
+            <paramref name="timeZone"/> occurring from the <see cref="F:Quartz.Impl.Triggers.CronTriggerImpl.startTimeUtc"/> until
+            the given <paramref name="endTime"/>.
             </summary>
             <param name="name">The name of the <see cref="T:Quartz.ITrigger"/></param>
             <param name="group">The group of the <see cref="T:Quartz.ITrigger"/></param>
             <param name="jobName">name of the <see cref="T:Quartz.IJobDetail"/> executed on firetime</param>
             <param name="jobGroup">Group of the <see cref="T:Quartz.IJobDetail"/> executed on firetime</param>
-            <param name="startTimeUtc">A <see cref="T:System.DateTimeOffset"/> set to the earliest time for the  <see cref="T:Quartz.ITrigger"/> to start firing.</param>
+            <param name="startTimeUtc">A <see cref="T:System.DateTimeOffset"/> set to the earliest time for the <see cref="T:Quartz.ITrigger"/> to start firing.</param>
             <param name="endTime">A <see cref="T:System.DateTimeOffset"/> set to the time for the <see cref="T:Quartz.ITrigger"/> to quit repeat firing.</param>
+            <param name="cronExpression"> A cron expression dictating the firing sequence of the <see cref="T:Quartz.ITrigger"/></param>
+            <param name="timeZone">
+            Specifies for which time zone the cronExpression should be interpreted, 
+            i.e. the expression 0 0 10 * * ?, is resolved to 10:00 am in this time zone.
+            </param>
         </member>
         <member name="M:Quartz.Impl.Triggers.CronTriggerImpl.Clone">
             <summary>
@@ -8720,7 +8735,7 @@
         <member name="P:Quartz.Impl.Triggers.CronTriggerImpl.EndTimeUtc">
             <summary>
             Get or sets the time at which the <c>CronTrigger</c> should quit
-            repeating - even if repeastCount isn't yet satisfied. 
+            repeating - even if repeatCount isn't yet satisfied. 
             </summary>
         </member>
         <member name="P:Quartz.Impl.Triggers.CronTriggerImpl.TimeZone">
@@ -9203,7 +9218,7 @@
         </member>
         <member name="P:Quartz.ISimpleTrigger.RepeatCount">
             <summary>
-            Get or set thhe number of times the <see cref="T:Quartz.ISimpleTrigger"/> should
+            Get or set the number of times the <see cref="T:Quartz.ISimpleTrigger"/> should
             repeat, after which it will be automatically deleted.
             </summary>
             <seealso cref="F:Quartz.Impl.Triggers.SimpleTriggerImpl.RepeatIndefinitely"/>
@@ -9428,7 +9443,7 @@
         </member>
         <member name="P:Quartz.Impl.Triggers.SimpleTriggerImpl.RepeatCount">
             <summary>
-            Get or set thhe number of times the <see cref="T:Quartz.Impl.Triggers.SimpleTriggerImpl"/> should
+            Get or set the number of times the <see cref="T:Quartz.Impl.Triggers.SimpleTriggerImpl"/> should
             repeat, after which it will be automatically deleted.
             </summary>
             <seealso cref="F:Quartz.Impl.Triggers.SimpleTriggerImpl.RepeatIndefinitely"/>
@@ -10247,7 +10262,7 @@
         </member>
         <member name="M:Quartz.Impl.JobExecutionContextImpl.#ctor(Quartz.IScheduler,Quartz.Spi.TriggerFiredBundle,Quartz.IJob)">
             <summary>
-            Create a JobExcecutionContext with the given context data.
+            Create a JobExecutionContext with the given context data.
             </summary>
         </member>
         <member name="M:Quartz.Impl.JobExecutionContextImpl.IncrementRefireCount">
@@ -10418,7 +10433,7 @@
         </member>
         <member name="P:Quartz.Impl.JobExecutionContextImpl.FireInstanceId">
             <summary>
-            Returns the fire instace id.
+            Returns the fire instance id.
             </summary>
         </member>
         <member name="T:Quartz.Impl.RemoteScheduler">
@@ -11049,10 +11064,9 @@
             <seealso cref="M:Quartz.IScheduler.GetCurrentlyExecutingJobs"/>
             <seealso cref="P:Quartz.IJobExecutionContext.FireInstanceId"/>
             <seealso cref="M:Quartz.IScheduler.Interrupt(Quartz.JobKey)"/>
-            <param nane="fireInstanceId">
+            <param name="fireInstanceId">
             the unique identifier of the job instance to  be interrupted (see <see cref="P:Quartz.IJobExecutionContext.FireInstanceId"/>
             </param>
-            <param name="fireInstanceId"> </param>
             <returns>true if the identified job instance was found and interrupted.</returns>
         </member>
         <member name="M:Quartz.IScheduler.CheckExists(Quartz.JobKey)">
@@ -11165,7 +11179,7 @@
         </member>
         <member name="M:Quartz.Impl.RemoteScheduler.GetMetaData">
             <summary>
-            Get a <see cref="T:Quartz.SchedulerMetaData"/> object describiing the settings
+            Get a <see cref="T:Quartz.SchedulerMetaData"/> object describing the settings
             and capabilities of the scheduler instance.
             <para>
             Note that the data returned is an 'instantaneous' snap-shot, and that as
@@ -11418,7 +11432,7 @@
             <para>
             JobFactories may be of use to those wishing to have their application
             produce <see cref="T:Quartz.IJob"/> instances via some special mechanism, such as to
-            give the opertunity for dependency injection.
+            give the opportunity for dependency injection.
             </para>
             </summary>
             <value></value>
@@ -11547,7 +11561,7 @@
         </member>
         <member name="M:Quartz.Impl.StdScheduler.GetMetaData">
             <summary>
-            Get a <see cref="T:Quartz.SchedulerMetaData"/> object describiing the settings
+            Get a <see cref="T:Quartz.SchedulerMetaData"/> object describing the settings
             and capabilities of the scheduler instance.
             <para>
             Note that the data returned is an 'instantaneous' snap-shot, and that as
@@ -11854,7 +11868,7 @@
             <para>
             By default a properties are loaded from App.config's quartz section. 
             If that fails, then the file is loaded "quartz.properties". If file does not exist,
-            default configration located (as a embedded resource) in Quartz.dll is loaded. If you
+            default configuration located (as a embedded resource) in Quartz.dll is loaded. If you
             wish to use a file other than these defaults, you must define the system
             property 'quartz.properties' to point to the file you want.
             </para>
@@ -11863,7 +11877,7 @@
             information about the various settings available within the file.
             </para>
             <para>
-            Alternativly, you can explicitly Initialize the factory by calling one of
+            Alternatively, you can explicitly Initialize the factory by calling one of
             the <see cref="M:Quartz.Impl.StdSchedulerFactory.Initialize"/> methods before calling <see cref="M:Quartz.Impl.StdSchedulerFactory.GetScheduler"/>.
             </para>
             <para>
@@ -12129,7 +12143,7 @@
         </member>
         <member name="M:Quartz.Job.IFileScanListener.FileUpdated(System.String)">
             <summary>
-            Ïnforms that certain file has been updated.
+            Informs that certain file has been updated.
             </summary>
             <param name="fileName">Name of the file.</param>
         </member>
@@ -12186,7 +12200,7 @@
         </member>
         <member name="F:Quartz.Job.NativeJob.PropertyWorkingDirectory">
             <summary> 
-            Optional parameter that specifies the workling directory to be used by 
+            Optional parameter that specifies the working directory to be used by 
             the executed command.
             </summary>
         </member>
@@ -12406,7 +12420,7 @@
             is about to be executed.
             <para>
             It is called after the <see cref="M:Quartz.ITriggerListener.TriggerFired(Quartz.ITrigger,Quartz.IJobExecutionContext)"/> method of this
-            interface.  If the implementation vetos the execution (via
+            interface.  If the implementation vetoes the execution (via
             returning <see langword="true"/>), the job's execute method will not be called.
             </para>
             </summary>
@@ -12483,7 +12497,7 @@
              If for some reason there is a failure creating the trigger for the
              follow-up job (which would generally only be caused by a rare serious
              failure in the system, or the non-existence of the follow-up job), an error
-             messsage is logged, but no other action is taken. If you need more rigorous
+             message is logged, but no other action is taken. If you need more rigorous
              handling of the error, consider scheduling the triggering of the flow-up
              job within your job itself.
              </para>
@@ -12518,7 +12532,7 @@
             <summary>
             Called by the <see cref="T:Quartz.IScheduler"/> when a <see cref="T:Quartz.IJobDetail"/>
             is about to be executed (an associated <see cref="T:Quartz.ITrigger"/>
-            has occured).
+            has occurred).
             <para>
             This method will not be invoked if the execution of the Job was vetoed
             by a <see cref="T:Quartz.ITriggerListener"/>.
@@ -12531,7 +12545,7 @@
             <summary>
             Called by the <see cref="T:Quartz.IScheduler"/> when a <see cref="T:Quartz.IJobDetail"/>
             was about to be executed (an associated <see cref="T:Quartz.ITrigger"/>
-            has occured), but a <see cref="T:Quartz.ITriggerListener"/> vetoed it's
+            has occurred), but a <see cref="T:Quartz.ITriggerListener"/> vetoed it's
             execution.
             </summary>
             <param name="context"></param>
@@ -12606,7 +12620,7 @@
         </member>
         <member name="T:Quartz.Plugin.History.LoggingJobHistoryPlugin">
             <summary>
-            Logs a history of all job executions (and execution vetos) via common
+            Logs a history of all job executions (and execution vetoes) via common
             logging.
             </summary>
             <remarks>
@@ -12644,7 +12658,7 @@
             			<tr>
             				<td>4</td>
             				<td>String</td>
-            				<td>The Triggers's group.</td>
+            				<td>The Trigger's group.</td>
             			</tr>
             			<tr>
             				<td>5</td>
@@ -12694,7 +12708,7 @@
             			<tr>
             				<td>4</td>
             				<td>String</td>
-            				<td>The Triggers's group.</td>
+            				<td>The Trigger's group.</td>
             			</tr>
             			<tr>
             				<td>5</td>
@@ -12751,7 +12765,7 @@
             			<tr>
             				<td>4</td>
             				<td>String</td>
-            				<td>The Triggers's group.</td>
+            				<td>The Trigger's group.</td>
             			</tr>
             			<tr>
             				<td>5</td>
@@ -12807,7 +12821,7 @@
             			<tr>
             				<td>4</td>
             				<td>String</td>
-            				<td>The Triggers's group.</td>
+            				<td>The Trigger's group.</td>
             			</tr>
             			<tr>
             				<td>5</td>
@@ -12934,7 +12948,7 @@
             <summary>
             Called by the <see cref="T:Quartz.IScheduler"/> when a <see cref="T:Quartz.IJobDetail"/>
             was about to be executed (an associated <see cref="T:Quartz.ITrigger"/>
-            has occured), but a <see cref="T:Quartz.ITriggerListener"/> vetoed it's
+            has occurred), but a <see cref="T:Quartz.ITriggerListener"/> vetoed it's
             execution.
             </summary>
             <param name="context"></param>
@@ -13258,7 +13272,7 @@
         <member name="T:Quartz.Plugin.Management.ShutdownHookPlugin">
             <summary> 
             This plugin catches the event of the VM terminating (such as upon a CRTL-C)
-            and tells the scheuler to Shutdown.
+            and tells the scheduler to Shutdown.
             </summary>
             <seealso cref="M:Quartz.IScheduler.Shutdown(System.Boolean)"/>
             <author>James House</author>
@@ -13517,7 +13531,7 @@
             <remarks>
             This interface may be of use to those wishing to have their application
             produce <see cref="T:Quartz.IJob"/> instances via some special mechanism, such as to
-            give the opertunity for dependency injection.
+            give the opportunity for dependency injection.
             </remarks>
             <seealso cref="P:Quartz.IScheduler.JobFactory"/>
             <seealso cref="T:Quartz.Simpl.SimpleJobFactory"/>
@@ -13537,7 +13551,7 @@
             Scheduler will move all triggers associated with the Job into the
             <see cref="F:Quartz.TriggerState.Error"/> state, which will require human
             intervention (e.g. an application restart after fixing whatever 
-            configuration problem led to the issue wih instantiating the Job. 
+            configuration problem led to the issue with instantiating the Job. 
             </remarks>
             <param name="bundle">
               The TriggerFiredBundle from which the <see cref="T:Quartz.IJobDetail"/>
@@ -13565,7 +13579,7 @@
             Scheduler will move all triggers associated with the Job into the
             <see cref="F:Quartz.TriggerState.Error"/> state, which will require human
             intervention (e.g. an application restart after fixing whatever
-            configuration problem led to the issue wih instantiating the Job.
+            configuration problem led to the issue with instantiating the Job.
             </remarks>
             <param name="bundle">The TriggerFiredBundle from which the <see cref="T:Quartz.IJobDetail"/>
               and other info relating to the trigger firing can be obtained.</param>
@@ -13592,7 +13606,7 @@
             Scheduler will move all triggers associated with the Job into the
             <see cref="F:Quartz.TriggerState.Error"/> state, which will require human
             intervention (e.g. an application restart after fixing whatever
-            configuration problem led to the issue wih instantiating the Job.
+            configuration problem led to the issue with instantiating the Job.
             </para>
             </remarks>
             <param name="bundle">The TriggerFiredBundle from which the <see cref="T:Quartz.IJobDetail"/>
@@ -13612,14 +13626,14 @@
             <summary> 
             Whether the JobInstantiation should fail and throw and exception if
             a key (name) and value (type) found in the JobDataMap does not 
-            correspond to a proptery setter on the Job class.
+            correspond to a property setter on the Job class.
             </summary>
         </member>
         <member name="P:Quartz.Simpl.PropertySettingJobFactory.WarnIfPropertyNotFound">
             <summary> 
             Get or set whether a warning should be logged if
             a key (name) and value (type) found in the JobDataMap does not 
-            correspond to a proptery setter on the Job class.
+            correspond to a property setter on the Job class.
             </summary>
         </member>
         <member name="T:Quartz.Simpl.RAMJobStore">
@@ -13627,7 +13641,7 @@
             This class implements a <see cref="T:Quartz.Spi.IJobStore"/> that
             utilizes RAM as its storage device.
             <para>
-            As you should know, the ramification of this is that access is extrememly
+            As you should know, the ramification of this is that access is extremely
             fast, but the data is completely volatile - therefore this <see cref="T:Quartz.Spi.IJobStore"/>
             should not be used if true persistence between program shutdowns is
             required.
@@ -13756,7 +13770,7 @@
             name and group was found and removed from the store.
             </returns>
             <param name="key">The <see cref="T:Quartz.ITrigger"/> to be removed.</param>
-            <param name="removeOrphanedJob">Whether to delete orpahaned job details from scheduler if job becomes orphaned from removing the trigger.</param>
+            <param name="removeOrphanedJob">Whether to delete orphaned job details from scheduler if job becomes orphaned from removing the trigger.</param>
         </member>
         <member name="M:Quartz.Simpl.RAMJobStore.ReplaceTrigger(Quartz.TriggerKey,Quartz.Spi.IOperableTrigger)">
             <summary>
@@ -14349,7 +14363,7 @@
             method  <see cref="M:Quartz.Spi.IThreadPool.RunInThread(Quartz.IThreadRunnable)"/> is called a few moments (or
             many moments) later.  If this assumption does not hold true, it may
             result in extra JobStore queries and updates, and if clustering features
-            are being used, it may result in greater imballance of load.
+            are being used, it may result in greater imbalance of load.
             </remarks>
             <seealso cref="T:Quartz.Core.QuartzScheduler"/>
             <author>James House</author>
@@ -14546,7 +14560,7 @@
         <member name="M:Quartz.Simpl.SimpleTypeLoadHelper.Initialize">
             <summary> 
             Called to give the ClassLoadHelper a chance to Initialize itself,
-            including the oportunity to "steal" the class loader off of the calling
+            including the opportunity to "steal" the class loader off of the calling
             thread, which is the thread that is initializing Quartz.
             </summary>
         </member>
@@ -15233,7 +15247,7 @@
             <summary>
             Wrapper class to access thread local data.
             Data is either accessed from thread or HTTP Context's 
-            data if HTTP Context is avaiable.
+            data if HTTP Context is available.
             </summary>
             <author>Marko Lahma .NET</author>
         </member>
@@ -15527,7 +15541,7 @@
             </summary>
             <param name="prefix">The prefix for which to search.  If it does not end in a "." then one will be added to it for search purposes.</param>
             <param name="stripPrefix">Whether to strip off the given <paramref name="prefix"/> in the result's keys.</param>
-            <param name="excludedPrefixes">Optional array of fully qualified prefixes to exclude.  For example if <see paramfref="prefix"/> is "a.b.c", then <see paramref="excludedPrefixes"/> might be "a.b.c.ignore".</param>
+            <param name="excludedPrefixes">Optional array of fully qualified prefixes to exclude.  For example if <see paramref="prefix"/> is "a.b.c", then <see paramref="excludedPrefixes"/> might be "a.b.c.ignore".</param>
             <returns>Group of <see cref="T:System.Collections.Specialized.NameValueCollection"/> that start with the given prefix, optionally have that prefix removed, and do not include properties that start with one of the given excluded prefixes.</returns>
         </member>
         <member name="M:Quartz.Util.PropertiesParser.ReadFromEmbeddedAssemblyResource(System.String)">
@@ -18334,19 +18348,19 @@
         </member>
         <member name="M:Quartz.JobExecutionException.#ctor">
             <summary>
-            Create a JobExcecutionException, with the 're-fire immediately' flag set
+            Create a JobExecutionException, with the 're-fire immediately' flag set
             to <see langword="false" />.
             </summary>
         </member>
         <member name="M:Quartz.JobExecutionException.#ctor(System.Exception)">
             <summary>
-            Create a JobExcecutionException, with the given cause.
+            Create a JobExecutionException, with the given cause.
             </summary>
             <param name="cause">The cause.</param>
         </member>
         <member name="M:Quartz.JobExecutionException.#ctor(System.String)">
             <summary>
-            Create a JobExcecutionException, with the given message.
+            Create a JobExecutionException, with the given message.
             </summary>
         </member>
         <member name="M:Quartz.JobExecutionException.#ctor(System.String,System.Exception)">
@@ -18358,19 +18372,19 @@
         </member>
         <member name="M:Quartz.JobExecutionException.#ctor(System.Boolean)">
             <summary>
-            Create a JobExcecutionException with the 're-fire immediately' flag set
+            Create a JobExecutionException with the 're-fire immediately' flag set
             to the given value.
             </summary>
         </member>
         <member name="M:Quartz.JobExecutionException.#ctor(System.Exception,System.Boolean)">
             <summary>
-            Create a JobExcecutionException with the given underlying exception, and
+            Create a JobExecutionException with the given underlying exception, and
             the 're-fire immediately' flag set to the given value.
             </summary>
         </member>
         <member name="M:Quartz.JobExecutionException.#ctor(System.String,System.Exception,System.Boolean)">
             <summary>
-            Create a JobExcecutionException with the given message, and underlying
+            Create a JobExecutionException with the given message, and underlying
             exception, and the 're-fire immediately' flag set to the given value.
             </summary>
         </member>
@@ -18750,14 +18764,14 @@
             <summary>
             A constant <see cref="T:Quartz.ITrigger"/> group name used internally by the
             scheduler - clients should not use the value of this constant
-            ("RECOVERING_JOBS") for thename of a <see cref="T:Quartz.ITrigger"/>'s group.
+            ("RECOVERING_JOBS") for the name of a <see cref="T:Quartz.ITrigger"/>'s group.
             </summary>
         </member>
         <member name="F:Quartz.SchedulerConstants.DefaultFailOverGroup">
             <summary>
             A constant <see cref="T:Quartz.ITrigger"/> group name used internally by the
             scheduler - clients should not use the value of this constant
-            ("FAILED_OVER_JOBS") for thename of a <see cref="T:Quartz.ITrigger"/>'s group.
+            ("FAILED_OVER_JOBS") for the name of a <see cref="T:Quartz.ITrigger"/>'s group.
             </summary>
         </member>
         <member name="F:Quartz.SchedulerConstants.FailedJobOriginalTriggerName">
@@ -19897,7 +19911,7 @@
         <member name="M:Quartz.TriggerUtils.ComputeEndTimeToAllowParticularNumberOfFirings(Quartz.Spi.IOperableTrigger,Quartz.ICalendar,System.Int32)">
             <summary>
             Compute the <see cref="T:System.DateTimeOffset"/> that is 1 second after the Nth firing of 
-            the given <see cref="T:Quartz.ITrigger"/>, taking the triger's associated 
+            the given <see cref="T:Quartz.ITrigger"/>, taking the trigger's associated 
             <see cref="T:Quartz.ICalendar"/> into consideration.
             </summary>
             <remarks>
