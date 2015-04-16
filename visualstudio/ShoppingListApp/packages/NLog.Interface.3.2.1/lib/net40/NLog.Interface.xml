@@ -1,0 +1,954 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NLog.Interface</name>
+    </assembly>
+    <members>
+        <member name="T:NLog.Interface.ILogger">
+            <summary>
+            Provides logging interface and utility functions.
+            </summary>
+        </member>
+        <member name="M:NLog.Interface.ILogger.IsEnabled(NLog.LogLevel)">
+            <summary>
+            Gets a value indicating whether logging is enabled for the specified level.
+            </summary>
+            <param name="level">Log level to be checked.</param>
+            <returns>A value of <see langword="true" /> if logging is enabled for the specified level, otherwise it returns <see langword="false" />.</returns>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log(NLog.LogEventInfo)">
+            <summary>
+            Writes the specified diagnostic message.
+            </summary>
+            <param name="logEvent">Log event.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log(System.Type,NLog.LogEventInfo)">
+            <summary>
+            Writes the specified diagnostic message.
+            </summary>
+            <param name="wrapperType">The name of the type that wraps Logger.</param>
+            <param name="logEvent">Log event.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log``1(NLog.LogLevel,``0)">
+            <overloads>
+            Writes the diagnostic message at the specified level using the specified format provider and format parameters.
+            </overloads>
+            <summary>
+            Writes the diagnostic message at the specified level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="level">The log level.</param>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log``1(NLog.LogLevel,System.IFormatProvider,``0)">
+            <summary>
+            Writes the diagnostic message at the specified level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="level">The log level.</param>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log(NLog.LogLevel,NLog.LogMessageGenerator)">
+            <summary>
+            Writes the diagnostic message at the specified level.
+            </summary>
+            <param name="level">The log level.</param>
+            <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.LogException(NLog.LogLevel,System.String,System.Exception)">
+            <summary>
+            Writes the diagnostic message and exception at the specified level.
+            </summary>
+            <param name="level">The log level.</param>
+            <param name="message">A <see langword="string" /> to be written.</param>
+            <param name="exception">An exception to be logged.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log(NLog.LogLevel,System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the specified level using the specified parameters and formatting them with the supplied format provider.
+            </summary>
+            <param name="level">The log level.</param>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log(NLog.LogLevel,System.String)">
+            <summary>
+            Writes the diagnostic message at the specified level.
+            </summary>
+            <param name="level">The log level.</param>
+            <param name="message">Log message.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log(NLog.LogLevel,System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the specified level using the specified parameters.
+            </summary>
+            <param name="level">The log level.</param>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log``1(NLog.LogLevel,System.IFormatProvider,System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the specified level using the specified parameter and formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="level">The log level.</param>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log``1(NLog.LogLevel,System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the specified level using the specified parameter.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="level">The log level.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log``2(NLog.LogLevel,System.IFormatProvider,System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the specified level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="level">The log level.</param>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log``2(NLog.LogLevel,System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the specified level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="level">The log level.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log``3(NLog.LogLevel,System.IFormatProvider,System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the specified level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="level">The log level.</param>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Log``3(NLog.LogLevel,System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the specified level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="level">The log level.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.TraceException(System.String,System.Exception)">
+            <summary>
+            Writes the diagnostic message and exception at the <c>Trace</c> level.
+            </summary>
+            <param name="message">A <see langword="string"/> to be written.</param><param name="exception">An exception to be logged.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Trace``1(``0)">
+            <overloads>
+            Writes the diagnostic message at the <c>Trace</c> level using the specified format provider and format parameters.
+            </overloads>
+            <summary>
+            Writes the diagnostic message at the <c>Trace</c> level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Trace``1(System.IFormatProvider,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Trace</c> level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Trace(NLog.LogMessageGenerator)">
+            <summary>
+            Writes the diagnostic message at the <c>Trace</c> level.
+            </summary>
+            <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Trace(System.String,System.Exception)">
+            <summary>
+            Writes the diagnostic message and exception at the <c>Trace</c> level.
+            </summary>
+            <param name="message">A <see langword="string" /> to be written.</param>
+            <param name="exception">An exception to be logged.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Trace(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the <c>Trace</c> level using the specified parameters and formatting them with the supplied format provider.
+            </summary>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Trace(System.String)">
+            <summary>
+            Writes the diagnostic message at the <c>Trace</c> level.
+            </summary>
+            <param name="message">Log message.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Trace(System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
+            </summary>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Trace``1(System.IFormatProvider,System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Trace</c> level using the specified parameter and formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Trace``1(System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Trace</c> level using the specified parameter.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Trace``2(System.IFormatProvider,System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the <c>Trace</c> level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Trace``2(System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Trace``3(System.IFormatProvider,System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the <c>Trace</c> level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Trace``3(System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.DebugException(System.String,System.Exception)">
+            <summary>
+            Writes the diagnostic message and exception at the <c>Debug</c> level.
+            </summary>
+            <param name="message">A <see langword="string"/> to be written.</param><param name="exception">An exception to be logged.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Debug``1(``0)">
+            <overloads>
+            Writes the diagnostic message at the <c>Debug</c> level using the specified format provider and format parameters.
+            </overloads>
+            <summary>
+            Writes the diagnostic message at the <c>Debug</c> level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Debug``1(System.IFormatProvider,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Debug</c> level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Debug(NLog.LogMessageGenerator)">
+            <summary>
+            Writes the diagnostic message at the <c>Debug</c> level.
+            </summary>
+            <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Debug(System.String,System.Exception)">
+            <summary>
+            Writes the diagnostic message and exception at the <c>Debug</c> level.
+            </summary>
+            <param name="message">A <see langword="string" /> to be written.</param>
+            <param name="exception">An exception to be logged.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Debug(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the <c>Debug</c> level using the specified parameters and formatting them with the supplied format provider.
+            </summary>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Debug(System.String)">
+            <summary>
+            Writes the diagnostic message at the <c>Debug</c> level.
+            </summary>
+            <param name="message">Log message.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Debug(System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
+            </summary>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Debug``1(System.IFormatProvider,System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Debug</c> level using the specified parameter and formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Debug``1(System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Debug</c> level using the specified parameter.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Debug``2(System.IFormatProvider,System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the <c>Debug</c> level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Debug``2(System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Debug``3(System.IFormatProvider,System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the <c>Debug</c> level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Debug``3(System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.InfoException(System.String,System.Exception)">
+            <summary>
+            Writes the diagnostic message and exception at the <c>Info</c> level.
+            </summary>
+            <param name="message">A <see langword="string"/> to be written.</param><param name="exception">An exception to be logged.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Info``1(``0)">
+            <overloads>
+            Writes the diagnostic message at the <c>Info</c> level using the specified format provider and format parameters.
+            </overloads>
+            <summary>
+            Writes the diagnostic message at the <c>Info</c> level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Info``1(System.IFormatProvider,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Info</c> level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Info(NLog.LogMessageGenerator)">
+            <summary>
+            Writes the diagnostic message at the <c>Info</c> level.
+            </summary>
+            <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Info(System.String,System.Exception)">
+            <summary>
+            Writes the diagnostic message and exception at the <c>Info</c> level.
+            </summary>
+            <param name="message">A <see langword="string" /> to be written.</param>
+            <param name="exception">An exception to be logged.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Info(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the <c>Info</c> level using the specified parameters and formatting them with the supplied format provider.
+            </summary>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Info(System.String)">
+            <summary>
+            Writes the diagnostic message at the <c>Info</c> level.
+            </summary>
+            <param name="message">Log message.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Info(System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
+            </summary>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Info``1(System.IFormatProvider,System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Info</c> level using the specified parameter and formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Info``1(System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Info</c> level using the specified parameter.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Info``2(System.IFormatProvider,System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the <c>Info</c> level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Info``2(System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Info``3(System.IFormatProvider,System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the <c>Info</c> level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Info``3(System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.WarnException(System.String,System.Exception)">
+            <summary>
+            Writes the diagnostic message and exception at the <c>Warn</c> level.
+            </summary>
+            <param name="message">A <see langword="string"/> to be written.</param><param name="exception">An exception to be logged.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Warn``1(``0)">
+            <overloads>
+            Writes the diagnostic message at the <c>Warn</c> level using the specified format provider and format parameters.
+            </overloads>
+            <summary>
+            Writes the diagnostic message at the <c>Warn</c> level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Warn``1(System.IFormatProvider,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Warn</c> level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Warn(NLog.LogMessageGenerator)">
+            <summary>
+            Writes the diagnostic message at the <c>Warn</c> level.
+            </summary>
+            <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Warn(System.String,System.Exception)">
+            <summary>
+            Writes the diagnostic message and exception at the <c>Warn</c> level.
+            </summary>
+            <param name="message">A <see langword="string" /> to be written.</param>
+            <param name="exception">An exception to be logged.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Warn(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the <c>Warn</c> level using the specified parameters and formatting them with the supplied format provider.
+            </summary>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Warn(System.String)">
+            <summary>
+            Writes the diagnostic message at the <c>Warn</c> level.
+            </summary>
+            <param name="message">Log message.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Warn(System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
+            </summary>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Warn``1(System.IFormatProvider,System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Warn</c> level using the specified parameter and formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Warn``1(System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Warn</c> level using the specified parameter.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Warn``2(System.IFormatProvider,System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the <c>Warn</c> level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Warn``2(System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Warn``3(System.IFormatProvider,System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the <c>Warn</c> level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Warn``3(System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.ErrorException(System.String,System.Exception)">
+            <summary>
+            Writes the diagnostic message and exception at the <c>Error</c> level.
+            </summary>
+            <param name="message">A <see langword="string"/> to be written.</param><param name="exception">An exception to be logged.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Error``1(``0)">
+            <overloads>
+            Writes the diagnostic message at the <c>Error</c> level using the specified format provider and format parameters.
+            </overloads>
+            <summary>
+            Writes the diagnostic message at the <c>Error</c> level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Error``1(System.IFormatProvider,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Error</c> level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Error(NLog.LogMessageGenerator)">
+            <summary>
+            Writes the diagnostic message at the <c>Error</c> level.
+            </summary>
+            <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Error(System.String,System.Exception)">
+            <summary>
+            Writes the diagnostic message and exception at the <c>Error</c> level.
+            </summary>
+            <param name="message">A <see langword="string" /> to be written.</param>
+            <param name="exception">An exception to be logged.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Error(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the <c>Error</c> level using the specified parameters and formatting them with the supplied format provider.
+            </summary>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Error(System.String)">
+            <summary>
+            Writes the diagnostic message at the <c>Error</c> level.
+            </summary>
+            <param name="message">Log message.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Error(System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
+            </summary>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Error``1(System.IFormatProvider,System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Error</c> level using the specified parameter and formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Error``1(System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Error</c> level using the specified parameter.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Error``2(System.IFormatProvider,System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the <c>Error</c> level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Error``2(System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Error``3(System.IFormatProvider,System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the <c>Error</c> level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Error``3(System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.FatalException(System.String,System.Exception)">
+            <summary>
+            Writes the diagnostic message and exception at the <c>Fatal</c> level.
+            </summary>
+            <param name="message">A <see langword="string"/> to be written.</param><param name="exception">An exception to be logged.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Fatal``1(``0)">
+            <overloads>
+            Writes the diagnostic message at the <c>Fatal</c> level using the specified format provider and format parameters.
+            </overloads>
+            <summary>
+            Writes the diagnostic message at the <c>Fatal</c> level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Fatal``1(System.IFormatProvider,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Fatal</c> level.
+            </summary>
+            <typeparam name="T">Type of the value.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="value">The value to be written.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Fatal(NLog.LogMessageGenerator)">
+            <summary>
+            Writes the diagnostic message at the <c>Fatal</c> level.
+            </summary>
+            <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Fatal(System.String,System.Exception)">
+            <summary>
+            Writes the diagnostic message and exception at the <c>Fatal</c> level.
+            </summary>
+            <param name="message">A <see langword="string" /> to be written.</param>
+            <param name="exception">An exception to be logged.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Fatal(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters and formatting them with the supplied format provider.
+            </summary>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Fatal(System.String)">
+            <summary>
+            Writes the diagnostic message at the <c>Fatal</c> level.
+            </summary>
+            <param name="message">Log message.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Fatal(System.String,System.Object[])">
+            <summary>
+            Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.
+            </summary>
+            <param name="message">A <see langword="string" /> containing format items.</param>
+            <param name="args">Arguments to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Fatal``1(System.IFormatProvider,System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Fatal</c> level using the specified parameter and formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Fatal``1(System.String,``0)">
+            <summary>
+            Writes the diagnostic message at the <c>Fatal</c> level using the specified parameter.
+            </summary>
+            <typeparam name="TArgument">The type of the argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument">The argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Fatal``2(System.IFormatProvider,System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the <c>Fatal</c> level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Fatal``2(System.String,``0,``1)">
+            <summary>
+            Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Fatal``3(System.IFormatProvider,System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the <c>Fatal</c> level using the specified arguments formatting it with the supplied format provider.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="M:NLog.Interface.ILogger.Fatal``3(System.String,``0,``1,``2)">
+            <summary>
+            Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.
+            </summary>
+            <typeparam name="TArgument1">The type of the first argument.</typeparam>
+            <typeparam name="TArgument2">The type of the second argument.</typeparam>
+            <typeparam name="TArgument3">The type of the third argument.</typeparam>
+            <param name="message">A <see langword="string" /> containing one format item.</param>
+            <param name="argument1">The first argument to format.</param>
+            <param name="argument2">The second argument to format.</param>
+            <param name="argument3">The third argument to format.</param>
+        </member>
+        <member name="E:NLog.Interface.ILogger.LoggerReconfigured">
+            <summary>
+            Occurs when logger configuration changes.
+            </summary>
+        </member>
+        <member name="P:NLog.Interface.ILogger.Name">
+            <summary>
+            Gets the name of the logger.
+            </summary>
+        </member>
+        <member name="P:NLog.Interface.ILogger.Factory">
+            <summary>
+            Gets the factory that created this logger.
+            </summary>
+        </member>
+        <member name="P:NLog.Interface.ILogger.IsTraceEnabled">
+            <summary>
+            Gets a value indicating whether logging is enabled for the <c>Trace</c> level.
+            </summary>
+            <returns>A value of <see langword="true" /> if logging is enabled for the <c>Trace</c> level, otherwise it returns <see langword="false" />.</returns>
+        </member>
+        <member name="P:NLog.Interface.ILogger.IsDebugEnabled">
+            <summary>
+            Gets a value indicating whether logging is enabled for the <c>Debug</c> level.
+            </summary>
+            <returns>A value of <see langword="true" /> if logging is enabled for the <c>Debug</c> level, otherwise it returns <see langword="false" />.</returns>
+        </member>
+        <member name="P:NLog.Interface.ILogger.IsInfoEnabled">
+            <summary>
+            Gets a value indicating whether logging is enabled for the <c>Info</c> level.
+            </summary>
+            <returns>A value of <see langword="true" /> if logging is enabled for the <c>Info</c> level, otherwise it returns <see langword="false" />.</returns>
+        </member>
+        <member name="P:NLog.Interface.ILogger.IsWarnEnabled">
+            <summary>
+            Gets a value indicating whether logging is enabled for the <c>Warn</c> level.
+            </summary>
+            <returns>A value of <see langword="true" /> if logging is enabled for the <c>Warn</c> level, otherwise it returns <see langword="false" />.</returns>
+        </member>
+        <member name="P:NLog.Interface.ILogger.IsErrorEnabled">
+            <summary>
+            Gets a value indicating whether logging is enabled for the <c>Error</c> level.
+            </summary>
+            <returns>A value of <see langword="true" /> if logging is enabled for the <c>Error</c> level, otherwise it returns <see langword="false" />.</returns>
+        </member>
+        <member name="P:NLog.Interface.ILogger.IsFatalEnabled">
+            <summary>
+            Gets a value indicating whether logging is enabled for the <c>Fatal</c> level.
+            </summary>
+            <returns>A value of <see langword="true" /> if logging is enabled for the <c>Fatal</c> level, otherwise it returns <see langword="false" />.</returns>
+        </member>
+        <member name="T:NLog.Interface.LoggerAdapter">
+            <summary>
+            Implementation of ILogger, deriving from NLog.Logger
+            </summary>
+        </member>
+        <member name="M:NLog.Interface.LoggerAdapter.#ctor(NLog.Logger)">
+            <summary>
+            Create an adapter class using a Logger instance
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="E:NLog.Interface.LoggerAdapter.LoggerReconfigured">
+            <summary>
+            Occurs when logger configuration changes.
+            </summary>
+        </member>
+    </members>
+</doc>

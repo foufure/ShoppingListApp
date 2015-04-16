@@ -1,5 +1,5 @@
 @ECHO OFF
-"..\..\..\packages\OpenCover.4.5.3723\OpenCover.Console.exe" -target:"..\..\..\packages\NUnit.Runners.2.6.4\tools\nunit-console.exe" -targetargs:"ShoppingListApp.I18N.Utils.Test.dll /noshadow /nologo /framework:net-4.5.1" -register:"user" -mergebyhash
+"..\..\..\packages\OpenCover.4.5.3723\OpenCover.Console.exe" -target:"..\..\..\packages\NUnit.Runners.2.6.4\tools\nunit-console.exe" -targetargs:"ShoppingListApp.JobsScheduler.Test.dll /noshadow /nologo /framework:net-4.5.1" -register:"user" -mergebyhash
 if %ERRORLEVEL% GEQ 1 GOTO ERROR
 
 REM DEL /F /Q ".\coverage\*.*"

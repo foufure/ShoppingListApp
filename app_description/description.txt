@@ -77,6 +77,7 @@ Add the coverage.bat as post-build event command line.
 Zip with DotNetZip library through NuGet.
 Quartz.NET and appHarbor Background Workers for Backup jobs Scheduling.
 Added NLog for logging - https://github.com/nlog/nlog/wiki/Tutorial
+https://github.com/uhaciogullari/NLog.Interface
 
 Testing with Authorize ==> create a context with a Mock Object
 http://stackoverflow.com/questions/1877225/how-do-i-unit-test-a-controller-method-that-has-the-authorize-attribute-applie

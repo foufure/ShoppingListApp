@@ -6,6 +6,7 @@ using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Concrete;
 using Quartz;
 using ShoppingListApp.JobsScheduler;
+using NLog.Interface;
 
 namespace ShoppingListApp.Web.UI.Infrastructure
 {
@@ -45,6 +46,7 @@ namespace ShoppingListApp.Web.UI.Infrastructure
             kernel.Bind<IUserInformation>().To<GoogleUserInformation>();
             kernel.Bind<IBackupProcessor>().To<EmailBackupProcessor>().WithConstructorArgument("settings", new GoogleEmailSettings(new GoogleUserInformation()));
             kernel.Bind<IJob>().To<BackupAllJob>();
+            kernel.Bind<ILogger>().To<LoggerAdapter>().WithConstructorArgument(NLog.LogManager.GetCurrentClassLogger());
         }
     }
 }

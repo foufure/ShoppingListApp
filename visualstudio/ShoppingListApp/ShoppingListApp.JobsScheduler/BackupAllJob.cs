@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Ionic.Zip;
 using NLog;
+using NLog.Interface;
 using Quartz;
 using ShoppingListApp.Domain.Abstract;
 
@@ -13,14 +14,16 @@ namespace ShoppingListApp.JobsScheduler
         private IBackupProcessor backupProcessor;
         private string baseSystemPath;
         private string zippedBackupFileName;
-        
-        private Logger backupAllJobLogger = LogManager.GetCurrentClassLogger();
 
-        public BackupAllJob(IBackupProcessor backupProcessor, IDataPathProvider dataPathProvider)
+        private ILogger backupAllJobLogger;
+
+        public BackupAllJob(IBackupProcessor backupProcessor, IDataPathProvider dataPathProvider, ILogger backupAllJobLogger)
         {
             this.backupProcessor = backupProcessor;
             this.baseSystemPath = dataPathProvider.DataPath;
             this.zippedBackupFileName = this.baseSystemPath + @"\backupAll.bak";
+
+            this.backupAllJobLogger = backupAllJobLogger;
         }
 
         public void Execute(IJobExecutionContext context)
