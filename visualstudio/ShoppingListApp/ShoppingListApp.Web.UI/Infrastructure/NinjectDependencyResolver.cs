@@ -5,8 +5,11 @@ using Ninject;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Concrete;
 using Quartz;
+using Quartz.Impl;
+using Quartz.Spi;
 using ShoppingListApp.JobsScheduler;
 using NLog.Interface;
+using ShoppingListApp.JobsScheduler;
 
 namespace ShoppingListApp.Web.UI.Infrastructure
 {
@@ -47,6 +50,8 @@ namespace ShoppingListApp.Web.UI.Infrastructure
             kernel.Bind<IBackupProcessor>().To<EmailBackupProcessor>().WithConstructorArgument("settings", new GoogleEmailSettings(new GoogleUserInformation()));
             kernel.Bind<IJob>().To<BackupAllJob>();
             kernel.Bind<ILogger>().To<LoggerAdapter>().WithConstructorArgument(NLog.LogManager.GetCurrentClassLogger());
+            kernel.Bind<ISchedulerFactory>().To<StdSchedulerFactory>();
+            kernel.Bind<IJobFactory>().To<NinjectJobFactory>().WithConstructorArgument(kernel);
         }
     }
 }
