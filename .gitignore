@@ -1,5 +1,4 @@
 *.Cache
-*.dll
 *.pdb
 *.htm
 /visualstudio/ShoppingListApp/*/obj/
