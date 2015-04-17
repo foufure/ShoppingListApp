@@ -71,15 +71,15 @@ namespace ShoppingListApp.JobsScheduler.Test
 
                 // Act
                 cronJobScheduler.StartJobScheduler();
-                cronJobScheduler.AddJob("0,5,10,15,20,25,30,35,40,45,50,55 * * ? * *", JobBuilder.Create(mockJob.Object.GetType()).Build());
+                cronJobScheduler.AddJob("* * * ? * *", JobBuilder.Create(mockJob.Object.GetType()).Build());
 
                 // Assert
-                Thread.Sleep(1000);
+                Thread.Sleep(3000);
                 cronJobScheduler.StandbyJobScheduler();
             }
 
-            Thread.Sleep(5000);
-            Assert.DoesNotThrow(() => mockJob.Verify(job => job.Execute(It.IsAny<IJobExecutionContext>()), Times.Exactly(1)));
+            Thread.Sleep(3000);
+            Assert.DoesNotThrow(() => mockJob.Verify(job => job.Execute(It.IsAny<IJobExecutionContext>()), Times.Between(1,3,Moq.Range.Inclusive)));
         }
 
         [Test]
