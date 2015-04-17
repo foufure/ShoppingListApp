@@ -212,6 +212,7 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
       <Link>CustomDictionary.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>

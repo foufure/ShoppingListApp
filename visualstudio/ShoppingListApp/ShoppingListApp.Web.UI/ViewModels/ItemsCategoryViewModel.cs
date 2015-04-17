@@ -19,7 +19,16 @@ namespace ShoppingListApp.Web.UI.ViewModels
             this.category = null;
         }
 
-        public List<CategoryLine> CategoryLines { get { return categoryLines; } set { categoryLines = value; } }
-        public string Category { get { return this.category; } set { this.category = value; } }
+        public List<CategoryLine> CategoryLines 
+        { 
+            get { return categoryLines; } 
+            set { categoryLines = value; } 
+        }
+        
+        public string Category 
+        { 
+            get { return this.category; } 
+            set { this.category = value; } 
+        }
     }
 }

@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Ninject;
-using ShoppingListApp.Domain.Abstract;
-using ShoppingListApp.Domain.Concrete;
+using NLog.Interface;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
-using ShoppingListApp.JobsScheduler;
-using NLog.Interface;
+using ShoppingListApp.Domain.Abstract;
+using ShoppingListApp.Domain.Concrete;
 using ShoppingListApp.JobsScheduler;
 
 namespace ShoppingListApp.Web.UI.Infrastructure

@@ -3,6 +3,7 @@
   <Words>
     <Compound>
       <Term CompoundAlternate="MailTo">MailTo</Term>
+      <Term CompoundAlternate="jobToRun">jobToRun</Term>
     </Compound>
     <Recognized>
       <Word>Mvc</Word>

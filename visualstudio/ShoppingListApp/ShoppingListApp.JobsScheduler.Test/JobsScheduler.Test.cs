@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using Ionic.Zip;
 using Moq;
 using Ninject;
@@ -8,7 +9,6 @@ using NUnit.Framework;
 using Quartz;
 using Quartz.Impl;
 using ShoppingListApp.Domain.Abstract;
-using System.Threading;
 
 namespace ShoppingListApp.JobsScheduler.Test
 {
@@ -57,24 +57,28 @@ namespace ShoppingListApp.JobsScheduler.Test
         }
 
         [Test]
-        public void JobIsExecuted_WhenCronJobIsStarted()
+        public static void JobIsExecuted_WhenCronJobIsStarted()
         {
             // Arrange
             Mock<IJob> mockJob = new Mock<IJob>();
             mockJob.Setup(x => x.Execute(null));
 
-            IKernel kernel = new StandardKernel();
-            kernel.Bind<IJob>().ToConstant(mockJob.Object);
+            using (IKernel kernel = new StandardKernel())
+            { 
+                kernel.Bind<IJob>().ToConstant(mockJob.Object);
 
-            CronJobsScheduler cronJobScheduler = new CronJobsScheduler(new StdSchedulerFactory(), new NinjectJobFactory(kernel));
+                CronJobsScheduler cronJobScheduler = new CronJobsScheduler(new StdSchedulerFactory(), new NinjectJobFactory(kernel));
 
-            // Act
-            cronJobScheduler.StartJobScheduler();
-            cronJobScheduler.AddJob("0,5,10,15,20,25,30,35,40,45,50,55 * * ? * *", JobBuilder.Create(mockJob.Object.GetType()).Build());
+                // Act
+                cronJobScheduler.StartJobScheduler();
+                cronJobScheduler.AddJob("0,5,10,15,20,25,30,35,40,45,50,55 * * ? * *", JobBuilder.Create(mockJob.Object.GetType()).Build());
 
-            // Assert
-            Thread.Sleep(4000);
-            cronJobScheduler.StandbyJobScheduler();
+                // Assert
+                Thread.Sleep(1000);
+                cronJobScheduler.StandbyJobScheduler();
+            }
+
+            Thread.Sleep(5000);
             Assert.DoesNotThrow(() => mockJob.Verify(job => job.Execute(It.IsAny<IJobExecutionContext>()), Times.Exactly(1)));
         }
 

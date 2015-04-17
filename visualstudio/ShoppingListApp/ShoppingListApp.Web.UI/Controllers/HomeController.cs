@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.IO;
 using System.Web;
@@ -134,7 +133,7 @@ namespace ShoppingListApp.Web.UI.Controllers
 
             try
             {
-                backupProcessor.ProcessBackup(new List<string>() {System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\backupAll.bak"});
+                backupProcessor.ProcessBackup(new List<string>() { System.Web.HttpContext.Current.Server.MapPath("~/App_Data") + @"\backupAll.bak" });
             }
             catch (System.NullReferenceException)
             {
@@ -198,20 +197,20 @@ namespace ShoppingListApp.Web.UI.Controllers
             if (fileToRestore != null && fileToRestore.ContentLength > 0)
             {
                 fileToRestore.SaveAs(repositoryName);
-                // if (XmlRepositoryValidationExtensions.XmlRepositoryValidation(repositoryType, repositoryName))
-                // {
+                //// if (XmlRepositoryValidationExtensions.XmlRepositoryValidation(repositoryType, repositoryName))
+                //// {
                     TempData[typeToRestore] = ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackupMessage + " " + DateTime.Now.ToString("u", CurrentCultureConfiguration.GetCurrentUICulture);
-                // }
-                // else
-                // {
-                //     TempData[typeToRestore] = failureMessage;
-                // }
+                //// }
+                //// else
+                //// {
+                ////     TempData[typeToRestore] = failureMessage;
+                //// }
             }
         }
 
         private void SetDefaults()
         {
-            string languageSuffix = "";
+            string languageSuffix = string.Empty;
             if (CurrentCultureConfiguration.GetCurrentUICulture.TwoLetterISOLanguageName != "en")
             {
                 languageSuffix = "_" + CurrentCultureConfiguration.GetCurrentUICulture.TwoLetterISOLanguageName;

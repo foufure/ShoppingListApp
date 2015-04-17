@@ -9,6 +9,7 @@ namespace ShoppingListApp.Web.UI.ViewModels
     public class CategoriesItemViewModel
     {
         public Item ItemToModify { get; set; }
+        
         public List<string> CategoriesToChooseFrom { get; set; }
     }
 }

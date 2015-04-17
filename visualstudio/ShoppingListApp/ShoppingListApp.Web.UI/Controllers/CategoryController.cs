@@ -63,7 +63,7 @@ namespace ShoppingListApp.Web.UI.Controllers
             {
                 if (item.ItemCategory == CategoryUtils.DefaultCategory || item.ItemCategory == categoryToModify)
                 {
-                    itemsCategoryViewModel.CategoryLines.Add(new CategoryLine() { ItemToCategorize = item, CategorySelection = (item.ItemCategory == categoryToModify) });
+                    itemsCategoryViewModel.CategoryLines.Add(new CategoryLine() { ItemToCategorize = item, CategorySelection = item.ItemCategory == categoryToModify });
                 }
             }
 

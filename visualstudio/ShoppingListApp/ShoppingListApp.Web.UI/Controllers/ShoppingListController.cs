@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
+using Ninject;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Concrete;
 using ShoppingListApp.Domain.Entities;
-using Ninject;
 
 namespace ShoppingListApp.Web.UI.Controllers
 {
@@ -95,7 +95,7 @@ namespace ShoppingListApp.Web.UI.Controllers
                 }
                 else 
                 {
-                    //Item Category is only saved centrally in the item repository and not in the shoppinglists to always remain up-to-date and not create a dependency
+                    // Item Category is only saved centrally in the item repository and not in the shoppinglists to always remain up-to-date and not create a dependency
                     shoppinglistToModify.ShoppingListContent.Where(line => line.ItemToBuy.ItemId == item.ItemId).FirstOrDefault().ItemToBuy.ItemCategory = item.ItemCategory;
                 }
             }
@@ -171,7 +171,7 @@ namespace ShoppingListApp.Web.UI.Controllers
         // AJAX call!
         public JsonResult GetLastChangedDate()
         {
-            string lastChangedDate = Convert.ToString(System.IO.File.GetLastWriteTime(shoppingListsRepositoryName.RepositoryName));
+            string lastChangedDate = Convert.ToString(System.IO.File.GetLastWriteTime(shoppingListsRepositoryName.RepositoryName), CultureInfo.CurrentCulture);
             return Json(lastChangedDate);
         }
 
@@ -187,7 +187,7 @@ namespace ShoppingListApp.Web.UI.Controllers
         }
 
         // AJAX call!
-        public void UpdateShoppingListLinesOrder(int  id, int fromPosition, int toPosition, string direction)
+        public void UpdateShoppingListLinesOrder(int id, int fromPosition, int toPosition, string direction)
         {
             string incomingURL = Request.Url.PathAndQuery;
             uint shoppingListId = Convert.ToUInt32(incomingURL.Split('/').LastOrDefault(), CultureInfo.InvariantCulture);

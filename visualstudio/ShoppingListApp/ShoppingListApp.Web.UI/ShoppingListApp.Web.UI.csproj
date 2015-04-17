@@ -156,6 +156,7 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
       <Link>CustomDictionary.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </CodeAnalysisDictionary>
     <Content Include="App_Data\DefaultCategoryRepository.xml" />
     <Content Include="App_Data\DefaultCategoryRepository_de.xml" />
@@ -266,6 +267,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="..\Settings.StyleCop">
       <Link>Settings.StyleCop</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

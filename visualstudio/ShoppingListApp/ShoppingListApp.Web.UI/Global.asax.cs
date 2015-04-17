@@ -3,19 +3,18 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Ninject;
 using NLog;
+using NLog.Interface;
+using Quartz;
+using Quartz.Spi;
 using ShoppingListApp.I18N.Utils;
 using ShoppingListApp.JobsScheduler;
-using Quartz;
-using Quartz.Impl;
-using Quartz.Spi;
 
 namespace ShoppingListApp.Web.UI
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private Logger AppStartLogger = LogManager.GetCurrentClassLogger();
+        private ILogger appStartLogger = DependencyResolver.Current.GetService<ILogger>();
 
         protected void Application_Start()
         {
@@ -25,10 +24,10 @@ namespace ShoppingListApp.Web.UI
 
             ConfigureAndStartCronJobs();
 
-            AppStartLogger.Trace("App Cron JobScheduler Started: " + DateTime.Now.ToString());
+            appStartLogger.Trace("App Cron JobScheduler Started: " + DateTime.Now.ToString());
         }
 
-        private void ConfigureAndStartCronJobs()
+        private static void ConfigureAndStartCronJobs()
         {
             CronJobsScheduler cronJobsScheduler = new CronJobsScheduler(DependencyResolver.Current.GetService<ISchedulerFactory>(), DependencyResolver.Current.GetService<IJobFactory>());
             cronJobsScheduler.StartJobScheduler();

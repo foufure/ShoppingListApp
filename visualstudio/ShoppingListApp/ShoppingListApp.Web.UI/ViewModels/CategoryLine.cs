@@ -9,6 +9,7 @@ namespace ShoppingListApp.Web.UI.ViewModels
     public class CategoryLine
     {
         public Item ItemToCategorize { get; set; }
+        
         public bool CategorySelection { get; set; }
     }
 }
