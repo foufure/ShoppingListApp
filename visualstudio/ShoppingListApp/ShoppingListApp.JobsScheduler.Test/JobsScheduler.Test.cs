@@ -19,7 +19,6 @@ namespace ShoppingListApp.JobsScheduler.Test
         private Mock<IBackupProcessor> backupProcessor;
         private Mock<IDataPathProvider> dataPathProvider;
         private Mock<ILogger> loggerFake;
-        private string unzipDirectory;
 
         [SetUp]
         public void Init()
@@ -27,7 +26,6 @@ namespace ShoppingListApp.JobsScheduler.Test
             dataPathProvider = new Mock<IDataPathProvider>();
             dataPathProvider.Setup(provider => provider.DataPath).Returns(@".");
             backupProcessor = new Mock<IBackupProcessor>();
-            unzipDirectory = @".\backup";
 
             loggerFake = new Mock<ILogger>();
         }
@@ -38,21 +36,6 @@ namespace ShoppingListApp.JobsScheduler.Test
             if (File.Exists(@".\backupAll.bak.successful")) 
             { 
                 File.Delete(@".\backupAll.bak.successful"); 
-            }
-            
-            if (File.Exists(@".\backupAll.bak")) 
-            { 
-                File.Delete(@".\backupAll.bak"); 
-            }
-            
-            if (File.Exists(@".\backupAll.bak.successful.zip")) 
-            { 
-                File.Delete(@".\backupAll.bak.successful.zip"); 
-            }
-            
-            if (Directory.Exists(@".\backup")) 
-            { 
-                Directory.Delete(@".\backup", true); 
             }
         }
 
@@ -86,8 +69,9 @@ namespace ShoppingListApp.JobsScheduler.Test
         public void BackupIsDone_WhenJobIsExecuted()
         {
             // Arrange
-            backupProcessor.Setup(processor => processor.ProcessBackup(It.IsAny<List<string>>()))
-                .Callback(() => File.Copy(@".\\backupAll.bak", @".\backupAll.bak.successful"));
+            backupProcessor.Setup(processor => processor.CreateBackup());
+            backupProcessor.Setup(processor => processor.SecureBackup())
+                .Callback(() => File.Copy(@".\backupAll.bak", @".\backupAll.bak.successful"));
             backupAllJob = new BackupAllJob(backupProcessor.Object, dataPathProvider.Object, loggerFake.Object);
 
             // Act
@@ -98,40 +82,10 @@ namespace ShoppingListApp.JobsScheduler.Test
         }
 
         [Test]
-        public void BackupIsComplete_WhenJobIsExecuted()
-        {
-            // Arrange
-            backupProcessor.Setup(processor => processor.ProcessBackup(It.IsAny<List<string>>()))
-                .Callback(() => File.Copy(@".\\backupAll.bak", @".\backupAll.bak.successful"));
-            backupAllJob = new BackupAllJob(backupProcessor.Object, dataPathProvider.Object, loggerFake.Object);
-
-            // Act
-            backupAllJob.Execute(null);
-
-            // Assert
-            Assert.AreEqual(Directory.GetFiles(@".\", "*.xml"), FileListUnzipped(@".\backupAll.bak.successful"));
-        }
-
-        [Test]
-        public void BackupExceptionNullReferenceExceptionHandledCorrectly_WhenSomethingGoesWrong()
-        {
-            // Arrange
-            backupProcessor.Setup(processor => processor.ProcessBackup(It.IsAny<List<string>>()))
-                .Throws(new System.NullReferenceException());
-            backupAllJob = new BackupAllJob(backupProcessor.Object, dataPathProvider.Object, loggerFake.Object);
-
-            // Act
-            backupAllJob.Execute(null);
-
-            // Assert
-            Assert.DoesNotThrow(() => loggerFake.Verify(logger => logger.Error("No Zip File given as argument!"), Times.Exactly(1)));  
-        }
-
-        [Test]
         public void BackupExceptionArgumentNullExceptionHandledCorrectly_WhenSomethingGoesWrong()
         {
             // Arrange
-            backupProcessor.Setup(processor => processor.ProcessBackup(It.IsAny<List<string>>()))
+            backupProcessor.Setup(processor => processor.SecureBackup())
                 .Throws(new System.ArgumentNullException());
             backupAllJob = new BackupAllJob(backupProcessor.Object, dataPathProvider.Object, loggerFake.Object);
 
@@ -146,7 +100,7 @@ namespace ShoppingListApp.JobsScheduler.Test
         public void BackupExceptionSmtpFailedRecipientsExceptionHandledCorrectly_WhenSomethingGoesWrong()
         {
             // Arrange
-            backupProcessor.Setup(processor => processor.ProcessBackup(It.IsAny<List<string>>()))
+            backupProcessor.Setup(processor => processor.SecureBackup())
                 .Throws(new System.Net.Mail.SmtpFailedRecipientsException());
             backupAllJob = new BackupAllJob(backupProcessor.Object, dataPathProvider.Object, loggerFake.Object);
 
@@ -161,7 +115,7 @@ namespace ShoppingListApp.JobsScheduler.Test
         public void BackupExceptionSmtpExceptionHandledCorrectly_WhenSomethingGoesWrong()
         {
             // Arrange
-            backupProcessor.Setup(processor => processor.ProcessBackup(It.IsAny<List<string>>()))
+            backupProcessor.Setup(processor => processor.SecureBackup())
                 .Throws(new System.Net.Mail.SmtpException());
             backupAllJob = new BackupAllJob(backupProcessor.Object, dataPathProvider.Object, loggerFake.Object);
 
@@ -170,26 +124,6 @@ namespace ShoppingListApp.JobsScheduler.Test
 
             // Assert
             Assert.DoesNotThrow(() => loggerFake.Verify(logger => logger.Error("Email could not be sent! Smtp Server down!"), Times.Exactly(1)));
-        }
-
-        private string[] FileListUnzipped(string zipFileName)
-        {
-            using (ZipFile zipFile = ZipFile.Read(zipFileName))
-            {
-                foreach (ZipEntry zipEntry in zipFile)
-                {
-                    zipEntry.Extract(unzipDirectory, ExtractExistingFileAction.OverwriteSilently);
-                }
-            }
-
-            List<string> listOfUnzippedFiles = new List<string>();
-
-            foreach (string filePath in Directory.GetFiles(unzipDirectory, "*.xml"))
-            {
-                listOfUnzippedFiles.Add(filePath.Replace(unzipDirectory, @"."));
-            }
-
-            return listOfUnzippedFiles.ToArray();
         }
     }
 }

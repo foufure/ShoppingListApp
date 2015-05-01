@@ -351,6 +351,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.Auth.GoogleSettings.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -382,8 +383,7 @@
     <Content Include="Views\Shared\BackToShoppingLists.cshtml" />
     <Content Include="Views\Shared\GetUserCulture.cshtml" />
     <Content Include="Views\Shared\LogOnStatus.cshtml" />
-    <Content Include="Views\Home\Admin.cshtml" />
-    <Content Include="Views\Home\SuperAdmin.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\Item\AddItem.cshtml" />
     <Content Include="Views\Category\AddCategory.cshtml" />
     <Content Include="Views\Category\Categories.cshtml" />

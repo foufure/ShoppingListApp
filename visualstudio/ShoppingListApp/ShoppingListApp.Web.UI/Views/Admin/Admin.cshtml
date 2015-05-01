@@ -1,6 +1,6 @@
 ﻿<div class="panel panel-primary">
     <div class="panel-body">
-        <a href="@Url.Action("Backup", "Home")" class="btn btn-success btn-lg btn-block">
+        <a href="@Url.Action("Backup", "Admin")" class="btn btn-success btn-lg btn-block">
             <span class="glyphicon glyphicon-envelope"></span>
             @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.BackupEmail
         </a>
@@ -14,33 +14,28 @@
 </div>
 <div class="panel panel-primary">
     <div class="panel-body">
-        @using (@Html.BeginForm("RestoreBackup", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (@Html.BeginForm("RestoreBackup", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <button type="submit" class="btn btn-success btn-lg btn-block">
                 <span class="glyphicon glyphicon-open"></span>
                 @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.RestoreBackup
             </button>
             <div style="text-wrap:none !important">
-                <input type="file" class="filestyle" name="itemsToRestoreFile" data-buttonbefore="true" data-iconname="glyphicon-list-alt" data-buttontext="" />
-                <input type="file" class="filestyle" name="categoriesToRestoreFile" data-buttonbefore="true" data-iconname="glyphicon-briefcase" data-buttontext="" />
-                <input type="file" class="filestyle" name="shoppingListsToRestoreFile" data-buttonbefore="true" data-iconname="glyphicon-shopping-cart" data-buttontext="" />
+                <input type="file" class="filestyle" name="fileToRestore" data-buttonbefore="true" data-iconname="glyphicon-list-alt" data-buttontext="" />
             </div>
         }
     </div>
     <div class="panel-footer">
-        <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="@ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Items, @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Categories, @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.ShoppingLists"></span>
-        @if (TempData["restoreitems"] != null && TempData["restorecategories"] != null && TempData["restoreshoppinglists"] != null)
+        @if (TempData["restoreBackup"] != null)
         {
-            <div class="alert-success">@TempData["restoreitems"]</div>
-            <div class="alert-success">@TempData["restorecategories"]</div>
-            <div class="alert-success">@TempData["restoreshoppinglists"]</div>
+            <div class="alert-success">@TempData["restoreBackup"]</div>
         }
     </div>
 </div>
 
 <div class="panel panel-primary">
     <div class="panel-body">
-        <a href="@Url.Action("RestoreDefaults", "Home")" class="btn btn-danger btn-block">
+        <a href="@Url.Action("RestoreDefaults", "Admin")" class="btn btn-danger btn-block">
             <span class="glyphicon glyphicon-wrench"></span>
             @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.Defaults
         </a>
@@ -55,7 +50,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-body">
-        <a href="@Url.Action("DeleteData", "Home")" class="btn btn-danger btn-block">
+        <a href="@Url.Action("DeleteData", "Admin")" class="btn btn-danger btn-block">
             <span class="glyphicon glyphicon-wrench"></span>
             @ShoppingListApp.I18N.Resources.Views.Home.IndexCommon.DeleteData
         </a>

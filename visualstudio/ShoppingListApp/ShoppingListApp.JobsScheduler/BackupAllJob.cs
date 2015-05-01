@@ -30,15 +30,10 @@ namespace ShoppingListApp.JobsScheduler
         {
             backupAllJobLogger.Trace("BackupAllJob Start Execution: " + DateTime.Now.ToString());
 
-            CreateZippedBackupFile(zippedBackupFileName);
-
             try
             {
-                backupProcessor.ProcessBackup(new List<string>() { zippedBackupFileName });
-            }
-            catch (System.NullReferenceException)
-            {
-                backupAllJobLogger.Error("No Zip File given as argument!");
+                backupProcessor.CreateBackup();
+                backupProcessor.SecureBackup();
             }
             catch (System.ArgumentNullException)
             {
@@ -52,23 +47,8 @@ namespace ShoppingListApp.JobsScheduler
             {
                 backupAllJobLogger.Error("Email could not be sent! Smtp Server down!");
             }
-
-            System.IO.File.Delete(zippedBackupFileName);
             
             backupAllJobLogger.Trace("BackupAllJob End Execution: " + DateTime.Now.ToString());
-        }
-
-        private void CreateZippedBackupFile(string backupFileName)
-        {
-            using (ZipFile zippedBackupFile = new ZipFile(backupFileName))
-            {
-                foreach (string fileName in Directory.GetFiles(baseSystemPath, "*.xml"))
-                {
-                    zippedBackupFile.AddFile(baseSystemPath + @"\" + Path.GetFileName(fileName), string.Empty);
-                }
-
-                zippedBackupFile.Save();
-            }
         }
     }
 }

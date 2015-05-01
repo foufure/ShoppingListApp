@@ -80,6 +80,9 @@
     <None Include="..\Settings.StyleCop">
       <Link>Settings.StyleCop</Link>
     </None>
+    <None Include="backupAll.bak">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="coverage.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

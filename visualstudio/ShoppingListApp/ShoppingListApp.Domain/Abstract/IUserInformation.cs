@@ -5,5 +5,7 @@
         string UserName { get; }
         
         string UserEmail { get; }
+
+        bool IsAdmin { get; }
     }
 }

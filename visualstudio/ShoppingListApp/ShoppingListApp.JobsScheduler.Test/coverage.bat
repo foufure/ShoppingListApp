@@ -8,7 +8,7 @@ REM DEL /F /Q ".\coverage\*.*"
 if %ERRORLEVEL% GEQ 1 GOTO ERROR
 
 REM Firefox is causing the batch file to return an error code 1
-"C:\Program Files (x86)\Mozilla Firefox\firefox.exe" ".\coverage\index.htm"
+REM "C:\Program Files (x86)\Mozilla Firefox\firefox.exe" ".\coverage\index.htm"
 exit 0
 
 :ERROR

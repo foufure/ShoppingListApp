@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 
 namespace ShoppingListApp.Domain.Abstract
 {
     public interface IBackupProcessor
-    {  
-        void ProcessBackup(List<string> filesToBackup);
+    {
+        void CreateBackup();
+        void SecureBackup();
+        void RestoreBackup(string backupFileToRestore);
     }
 }

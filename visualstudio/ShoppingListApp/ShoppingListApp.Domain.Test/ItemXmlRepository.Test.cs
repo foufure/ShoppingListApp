@@ -15,6 +15,7 @@ namespace ShoppingListApp.Domain.Test
     public class ItemXmlRepositoryTest 
     {
         private Mock<IRepositoryNameProvider> repositoryNameProvider;
+        private Mock<IDataPathProvider> dataPathProvider;
 
         [SetUp]
         public void Init()
@@ -25,6 +26,8 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./ItemRepository.empty.xml", @"./ItemRepository.empty.orig.xml");
             File.Copy(@"./ItemRepository.invalidxsd.xml", @"./ItemRepository.invalidxsd.orig.xml");
             this.repositoryNameProvider = new Mock<IRepositoryNameProvider>();
+            this.dataPathProvider = new Mock<IDataPathProvider>();
+            this.dataPathProvider.Setup(provider => provider.DataPath).Returns(@"./");
         }
 
         [TearDown]
@@ -56,17 +59,45 @@ namespace ShoppingListApp.Domain.Test
         }
 
         [Test]
-        public void ItemRepositoryIsResetToDefault_WhenXsdSchemaIsInvalid()
+        [SetUICulture("en-US")]
+        public void ItemRepositoryIsResetToDefaultUS_WhenXsdSchemaIsInvalid()
         { 
             // Arrange
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.invalidxsd.xml");
 
             // Act
-            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
-            Assert.True(testee.Count() == 0);
-            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.invalidxsd.xml").Replace("\r\n", "\n"));
+            Assert.AreEqual(File.ReadAllText(@"./DefaultItemRepository.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.invalidxsd.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        [SetUICulture("fr-FR")]
+        public void ItemRepositoryIsResetToDefaultFR_WhenXsdSchemaIsInvalid()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.invalidxsd.xml");
+
+            // Act
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./DefaultItemRepository_fr.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.invalidxsd.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        [SetUICulture("de-DE")]
+        public void ItemRepositoryIsResetToDefaultDE_WhenXsdSchemaIsInvalid()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.invalidxsd.xml");
+
+            // Act
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./DefaultItemRepository_de.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.invalidxsd.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
@@ -85,7 +116,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
-            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
             Assert.AreEqual(5, testee.Count());
@@ -101,7 +132,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.empty.xml");
 
             // Act
-            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
             Assert.AreEqual(0, testee.Count());
@@ -110,58 +141,49 @@ namespace ShoppingListApp.Domain.Test
         }
 
         [Test]
+        [SetUICulture("en-US")]
         public void ItemRepositoryIsEmpty_WhenReadFromNewlyCreatedXmlFileRepository_WhichDidNotExistPreviously()
         {
             // Arrange
-            IEnumerable<Item> expectedResult = new List<Item>();
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.doesnotexists.xml");
 
             // Act
-            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
-            Assert.AreEqual(0, testee.Count());
-            Assert.AreEqual(expectedResult.Select(Item => Item.ItemId).AsEnumerable(), testee.Select(Item => Item.ItemId).AsEnumerable());
-            Assert.AreEqual(expectedResult.Select(Item => Item.ItemName).AsEnumerable(), testee.Select(Item => Item.ItemName).AsEnumerable());
-            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.doesnotexists.xml").Replace("\r\n", "\n"));
+            Assert.AreEqual(File.ReadAllText(@"./DefaultItemRepository.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.doesnotexists.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
+        [SetUICulture("en-US")]
         public void ItemRepositoryIsEmpty_WhenReadFromNewlyCreatedXmlFileRepository_WhichWasAnInvalidXmlFile()
         {
             // Arrange
-            IEnumerable<Item> expectedResult = new List<Item>();
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.invalid.xml");
 
             // Act
-            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
-            Assert.AreEqual(0, testee.Count());
-            Assert.AreEqual(expectedResult.Select(Item => Item.ItemId).AsEnumerable(), testee.Select(Item => Item.ItemId).AsEnumerable());
-            Assert.AreEqual(expectedResult.Select(Item => Item.ItemName).AsEnumerable(), testee.Select(Item => Item.ItemName).AsEnumerable());
-            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.invalid.xml").Replace("\r\n", "\n"));
+            Assert.AreEqual(File.ReadAllText(@"./DefaultItemRepository.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.invalid.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
+        [SetUICulture("en-US")]
         public void ItemRepositoryIsEmpty_WhenReadFromNewlyCreatedXmlFileRepository_WhichWasAnInvalidEmptyXmlFile()
         {
             // Arrange
-            IEnumerable<Item> expectedResult = new List<Item>();
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.invalidempty.xml");
 
             // Act
-            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<Item> testee = (new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
-            Assert.AreEqual(0, testee.Count());
-            Assert.AreEqual(expectedResult.Select(Item => Item.ItemId).AsEnumerable(), testee.Select(Item => Item.ItemId).AsEnumerable());
-            Assert.AreEqual(expectedResult.Select(Item => Item.ItemName).AsEnumerable(), testee.Select(Item => Item.ItemName).AsEnumerable());
-            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.invalidempty.xml").Replace("\r\n", "\n"));
+            Assert.AreEqual(File.ReadAllText(@"./DefaultItemRepository.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.invalidempty.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
-        public static void ItemRepositoryIsEmpty_WhenNoPersistentRepositoryNameProviderIsAvailable()
+        public void ItemRepositoryIsEmpty_WhenNoPersistentRepositoryNameProviderIsAvailable()
         {
             // Arrange
             ItemXmlRepository testee = null;
@@ -169,7 +191,7 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(ArgumentNullException), () => testee = new ItemXmlRepository(null));
+            Assert.Throws(typeof(ArgumentNullException), () => testee = new ItemXmlRepository(null, dataPathProvider.Object));
         }
 
         [Test]
@@ -182,7 +204,7 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new ItemXmlRepository(this.repositoryNameProvider.Object));
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object));
         }
 
         [Test]
@@ -195,7 +217,7 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new ItemXmlRepository(this.repositoryNameProvider.Object));
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object));
         }
 
         [Test]
@@ -206,7 +228,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
-            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
             testee.Add("Item6");
             testee.Save();
             testee.Add("Item7");
@@ -226,7 +248,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.empty.xml");
 
             // Act
-            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
             testee.Add("Item15");
             testee.Save();
 
@@ -242,7 +264,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
-            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
             
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Add(string.Empty));
@@ -256,7 +278,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
-            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Add(null));
@@ -270,7 +292,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
-            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
             testee.Remove(3); // Remove ItemId 3
             testee.Save();
 
@@ -286,7 +308,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.empty.xml");
 
             // Act
-            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Remove(1));
@@ -302,7 +324,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
-            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
             testee.ModifyName(itemId, itemName);
             testee.Save();
 
@@ -320,7 +342,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.empty.xml");
 
             // Act
-            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.ModifyName(itemId, itemName));
@@ -335,7 +357,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
-            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.ModifyName(itemId, null));
@@ -351,7 +373,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
-            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
             testee.ModifyCategory(itemId, itemCategory);
             testee.Save();
 
@@ -369,7 +391,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.empty.xml");
 
             // Act
-            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.ModifyCategory(itemId, itemCategory));
@@ -384,10 +406,39 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
 
             // Act
-            testee = new ItemXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.ModifyCategory(itemId, null));
+        }
+
+        [Test]
+        public void ItemRepositoryIsEmpty_WhenResetToEmpty()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
+
+            // Act
+            ItemXmlRepository testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ResetToEmpty();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        [SetUICulture("en-US")]
+        public void ItemRepositoryContainsDefaults_WhenResetToDefaults()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
+
+            // Act
+            ItemXmlRepository testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ResetToDefault();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./DefaultItemRepository.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.example.xml").Replace("\r\n", "\n"));
         }
     }
 }

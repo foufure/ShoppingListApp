@@ -40,6 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zip, Version=1.9.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
     </Reference>
@@ -92,18 +96,76 @@
     <None Include="..\Settings.StyleCop">
       <Link>Settings.StyleCop</Link>
     </None>
-    <None Include="coverage.bat">
+    <None Include="backup\mylog.log">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Email_reference_no_attachment.eml">
+    <None Include="coverage.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Email_reference.eml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="restore\admin.backup">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\ShoppingListApp.Web.UI\App_Data\DefaultCategoryRepository.xml">
+      <Link>DefaultCategoryRepository.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ShoppingListApp.Web.UI\App_Data\DefaultCategoryRepository_de.xml">
+      <Link>DefaultCategoryRepository_de.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ShoppingListApp.Web.UI\App_Data\DefaultCategoryRepository_fr.xml">
+      <Link>DefaultCategoryRepository_fr.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ShoppingListApp.Web.UI\App_Data\DefaultItemRepository.xml">
+      <Link>DefaultItemRepository.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ShoppingListApp.Web.UI\App_Data\DefaultItemRepository_de.xml">
+      <Link>DefaultItemRepository_de.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ShoppingListApp.Web.UI\App_Data\DefaultItemRepository_fr.xml">
+      <Link>DefaultItemRepository_fr.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ShoppingListApp.Web.UI\App_Data\DefaultShoppingListRepository.xml">
+      <Link>DefaultShoppingListRepository.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ShoppingListApp.Web.UI\App_Data\DefaultShoppingListRepository_de.xml">
+      <Link>DefaultShoppingListRepository_de.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\ShoppingListApp.Web.UI\App_Data\DefaultShoppingListRepository_fr.xml">
+      <Link>DefaultShoppingListRepository_fr.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="backup\CategoryRepository.admin.xml" />
+    <Content Include="backup\CategoryRepository.shoppinglistappharbor.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="backup\CategoryRepository.username.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="backup\ItemRepository.shoppinglistappharbor.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="backup\ItemRepository.username.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="backup\ShoppingListRepository.shoppinglistappharbor.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="backup\ShoppingListRepository.username.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="CategoryRepository.Add.Expected.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -195,6 +257,7 @@
       <Name>ShoppingListApp.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

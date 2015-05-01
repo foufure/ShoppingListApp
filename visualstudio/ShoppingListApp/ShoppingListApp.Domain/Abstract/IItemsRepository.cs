@@ -6,7 +6,13 @@ namespace ShoppingListApp.Domain.Abstract
     public interface IItemsRepository
     {
         IEnumerable<Item> Repository { get; }
-        
+
+        string RepositoryName { get; }
+
+        void ResetToDefault();
+
+        void ResetToEmpty();
+
         void Add(string itemName);
         
         void Remove(uint itemId);

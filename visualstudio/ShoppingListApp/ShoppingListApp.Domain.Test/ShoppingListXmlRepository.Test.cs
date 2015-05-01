@@ -15,6 +15,7 @@ namespace ShoppingListApp.Domain.Test
     public class ShoppingListXmlRepositoryTest
     {
         private Mock<IRepositoryNameProvider> repositoryNameProvider;
+        private Mock<IDataPathProvider> dataPathProvider;
 
         [SetUp]
         public void Init()
@@ -25,6 +26,8 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./ShoppingListRepository.empty.xml", @"./ShoppingListRepository.empty.orig.xml");
             File.Copy(@"./ShoppingListRepository.invalidxsd.xml", @"./ShoppingListRepository.invalidxsd.orig.xml");
             this.repositoryNameProvider = new Mock<IRepositoryNameProvider>();
+            this.dataPathProvider = new Mock<IDataPathProvider>();
+            this.dataPathProvider.Setup(provider => provider.DataPath).Returns(@"./");
         }
 
         [TearDown]
@@ -62,7 +65,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.invalidxsd.xml");
 
             // Act
-            IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
             Assert.True(testee.Count() == 0);
@@ -90,7 +93,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
 
             // Act
-            IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
             Assert.AreEqual(2, testee.Count());
@@ -106,7 +109,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.empty.xml");
 
             // Act
-            IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
             Assert.AreEqual(0, testee.Count());
@@ -122,7 +125,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.doesnotexists.xml");
 
             // Act
-            IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
             Assert.AreEqual(0, testee.Count());
@@ -139,7 +142,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.invalid.xml");
 
             // Act
-            IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
             Assert.AreEqual(0, testee.Count());
@@ -156,7 +159,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.invalidempty.xml");
 
             // Act
-            IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<ShoppingList> testee = (new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
             Assert.AreEqual(0, testee.Count());
@@ -166,7 +169,7 @@ namespace ShoppingListApp.Domain.Test
         }
 
         [Test]
-        public static void ShoppingListRepositoryIsEmpty_WhenNoPersistentRepositoryNameProviderIsAvailable()
+        public void ShoppingListRepositoryIsEmpty_WhenNoPersistentRepositoryNameProviderIsAvailable()
         {
             // Arrange
             ShoppingListXmlRepository testee = null;
@@ -174,7 +177,7 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(ArgumentNullException), () => testee = new ShoppingListXmlRepository(null));
+            Assert.Throws(typeof(ArgumentNullException), () => testee = new ShoppingListXmlRepository(null, dataPathProvider.Object));
         }
 
         [Test]
@@ -187,7 +190,7 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object));
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object));
         }
 
         [Test]
@@ -200,7 +203,7 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object));
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object));
         }
 
         [Test]
@@ -218,7 +221,7 @@ namespace ShoppingListApp.Domain.Test
             shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item6" }, QuantityToBuy = 2, LinePresentationOrder = 3, Unit = UnitsUtils.Units["default"], Done = false });
 
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
-            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object);
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Act
             testee.Add(shoppingList);
@@ -244,7 +247,7 @@ namespace ShoppingListApp.Domain.Test
             shoppingListNext.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item6" }, QuantityToBuy = 2, LinePresentationOrder = 3, Unit = UnitsUtils.Units["default"], Done = false });
 
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.empty.xml");
-            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object);
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Act
             testee.Add(shoppingList);
@@ -263,7 +266,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
 
             // Act
-            testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentNullException), () => testee.Add(null));
@@ -274,7 +277,7 @@ namespace ShoppingListApp.Domain.Test
         {
             // Arrange
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
-            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object);
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Act
             testee.Remove(1); // Remove ShoppingListId 1
@@ -292,7 +295,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.empty.xml");
 
             // Act
-            testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Remove(1));
@@ -308,7 +311,7 @@ namespace ShoppingListApp.Domain.Test
             shoppingList.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = new Item() { ItemId = 3, ItemName = "Item3" }, QuantityToBuy = 2, LinePresentationOrder = 3, Unit = UnitsUtils.Units["default"], Done = false });
 
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
-            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object);
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Act
             testee.Modify(shoppingList);
@@ -326,7 +329,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
 
             // Act
-            testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentNullException), () => testee.Modify(null));
@@ -341,10 +344,24 @@ namespace ShoppingListApp.Domain.Test
             ShoppingList nonExistingShoppingList = new ShoppingList() { ShoppingListId = 1 };
 
             // Act
-            testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object);
+            testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Modify(nonExistingShoppingList));
+        }
+
+        [Test]
+        public void ShoppingListRepositoryIsEmpty_WhenResetToEmpty()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ResetToEmpty();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
         }
     }
 }

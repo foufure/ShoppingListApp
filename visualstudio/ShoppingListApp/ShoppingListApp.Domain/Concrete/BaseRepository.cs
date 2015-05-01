@@ -4,20 +4,28 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using ShoppingListApp.Domain.Abstract;
+using ShoppingListApp.I18N.Utils;
 
 namespace ShoppingListApp.Domain.Concrete
 {
     public abstract class BaseRepository
     {
         private string repositoryName;
+        private string dataPath;
 
-        protected BaseRepository(IRepositoryNameProvider repositoryNameProvider)
+        public string RepositoryName
+        {
+            get { return repositoryName; }
+        }
+
+        protected BaseRepository(IRepositoryNameProvider repositoryNameProvider, IDataPathProvider dataPathProvider)
         {
             if (repositoryNameProvider != null)
             {
                 if (!string.IsNullOrEmpty(repositoryNameProvider.RepositoryName))
                 {
                     this.repositoryName = repositoryNameProvider.RepositoryName;
+                    this.dataPath = dataPathProvider.DataPath;
                 }
                 else
                 {
@@ -30,17 +38,28 @@ namespace ShoppingListApp.Domain.Concrete
             }
         }
 
-        protected string RepositoryName 
-        { 
-            get { return repositoryName; } 
+        protected void SetDefaultRepositoryAccordingToCurrentUICulture(string defaultRepositoryType)
+        {
+            string languageSuffix = string.Empty;
+            if (CurrentCultureConfiguration.GetCurrentUICulture.TwoLetterISOLanguageName != "en")
+            {
+                languageSuffix = "_" + CurrentCultureConfiguration.GetCurrentUICulture.TwoLetterISOLanguageName;
+            }
+
+            System.IO.File.Copy(dataPath + @"\Default" + defaultRepositoryType + @"Repository" + languageSuffix + @".xml", repositoryName, true);
+        }
+
+        protected void ResetToEmptyRepository(string repositoryType)
+        {
+            XDocument newRepository = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XElement(repositoryType));
+            newRepository.Save(repositoryName);
         }
 
         protected void InitializeXmlPersistentStorage(string repositoryType, string xsdRepositoryType)
         {
             if (!File.Exists(repositoryName) || !XmlRepositoryIsValid(xsdRepositoryType))
             {
-                XDocument newRepository = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XElement(repositoryType));
-                newRepository.Save(repositoryName);
+                SetDefaultRepositoryAccordingToCurrentUICulture(repositoryType);
             }
         }
 

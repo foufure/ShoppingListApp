@@ -7,6 +7,12 @@ namespace ShoppingListApp.Domain.Abstract
     {
         IEnumerable<string> Repository { get; }
 
+        string RepositoryName { get; }
+
+        void ResetToDefault();
+
+        void ResetToEmpty();
+
         void Add(string categoryName);
 
         void Remove(string categoryName);

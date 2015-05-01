@@ -35,5 +35,13 @@ namespace ShoppingListApp.Domain.Concrete
                 }
             }
         }
+
+        public bool IsAdmin
+        {
+            get 
+            {
+                return (UserName == "shoppinglistappharbor") ? true : false;
+            }
+        }
     }
 }

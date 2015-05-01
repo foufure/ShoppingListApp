@@ -15,10 +15,10 @@ namespace ShoppingListApp.Domain.Concrete
     {
         private List<ShoppingList> shoppinglistRepository = null;
 
-        public ShoppingListXmlRepository(IRepositoryNameProvider repositoryNameProvider)
-            : base(repositoryNameProvider)
+        public ShoppingListXmlRepository(IRepositoryNameProvider repositoryNameProvider, IDataPathProvider dataPathProvider)
+            : base(repositoryNameProvider, dataPathProvider)
         {
-            this.InitializeXmlPersistentStorage("ShoppingLists", RepositoriesXsd.ShoppingLists());
+            this.InitializeXmlPersistentStorage("ShoppingList", RepositoriesXsd.ShoppingLists());
             this.LoadFromXmlPersistentStorage();
         }
 
@@ -28,6 +28,11 @@ namespace ShoppingListApp.Domain.Concrete
             {
                 return shoppinglistRepository;
             }
+        }
+
+        public void ResetToEmpty()
+        {
+            ResetToEmptyRepository("ShoppingLists");
         }
 
         public void Add(ShoppingList newShoppingList)

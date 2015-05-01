@@ -15,10 +15,10 @@ namespace ShoppingListApp.Domain.Concrete
     {
         private List<string> categoryRepository = null;
 
-        public CategoryXmlRepository(IRepositoryNameProvider repositoryNameProvider)
-            : base(repositoryNameProvider)
+        public CategoryXmlRepository(IRepositoryNameProvider repositoryNameProvider, IDataPathProvider dataPathProvider)
+            : base(repositoryNameProvider, dataPathProvider)
         {
-            this.InitializeXmlPersistentStorage("Categories", RepositoriesXsd.Categories());
+            this.InitializeXmlPersistentStorage("Category", RepositoriesXsd.Categories());
             this.LoadFromXmlPersistentStorage();
         }
 
@@ -28,6 +28,16 @@ namespace ShoppingListApp.Domain.Concrete
             {
                 return categoryRepository;
             }
+        }
+
+        public void ResetToDefault()
+        {
+            SetDefaultRepositoryAccordingToCurrentUICulture("Category");
+        }
+
+        public void ResetToEmpty()
+        { 
+            ResetToEmptyRepository("Categories");
         }
 
         public void Add(string categoryName)

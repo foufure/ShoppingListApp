@@ -15,6 +15,7 @@ namespace ShoppingListApp.Domain.Test
     public class CategoryXmlRepositoryTest 
     {
         private Mock<IRepositoryNameProvider> repositoryNameProvider;
+        private Mock<IDataPathProvider> dataPathProvider;
 
         [SetUp]
         public void Init()
@@ -25,6 +26,8 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./CategoryRepository.empty.xml", @"./CategoryRepository.empty.orig.xml");
             File.Copy(@"./CategoryRepository.invalidxsd.xml", @"./CategoryRepository.invalidxsd.orig.xml");
             this.repositoryNameProvider = new Mock<IRepositoryNameProvider>();
+            this.dataPathProvider = new Mock<IDataPathProvider>();
+            this.dataPathProvider.Setup(provider => provider.DataPath).Returns(@"./");
         }
 
         [TearDown]
@@ -56,17 +59,45 @@ namespace ShoppingListApp.Domain.Test
         }
 
         [Test]
-        public void CategoryRepositoryIsResetToDefault_WhenXsdSchemaIsInvalid()
+        [SetUICulture("en-US")]
+        public void CategoryRepositoryIsResetToDefaultUS_WhenXsdSchemaIsInvalid()
         {
             // Arrange
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.invalidxsd.xml");
 
             // Act
-            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
-            Assert.True(testee.Count() == 0);
-            Assert.AreEqual(File.ReadAllText(@"./CategoryRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./CategoryRepository.invalidxsd.xml").Replace("\r\n", "\n"));
+            Assert.AreEqual(File.ReadAllText(@"./DefaultCategoryRepository.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./CategoryRepository.invalidxsd.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        [SetUICulture("fr-FR")]
+        public void CategoryRepositoryIsResetToDefaultFR_WhenXsdSchemaIsInvalid()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.invalidxsd.xml");
+
+            // Act
+            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./DefaultCategoryRepository_fr.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./CategoryRepository.invalidxsd.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        [SetUICulture("de-DE")]
+        public void CategoryRepositoryIsResetToDefaultDE_WhenXsdSchemaIsInvalid()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.invalidxsd.xml");
+
+            // Act
+            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./DefaultCategoryRepository_de.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./CategoryRepository.invalidxsd.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
@@ -85,7 +116,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.example.xml");
 
             // Act
-            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
             Assert.AreEqual(5, testee.Count());
@@ -101,7 +132,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.empty.xml");
 
             // Act
-            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
             Assert.AreEqual(0, testee.Count());
@@ -110,58 +141,49 @@ namespace ShoppingListApp.Domain.Test
         }
 
         [Test]
-        public void CategoryRepositoryIsEmpty_WhenReadFromNewlyCreatedXmlFileRepository_WhichDidNotExistPreviously()
+        [SetUICulture("en-US")]
+        public void CategoryRepositoryIsSetToDefaults_WhenReadFromNewlyCreatedXmlFileRepository_WhichDidNotExistPreviously()
         {
             // Arrange
-            IEnumerable<string> expectedResult = new List<string>();
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.doesnotexists.xml");
 
             // Act
-            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
-            Assert.AreEqual(0, testee.Count());
-            Assert.AreEqual(expectedResult.AsEnumerable(), testee.AsEnumerable());
-            Assert.AreEqual(expectedResult.AsEnumerable(), testee.AsEnumerable());
-            Assert.AreEqual(File.ReadAllText(@"./CategoryRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./CategoryRepository.doesnotexists.xml").Replace("\r\n", "\n"));
+            Assert.AreEqual(File.ReadAllText(@"./DefaultCategoryRepository.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./CategoryRepository.doesnotexists.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
-        public void CategoryRepositoryIsEmpty_WhenReadFromNewlyCreatedXmlFileRepository_WhichWasAnInvalidXmlFile()
+        [SetUICulture("en-US")]
+        public void CategoryRepositoryIsSetToDefaults_WhenReadFromNewlyCreatedXmlFileRepository_WhichWasAnInvalidXmlFile()
         {
             // Arrange
-            IEnumerable<string> expectedResult = new List<string>();
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.invalid.xml");
 
             // Act
-            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
-            Assert.AreEqual(0, testee.Count());
-            Assert.AreEqual(expectedResult.AsEnumerable(), testee.AsEnumerable());
-            Assert.AreEqual(expectedResult.AsEnumerable(), testee.AsEnumerable());
-            Assert.AreEqual(File.ReadAllText(@"./CategoryRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./CategoryRepository.invalid.xml").Replace("\r\n", "\n"));
+            Assert.AreEqual(File.ReadAllText(@"./DefaultCategoryRepository.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./CategoryRepository.invalid.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
-        public void CategoryRepositoryIsEmpty_WhenReadFromNewlyCreatedXmlFileRepository_WhichWasAnInvalidEmptyXmlFile()
+        [SetUICulture("en-US")]
+        public void CategoryRepositoryIsSetToDefaults_WhenReadFromNewlyCreatedXmlFileRepository_WhichWasAnInvalidEmptyXmlFile()
         {
             // Arrange
-            IEnumerable<string> expectedResult = new List<string>();
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.invalidempty.xml");
 
             // Act
-            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object)).Repository;
+            IEnumerable<string> testee = (new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object)).Repository;
 
             // Assert
-            Assert.AreEqual(0, testee.Count());
-            Assert.AreEqual(expectedResult.AsEnumerable(), testee.AsEnumerable());
-            Assert.AreEqual(expectedResult.AsEnumerable(), testee.AsEnumerable());
-            Assert.AreEqual(File.ReadAllText(@"./CategoryRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./CategoryRepository.invalidempty.xml").Replace("\r\n", "\n"));
+            Assert.AreEqual(File.ReadAllText(@"./DefaultCategoryRepository.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./CategoryRepository.invalidempty.xml").Replace("\r\n", "\n"));
         }
 
         [Test]
-        public static void CategoryRepositoryIsEmpty_WhenNoPersistentRepositoryNameProviderIsAvailable()
+        public void CategoryRepositoryIsEmpty_WhenNoPersistentRepositoryNameProviderIsAvailable()
         {
             // Arrange
             CategoryXmlRepository testee = null;
@@ -169,7 +191,7 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(ArgumentNullException), () => testee = new CategoryXmlRepository(null));
+            Assert.Throws(typeof(ArgumentNullException), () => testee = new CategoryXmlRepository(null, dataPathProvider.Object));
         }
 
         [Test]
@@ -182,7 +204,7 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new CategoryXmlRepository(this.repositoryNameProvider.Object));
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object));
         }
 
         [Test]
@@ -195,7 +217,7 @@ namespace ShoppingListApp.Domain.Test
             // Act
 
             // Assert
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new CategoryXmlRepository(this.repositoryNameProvider.Object));
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object));
         }
 
         [Test]
@@ -206,7 +228,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.example.xml");
 
             // Act
-            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object);
+            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
             testee.Add("Category6");
             testee.Save();
             testee.Add("Category7");
@@ -226,7 +248,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.empty.xml");
 
             // Act
-            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object);
+            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
             testee.Add("Category15");
             testee.Save();
 
@@ -242,7 +264,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.example.xml");
 
             // Act
-            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object);
+            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
             testee.Add("Category1");
             testee.Save();
 
@@ -258,7 +280,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.example.xml");
 
             // Act
-            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object);
+            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
             
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Add(string.Empty));
@@ -272,7 +294,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.example.xml");
 
             // Act
-            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object);
+            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Add(null));
@@ -286,7 +308,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.example.xml");
 
             // Act
-            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object);
+            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
             testee.Remove("Category3"); // Remove Category 3
             testee.Save();
 
@@ -302,7 +324,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.empty.xml");
 
             // Act
-            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object);
+            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Remove("NonExistingCategory"));
@@ -316,7 +338,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.empty.xml");
 
             // Act
-            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object);
+            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Remove(string.Empty));
@@ -330,7 +352,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.example.xml");
 
             // Act
-            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object);
+            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
             testee.Modify("Category4", "Category12");
             testee.Save();
 
@@ -347,7 +369,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.empty.xml");
 
             // Act
-            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object);
+            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Modify("Category00", itemName));
@@ -361,7 +383,7 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.example.xml");
 
             // Act
-            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object);
+            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Modify("Category1", null));
@@ -375,10 +397,39 @@ namespace ShoppingListApp.Domain.Test
             this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.example.xml");
 
             // Act
-            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object);
+            testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.Modify(null, "Category1"));
+        }
+
+        [Test]
+        public void CategoryRepositoryIsEmpty_WhenResetToEmpty()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.example.xml");
+
+            // Act
+            CategoryXmlRepository testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ResetToEmpty();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./CategoryRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./CategoryRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        [SetUICulture("en-US")]
+        public void CategoryRepositoryContainsDefaults_WhenResetToDefaults()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./CategoryRepository.example.xml");
+
+            // Act
+            CategoryXmlRepository testee = new CategoryXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ResetToDefault();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./DefaultCategoryRepository.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./CategoryRepository.example.xml").Replace("\r\n", "\n"));
         }
     }
 }

@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B44B769B-ADE6-4464-B270-FB6857B47D13}</ProjectGuid>
+    <ProjectGuid>{14A6253A-B34C-470C-86F3-719E1E52F187}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ShoppingListApp.Domain</RootNamespace>
-    <AssemblyName>ShoppingListApp.Domain</AssemblyName>
+    <RootNamespace>ShoppingListApp.Web.Test</RootNamespace>
+    <AssemblyName>ShoppingListApp.Web.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>a8a7af69</NuGetPackageImportStamp>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -23,8 +22,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\AllRules.ShoppingListApp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,13 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ionic.Zip">
-      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,56 +48,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\ICategoryRepository.cs" />
-    <Compile Include="Abstract\IDataPathProvider.cs" />
-    <Compile Include="Abstract\IEmailSettings.cs" />
-    <Compile Include="Abstract\IItemsRepository.cs" />
-    <Compile Include="Abstract\IBackupProcessor.cs" />
-    <Compile Include="Abstract\IRepositoryNameProvider.cs" />
-    <Compile Include="Abstract\IShoppingListRepository.cs" />
-    <Compile Include="Abstract\IUserInformation.cs" />
-    <Compile Include="Concrete\BaseRepository.cs" />
-    <Compile Include="Concrete\BaseRepositoryName.cs" />
-    <Compile Include="Concrete\CategoryUtils.cs" />
-    <Compile Include="Concrete\CategoryXmlRepository.cs" />
-    <Compile Include="Concrete\CategoryXmlRepositoryName.cs" />
-    <Compile Include="Concrete\GoogleEmailSettings.cs" />
-    <Compile Include="Concrete\ItemXmlRepository.cs" />
-    <Compile Include="Concrete\EmailBackupProcessor.cs" />
-    <Compile Include="Concrete\GoogleUserInformation.cs" />
-    <Compile Include="Concrete\RepositoriesXsd.cs" />
-    <Compile Include="Concrete\RuntimeDataPathProvider.cs" />
-    <Compile Include="Concrete\ServerDataPathProvider.cs" />
-    <Compile Include="Concrete\UnitsUtils.cs" />
-    <Compile Include="Concrete\ShoppingListXmlRepository.cs" />
-    <Compile Include="Concrete\ShoppingListXmlRepositoryName.cs" />
-    <Compile Include="Concrete\ItemXmlRepositoryName.cs" />
-    <Compile Include="Entities\Item.cs" />
-    <Compile Include="Entities\ShoppingList.cs" />
-    <Compile Include="Entities\ShoppingListLine.cs" />
+    <Compile Include="ControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ShoppingListApp.i18n.Resources\ShoppingListApp.I18N.Resources.csproj">
-      <Project>{c4c06b74-f435-4409-866b-b9dc38f85e79}</Project>
-      <Name>ShoppingListApp.I18N.Resources</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ShoppingListApp.i18n.Utils\ShoppingListApp.I18N.Utils.csproj">
-      <Project>{89437984-6d3a-4b92-92a5-1953e57d192e}</Project>
-      <Name>ShoppingListApp.I18N.Utils</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
-      <Link>CustomDictionary.xml</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </CodeAnalysisDictionary>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Settings.StyleCop">
-      <Link>Settings.StyleCop</Link>
-    </None>
+    <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShoppingListApp.Web.UI\ShoppingListApp.Web.UI.csproj">
+      <Project>{6ab97089-fc88-414a-a2f3-4961a51cff5a}</Project>
+      <Name>ShoppingListApp.Web.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
