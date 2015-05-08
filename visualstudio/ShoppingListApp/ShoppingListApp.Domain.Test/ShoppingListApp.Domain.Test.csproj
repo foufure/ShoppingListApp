@@ -85,6 +85,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CategoryXmlRepository.Test.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="RepositoryNameProvider.Test.cs" />
     <Compile Include="EmailSettings.Test.cs" />
     <Compile Include="EmailBackupProcessor.Test.cs" />
@@ -197,6 +198,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ItemRepository.Add.Expected.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ItemRepository.Category.example.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ItemRepository.UpdatedCategory.Expected.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ItemRepository.invalidxsd.xml">

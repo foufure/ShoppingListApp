@@ -13,29 +13,29 @@ namespace ShoppingListApp.Domain.Concrete
         private string repositoryName;
         private string dataPath;
 
-        public string RepositoryName
-        {
-            get { return repositoryName; }
-        }
-
         protected BaseRepository(IRepositoryNameProvider repositoryNameProvider, IDataPathProvider dataPathProvider)
         {
-            if (repositoryNameProvider != null)
+            if (repositoryNameProvider != null && dataPathProvider != null)
             {
-                if (!string.IsNullOrEmpty(repositoryNameProvider.RepositoryName))
+                if (!string.IsNullOrEmpty(repositoryNameProvider.RepositoryName) && !string.IsNullOrEmpty(dataPathProvider.DataPath))
                 {
                     this.repositoryName = repositoryNameProvider.RepositoryName;
                     this.dataPath = dataPathProvider.DataPath;
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("Internal error: Items Repository could not be initialized because the repository name is null or an empty string", (Exception)null);
+                    throw new ArgumentOutOfRangeException("Internal error: Repository could not be initialized because the repository or datapath name is null or an empty string", (Exception)null);
                 }
             }
             else
             {
-                throw new ArgumentNullException("Internal error: Items Repository could not be initialized because the repository name provider is null", (Exception)null);
+                throw new ArgumentNullException("Internal error: Repository could not be initialized because the repository name or datapath provider is null", (Exception)null);
             }
+        }
+
+        public string RepositoryName
+        {
+            get { return repositoryName; }
         }
 
         protected void SetDefaultRepositoryAccordingToCurrentUICulture(string defaultRepositoryType)

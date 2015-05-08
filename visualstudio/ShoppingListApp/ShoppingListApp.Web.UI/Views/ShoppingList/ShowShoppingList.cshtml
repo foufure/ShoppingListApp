@@ -87,7 +87,7 @@
                                 @line.LinePresentationOrder
                             </td>
                             <td class="@("strikethrough_toggler" + isStroked)">
-                                @Ajax.ActionLink(@line.ItemToBuy.ItemName, "ToggleStrikeOnDoneElement", new { shoppinglistIdToToggle = @Model.ShoppingListId, itemIdToToggle = @line.ItemToBuy.ItemId }, null, new { @style="text-decoration:none; color:black" })
+                                @Ajax.ActionLink(@line.ItemToBuy.ItemName, "ToggleStrikeOnDoneElement", new { shoppingListIdToToggle = @Model.ShoppingListId, itemIdToToggle = @line.ItemToBuy.ItemId }, null, new { @style="text-decoration:none; color:black" })
                             </td>
                             <td>
                                 @line.QuantityToBuy
@@ -110,7 +110,7 @@
         <div>
             <span class="glyphicon glyphicon-check"></span>
             <span class="small">@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Done</span>
-            <a href="@Url.Action("ResetAllDoneElements", "ShoppingList", new { shoppinglistIdToReset = @Model.ShoppingListId, returnUrl = Request.Url.PathAndQuery })" class="btn btn-xs btn-danger">
+            <a href="@Url.Action("ResetAllDoneElements", "ShoppingList", new { shoppingListIdToReset = @Model.ShoppingListId, returnUrl = Request.Url.PathAndQuery })" class="btn btn-xs btn-danger">
                 <span class="glyphicon glyphicon-unchecked"></span>
                 @ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Reset
             </a>

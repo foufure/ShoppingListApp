@@ -40,14 +40,11 @@ namespace ShoppingListApp.Web.UI.Controllers
         public RedirectToRouteResult RemoveCategory(string categoryToRemove)
         {
             categoryRepository.Remove(categoryToRemove);
-            
-            foreach (Item item in itemRepository.Repository.Where(item => item.ItemCategory == categoryToRemove))
-            { 
-                item.ItemCategory = CategoryUtils.DefaultCategory;
-            }
-            
-            itemRepository.Save();
             categoryRepository.Save();
+
+            itemRepository.UpdateChangedCategoryName(categoryToRemove, CategoryUtils.DefaultCategory);
+            itemRepository.Save();
+
             return RedirectToAction("Categories");
         }
 
@@ -73,29 +70,31 @@ namespace ShoppingListApp.Web.UI.Controllers
         [HttpPost]
         public RedirectToRouteResult ModifyCategory(ItemsCategoryViewModel itemsCategory, string newCategoryName)
         {
-            if (!string.IsNullOrEmpty(newCategoryName))
+            if (itemsCategory != null)
             {
-                categoryRepository.Modify(itemsCategory.Category, newCategoryName);
-                categoryRepository.Save();
-            }
-
-            if (itemsCategory.CategoryLines != null)
-            {
-                foreach (CategoryLine categoryLine in itemsCategory.CategoryLines)
+                if (!string.IsNullOrEmpty(newCategoryName))
                 {
-                    if (categoryLine.CategorySelection == true)
+                    categoryRepository.Modify(itemsCategory.Category, newCategoryName);
+                    categoryRepository.Save();
+                }
+
+                if (itemsCategory.CategoryLines != null)
+                {
+                    foreach (CategoryLine categoryLine in itemsCategory.CategoryLines)
                     {
-                        itemRepository.ModifyCategory(categoryLine.ItemToCategorize.ItemId, newCategoryName);
-                    }
-                    else
-                    {
-                        itemRepository.ModifyCategory(categoryLine.ItemToCategorize.ItemId, CategoryUtils.DefaultCategory);
+                        if (categoryLine.CategorySelection == true)
+                        {
+                            itemRepository.ChangeItemCategory(categoryLine.ItemToCategorize.ItemId, newCategoryName);
+                        }
+                        else
+                        {
+                            itemRepository.ChangeItemCategory(categoryLine.ItemToCategorize.ItemId, CategoryUtils.DefaultCategory);
+                        }
                     }
                 }
-            }
 
-            categoryRepository.Save();
-            itemRepository.Save();
+                itemRepository.Save();
+            }
 
             return RedirectToAction("Categories");
         } 

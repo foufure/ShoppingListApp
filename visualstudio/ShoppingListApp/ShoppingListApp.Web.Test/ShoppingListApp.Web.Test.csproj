@@ -41,6 +41,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,7 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControllerTests.cs" />
+    <Compile Include="AdminControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +61,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ShoppingListApp.Domain\ShoppingListApp.Domain.csproj">
+      <Project>{b44b769b-ade6-4464-b270-fb6857b47d13}</Project>
+      <Name>ShoppingListApp.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShoppingListApp.i18n.Resources\ShoppingListApp.I18N.Resources.csproj">
+      <Project>{c4c06b74-f435-4409-866b-b9dc38f85e79}</Project>
+      <Name>ShoppingListApp.I18N.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShoppingListApp.Web.UI\ShoppingListApp.Web.UI.csproj">
       <Project>{6ab97089-fc88-414a-a2f3-4961a51cff5a}</Project>
       <Name>ShoppingListApp.Web.UI</Name>

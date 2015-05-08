@@ -4,11 +4,11 @@ using System.IO;
 using System.Net.Mail;
 using System.Text;
 using System.Threading;
+using Ionic.Zip;
 using Moq;
 using NUnit.Framework;
 using ShoppingListApp.Domain.Abstract;
 using ShoppingListApp.Domain.Concrete;
-using Ionic.Zip;
 
 namespace ShoppingListApp.Domain.Test
 {
@@ -50,7 +50,7 @@ namespace ShoppingListApp.Domain.Test
             Thread.Sleep(10); // otherwise access to filesystem is too fast and creates access denied
             Array.ForEach(Directory.GetFiles(this.directory), File.Delete);
             
-            if(File.Exists(@"./backup/admin.backup"))
+            if (File.Exists(@"./backup/admin.backup"))
             {
                 File.Delete(@"./backup/admin.backup");
             }
@@ -94,7 +94,7 @@ namespace ShoppingListApp.Domain.Test
             List<string> listOfExpectedFiles = new List<string>();
             foreach (string filePath in Directory.GetFiles(@"./backup", "*username.xml"))
             {
-                listOfExpectedFiles.Add(filePath.Replace("./backup\\",""));
+                listOfExpectedFiles.Add(filePath.Replace("./backup\\", string.Empty));
             }
 
             // Act
@@ -119,7 +119,7 @@ namespace ShoppingListApp.Domain.Test
             List<string> listOfExpectedFiles = new List<string>();
             foreach (string filePath in Directory.GetFiles(@"./backup", "*.*"))
             {
-                listOfExpectedFiles.Add(filePath.Replace("./backup\\", ""));
+                listOfExpectedFiles.Add(filePath.Replace("./backup\\", string.Empty));
             }
 
             // Act
@@ -148,8 +148,9 @@ namespace ShoppingListApp.Domain.Test
             List<string> listOfActualFiles = new List<string>();
             foreach (string filePath in Directory.GetFiles(@"./restore", "*.*"))
             {
-                listOfActualFiles.Add(filePath.Replace("./restore\\", ""));
+                listOfActualFiles.Add(filePath.Replace("./restore\\", string.Empty));
             }
+
             listOfActualFiles.Remove("admin.backup");
 
             using (ZipFile backupZip = ZipFile.Read(@"./restore/admin.backup"))
@@ -177,8 +178,9 @@ namespace ShoppingListApp.Domain.Test
             List<string> listOfActualFiles = new List<string>();
             foreach (string filePath in Directory.GetFiles(@"./restore", "*.*"))
             {
-                listOfActualFiles.Add(filePath.Replace("./restore\\", ""));
+                listOfActualFiles.Add(filePath.Replace("./restore\\", string.Empty));
             }
+
             listOfActualFiles.Remove("admin.backup");
 
             List<string> listOfExpectedFiles = new List<string>();

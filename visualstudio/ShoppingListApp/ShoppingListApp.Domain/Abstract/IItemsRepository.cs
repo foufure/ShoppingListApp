@@ -19,7 +19,9 @@ namespace ShoppingListApp.Domain.Abstract
 
         void ModifyName(uint itemId, string itemName);
 
-        void ModifyCategory(uint itemId, string itemCategory);
+        void ChangeItemCategory(uint itemId, string itemCategory);
+
+        void UpdateChangedCategoryName(string oldCategoryName, string newCategoryName);
         
         void Save();
     }

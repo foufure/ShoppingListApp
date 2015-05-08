@@ -6,16 +6,15 @@ using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
-using ShoppingListApp.Domain.Abstract;
-using Ionic.Zip;
 using System.Text.RegularExpressions;
+using Ionic.Zip;
+using ShoppingListApp.Domain.Abstract;
 
 namespace ShoppingListApp.Domain.Concrete
 {
     public class EmailBackupProcessor : IBackupProcessor
     {
         private IEmailSettings emailSettings;
-        private IUserInformation userInformation;
         private IDataPathProvider dataPathProvider;
 
         private string backupFile;
@@ -25,12 +24,18 @@ namespace ShoppingListApp.Domain.Concrete
         public EmailBackupProcessor(IEmailSettings emailSettings, IUserInformation userInformation, IDataPathProvider dataPathProvider) 
         {
             this.emailSettings = emailSettings;
-            this.userInformation = userInformation;
             this.dataPathProvider = dataPathProvider;
 
-            this.backupFile = dataPathProvider.DataPath + @"\" + userInformation.UserName + ".backup";
-            this.backupContentFilesSearchPattern = userInformation.IsAdmin ? "*.*" : "*" + userInformation.UserName + ".xml";
-            this.backupRestoreFilePattern = userInformation.IsAdmin ? ".xml" : userInformation.UserName + ".xml";
+            if (userInformation != null && dataPathProvider != null)
+            {
+                this.backupFile = dataPathProvider.DataPath + @"\" + userInformation.UserName + ".backup";
+                this.backupContentFilesSearchPattern = userInformation.IsAdmin ? "*.*" : "*" + userInformation.UserName + ".xml";
+                this.backupRestoreFilePattern = userInformation.IsAdmin ? ".xml" : userInformation.UserName + ".xml";
+            }
+            else 
+            {
+                throw new ArgumentOutOfRangeException("Internal error: EmailBackupProcessor could not be initialized because the userInformation or dataPathProvider is null", (Exception)null);
+            }
         }
 
         public void CreateBackup()

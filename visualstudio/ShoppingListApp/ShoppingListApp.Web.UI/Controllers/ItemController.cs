@@ -59,7 +59,7 @@ namespace ShoppingListApp.Web.UI.Controllers
             if (!string.IsNullOrEmpty(itemToModifyNewName))
             {
                 itemRepository.ModifyName(itemToModifyId, itemToModifyNewName);
-                itemRepository.ModifyCategory(itemToModifyId, itemToModifyCategory);
+                itemRepository.ChangeItemCategory(itemToModifyId, itemToModifyCategory);
                 itemRepository.Save();
             }
             

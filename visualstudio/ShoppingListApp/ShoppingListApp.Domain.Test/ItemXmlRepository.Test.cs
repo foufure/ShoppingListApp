@@ -25,6 +25,7 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./ItemRepository.invalidempty.xml", @"./ItemRepository.invalidempty.orig.xml");
             File.Copy(@"./ItemRepository.empty.xml", @"./ItemRepository.empty.orig.xml");
             File.Copy(@"./ItemRepository.invalidxsd.xml", @"./ItemRepository.invalidxsd.orig.xml");
+            File.Copy(@"./ItemRepository.Category.example.xml", @"./ItemRepository.Category.example.orig.xml");
             this.repositoryNameProvider = new Mock<IRepositoryNameProvider>();
             this.dataPathProvider = new Mock<IDataPathProvider>();
             this.dataPathProvider.Setup(provider => provider.DataPath).Returns(@"./");
@@ -54,6 +55,10 @@ namespace ShoppingListApp.Domain.Test
             File.Delete(@"./ItemRepository.invalidxsd.xml");
             File.Copy(@"./ItemRepository.invalidxsd.orig.xml", @"./ItemRepository.invalidxsd.xml");
             File.Delete(@"./ItemRepository.invalidxsd.orig.xml");
+
+            File.Delete(@"./ItemRepository.Category.example.xml");
+            File.Copy(@"./ItemRepository.Category.example.orig.xml", @"./ItemRepository.Category.example.xml");
+            File.Delete(@"./ItemRepository.Category.example.orig.xml");
 
             File.Delete(@"./ItemRepository.doesnotexists.xml");
         }
@@ -374,7 +379,7 @@ namespace ShoppingListApp.Domain.Test
 
             // Act
             testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
-            testee.ModifyCategory(itemId, itemCategory);
+            testee.ChangeItemCategory(itemId, itemCategory);
             testee.Save();
 
             // Assert
@@ -394,7 +399,7 @@ namespace ShoppingListApp.Domain.Test
             testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.ModifyCategory(itemId, itemCategory));
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.ChangeItemCategory(itemId, itemCategory));
         }
 
         [Test]
@@ -409,7 +414,7 @@ namespace ShoppingListApp.Domain.Test
             testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
 
             // Assert
-            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.ModifyCategory(itemId, null));
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.ChangeItemCategory(itemId, null));
         }
 
         [Test]
@@ -439,6 +444,50 @@ namespace ShoppingListApp.Domain.Test
 
             // Assert
             Assert.AreEqual(File.ReadAllText(@"./DefaultItemRepository.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        [SetUICulture("en-US")]
+        public void ItemRepositoryCategoryIsNotUpdated_WhenOldCategoryIsNotInUse()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
+
+            // Act
+            ItemXmlRepository testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.UpdateChangedCategoryName(null, "newCategoryName");
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.example.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ItemRepositoryCategoryThrowsArgumentOutOfRangeException_WhenNewCategoryIsInvalid()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.example.xml");
+
+            // Act
+            ItemXmlRepository testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+
+            // Assert
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => testee.UpdateChangedCategoryName("Category1", null));
+        }
+
+        [Test]
+        [SetUICulture("en-US")]
+        public void ItemRepositoryCategoryIsUpdatedForAllItemsInTheCategory_WhenOldCategoryIsRenamedToNewCategory()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ItemRepository.Category.example.xml");
+
+            // Act
+            ItemXmlRepository testee = new ItemXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.UpdateChangedCategoryName("OldCategory", "newCategoryName");
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ItemRepository.UpdatedCategory.Expected.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ItemRepository.Category.example.xml").Replace("\r\n", "\n"));
         }
     }
 }

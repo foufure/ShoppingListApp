@@ -62,7 +62,7 @@ namespace ShoppingListApp.JobsScheduler.Test
             }
 
             Thread.Sleep(3000);
-            Assert.DoesNotThrow(() => mockJob.Verify(job => job.Execute(It.IsAny<IJobExecutionContext>()), Times.Between(1,3,Moq.Range.Inclusive)));
+            Assert.DoesNotThrow(() => mockJob.Verify(job => job.Execute(It.IsAny<IJobExecutionContext>()), Times.Between(1, 3, Moq.Range.Inclusive)));
         }
 
         [Test]
@@ -72,7 +72,7 @@ namespace ShoppingListApp.JobsScheduler.Test
             backupProcessor.Setup(processor => processor.CreateBackup());
             backupProcessor.Setup(processor => processor.SecureBackup())
                 .Callback(() => File.Copy(@".\backupAll.bak", @".\backupAll.bak.successful"));
-            backupAllJob = new BackupAllJob(backupProcessor.Object, dataPathProvider.Object, loggerFake.Object);
+            backupAllJob = new BackupAllJob(backupProcessor.Object, loggerFake.Object);
 
             // Act
             backupAllJob.Execute(null);
@@ -87,7 +87,7 @@ namespace ShoppingListApp.JobsScheduler.Test
             // Arrange
             backupProcessor.Setup(processor => processor.SecureBackup())
                 .Throws(new System.ArgumentNullException());
-            backupAllJob = new BackupAllJob(backupProcessor.Object, dataPathProvider.Object, loggerFake.Object);
+            backupAllJob = new BackupAllJob(backupProcessor.Object, loggerFake.Object);
 
             // Act
             backupAllJob.Execute(null);
@@ -102,7 +102,7 @@ namespace ShoppingListApp.JobsScheduler.Test
             // Arrange
             backupProcessor.Setup(processor => processor.SecureBackup())
                 .Throws(new System.Net.Mail.SmtpFailedRecipientsException());
-            backupAllJob = new BackupAllJob(backupProcessor.Object, dataPathProvider.Object, loggerFake.Object);
+            backupAllJob = new BackupAllJob(backupProcessor.Object, loggerFake.Object);
 
             // Act
             backupAllJob.Execute(null);
@@ -117,7 +117,7 @@ namespace ShoppingListApp.JobsScheduler.Test
             // Arrange
             backupProcessor.Setup(processor => processor.SecureBackup())
                 .Throws(new System.Net.Mail.SmtpException());
-            backupAllJob = new BackupAllJob(backupProcessor.Object, dataPathProvider.Object, loggerFake.Object);
+            backupAllJob = new BackupAllJob(backupProcessor.Object, loggerFake.Object);
 
             // Act
             backupAllJob.Execute(null);

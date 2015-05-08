@@ -12,17 +12,11 @@ namespace ShoppingListApp.JobsScheduler
     public class BackupAllJob : IJob
     {
         private IBackupProcessor backupProcessor;
-        private string baseSystemPath;
-        private string zippedBackupFileName;
-
         private ILogger backupAllJobLogger;
 
-        public BackupAllJob(IBackupProcessor backupProcessor, IDataPathProvider dataPathProvider, ILogger backupAllJobLogger)
+        public BackupAllJob(IBackupProcessor backupProcessor, ILogger backupAllJobLogger)
         {
             this.backupProcessor = backupProcessor;
-            this.baseSystemPath = dataPathProvider.DataPath;
-            this.zippedBackupFileName = this.baseSystemPath + @"\backupAll.bak";
-
             this.backupAllJobLogger = backupAllJobLogger;
         }
 

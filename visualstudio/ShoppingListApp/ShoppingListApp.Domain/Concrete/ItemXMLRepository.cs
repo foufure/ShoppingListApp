@@ -71,7 +71,7 @@ namespace ShoppingListApp.Domain.Concrete
             } 
         }
 
-        public void ModifyCategory(uint itemId, string itemCategory)
+        public void ChangeItemCategory(uint itemId, string itemCategory)
         {
             Item itemToModify = null;
 
@@ -87,6 +87,14 @@ namespace ShoppingListApp.Domain.Concrete
             else
             {
                 throw new ArgumentOutOfRangeException("Internal Error: the item to be modified does not exist. Please enter a valid Item Id", (Exception)null);
+            }
+        }
+
+        public void UpdateChangedCategoryName(string oldCategoryName, string newCategoryName)
+        {
+            foreach (Item item in itemRepository.Where(item => item.ItemCategory == oldCategoryName))
+            {
+                ChangeItemCategory(item.ItemId, newCategoryName);
             }
         }
 

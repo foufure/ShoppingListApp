@@ -15,13 +15,11 @@ namespace ShoppingListApp.Web.UI.Controllers
     {
         private IShoppingListRepository shoppingListRepository;
         private IItemsRepository itemRepository;
-        private IRepositoryNameProvider shoppingListsRepositoryName;
 
-        public ShoppingListController(IShoppingListRepository shoppingListRepository, IItemsRepository itemRepository, [Named("ShoppingListRepositoryName")] IRepositoryNameProvider shoppingListsRepositoryName)
+        public ShoppingListController(IShoppingListRepository shoppingListRepository, IItemsRepository itemRepository)
         {
             this.shoppingListRepository = shoppingListRepository;
             this.itemRepository = itemRepository;
-            this.shoppingListsRepositoryName = shoppingListsRepositoryName;
         }
 
         public ViewResult ShoppingLists()
@@ -29,21 +27,11 @@ namespace ShoppingListApp.Web.UI.Controllers
             return View(shoppingListRepository.Repository);
         }
 
-        public ActionResult ShowShoppingList(uint? shoppingListId = null)
+        public ActionResult ShowShoppingList(uint shoppingListId)
         {
-            if (shoppingListRepository.Repository.Count() == 0)
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            ViewBag.LastWriteTime = System.IO.File.GetLastWriteTime(shoppingListRepository.RepositoryName);
 
-            ViewBag.LastWriteTime = System.IO.File.GetLastWriteTime(shoppingListsRepositoryName.RepositoryName);
-
-            return View((shoppingListId == null) ?
-                shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListDueDate.Date >= DateTime.Now.Date)
-                                                 .OrderBy(shoppinglist => shoppinglist.ShoppingListDueDate)
-                                                 .DefaultIfEmpty(shoppingListRepository.Repository.OrderByDescending(shoppinglist => shoppinglist.ShoppingListDueDate).First())
-                                                 .FirstOrDefault() :
-                shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId).FirstOrDefault());
+            return View(shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId).FirstOrDefault());
         }
 
         public ActionResult FastModifyShoppingList(uint shoppingListId)
@@ -122,6 +110,14 @@ namespace ShoppingListApp.Web.UI.Controllers
             {
                 shoppingListToSave.ShoppingListContent.RemoveAll(item => item.QuantityToBuy == 0);
 
+                foreach (ShoppingListLine line in shoppingListToSave.ShoppingListContent)
+                {
+                    if (line.LinePresentationOrder == 0)
+                    {
+                        line.LinePresentationOrder = shoppingListToSave.ShoppingListContent.OrderByDescending(lastLine => lastLine.LinePresentationOrder).FirstOrDefault().LinePresentationOrder + 1;
+                    }
+                }
+
                 if (shoppingListRepository.Repository.Any(shoppinglist => shoppinglist.ShoppingListId == shoppingListToSave.ShoppingListId))
                 {
                     shoppingListRepository.Modify(shoppingListToSave);
@@ -129,14 +125,6 @@ namespace ShoppingListApp.Web.UI.Controllers
                 else
                 {
                     shoppingListRepository.Add(shoppingListToSave);
-                }
-
-                foreach (ShoppingListLine line in shoppingListToSave.ShoppingListContent)
-                {
-                    if (line.LinePresentationOrder == 0)
-                    {
-                        line.LinePresentationOrder = shoppingListToSave.ShoppingListContent.OrderByDescending(lastLine => lastLine.LinePresentationOrder).FirstOrDefault().LinePresentationOrder + 1;
-                    }
                 }
 
                 shoppingListRepository.Save();
@@ -157,9 +145,9 @@ namespace ShoppingListApp.Web.UI.Controllers
             }
         }
 
-        public ActionResult ResetAllDoneElements(uint shoppinglistIdToReset, string returnUrl)
+        public ActionResult ResetAllDoneElements(uint shoppingListIdToReset, string returnUrl)
         {
-            foreach (ShoppingListLine shoppingListLine in shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppinglistIdToReset).FirstOrDefault().ShoppingListContent)
+            foreach (ShoppingListLine shoppingListLine in shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListIdToReset).FirstOrDefault().ShoppingListContent)
             {
                 shoppingListLine.Done = false;
             }
@@ -171,14 +159,14 @@ namespace ShoppingListApp.Web.UI.Controllers
         // AJAX call!
         public JsonResult GetLastChangedDate()
         {
-            string lastChangedDate = Convert.ToString(System.IO.File.GetLastWriteTime(shoppingListsRepositoryName.RepositoryName), CultureInfo.CurrentCulture);
+            string lastChangedDate = Convert.ToString(System.IO.File.GetLastWriteTime(shoppingListRepository.RepositoryName), CultureInfo.CurrentCulture);
             return Json(lastChangedDate);
         }
 
         // AJAX call!
-        public void ToggleStrikeOnDoneElement(uint shoppinglistIdToToggle, uint itemIdToToggle)
+        public void ToggleStrikeOnDoneElement(uint shoppingListIdToToggle, uint itemIdToToggle)
         {
-            shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppinglistIdToToggle)
+            shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListIdToToggle)
                                              .FirstOrDefault().ShoppingListContent
                                              .Where(item => item.ItemToBuy.ItemId == itemIdToToggle)
                                              .FirstOrDefault()
