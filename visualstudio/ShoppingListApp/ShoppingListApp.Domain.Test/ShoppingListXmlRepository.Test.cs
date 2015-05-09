@@ -25,6 +25,7 @@ namespace ShoppingListApp.Domain.Test
             File.Copy(@"./ShoppingListRepository.invalidempty.xml", @"./ShoppingListRepository.invalidempty.orig.xml");
             File.Copy(@"./ShoppingListRepository.empty.xml", @"./ShoppingListRepository.empty.orig.xml");
             File.Copy(@"./ShoppingListRepository.invalidxsd.xml", @"./ShoppingListRepository.invalidxsd.orig.xml");
+            File.Copy(@"./ShoppingListRepository.example.DoneElements.xml", @"./ShoppingListRepository.example.DoneElements.orig.xml");
             this.repositoryNameProvider = new Mock<IRepositoryNameProvider>();
             this.dataPathProvider = new Mock<IDataPathProvider>();
             this.dataPathProvider.Setup(provider => provider.DataPath).Returns(@"./");
@@ -54,6 +55,10 @@ namespace ShoppingListApp.Domain.Test
             File.Delete(@"./ShoppingListRepository.invalidxsd.xml");
             File.Copy(@"./ShoppingListRepository.invalidxsd.orig.xml", @"./ShoppingListRepository.invalidxsd.xml");
             File.Delete(@"./ShoppingListRepository.invalidxsd.orig.xml");
+
+            File.Delete(@"./ShoppingListRepository.example.DoneElements.xml");
+            File.Copy(@"./ShoppingListRepository.example.DoneElements.orig.xml", @"./ShoppingListRepository.example.DoneElements.xml");
+            File.Delete(@"./ShoppingListRepository.example.DoneElements.orig.xml");
 
             File.Delete(@"./ShoppingListRepository.doesnotexists.xml");
         }
@@ -362,6 +367,306 @@ namespace ShoppingListApp.Domain.Test
 
             // Assert
             Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.empty.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListRepositoryRemainsUnchanged_WhenTryingToDeleteALineInAShoppingListThatDoesNotExist()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
+            uint invalidShoppingListId = 934;
+            uint invalidItemId = 12756;
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.DeleteShoppingListLine(invalidShoppingListId, invalidItemId);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.example.orig.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListRepositoryRemainsUnchanged_WhenTryingToDeleteALineThatDoesNotExist()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
+            uint validShoppingListId = 2;
+            uint invalidItemId = 12756;
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.DeleteShoppingListLine(validShoppingListId, invalidItemId);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.example.orig.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListRepositoryUpdated_WhenTryingToDeleteALineThatExists()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
+            uint validShoppingListId = 2;
+            uint validItemId = 5;
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.DeleteShoppingListLine(validShoppingListId, validItemId);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.DeletedLine.Expected.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListRepositoryRemainsUnchanged_WhenTryingToResetAllDoneElementsOfAShoppingListThatDoesNotExists()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
+            uint invalidShoppingListId = 1288;
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ResetAllDoneElementsFromShoppingList(invalidShoppingListId);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.example.orig.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListRepositoryUpdated_WhenResettingAllDoneElements()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.DoneElements.xml");
+            uint validShoppingListId = 2;
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ResetAllDoneElementsFromShoppingList(validShoppingListId);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.NoDoneElements.Expected.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.DoneElements.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListRepositoryRemainsUnchanged_WhenTryingToToggleDoneStatusOfAShoppingListThatDoesNotExist()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.DoneElements.xml");
+            uint invalidShoppingListId = 123;
+            uint validItemId = 3;
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ToggleShoppingListLineDoneStatus(invalidShoppingListId, validItemId);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.example.DoneElements.orig.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.DoneElements.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListRepositoryRemainsUnchanged_WhenTryingToToggleDoneStatusOfAShoppingListLineThatDoesNotExist()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.DoneElements.xml");
+            uint validShoppingListId = 2;
+            uint invalidItemId = 12444;
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ToggleShoppingListLineDoneStatus(validShoppingListId, invalidItemId);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.example.DoneElements.orig.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.DoneElements.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListRepositoryUpdated_WhenTogglingDoneStatusOfAnExistingElement()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.DoneElements.xml");
+            uint validShoppingListId1 = 1;
+            uint validItemId1 = 3;
+            uint validShoppingListId2 = 2;
+            uint validItemId2 = 1;
+            uint validShoppingListId3 = 2;
+            uint validItemId3 = 2;
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ToggleShoppingListLineDoneStatus(validShoppingListId1, validItemId1);
+            testee.ToggleShoppingListLineDoneStatus(validShoppingListId2, validItemId2);
+            testee.ToggleShoppingListLineDoneStatus(validShoppingListId3, validItemId3);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.ToggledDoneElements.Expected.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.DoneElements.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListRepositoryUpdated_WhenShoppingListLinesAreReorderedBackwards()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
+            uint validShoppingListId = 1;
+            uint validItemId = 3;
+            int initialPosition = 3;
+            int targetPosition = 1;
+            string direction = "back";
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ReorderShoppingListLines(validShoppingListId, validItemId, initialPosition, targetPosition, direction);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.ReorderedElementsBack.Expected.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListRepositoryUpdated_WhenShoppingListLinesAreReorderedForwards()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
+            uint validShoppingListId = 2;
+            uint validItemId = 1;
+            int initialPosition = 1;
+            int targetPosition = 2;
+            string direction = "forward";
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ReorderShoppingListLines(validShoppingListId, validItemId, initialPosition, targetPosition, direction);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.ReorderedElementsForward.Expected.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListLinesOrderRemainsUnchanged_WhenShoppingListDoesNotExists()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
+            uint invalidShoppingListId = 123456666;
+            uint validItemId = 1;
+            int initialPosition = 1;
+            int targetPosition = 2;
+            string direction = "forward";
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ReorderShoppingListLines(invalidShoppingListId, validItemId, initialPosition, targetPosition, direction);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.example.orig.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListLinesOrderRemainsUnchanged_WhenItemDoesNotExists()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
+            uint validShoppingListId = 1;
+            uint invalidItemId = 999;
+            int initialPosition = 1;
+            int targetPosition = 2;
+            string direction = "forward";
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ReorderShoppingListLines(validShoppingListId, invalidItemId, initialPosition, targetPosition, direction);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.example.orig.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListLinesOrderRemainsUnchanged_WhenSamePositionAsInitialPositionForward()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
+            uint validShoppingListId = 1;
+            uint validItemId = 1;
+            int initialPosition = 1;
+            int targetPosition = 1;
+            string direction = "forward";
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ReorderShoppingListLines(validShoppingListId, validItemId, initialPosition, targetPosition, direction);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.example.orig.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListLinesOrderRemainsUnchanged_WhenSamePositionAsInitialPositionBackward()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
+            uint validShoppingListId = 1;
+            uint validItemId = 1;
+            int initialPosition = 1;
+            int targetPosition = 1;
+            string direction = "back";
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ReorderShoppingListLines(validShoppingListId, validItemId, initialPosition, targetPosition, direction);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.example.orig.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListLinesOrderRemainsUnchanged_WhenInvalidTargetInitialPositionsBackward()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
+            uint validShoppingListId = 1;
+            uint validItemId = 1;
+            int initialPosition = 1;
+            int targetPosition = 3;
+            string direction = "back";
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ReorderShoppingListLines(validShoppingListId, validItemId, initialPosition, targetPosition, direction);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.example.orig.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
+        }
+
+        [Test]
+        public void ShoppingListLinesOrderRemainsUnchanged_WhenInvalidTargetInitialPositionsForward()
+        {
+            // Arrange
+            this.repositoryNameProvider.Setup(x => x.RepositoryName).Returns(@"./ShoppingListRepository.example.xml");
+            uint validShoppingListId = 1;
+            uint validItemId = 1;
+            int initialPosition = 3;
+            int targetPosition = 1;
+            string direction = "forward";
+
+            // Act
+            ShoppingListXmlRepository testee = new ShoppingListXmlRepository(this.repositoryNameProvider.Object, dataPathProvider.Object);
+            testee.ReorderShoppingListLines(validShoppingListId, validItemId, initialPosition, targetPosition, direction);
+            testee.Save();
+
+            // Assert
+            Assert.AreEqual(File.ReadAllText(@"./ShoppingListRepository.example.orig.xml").Replace("\r\n", "\n"), File.ReadAllText(@"./ShoppingListRepository.example.xml").Replace("\r\n", "\n"));
         }
     }
 }

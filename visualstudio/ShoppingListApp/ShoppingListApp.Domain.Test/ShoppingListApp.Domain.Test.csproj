@@ -215,6 +215,24 @@
     <Content Include="ShoppingListRepository.AddFirst.Expected.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ShoppingListRepository.DeletedLine.Expected.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ShoppingListRepository.ReorderedElementsForward.Expected.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ShoppingListRepository.ReorderedElementsBack.Expected.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ShoppingListRepository.example.DoneElements.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ShoppingListRepository.ToggledDoneElements.Expected.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ShoppingListRepository.NoDoneElements.Expected.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ShoppingListRepository.invalidxsd.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

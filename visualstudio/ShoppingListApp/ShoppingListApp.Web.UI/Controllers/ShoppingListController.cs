@@ -63,7 +63,7 @@ namespace ShoppingListApp.Web.UI.Controllers
                     shoppinglistToCreate.ShoppingListContent.Add(new ShoppingListLine() { ItemToBuy = item, QuantityToBuy = 0, LinePresentationOrder = 0, Unit = UnitsUtils.Units["default"], Done = false });
                 }
 
-                ViewBag.existingCategories = new List<string>(shoppinglistToCreate.ShoppingListContent.Select(item => item.ItemToBuy.ItemCategory).Distinct().OrderBy(category => category).ToList());
+                ViewBag.existingCategories = ListOfExistingCategoriesContainingAtLeastOneItem(shoppinglistToCreate);
 
                 return View(shoppinglistToCreate);
             }
@@ -88,17 +88,14 @@ namespace ShoppingListApp.Web.UI.Controllers
                 }
             }
 
-            ViewBag.existingCategories = new List<string>(shoppinglistToModify.ShoppingListContent.Select(item => item.ItemToBuy.ItemCategory).Distinct().OrderBy(category => category).ToList());
+            ViewBag.existingCategories = ListOfExistingCategoriesContainingAtLeastOneItem(shoppinglistToModify);
 
             return View("AddShoppingList", shoppinglistToModify);
         }
 
         public ActionResult DeleteShoppingListLine(uint shoppingListId, uint itemId, string returnUrl)
         {
-            ShoppingList shoppinglistToModify = shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId).FirstOrDefault();
-            ShoppingListLine shoppinglistLineToRemove = shoppinglistToModify.ShoppingListContent.Where(item => item.ItemToBuy.ItemId == itemId).FirstOrDefault();
-
-            shoppinglistToModify.ShoppingListContent.Remove(shoppinglistLineToRemove);
+            shoppingListRepository.DeleteShoppingListLine(shoppingListId, itemId);
             shoppingListRepository.Save();
 
             return Redirect(returnUrl);
@@ -147,12 +144,9 @@ namespace ShoppingListApp.Web.UI.Controllers
 
         public ActionResult ResetAllDoneElements(uint shoppingListIdToReset, string returnUrl)
         {
-            foreach (ShoppingListLine shoppingListLine in shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListIdToReset).FirstOrDefault().ShoppingListContent)
-            {
-                shoppingListLine.Done = false;
-            }
-
+            shoppingListRepository.ResetAllDoneElementsFromShoppingList(shoppingListIdToReset);
             shoppingListRepository.Save();
+
             return Redirect(returnUrl);
         }
 
@@ -166,11 +160,7 @@ namespace ShoppingListApp.Web.UI.Controllers
         // AJAX call!
         public void ToggleStrikeOnDoneElement(uint shoppingListIdToToggle, uint itemIdToToggle)
         {
-            shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListIdToToggle)
-                                             .FirstOrDefault().ShoppingListContent
-                                             .Where(item => item.ItemToBuy.ItemId == itemIdToToggle)
-                                             .FirstOrDefault()
-                                             .Done ^= true; // XOR operator to toggle value
+            shoppingListRepository.ToggleShoppingListLineDoneStatus(shoppingListIdToToggle, itemIdToToggle);
             shoppingListRepository.Save();
         }
 
@@ -180,36 +170,13 @@ namespace ShoppingListApp.Web.UI.Controllers
             string incomingURL = Request.Url.PathAndQuery;
             uint shoppingListId = Convert.ToUInt32(incomingURL.Split('/').LastOrDefault(), CultureInfo.InvariantCulture);
 
-            ShoppingList shoppingListToUpdate = shoppingListRepository.Repository
-                            .Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId)
-                            .FirstOrDefault();
-
-            if (direction == "back")
-            {
-                List<ShoppingListLine> shoppingListLinesToReorder = shoppingListToUpdate.ShoppingListContent
-                            .Where(shoppingListLine => (toPosition <= shoppingListLine.LinePresentationOrder && shoppingListLine.LinePresentationOrder <= fromPosition))
-                            .ToList();
-
-                foreach (ShoppingListLine shoppingListLine in shoppingListLinesToReorder)
-                {
-                    shoppingListLine.LinePresentationOrder++;
-                }
-            }
-            else
-            {
-                List<ShoppingListLine> shoppingListLinesToReorder = shoppingListToUpdate.ShoppingListContent
-                            .Where(shoppingListLine => (fromPosition <= shoppingListLine.LinePresentationOrder && shoppingListLine.LinePresentationOrder <= toPosition))
-                            .ToList();
-
-                foreach (ShoppingListLine shoppingListLine in shoppingListLinesToReorder)
-                {
-                    shoppingListLine.LinePresentationOrder--;
-                }
-            }
-
-            shoppingListToUpdate.ShoppingListContent.Where(line => line.ItemToBuy.ItemId == id).FirstOrDefault().LinePresentationOrder = toPosition;
-
+            shoppingListRepository.ReorderShoppingListLines(shoppingListId, (uint)id, fromPosition, toPosition, direction);
             shoppingListRepository.Save();
+        }
+
+        private static List<string> ListOfExistingCategoriesContainingAtLeastOneItem(ShoppingList shoppingListToCreateOrModify)
+        {
+            return new List<string>(shoppingListToCreateOrModify.ShoppingListContent.Select(item => item.ItemToBuy.ItemCategory).Distinct().OrderBy(category => category).ToList());
         }
     }
 }

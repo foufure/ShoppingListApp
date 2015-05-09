@@ -13,7 +13,7 @@ namespace ShoppingListApp.Domain.Concrete
 {
     public class ShoppingListXmlRepository : BaseRepository, IShoppingListRepository
     {
-        private List<ShoppingList> shoppinglistRepository = null;
+        private List<ShoppingList> shoppingListRepository = null;
 
         public ShoppingListXmlRepository(IRepositoryNameProvider repositoryNameProvider, IDataPathProvider dataPathProvider)
             : base(repositoryNameProvider, dataPathProvider)
@@ -26,7 +26,7 @@ namespace ShoppingListApp.Domain.Concrete
         {
             get
             {
-                return shoppinglistRepository;
+                return shoppingListRepository;
             }
         }
 
@@ -42,13 +42,13 @@ namespace ShoppingListApp.Domain.Concrete
                 throw new ArgumentNullException("Internal Error: the shopping list to add is empty or null. Please enter a valid shopping list", (Exception)null);
             }
 
-            newShoppingList.ShoppingListId = shoppinglistRepository.OrderByDescending(shoppinglist => shoppinglist.ShoppingListId).Select(shoppinglist => shoppinglist.ShoppingListId).FirstOrDefault() + 1;
-            shoppinglistRepository.Add(newShoppingList);
+            newShoppingList.ShoppingListId = shoppingListRepository.OrderByDescending(shoppinglist => shoppinglist.ShoppingListId).Select(shoppinglist => shoppinglist.ShoppingListId).FirstOrDefault() + 1;
+            shoppingListRepository.Add(newShoppingList);
         }
 
         public void Remove(uint shoppingListId)
         {
-            if (!shoppinglistRepository.Remove(shoppinglistRepository.Where(repositoryShoppingList => repositoryShoppingList.ShoppingListId == shoppingListId).FirstOrDefault()))
+            if (!shoppingListRepository.Remove(shoppingListRepository.Where(repositoryShoppingList => repositoryShoppingList.ShoppingListId == shoppingListId).FirstOrDefault()))
             {
                 throw new ArgumentOutOfRangeException("Internal Error: the item to be deleted does not exist. Please enter a valid Shopping List Id", (Exception)null);
             }
@@ -63,18 +63,100 @@ namespace ShoppingListApp.Domain.Concrete
                 throw new ArgumentNullException("Internal Error: the shopping list to modify is empty or null. Please enter a valid shopping list", (Exception)null);
             }
 
-            if (shoppinglistRepository.RemoveAll(item => item.ShoppingListId == shoppingList.ShoppingListId) == shoppingListNotFound)
+            if (shoppingListRepository.RemoveAll(item => item.ShoppingListId == shoppingList.ShoppingListId) == shoppingListNotFound)
             {
                 throw new ArgumentOutOfRangeException("Internal Error: the shopping list to modify does not exist in the repository. Please enter a valid shopping list", (Exception)null);
             }
 
-            shoppinglistRepository.Add(shoppingList);
+            shoppingListRepository.Add(shoppingList);
+        }
+
+        public void DeleteShoppingListLine(uint shoppingListId, uint itemId)
+        {
+            ShoppingList shoppingListToModify = shoppingListRepository.Where(shoppingList => shoppingList.ShoppingListId == shoppingListId).FirstOrDefault();
+
+            if (shoppingListToModify != null)
+            { 
+                ShoppingListLine shoppingListLineToRemove = shoppingListToModify.ShoppingListContent.Where(item => item.ItemToBuy.ItemId == itemId).FirstOrDefault();
+                shoppingListToModify.ShoppingListContent.Remove(shoppingListLineToRemove);
+            }
+        }
+
+        public void ResetAllDoneElementsFromShoppingList(uint shoppingListId)
+        {
+            ShoppingList shoppingListToModify = shoppingListRepository.Where(shoppingList => shoppingList.ShoppingListId == shoppingListId).FirstOrDefault();
+
+            if (shoppingListToModify != null)
+            {
+                foreach (ShoppingListLine shoppingListLine in shoppingListToModify.ShoppingListContent)
+                {
+                    shoppingListLine.Done = false;
+                }
+            }
+        }
+
+        public void ToggleShoppingListLineDoneStatus(uint shoppingListId, uint itemId)
+        {
+            ShoppingList shoppingListToModify = shoppingListRepository.Where(shoppingList => shoppingList.ShoppingListId == shoppingListId).FirstOrDefault();
+
+            if (shoppingListToModify != null)
+            { 
+                ShoppingListLine shoppingListLineToModify = shoppingListToModify.ShoppingListContent.Where(item => item.ItemToBuy.ItemId == itemId).FirstOrDefault();
+
+                if (shoppingListLineToModify != null)
+                {
+                    shoppingListLineToModify.Done ^= true; // XOR operator to toggle value
+                }
+            }
+        }
+
+        public void ReorderShoppingListLines(uint shoppingListId, uint itemId, int initialPositionOfElementToMove, int targetPositionOfElementToMove, string directionInWhichToMoveElement)
+        {
+            ShoppingList shoppingList = shoppingListRepository.Where(shoppingListToReorder => shoppingListToReorder.ShoppingListId == shoppingListId).FirstOrDefault();
+
+            if (shoppingList != null)
+            {
+                ShoppingListLine elementToMove = shoppingList.ShoppingListContent.Where(line => line.ItemToBuy.ItemId == itemId).FirstOrDefault();
+
+                if (elementToMove != null)
+                { 
+                    List<ShoppingListLine> shoppingListLinesToReorder = null;
+
+                    if (directionInWhichToMoveElement == "back")
+                    {
+                        shoppingListLinesToReorder = shoppingList.ShoppingListContent
+                                    .Where(shoppingListLine => (targetPositionOfElementToMove <= shoppingListLine.LinePresentationOrder && shoppingListLine.LinePresentationOrder <= initialPositionOfElementToMove))
+                                    .ToList();
+
+                        foreach (ShoppingListLine shoppingListLine in shoppingListLinesToReorder)
+                        {
+                            shoppingListLine.LinePresentationOrder++;
+                        }
+                    }
+                    else
+                    {
+                        shoppingListLinesToReorder = shoppingList.ShoppingListContent
+                                    .Where(shoppingListLine => (initialPositionOfElementToMove <= shoppingListLine.LinePresentationOrder && shoppingListLine.LinePresentationOrder <= targetPositionOfElementToMove))
+                                    .ToList();
+
+                        foreach (ShoppingListLine shoppingListLine in shoppingListLinesToReorder)
+                        {
+                            shoppingListLine.LinePresentationOrder--;
+                        }
+                    }
+
+                    if (shoppingListLinesToReorder.Count != 0)
+                    { 
+                        elementToMove.LinePresentationOrder = targetPositionOfElementToMove;
+                    }
+                } 
+            }
         }
 
         public void Save()
         {
             XElement elements = new XElement("ShoppingLists");
-            foreach (ShoppingList shoppinglist in shoppinglistRepository.OrderBy(list => list.ShoppingListId))
+            foreach (ShoppingList shoppinglist in shoppingListRepository.OrderBy(list => list.ShoppingListId))
             {
                 List<XElement> lines = new List<XElement>();
 
@@ -105,7 +187,7 @@ namespace ShoppingListApp.Domain.Concrete
         {
             XDocument parsedFile = XDocument.Load(RepositoryName);
 
-            shoppinglistRepository = new List<ShoppingList>();
+            shoppingListRepository = new List<ShoppingList>();
             foreach (XElement element in parsedFile.Elements("ShoppingLists").Elements("ShoppingList"))
             {
                 ShoppingList newShoppingList = new ShoppingList()
@@ -127,7 +209,7 @@ namespace ShoppingListApp.Domain.Concrete
                     });
                 }
 
-                shoppinglistRepository.Add(newShoppingList);
+                shoppingListRepository.Add(newShoppingList);
             }
         }
     }
