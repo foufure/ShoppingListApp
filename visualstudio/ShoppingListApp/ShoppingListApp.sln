@@ -37,8 +37,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingListApp.JobsSchedul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingListApp.Web.Test", "ShoppingListApp.Web.Test\ShoppingListApp.Web.Test.csproj", "{14A6253A-B34C-470C-86F3-719E1E52F187}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingListApp.Web.UI.Test", "ShoppingListApp.Web.UI.Test\ShoppingListApp.Web.UI.Test.csproj", "{BDA610CD-7E51-4417-A26A-A6B94F667FB5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,9 +79,6 @@ Global
 		{14A6253A-B34C-470C-86F3-719E1E52F187}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14A6253A-B34C-470C-86F3-719E1E52F187}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14A6253A-B34C-470C-86F3-719E1E52F187}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BDA610CD-7E51-4417-A26A-A6B94F667FB5}.Debug|Any CPU.ActiveCfg = NoRelease|Any CPU
-		{BDA610CD-7E51-4417-A26A-A6B94F667FB5}.Release|Any CPU.ActiveCfg = NoRelease|Any CPU
-		{BDA610CD-7E51-4417-A26A-A6B94F667FB5}.Release|Any CPU.Build.0 = NoRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
