@@ -9,31 +9,37 @@
 </head>
 <body class="bg-info">
 
-    <div class="col-xs-0 col-sm-2 col-md-4 col-lg-4">
+    <div class="container-fluid">
 
-    </div>
-
-    <div class="col-xs-12 col-sm-8 col-md-4 col-lg-4">
-        <div class="row well-sm">
-            <div class="pull-left">
-                @Html.Partial("LogOnStatus")
+        <div id="page_header" class="row well-sm">
+            <div class="col-xs-0 col-md-3"></div>
+            <div class="col-xs-12 col-md-6">
+                <div class="pull-left">
+                    @Html.Partial("LogOnStatus")
+                </div>
+                <div class="btn-group-xs pull-right">
+                    @Html.Partial("GetUserCulture")
+                </div>
             </div>
-            <div class="btn-group-xs pull-right">
-                @Html.Partial("GetUserCulture")
+            <div class="col-xs-0 col-md-3"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-0 col-md-3"></div>
+            <div class="col-xs-12 col-md-6">
+                @RenderBody()
             </div>
+            <div class="col-xs-0 col-md-3"></div>
         </div>
+
         <div class="row">
-            @RenderBody()
-        </div>
-        <div class="row">
-            <span class="pull-right small">2015 - Jonathan Orditz</span>
-            <span class="glyphicon glyphicon-copyright-mark pull-right"></span>
+            <div class="col-xs-0 col-md-3"></div>
+            <div class="col-xs-12 col-md-6">
+                <span class="pull-right small">2015 - Jonathan Orditz</span>
+                <span class="glyphicon glyphicon-copyright-mark pull-right"></span>
+            </div>
+            <div class="col-xs-0 col-md-3"></div>
         </div>
     </div>
-
-    <div class="col-xs-0 col-sm-2 col-md-4 col-lg-4">
-
-    </div>
-
 </body>
 </html>

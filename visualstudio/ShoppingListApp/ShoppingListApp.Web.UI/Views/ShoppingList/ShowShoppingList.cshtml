@@ -30,23 +30,22 @@
         }
     }
 
-    function VerifyChangedFile(lastChangedDate)
+    function VerifyChangedStatus(changedStatus)
     {
-        if ("@ViewBag.LastWriteTime" != lastChangedDate)
+        if (changedStatus == "True")
         {
             addAlert();
         }
         else
         {
             console.log("No difference detected");
-            console.log("@ViewBag.LastWriteTime" + " == " + lastChangedDate);
         }
     }
 
     setInterval(
                 function ()
                 {
-                    $.ajax({url: '/ShoppingList/GetLastChangedDate/', success: VerifyChangedFile, type: 'POST', dataType: 'json'});
+                    $.ajax({ url: '/ShoppingList/GetShoppingListChangedStatus/', success: VerifyChangedStatus, type: 'POST', dataType: 'json' });
                 }, 10000
             );
 </script>
@@ -63,8 +62,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading text-uppercase">
         <span class="pull-right">@Model.ShoppingListDueDate.ToString("d", CurrentCultureConfiguration.GetCurrentUICulture)</span>
-        <h1 class="panel-title">@Model.ShoppingListName</h1>
-         
+        <h1 class="panel-title">@Model.ShoppingListName</h1>    
     </div>
 
     <div class="panel-body">

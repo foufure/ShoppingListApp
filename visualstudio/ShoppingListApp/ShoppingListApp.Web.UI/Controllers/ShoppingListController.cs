@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Ninject;
 using ShoppingListApp.Domain.Abstract;
@@ -16,6 +18,8 @@ namespace ShoppingListApp.Web.UI.Controllers
         private IShoppingListRepository shoppingListRepository;
         private IItemsRepository itemRepository;
 
+        private string lastChangedDateCookieName = "lastChangedDate";
+
         public ShoppingListController(IShoppingListRepository shoppingListRepository, IItemsRepository itemRepository)
         {
             this.shoppingListRepository = shoppingListRepository;
@@ -29,7 +33,7 @@ namespace ShoppingListApp.Web.UI.Controllers
 
         public ActionResult ShowShoppingList(uint shoppingListId)
         {
-            ViewBag.LastWriteTime = System.IO.File.GetLastWriteTime(shoppingListRepository.RepositoryName);
+            SetCookieContainingLastChangedDateOfShoppingList(LastChangedDate());
 
             return View(shoppingListRepository.Repository.Where(shoppinglist => shoppinglist.ShoppingListId == shoppingListId).FirstOrDefault());
         }
@@ -151,10 +155,19 @@ namespace ShoppingListApp.Web.UI.Controllers
         }
 
         // AJAX call!
-        public JsonResult GetLastChangedDate()
+        public JsonResult GetShoppingListChangedStatus()
         {
-            string lastChangedDate = Convert.ToString(System.IO.File.GetLastWriteTime(shoppingListRepository.RepositoryName), CultureInfo.CurrentCulture);
-            return Json(lastChangedDate);
+            string changedStatus = bool.FalseString;
+
+            string lastChangedDateOfCookie = GetCookieValueContainingLastChangedDateOfShoppingList();
+            string actualLastChangedDate = LastChangedDate();
+
+            if (lastChangedDateOfCookie != actualLastChangedDate)
+            { 
+                changedStatus = bool.TrueString;
+            }
+
+            return Json(changedStatus);
         }
 
         // AJAX call!
@@ -162,6 +175,8 @@ namespace ShoppingListApp.Web.UI.Controllers
         {
             shoppingListRepository.ToggleShoppingListLineDoneStatus(shoppingListIdToToggle, itemIdToToggle);
             shoppingListRepository.Save();
+
+            SetCookieContainingLastChangedDateOfShoppingList(LastChangedDate());
         }
 
         // AJAX call!
@@ -172,11 +187,34 @@ namespace ShoppingListApp.Web.UI.Controllers
 
             shoppingListRepository.ReorderShoppingListLines(shoppingListId, (uint)id, fromPosition, toPosition, direction);
             shoppingListRepository.Save();
+
+            SetCookieContainingLastChangedDateOfShoppingList(LastChangedDate());
         }
 
         private static List<string> ListOfExistingCategoriesContainingAtLeastOneItem(ShoppingList shoppingListToCreateOrModify)
         {
             return new List<string>(shoppingListToCreateOrModify.ShoppingListContent.Select(item => item.ItemToBuy.ItemCategory).Distinct().OrderBy(category => category).ToList());
+        }
+
+        private void SetCookieContainingLastChangedDateOfShoppingList(string lastChangedDate)
+        {
+            if (!string.IsNullOrEmpty(lastChangedDate))
+            {
+                HttpCookie lastChangedDateCookie = new HttpCookie(lastChangedDateCookieName, lastChangedDate);
+                lastChangedDateCookie.Expires = DateTime.Now.AddYears(10);
+
+                this.ControllerContext.HttpContext.Response.Cookies.Set(lastChangedDateCookie);
+            }
+        }
+
+        private string GetCookieValueContainingLastChangedDateOfShoppingList()
+        {
+            return this.ControllerContext.HttpContext.Request.Cookies.Get(lastChangedDateCookieName).Value;
+        }
+
+        private string LastChangedDate()
+        {
+            return System.IO.File.GetLastWriteTime(shoppingListRepository.RepositoryName).ToString();
         }
     }
 }

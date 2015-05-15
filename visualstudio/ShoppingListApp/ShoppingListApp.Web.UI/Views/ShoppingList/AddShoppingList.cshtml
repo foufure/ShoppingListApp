@@ -24,9 +24,6 @@
 
                 <div class="form-group">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    @{ string firstElementToExpand = "true"; }
-                    @{ string elementsToCollapse = ""; }
-                    @{ string firstElementIn = "in";}
                     @foreach (string category in ViewBag.existingCategories)
                     {
                         string categoryFixedAsValidParameterName = category.Replace(" ", "");
@@ -34,12 +31,12 @@
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="@("heading" + categoryFixedAsValidParameterName)">
                                 <h4 class="panel-title text-center">
-                                    <a class="@elementsToCollapse" data-toggle="collapse" data-parent="#accordion" href="@("#collapse" + categoryFixedAsValidParameterName)" aria-expanded="@firstElementToExpand" aria-controls="@("collapse" + categoryFixedAsValidParameterName)">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="@("#collapse" + categoryFixedAsValidParameterName)" aria-expanded="false" aria-controls="@("collapse" + categoryFixedAsValidParameterName)">
                                         @category
                                     </a>
                                 </h4>
                             </div>
-                            <div id="@("collapse" + categoryFixedAsValidParameterName)" class="@("panel-collapse collapse " + firstElementIn)" role="tabpanel" aria-labelledby="@("heading" + categoryFixedAsValidParameterName)">
+                            <div id="@("collapse" + categoryFixedAsValidParameterName)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@("heading" + categoryFixedAsValidParameterName)">
                                 <div class="panel-body">
                                     <table class="table" style="border-collapse:collapse;">
                                         <thead>
@@ -59,15 +56,16 @@
                                                         @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemName)
                                                         @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemCategory)
                                                         @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].Done)
-                                                        <td>
+                                                        <td width="34%">
                                                             @Html.Label(@Model.ShoppingListContent[i].ItemToBuy.ItemName)
                                                         </td>
-                                                        <td>
+                                                        <td width="33%">
                                                             @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListContent[i].QuantityToBuy, new { @class = "quantity_spinner" })
                                                         </td>
-                                                        <td>
-                                                            @Html.DropDownListFor(shoppinglist => shoppinglist.ShoppingListContent[i].Unit, new SelectList(UnitsUtils.Units.Values,  @Model.ShoppingListContent[i].Unit), new { @class = "form-control" })
+                                                        <td width="33%">
+                                                            @Html.DropDownListFor(shoppinglist => shoppinglist.ShoppingListContent[i].Unit, new SelectList(UnitsUtils.Units.Values, @Model.ShoppingListContent[i].Unit), new { @class = "form-control" })
                                                         </td>
+
                                                     </tr>
                                                 }
                                             }
@@ -77,10 +75,6 @@
                                 </div> 
                             </div> 
                         </div>
-                        
-                        firstElementToExpand = "false";
-                        elementsToCollapse = "collapsed";
-                        firstElementIn = "";
                     }
                                                      
                      </div>
