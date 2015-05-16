@@ -26,12 +26,20 @@ http://markusslima.github.io/bootstrap-filestyle/#Downloads - to customize uploa
 http://www.virtuosoft.eu/code/bootstrap-touchspin/
 
 AppHarbor Deployment:
-
 AppHarbor: jorditz - free (yahoo!)
 GitHub: outlook - free - repo foufure/ShoppingListApp
 https://help.github.com/articles/importing-from-subversion/
 
-Migrated to GitHub for automatic deployment on AppHarbor
+Microsoft Azure Deployment:
+shoppinglistapp.azurewebsites.net
+On the portal under the app take the menu "configure" and then on the page "app settings" to configure which solution must be build.
+https://github.com/projectkudu/kudu/wiki/Customizing-deployments
+Add an App Setting called Project, and set its value to something like WebProject/WebProject.csproj
+http://weblogs.asp.net/bleroy/azure-web-sites-ftp-credentials
+Download publish profile to see the login/password of ftp azure.
+http://forums.asp.net/t/1810635.aspx?403+Access+denied+when+using+Bundling
+
+Migrated to GitHub for automatic deployment on AppHarbor - outlook / free
 Use of TortoiseGit (http://www.munsplace.com/blog/2012/07/27/saving-username-and-password-with-tortoisegit/)
 
 Google Backup Account + Authentication:

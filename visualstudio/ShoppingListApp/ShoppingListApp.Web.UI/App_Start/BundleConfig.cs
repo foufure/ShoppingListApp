@@ -6,7 +6,7 @@ namespace ShoppingListApp.Web.UI
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/Content/css")
+            bundles.Add(new StyleBundle("~/bundles/Content/css")
                 .Include("~/Content/*.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/shoppinglistappscripts")
