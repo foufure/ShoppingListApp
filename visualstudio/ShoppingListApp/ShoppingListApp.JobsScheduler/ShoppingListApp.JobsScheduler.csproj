@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="BackupAllJob.cs" />
     <Compile Include="CronJobsScheduler.cs" />
+    <Compile Include="DummyPingJob.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="NinjectJobFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -15,7 +15,7 @@ namespace ShoppingListApp.JobsScheduler
         
         public IJob NewJob(TriggerFiredBundle bundle, IScheduler scheduler)
         {
-            return (IJob)kernel.Get<IJob>();
+            return (IJob)kernel.Get<IJob>(bundle.JobDetail.JobType.Name);
         }
 
         public void ReturnJob(IJob job)

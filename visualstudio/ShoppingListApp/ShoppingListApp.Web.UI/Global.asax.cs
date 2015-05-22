@@ -32,8 +32,8 @@ namespace ShoppingListApp.Web.UI
             CronJobsScheduler cronJobsScheduler = new CronJobsScheduler(DependencyResolver.Current.GetService<ISchedulerFactory>(), DependencyResolver.Current.GetService<IJobFactory>());
             cronJobsScheduler.StartJobScheduler();
 
-            // @"0 5 8,10,12,18,20 * * ?" - every day at 8:05, 10:05 ... + @"0 * * ? * *" - every minute
             cronJobsScheduler.AddJob(@"0 5 8,10,12,18,20 * * ?", JobBuilder.Create<BackupAllJob>().Build());
+            cronJobsScheduler.AddJob(@"0 0/19 * * * ?", JobBuilder.Create<DummyPingJob>().Build());
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1121:UseBuiltInTypeAlias", Justification = "Reviewed.")]

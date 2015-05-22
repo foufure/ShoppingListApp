@@ -45,7 +45,8 @@ namespace ShoppingListApp.Web.UI.Infrastructure
             kernel.Bind<IUserInformation>().To<GoogleUserInformation>();
             kernel.Bind<IEmailSettings>().To<GoogleEmailSettings>();
             kernel.Bind<IBackupProcessor>().To<EmailBackupProcessor>();
-            kernel.Bind<IJob>().To<BackupAllJob>();
+            kernel.Bind<IJob>().To<BackupAllJob>().Named("BackupAllJob");
+            kernel.Bind<IJob>().To<DummyPingJob>().Named("DummyPingJob");
             kernel.Bind<ILogger>().To<LoggerAdapter>().WithConstructorArgument(NLog.LogManager.GetCurrentClassLogger());
             kernel.Bind<ISchedulerFactory>().To<StdSchedulerFactory>();
             kernel.Bind<IJobFactory>().To<NinjectJobFactory>().WithConstructorArgument(kernel);
