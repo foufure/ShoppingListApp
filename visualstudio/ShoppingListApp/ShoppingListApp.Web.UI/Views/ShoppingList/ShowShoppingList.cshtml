@@ -84,8 +84,8 @@
                             <td class="hidden debug">
                                 @line.LinePresentationOrder
                             </td>
-                            <td class="@("strikethrough_toggler" + isStroked)">
-                                @Ajax.ActionLink(@line.ItemToBuy.ItemName, "ToggleStrikeOnDoneElement", new { shoppingListIdToToggle = @Model.ShoppingListId, itemIdToToggle = @line.ItemToBuy.ItemId }, null, new { @style="text-decoration:none; color:black", @class="h3" })
+                            <td class="@("strikethrough_toggler" + isStroked) h1">
+                                @Ajax.ActionLink(@line.ItemToBuy.ItemName, "ToggleStrikeOnDoneElement", new { shoppingListIdToToggle = @Model.ShoppingListId, itemIdToToggle = @line.ItemToBuy.ItemId }, null, new { @style="text-decoration:none; color:black" })
                             </td>
                             <td>
                                 @line.QuantityToBuy
