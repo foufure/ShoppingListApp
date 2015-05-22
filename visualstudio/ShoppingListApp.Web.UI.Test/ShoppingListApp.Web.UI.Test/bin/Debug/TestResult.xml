@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\svn_git_local_copy\github\ShoppingListApp\master\visualstudio\ShoppingListApp.Web.UI.Test\ShoppingListApp.Web.UI.Test\bin\Debug\ShoppingListApp.Web.UI.Test.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2015-05-22" time="10:21:26">
+  <environment nunit-version="2.6.4.14350" clr-version="2.0.50727.5485" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\svn_git_local_copy\github\ShoppingListApp\master\visualstudio\ShoppingListApp.Web.UI.Test\ShoppingListApp.Web.UI.Test\bin\Debug" machine-name="ORDIJ-PC" user="ordij" user-domain="ordij-PC" />
+  <culture-info current-culture="de-CH" current-uiculture="de-DE" />
+  <test-suite type="Assembly" name="C:\svn_git_local_copy\github\ShoppingListApp\master\visualstudio\ShoppingListApp.Web.UI.Test\ShoppingListApp.Web.UI.Test\bin\Debug\ShoppingListApp.Web.UI.Test.dll" executed="True" result="Success" success="True" time="34.292" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="ShoppingListApp" executed="True" result="Success" success="True" time="34.271" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Web" executed="True" result="Success" success="True" time="34.271" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="UI" executed="True" result="Success" success="True" time="34.270" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="Test" executed="True" result="Success" success="True" time="34.270" asserts="0">
+                    <results>
+                      <test-suite type="Namespace" name="Features" executed="True" result="Success" success="True" time="34.269" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="US001_LogIn_AsUserFeature" description="US001_LogIn_AsUser" executed="True" result="Success" success="True" time="34.267" asserts="0">
+                            <results>
+                              <test-case name="ShoppingListApp.Web.UI.Test.Features.US001_LogIn_AsUserFeature.LogInAsAValidUserOnTheShoppinglistAppOpensTheHomePage" description="Log in as a valid user on the shoppinglist app opens the home page" executed="True" result="Success" success="True" time="33.458" asserts="1">
+                                <categories>
+                                  <category name="web" />
+                                </categories>
+                              </test-case>
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

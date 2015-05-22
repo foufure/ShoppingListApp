@@ -1,0 +1,5 @@
+﻿<configuration>
+  <appSettings>
+    <add key="AppUrl" value="http://www.google.co.uk/"/>
+  </appSettings>
+</configuration>
