@@ -166,6 +166,9 @@
     <Content Include="App_Data\DefaultItemRepository.xml" />
     <Content Include="App_Data\DefaultItemRepository_de.xml" />
     <Content Include="App_Data\DefaultItemRepository_fr.xml" />
+    <Content Include="App_Data\DefaultShoppingListRepository.xml" />
+    <Content Include="App_Data\DefaultShoppingListRepository_de.xml" />
+    <Content Include="App_Data\DefaultShoppingListRepository_fr.xml" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
