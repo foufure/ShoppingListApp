@@ -12,13 +12,6 @@ namespace ShoppingListApp.JobsScheduler
 {
     public class DummyPingJob : IJob
     {
-        private ILogger dummyPingJobLogger;
-
-        public DummyPingJob(ILogger dummyPingJobLogger)
-        {
-            this.dummyPingJobLogger = dummyPingJobLogger;
-        }
-
         public void Execute(IJobExecutionContext context)
         {
             // This is done to keep IIS alive, because after 20 minutes it shuts down on AppHarbor.

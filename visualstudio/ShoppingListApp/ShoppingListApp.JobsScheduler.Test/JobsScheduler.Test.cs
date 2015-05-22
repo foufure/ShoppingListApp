@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Threading;
-using Ionic.Zip;
 using Moq;
 using Ninject;
 using NLog.Interface;
 using NUnit.Framework;
 using Quartz;
 using Quartz.Impl;
+using Quartz.Spi;
 using ShoppingListApp.Domain.Abstract;
 
 namespace ShoppingListApp.JobsScheduler.Test
@@ -46,20 +45,19 @@ namespace ShoppingListApp.JobsScheduler.Test
             Mock<IJob> mockJob = new Mock<IJob>();
             mockJob.Setup(x => x.Execute(null));
 
-            using (IKernel kernel = new StandardKernel())
-            { 
-                kernel.Bind<IJob>().ToConstant(mockJob.Object);
+            Mock<IJobFactory> mockJobFactory = new Mock<IJobFactory>();
+            mockJobFactory.Setup(x => x.NewJob(It.IsAny<TriggerFiredBundle>(), It.IsAny<IScheduler>())).Returns(mockJob.Object);
 
-                CronJobsScheduler cronJobScheduler = new CronJobsScheduler(new StdSchedulerFactory(), new NinjectJobFactory(kernel));
+            CronJobsScheduler cronJobScheduler = new CronJobsScheduler(new StdSchedulerFactory(), mockJobFactory.Object);
 
-                // Act
-                cronJobScheduler.StartJobScheduler();
-                cronJobScheduler.AddJob("* * * ? * *", JobBuilder.Create(mockJob.Object.GetType()).Build());
+            // Act
+            cronJobScheduler.StartJobScheduler();
+            IJobDetail jobToRun = JobBuilder.Create(mockJob.Object.GetType()).Build();
+            cronJobScheduler.AddJob("* * * ? * *", jobToRun);
 
-                // Assert
-                Thread.Sleep(3000);
-                cronJobScheduler.StandbyJobScheduler();
-            }
+            // Assert
+            Thread.Sleep(3000);
+            cronJobScheduler.StandbyJobScheduler();
 
             Thread.Sleep(3000);
             Assert.DoesNotThrow(() => mockJob.Verify(job => job.Execute(It.IsAny<IJobExecutionContext>()), Times.Between(1, 3, Moq.Range.Inclusive)));
