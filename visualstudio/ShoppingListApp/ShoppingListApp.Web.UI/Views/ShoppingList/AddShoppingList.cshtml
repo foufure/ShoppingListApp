@@ -56,13 +56,13 @@
                                                         @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemName)
                                                         @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].ItemToBuy.ItemCategory)
                                                         @Html.HiddenFor(shoppinglist => shoppinglist.ShoppingListContent[i].Done)
-                                                        <td width="34%">
+                                                        <td width="20%">
                                                             @Html.Label(@Model.ShoppingListContent[i].ItemToBuy.ItemName)
                                                         </td>
-                                                        <td width="33%">
+                                                        <td width="40%">
                                                             @Html.TextBoxFor(shoppinglist => shoppinglist.ShoppingListContent[i].QuantityToBuy, new { @class = "quantity_spinner" })
                                                         </td>
-                                                        <td width="33%">
+                                                        <td width="40%">
                                                             @Html.DropDownListFor(shoppinglist => shoppinglist.ShoppingListContent[i].Unit, new SelectList(UnitsUtils.Units.Values, @Model.ShoppingListContent[i].Unit), new { @class = "form-control" })
                                                         </td>
 

@@ -70,7 +70,7 @@
                 <thead>
                     <tr>
                         <th class="hidden debug">Idx</th>
-                        <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name</th>
+                        <th><div>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Name</div></th>
                         <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Quantity</th>
                         <th>@ShoppingListApp.I18N.Resources.Views.ShoppingList.ShoppingListsCommon.Unit</th>
                     </tr>
@@ -85,7 +85,7 @@
                                 @line.LinePresentationOrder
                             </td>
                             <td class="@("strikethrough_toggler" + isStroked)">
-                                @Ajax.ActionLink(@line.ItemToBuy.ItemName, "ToggleStrikeOnDoneElement", new { shoppingListIdToToggle = @Model.ShoppingListId, itemIdToToggle = @line.ItemToBuy.ItemId }, null, new { @style="text-decoration:none; color:black" })
+                                @Ajax.ActionLink(@line.ItemToBuy.ItemName, "ToggleStrikeOnDoneElement", new { shoppingListIdToToggle = @Model.ShoppingListId, itemIdToToggle = @line.ItemToBuy.ItemId }, null, new { @style="text-decoration:none; color:black", @class="h3" })
                             </td>
                             <td>
                                 @line.QuantityToBuy
